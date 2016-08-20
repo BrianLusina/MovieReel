@@ -7,7 +7,7 @@
     <!--CUSTOM THEME-->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/dark_blue_2</item>
-        <item name="colorPrimaryDark">@color/holo_blue</item>
+        <item name="colorPrimaryDark">@color/dodger_blue</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
