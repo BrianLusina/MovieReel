@@ -3,6 +3,7 @@ package com.moviereel.moviereel;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -81,6 +82,22 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setAdapter(scaleAdapter);
     }
 
+    /***
+     * Method to load Bonds from NSE and post them to the UI
+     */
+    private class LoadMoviesTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+    }
 
     /**
      * Method to check network availability
