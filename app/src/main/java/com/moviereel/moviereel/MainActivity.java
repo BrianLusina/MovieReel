@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
     private CoordinatorLayout coordinatorLayout;
+    private LoadMoviesTask loadMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
