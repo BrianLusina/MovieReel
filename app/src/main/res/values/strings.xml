@@ -6,4 +6,6 @@
     <string name="movie_desc_card">Lorem ipsum dolor sit amet, quo justo semper maiestatis te. Natum minim nominavi eu cum, his mucius numquam ocurreret eu, in dicunt impedit suscipiantur pro.</string>
     <string name="movie_chef_card">Movie enthusiast</string>
     <string name="movie_date_card">day : time</string>
+    <string name="snackbar_warning_no_internet_conn">No Internet Connection</string>
+    <string name="snackbar_no_internet_conn_retry">Retry</string>
 </resources>
