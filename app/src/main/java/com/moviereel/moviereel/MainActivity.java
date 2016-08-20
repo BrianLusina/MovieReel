@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity{
 
         @Override
         protected String doInBackground(String... params) {
+            MovieFetch movieFetch = new MovieFetch();
 
             return null;
         }
