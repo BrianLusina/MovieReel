@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:id="@+id/movie_item_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="3dp"
+    card_view:cardCornerRadius="@dimen/card_movie_radius"
+    card_view:contentPadding="10dp"
+    android:layout_margin="@dimen/card_movie_margin"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--top container-->
+        <LinearLayout
+            android:id="@+id/movie_chef_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--account image-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/movie_chef_card_img"
+                android:layout_width="36dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="36dp"
+                android:contentDescription="@string/movie_chef_card"  app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+            <!--container for chef name and time-->
+            <LinearLayout
+                android:gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--chef name-->
+                <TextView
+                    android:id="@+id/movie_chef_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_chef_card"
+                    android:textSize="@dimen/movie_chef_size"
+                    android:paddingLeft="@dimen/movie_chef_padding"
+                    android:paddingStart="@dimen/movie_chef_padding"
+                    android:paddingRight="0dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="@color/fire_brick"/>
+
+                <!--date posted-->
+                <TextView
+                    android:id="@+id/movie_date_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_date_card"
+                    android:textSize="@dimen/movie_chef_size"
+                    android:paddingRight="@dimen/movie_chef_padding"
+                    android:paddingEnd="@dimen/movie_chef_padding"
+                    android:paddingLeft="@dimen/movie_chef_padding"
+                    android:paddingStart="@dimen/movie_chef_padding"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--Food image-->
+        <ImageView
+            android:id="@+id/movie_image_card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/movie_image_height"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/movie_image_card"
+            android:scaleType="fitXY"
+            android:layout_below="@id/movie_chef_container"/>
+
+        <!--food title-->
+        <TextView
+            android:id="@+id/movie_title_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/movie_image_card"
+            android:textColor="@color/black"
+            android:text="@string/movie_title_card"
+            android:textStyle="bold"
+            android:textSize="@dimen/movie_title_size"/>
+
+        <!--brief desciption-->
+        <TextView
+            android:id="@+id/movie_desc_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/movie_title_card"
+            android:textColor="@color/black"
+            android:text="@string/movie_desc_card"
+            android:textSize="@dimen/movie_desc_size"/>
+
+        <View
+            android:id="@+id/movie_card_divider"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/movie_desc_card"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dim_gray"/>
+
+        <!--Like count, comment count, bookmark-->
+        <LinearLayout
+            android:layout_below="@+id/movie_card_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/movie_chef_padding"
+            android:paddingRight="@dimen/movie_chef_padding"
+            android:layout_marginTop="@dimen/movie_chef_marginTop"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

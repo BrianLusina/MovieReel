@@ -2,4 +2,21 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--Dimensions for card view food items-->
+    <dimen name="card_movie_radius">0dp</dimen>
+    <dimen name="card_movie_margin">5dp</dimen>
+    <!--image-->
+    <dimen name="movie_image_height">160dp</dimen>
+    <!--food title-->
+    <dimen name="movie_title_card_padding">10dp</dimen>
+    <dimen name="movie_title_size">15sp</dimen>
+    <!--brief desc-->
+    <dimen name="movie_desc_padding">10dp</dimen>
+    <dimen name="movie_desc_size">15sp</dimen>
+    <!--chef name-->
+    <dimen name="movie_chef_size">12sp</dimen>
+    <dimen name="movie_chef_padding">10dp</dimen>
+    <dimen name="movie_chef_marginTop">10dp</dimen>
+
 </resources>
