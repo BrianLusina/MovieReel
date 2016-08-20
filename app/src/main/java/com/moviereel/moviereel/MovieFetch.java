@@ -1,8 +1,12 @@
 package com.moviereel.moviereel;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLConnection;
 import java.util.List;
+import java.io.IOException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Project: Movie Reel
@@ -23,7 +27,22 @@ public class MovieFetch{
     static String response = null;
     public final static int GET = 1;
     public final static int POST = 2;
+    static OkHttpClient client = new OkHttpClient();
+
 
     public MovieFetch() {}
 
+
+    static String run(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public static void main(String[] args) throws IOException {
+        String response = run("https://raw.github.com/square/okhttp/master/README.md");
+        System.out.println(response);
+    }
 }
