@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
     /*FIELDS*/
-    private TextView appName, appTag;
+    private TextView appName;
     private ImageView appIcon;
 
     @Override
@@ -47,7 +47,6 @@ public class SplashActivity extends AppCompatActivity {
     private void initializeUICtrls() {
         appIcon = (ImageView)findViewById(R.id.appicon_splash);
         appName = (TextView)findViewById(R.id.appname_splash);
-        appTag = (TextView)findViewById(R.id.apptag_splash);
 
         //set the fonts
         String fontPath = "fonts/Roboto-Black.ttf";

@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.moviereel.moviereel.MainActivity">
 
-</LinearLayout>
+    <!--Toolbar-->
+    <include
+        layout="@layout/toolbar_layout"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/main_swipe_refresh_layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/food_frag_recycler_id"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="2dp"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</android.support.design.widget.CoordinatorLayout>
