@@ -1,5 +1,6 @@
 package com.moviereel.moviereel;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -10,4 +11,9 @@ import android.support.v7.app.AppCompatActivity;
  * Description:
  */
 public class MovieDetails extends AppCompatActivity{
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.movie_details_layout);
+    }
 }
