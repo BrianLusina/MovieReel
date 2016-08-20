@@ -12,9 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
+import java.io.IOException;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
@@ -29,7 +31,7 @@ import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
  * Allows the user to refresh using a swipe refresh
  */
 public class MainActivity extends AppCompatActivity{
-    private static final  String FOODFRAG_TAG = MainActivity.class.getSimpleName();
+    private static final  String MAINACTIVITY_TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
@@ -91,7 +93,11 @@ public class MainActivity extends AppCompatActivity{
         @Override
         protected String doInBackground(String... params) {
             MovieFetch movieFetch = new MovieFetch();
-
+            try {
+                Log.d(MAINACTIVITY_TAG, movieFetch.fetchAllGenres());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 

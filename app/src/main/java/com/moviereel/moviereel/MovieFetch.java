@@ -22,7 +22,12 @@ public class MovieFetch{
     protected final String BASEURL="https://api.themoviedb.org/3/";
 
     /*url to fetch GENRES*/
-    protected final String GENRES = BASEURL + "/genre/movie/list?"+KEY;
+    protected final String GENRES = BASEURL + "/genre/movie/list?" + KEY;
+
+    /*get movies per genre add id to this link to get movies per genre*/
+    protected final String MOVIES_PER_GENRE = BASEURL + "genre/";
+    /*append this to above string to get list of movies*/
+    protected final String MOVIES_PER_GENRE_endpt = "movies?"+KEY;
 
     static String response = null;
     public final static int GET = 1;
@@ -32,8 +37,7 @@ public class MovieFetch{
 
     public MovieFetch() {}
 
-
-    static String run(String url) throws IOException {
+    public String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -41,8 +45,10 @@ public class MovieFetch{
         return response.body().string();
     }
 
-    public static void main(String[] args) throws IOException {
-        String response = run("https://raw.github.com/square/okhttp/master/README.md");
-        System.out.println(response);
+    /*fetches all the genres*/
+    public String fetchAllGenres() throws IOException {
+       return run(GENRES);
     }
+
+/*END*/
 }
