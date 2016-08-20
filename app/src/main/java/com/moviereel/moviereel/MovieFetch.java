@@ -7,5 +7,7 @@ package com.moviereel.moviereel;
  * <p/>
  * Description: Fetch movies from Apiary API
  */
-public class MovieFetch {
+public class MovieFetch{
+    protected final String KEY = "2f30bdb7e9742c26d4ea364f62f38163";
+
 }

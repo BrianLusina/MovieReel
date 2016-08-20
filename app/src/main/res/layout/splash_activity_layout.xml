@@ -22,4 +22,14 @@
         android:textSize="35sp"/>
 
 
+    <ImageView
+        android:maxHeight="10dp"
+        android:maxWidth="10dp"
+        android:layout_gravity="bottom"
+        android:id="@+id/apiary_image_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/apiary_img"
+        android:src="@drawable/apiary_img"/>
+
 </LinearLayout>
