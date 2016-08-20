@@ -8,4 +8,5 @@
     <string name="movie_date_card">day : time</string>
     <string name="snackbar_warning_no_internet_conn">No Internet Connection</string>
     <string name="snackbar_no_internet_conn_retry">Retry</string>
+    <string name="movie_title">Movie Title</string>
 </resources>
