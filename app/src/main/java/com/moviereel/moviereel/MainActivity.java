@@ -6,11 +6,19 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 
 import java.util.List;
+
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
 /**
  * Project: Movie Reel
@@ -22,7 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity{
     private static final  String FOODFRAG_TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
-    private MovieAdapter foodAdapter;
+    private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
     private CoordinatorLayout coordinatorLayout;
 
@@ -30,9 +38,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity_layout);
-
+        initUiCtrls();
         if(isNetworkAvailable()) {
-            loadNews.execute();
+            loadMovies.execute();
         }else{
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
@@ -47,7 +55,31 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    private void initUiCtrls() {
+        recyclerView = (RecyclerView) findViewById(R.id.main_recyclerview_id);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.movie_coordinator_layout);
 
+        SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.main_swipe_refresh_layout_id);
+        mSwipeRefreshLayout.setColorSchemeResources(
+                R.color.dark_slate_blue,
+                R.color.dark_slate_gray,
+                R.color.dark_cyan,
+                R.color.dark_yellow,
+                R.color.dark_turquoise,
+                R.color.dark_sea_green);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(movieAdapter);
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(movieAdapter);
+        alphaAdapter.setInterpolator(new OvershootInterpolator());
+        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new LandingAnimator());
+        recyclerView.setAdapter(scaleAdapter);
+    }
 
 
     /**
