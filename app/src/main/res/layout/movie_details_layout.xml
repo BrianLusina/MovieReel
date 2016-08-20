@@ -33,8 +33,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/london_flat"
                 android:tint="#BB3E50B4"
-                android:scaleType="centerCrop"
-                />
+                android:scaleType="centerCrop"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/flexible.example.toolbar"
@@ -42,8 +41,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@null"
                 app:layout_collapseMode="pin"
-                style="@style/ToolBarWithNavigationBack"
-                />
+                style="@style/ToolBarWithNavigationBack" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
