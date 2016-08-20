@@ -25,5 +25,12 @@
             </intent-filter>
         </activity>
 
+        <!--movie details-->
+        <activity android:name=".MovieDetails">
+            <intent-filter>
+                <action android:name="com.moviereel.moviereel.MOVIEDETAILS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
