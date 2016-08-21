@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity{
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.)
+                        new PrimaryDrawerItem().withName(R.string.main_drawer_home_title)
                 )
                 .withSavedInstance(savedInstanceState)
                 .build();
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity{
     private void initUiCtrls() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_id);
         setSupportActionBar(mToolbar);
-
     }
 
 

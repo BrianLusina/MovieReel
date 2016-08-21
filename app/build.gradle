@@ -35,6 +35,24 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.3.6@aar') {
         transitive = true
     }
+
+    // icon fonts used
+    // https://github.com/mikepenz/Android-Iconics
+    compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
+    compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
+
+    //used to provide different itemAnimators for the RecyclerView
+    //https://github.com/mikepenz/ItemAnimators
+    compile 'com.mikepenz:itemanimators:0.2.4@aar'
+
+    // used to generate the Open Source section
+    // https://github.com/mikepenz/AboutLibraries
+    compile('com.mikepenz:aboutlibraries:5.7.1@aar') {
+        transitive = true
+        exclude module: "fastadapter"
+    }
+
     /*Custom Activity on crash*/
     compile 'cat.ereza:customactivityoncrash:1.5.0'
 

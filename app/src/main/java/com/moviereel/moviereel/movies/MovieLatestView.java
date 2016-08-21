@@ -34,8 +34,8 @@ import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
  * Created by lusinabrian on 21/08/16 at 21:49
  * <p/>
  */
-public class MovieRecyclerView extends Fragment{
-    private static final String MOVIERECYCLERVIEW_TAG = MovieRecyclerView.class.getSimpleName();
+public class MovieLatestView extends Fragment{
+    private static final String MOVIELATEST_TAG = MovieLatestView.class.getSimpleName();
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
@@ -102,7 +102,7 @@ public class MovieRecyclerView extends Fragment{
         protected String doInBackground(String... params) {
             MovieFetch movieFetch = new MovieFetch();
             try {
-                Log.d(MOVIERECYCLERVIEW_TAG, movieFetch.fetchAllGenres());
+                Log.d(MOVIELATEST_TAG, movieFetch.fetchAllGenres());
             } catch (IOException e) {
                 e.printStackTrace();
             }
