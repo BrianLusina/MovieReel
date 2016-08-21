@@ -33,7 +33,7 @@
         </activity>
 
         <!--movie details-->
-        <activity android:name=".MovieDetails">
+        <activity android:name=".movies.MovieDetails">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MOVIEDETAILS"/>
                 <category android:name="android.intent.category.DEFAULT"/>

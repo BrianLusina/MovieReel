@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.movies;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.moviereel.moviereel.R;
+
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel

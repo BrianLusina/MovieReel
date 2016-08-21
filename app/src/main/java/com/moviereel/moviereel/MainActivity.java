@@ -16,6 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
+import com.mikepenz.materialdrawer.Drawer;
+import com.moviereel.moviereel.movies.MovieAdapter;
+import com.moviereel.moviereel.movies.MovieFetch;
+import com.moviereel.moviereel.movies.MovieModel;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -32,6 +37,7 @@ import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
  */
 public class MainActivity extends AppCompatActivity{
     private static final  String MAINACTIVITY_TAG = MainActivity.class.getSimpleName();
+    private Drawer drawer;
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;

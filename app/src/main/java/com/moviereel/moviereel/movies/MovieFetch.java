@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.movies;
 import android.util.Log;
 
 import org.json.JSONException;

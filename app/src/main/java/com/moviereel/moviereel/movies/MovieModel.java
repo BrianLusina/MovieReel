@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.movies;
 
 /**
  * Project: Movie Reel
