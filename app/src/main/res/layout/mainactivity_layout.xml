@@ -10,7 +10,7 @@
 
     <!--Toolbar-->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_id"
+        android:id="@+id/toolbar_main_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/indigo_600"
@@ -24,7 +24,7 @@
         android:id="@+id/drawer_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_id">
+        android:layout_below="@id/toolbar_main_id">
 
         <!-- the layout which will be the content of the activity (which will be hosted inside the drawer (NOT the list of the drawer)) -->
     <FrameLayout

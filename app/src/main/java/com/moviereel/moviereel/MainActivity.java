@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -62,58 +65,70 @@ public class MainActivity extends AppCompatActivity{
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if(drawerItem instanceof Nameable){
-                            if(drawerItem != null){
-                                switch ((int) drawerItem.getIdentifier()){
-                                    /*HOME*/
-                                    case 0:
-                                        break;
+                        if(drawerItem instanceof Nameable && drawerItem != null){
+                            Fragment fragment = null;
+                            String name = ((Nameable) drawerItem).getName().getText(MainActivity.this);
+                            getSupportActionBar().setTitle(name);
+                            String title = "";
+                            switch ((int) drawerItem.getIdentifier()){
+                                /*HOME*/
+                                case 0:
+                                    fragment = HomeFragment.newInstance();
+                                    title = name;
+                                    break;
 
-                                    /*latest movies*/
-                                    case 1:
-                                        break;
+                                /*latest movies*/
+                                case 1:
+                                    break;
 
-                                    /*Now Playing*/
-                                    case 2:
-                                        break;
+                                /*Now Playing*/
+                                case 2:
+                                    break;
 
-                                    /*Popular Movies*/
-                                    case 3:
-                                        break;
+                                /*Popular Movies*/
+                                case 3:
+                                    break;
 
-                                    /*Top rated*/
-                                    case 4:
-                                        break;
+                                /*Top rated*/
+                                case 4:
+                                    break;
 
-                                    /*Upcoming*/
-                                    case 5:
-                                        break;
+                                /*Upcoming*/
+                                case 5:
+                                    break;
 
-                                    /*Latest series*/
-                                    case 6:
-                                        break;
+                                /*Latest series*/
+                                case 6:
+                                    break;
 
-                                    /*series On the air*/
-                                    case 7:
-                                        break;
+                                /*series On the air*/
+                                case 7:
+                                    break;
 
-                                    /*Series airing today*/
-                                    case 8:
-                                        break;
+                                /*Series airing today*/
+                                case 8:
+                                    break;
 
-                                    /*top rated series*/
-                                    case 9:
-                                        break;
+                                /*top rated series*/
+                                case 9:
+                                    break;
 
-                                    /*Popular series*/
-                                    case 10:
-                                        break;
+                                /*Popular series*/
+                                case 10:
+                                    break;
 
-                                    /*default is Home screen*/
-                                    default:
+                                /*default is Home screen*/
+                                default:
 
-                                        break;
+                                    break;
                                 }
+                            if (fragment != null) {
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.frame_container, fragment);
+                                fragmentTransaction.commit();
+                                // set the toolbar title
+                                getSupportActionBar().setTitle(title);
                             }
                         }
                         return false;
