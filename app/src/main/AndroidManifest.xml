@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.moviereel.moviereel">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,30 +14,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--splash screen-->
-        <activity
-            android:name=".SplashActivity">
+        <!-- splash screen -->
+        <activity android:name=".SplashActivity">
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!--main activity-->
+        <!-- main activity -->
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="com.moviereel.moviereel.MAINACTIVITY"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <!--movie details-->
+        <!-- movie details -->
         <activity android:name=".movies.MovieDetails">
             <intent-filter>
-                <action android:name="com.moviereel.moviereel.MOVIEDETAILS"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.moviereel.moviereel.MOVIEDETAILS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
+
 </manifest>
