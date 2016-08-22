@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -13,6 +14,8 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 /**
  * Project: Movie Reel
@@ -38,7 +41,9 @@ public class MainActivity extends AppCompatActivity{
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .addDrawerItems(
+                        /*Home section*/
                         new PrimaryDrawerItem().withName(R.string.main_drawer_home_title).withIcon(FontAwesome.Icon.faw_home).withIdentifier(0),
+
                         /*movies section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_movie_title),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_latest).withIcon(FontAwesome.Icon.faw_times).withIdentifier(1),
@@ -54,7 +59,66 @@ public class MainActivity extends AppCompatActivity{
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_airing_today).withIcon(FontAwesome.Icon.faw_hourglass_start).withIdentifier(8),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_top_rated).withIcon(FontAwesome.Icon.faw_star).withIdentifier(9),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIdentifier(10)
-                )
+                ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        if(drawerItem instanceof Nameable){
+                            if(drawerItem != null){
+                                switch ((int) drawerItem.getIdentifier()){
+                                    /*HOME*/
+                                    case 0:
+                                        break;
+
+                                    /*latest movies*/
+                                    case 1:
+                                        break;
+
+                                    /*Now Playing*/
+                                    case 2:
+                                        break;
+
+                                    /*Popular Movies*/
+                                    case 3:
+                                        break;
+
+                                    /*Top rated*/
+                                    case 4:
+                                        break;
+
+                                    /*Upcoming*/
+                                    case 5:
+                                        break;
+
+                                    /*Latest series*/
+                                    case 6:
+                                        break;
+
+                                    /*series On the air*/
+                                    case 7:
+                                        break;
+
+                                    /*Series airing today*/
+                                    case 8:
+                                        break;
+
+                                    /*top rated series*/
+                                    case 9:
+                                        break;
+
+                                    /*Popular series*/
+                                    case 10:
+                                        break;
+
+                                    /*default is Home screen*/
+                                    default:
+
+                                        break;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+                })
                 .withSavedInstance(savedInstanceState)
                 .build();
     }
