@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -81,66 +82,79 @@ public class MainActivity extends AppCompatActivity{
                                 case 0:
                                     fragment = HomeFragment.newInstance();
                                     title = ((Nameable) drawerItem).getName().toString();
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*latest movies*/
                                 case 1:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Now Playing*/
                                 case 2:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Popular Movies*/
                                 case 3:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Top rated*/
                                 case 4:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Upcoming*/
                                 case 5:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Latest series*/
                                 case 6:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*series On the air*/
                                 case 7:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Series airing today*/
                                 case 8:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*top rated series*/
                                 case 9:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*Popular series*/
                                 case 10:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*help*/
                                 case 11:
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*settings*/
                                 case 12:
-
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*about*/
                                 case 13:
-
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
                                 /*default is Home screen*/
                                 default:
                                     fragment = HomeFragment.newInstance();
                                     title = "Home";
+                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
                                 }
                             if (fragment != null) {
