@@ -174,8 +174,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void initUiCtrls() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_id);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_main_id);
         setSupportActionBar(mToolbar);
+
     }
 
 
