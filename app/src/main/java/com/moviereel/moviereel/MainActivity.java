@@ -6,9 +6,13 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 
 /**
  * Project: Movie Reel
@@ -34,7 +38,15 @@ public class MainActivity extends AppCompatActivity{
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.main_drawer_home_title)
+                        new PrimaryDrawerItem().withName(R.string.main_drawer_home_title).withIcon(FontAwesome.Icon.faw_home).withIdentifier(0),
+                        /*movies section*/
+                        new SectionDrawerItem().withName(R.string.main_drawer_movie_title),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_latest).withIcon(FontAwesome.Icon.faw_times).withIdentifier(1),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play_circle).withIdentifier(2),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular).withIcon(FontAwesome.Icon.faw_star).withIdentifier(3),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_arrow_up).withIdentifier(4),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming).withIcon(FontAwesome.Icon.faw_calendar_check_o).withIdentifier(5)
+
                 )
                 .withSavedInstance(savedInstanceState)
                 .build();
