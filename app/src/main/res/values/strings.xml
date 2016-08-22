@@ -18,4 +18,12 @@
     <string name="main_drawer_movie_popular">Popular</string>
     <string name="main_drawer_movie_top_rated">Top Rated</string>
     <string name="main_drawer_movie_upcoming">Upcoming</string>
+
+    <!--SERIES TITLES-->
+    <string name="main_drawer_series_title">Series</string>
+    <string name="main_drawer_series_latest">Latest</string>
+    <string name="main_drawer_series_ontheair">On the Air</string>
+    <string name="main_drawer_series_airing_today">Airing today</string>
+    <string name="main_drawer_series_top_rated">Top Rated</string>
+    <string name="main_drawer_series_popular">Popular</string>
 </resources>
