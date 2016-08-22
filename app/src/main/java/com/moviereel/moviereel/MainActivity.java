@@ -61,11 +61,17 @@ public class MainActivity extends AppCompatActivity{
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_ontheair).withIcon(FontAwesome.Icon.faw_television).withIdentifier(7),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_airing_today).withIcon(FontAwesome.Icon.faw_hourglass_start).withIdentifier(8),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_top_rated).withIcon(FontAwesome.Icon.faw_star).withIdentifier(9),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIdentifier(10)
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIdentifier(10),
+                        new PrimaryDrawerItem().withName(R.string.main_drawer_help).withIcon(FontAwesome.Icon.faw_question).withIdentifier(11)
+                        /*STICKY DRAWER ITEMS*/
+                ).addStickyDrawerItems(
+                        /*settings*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_settings).withIcon(FontAwesome.Icon.faw_cogs).withIdentifier(12),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_about).withIcon(FontAwesome.Icon.faw_exclamation).withIdentifier(13)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if(drawerItem instanceof Nameable && drawerItem != null){
+                        if(drawerItem instanceof Nameable){
                             Fragment fragment = null;
                             String name = ((Nameable) drawerItem).getName().getText(MainActivity.this);
                             getSupportActionBar().setTitle(name);
@@ -74,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
                                 /*HOME*/
                                 case 0:
                                     fragment = HomeFragment.newInstance();
-                                    title = name;
+                                    title = ((Nameable) drawerItem).getName().toString();
                                     break;
 
                                 /*latest movies*/
@@ -117,6 +123,20 @@ public class MainActivity extends AppCompatActivity{
                                 case 10:
                                     break;
 
+                                /*help*/
+                                case 11:
+                                    break;
+
+                                /*settings*/
+                                case 12:
+
+                                    break;
+
+                                /*about*/
+                                case 13:
+
+                                    break;
+
                                 /*default is Home screen*/
                                 default:
                                     fragment = HomeFragment.newInstance();
@@ -155,6 +175,10 @@ public class MainActivity extends AppCompatActivity{
         return activeNetworkInfo != null;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
