@@ -119,7 +119,8 @@ public class MainActivity extends AppCompatActivity{
 
                                 /*default is Home screen*/
                                 default:
-
+                                    fragment = HomeFragment.newInstance();
+                                    title = "Home";
                                     break;
                                 }
                             if (fragment != null) {
