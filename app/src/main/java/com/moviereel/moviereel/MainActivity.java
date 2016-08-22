@@ -20,6 +20,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import com.moviereel.moviereel.movies.MovieLatest;
 
 /**
  * Project: Movie Reel
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity{
 
                                 /*latest movies*/
                                 case 1:
+                                    fragment = MovieLatest.newInstance();
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 

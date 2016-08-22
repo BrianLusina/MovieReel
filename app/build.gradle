@@ -22,12 +22,17 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:23.4.0'
 
     //card view
-    
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
 
     //Recycler View
-    
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'jp.wasabeef:recyclerview-animators:1.2.2'
+
     //material drawer library
     compile('com.mikepenz:materialdrawer:5.3.6@aar') {
         transitive = true
@@ -35,10 +40,14 @@ dependencies {
 
     // icon fonts used
     // https://github.com/mikepenz/Android-Iconics
-    
+    compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
+    compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
+
     //used to provide different itemAnimators for the RecyclerView
     //https://github.com/mikepenz/ItemAnimators
-    
+    compile 'com.mikepenz:itemanimators:0.2.4@aar'
+
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
     compile('com.mikepenz:aboutlibraries:5.7.1@aar') {
@@ -47,26 +56,14 @@ dependencies {
     }
 
     /*Custom Activity on crash*/
-    
+    compile 'cat.ereza:customactivityoncrash:1.5.0'
+
     // Glide
-    
-    // Recycler View animators jCenter
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     
     /*Circle image view for account photos*/
-    
-    /*okHTTP*/
-    compile
-    'com.android.support:appcompat-v7:23.4.0'compile
-    'com.android.support:design:23.4.0'compile
-    'com.android.support:cardview-v7:23.4.0'compile
-    'com.android.support:recyclerview-v7:23.4.0'compile
-    'com.mikepenz:google-material-typeface:2.2.0.1@aar'compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
-    compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
-    compile 'com.mikepenz:itemanimators:0.2.4@aar'
-    compile 'cat.ereza:customactivityoncrash:1.5.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'jp.wasabeef:recyclerview-animators:1.2.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    /*okHTTP*/
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.android.support:support-v4:23.4.0'
 }
