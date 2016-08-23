@@ -52,7 +52,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         holder.bind(MovieModel);
 
         //load images using Glider library
-        Glide.with(mContext).load(MovieModel.getThumbnail()).into(holder.MovieImage);
+        Glide.with(mContext).load(MovieModel.getMovie_id()).into(holder.MovieImage);
         Glide.with(mContext).load(MovieModel.getmoviePosterImage()).into(holder.chefImage);
     }
 
@@ -70,9 +70,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             chefImage = (ImageView)itemView.findViewById(R.id.movie_chef_card_img);
         }
         public void bind(MovieModel MovieModel){
-            MovieTitle.setText(MovieModel.getMovieName());
-            MovieDesc.setText(MovieModel.getBriefDesc());
-            datePosted.setText(MovieModel.getDatePosted());
+            MovieTitle.setText(MovieModel.getMovie_title());
+            MovieDesc.setText(MovieModel.getMovie_overview());
+            datePosted.setText(MovieModel.getRelease_date());
             moviePosterName.setText(MovieModel.getmoviePosterName());
         }
     }

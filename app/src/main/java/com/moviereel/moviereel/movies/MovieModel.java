@@ -9,62 +9,98 @@ package com.moviereel.moviereel.movies;
  */
 public class MovieModel {
     /*fields*/
-    private String MovieName, moviePosterName, briefDesc, datePosted;
-    private int thumbnail, moviePosterImage;
+    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movie_vote_count, movie_popularity;
+    private int[] movie_genres;
+    private int movie_id, moviePosterImage;
 
     /*constructor*/
     public MovieModel(){}
 
     /*constructor*/
-    public MovieModel(String MovieName, String moviePosterName, String briefDesc, String datePosted, int thumbnail, int moviePosterImage) {
-        this.MovieName = MovieName;
-        this.moviePosterName = moviePosterName;
-        this.briefDesc = briefDesc;
-        this.datePosted = datePosted;
-        this.thumbnail = thumbnail;
-        this.moviePosterImage = moviePosterImage;
+    public MovieModel(String movie_poster_url, String movie_overview, String release_date,int[] movie_genres, int movie_id, String movie_title, String movie_backdrop_url, String movie_popularity, String movie_vote_count) {
+        this.movie_genres = movie_genres;
+        this.movie_title = movie_title;
+        this.movie_poster_url = movie_poster_url;
+        this.movie_overview = movie_overview;
+        this.release_date = release_date;
+        this.movie_id = movie_id;
+        this.movie_backdrop_url = movie_backdrop_url;
+        this.movie_popularity = movie_popularity;
+        this.movie_vote_count = movie_vote_count;
     }
 
 /*ACCESS METHODS*/
+public String getMovie_poster_url() {
+    return movie_poster_url;
+}
 
-    public String getMovieName() {
-        return MovieName;
+    public void setMovie_poster_url(String movie_poster_url) {
+        this.movie_poster_url = movie_poster_url;
     }
 
-    public void setMovieName(String MovieName) {
-        this.MovieName = MovieName;
+    public String getMovie_backdrop_url() {
+        return movie_backdrop_url;
+    }
+
+    public void setMovie_backdrop_url(String movie_backdrop_url) {
+        this.movie_backdrop_url = movie_backdrop_url;
+    }
+
+    public String getMovie_vote_count() {
+        return movie_vote_count;
+    }
+
+    public void setMovie_vote_count(String movie_vote_count) {
+        this.movie_vote_count = movie_vote_count;
+    }
+
+    public String getMovie_popularity() {
+        return movie_popularity;
+    }
+
+    public void setMovie_popularity(String movie_popularity) {
+        this.movie_popularity = movie_popularity;
+    }
+
+
+    public String getMovie_title() {
+        return movie_title;
+    }
+
+    public void setMovie_title(String MovieName) {
+        this.movie_title = MovieName;
     }
 
     public String getmoviePosterName() {
-        return moviePosterName;
+        return movie_poster_url;
     }
 
     public void setmoviePosterName(String moviePosterName) {
-        this.moviePosterName = moviePosterName;
+        this.movie_poster_url = moviePosterName;
     }
 
-    public String getBriefDesc() {
-        return briefDesc;
+    public String getMovie_overview() {
+        return movie_overview;
     }
 
-    public void setBriefDesc(String briefDesc) {
-        this.briefDesc = briefDesc;
+    public void setMovie_overview(String movie_overview) {
+        this.movie_overview = movie_overview;
     }
 
-    public int getThumbnail() {
-        return thumbnail;
+    public int getMovie_id() {
+        return movie_id;
     }
 
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setMovie_id(int movie_id) {
+        this.movie_id = movie_id;
     }
 
-    public String getDatePosted() {
-        return datePosted;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setDatePosted(String datePosted) {
-        this.datePosted = datePosted;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
     public int getmoviePosterImage() {
