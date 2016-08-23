@@ -75,9 +75,9 @@ public class MovieNowPlaying extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.main_recyclerview_id);
-        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_coordinator_layout);
+        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
-        SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.main_swipe_refresh_layout_id);
+        SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
 
         mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.dark_slate_blue,
@@ -86,10 +86,7 @@ public class MovieNowPlaying extends Fragment{
                 R.color.dark_yellow,
                 R.color.dark_turquoise,
                 R.color.dark_sea_green);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(movieAdapter);
+
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(movieAdapter);
         alphaAdapter.setInterpolator(new OvershootInterpolator());
         ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
