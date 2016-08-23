@@ -17,12 +17,9 @@ import java.util.List;
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
  * Created by lusinabrian on 20/08/16 at 09:54
- * <p/>
  * Description:Render the RecyclerView, we need an adapter class which inflates the movieitem_layout.xml by keeping appropriate information.
- *
  * The mContext shall render the views in the appropriate view in which it is called
  * foodModelList will hold the Food items in a list.
- *
  * the MovieViewHolder will find the view items with their ids
  */
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{

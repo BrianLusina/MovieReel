@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity{
                 .addDrawerItems(
                         /*Home section*/
                         new PrimaryDrawerItem().withName(R.string.main_drawer_home_title).withIcon(FontAwesome.Icon.faw_home).withIdentifier(0),
-
                         /*movies section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_movie_title),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_times).withIdentifier(1),

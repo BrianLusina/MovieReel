@@ -10,7 +10,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 
+import com.moviereel.moviereel.APIUrlEndpoints;
 import com.moviereel.moviereel.R;
 
 import java.io.IOException;
@@ -37,7 +37,6 @@ import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
  */
 public class MovieNowPlaying extends Fragment{
     private static final String MOVIELATEST_TAG = MovieNowPlaying.class.getSimpleName();
-    private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
     private CoordinatorLayout coordinatorLayout;
@@ -74,7 +73,8 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.main_recyclerview_id);
+
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.main_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
         SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
@@ -115,9 +115,10 @@ public class MovieNowPlaying extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
-            MovieFetch movieFetch = new MovieFetch();
+            APIUrlEndpoints APIURLs = new APIUrlEndpoints();
             try {
-                Log.d(MOVIELATEST_TAG, movieFetch.fetchAllGenres());
+
+                Log.d(MOVIELATEST_TAG, APIURLs.fetchAllGenres());
             } catch (IOException e) {
                 e.printStackTrace();
             }
