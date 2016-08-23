@@ -73,7 +73,7 @@ public class MovieNowPlaying extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.movielatest_layout, container, false);
+        View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.main_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_coordinator_layout);
 
