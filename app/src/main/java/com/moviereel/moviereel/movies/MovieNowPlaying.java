@@ -103,7 +103,7 @@ public class MovieNowPlaying extends Fragment{
     }
 
     /**
-     * Method to check network availability
+     Method to check network availability
      Using ConnectivityManager to check for Network Connection
      * */
     private boolean isNetworkAvailable() {
@@ -112,22 +112,27 @@ public class MovieNowPlaying extends Fragment{
         return activeNetworkInfo != null;
     }
 
-    /***
-     * Method to load Bonds from NSE and post them to the UI
-     */
+    /**
+     * Method to load movies task, works on a separate thread*/
     private class LoadMoviesTask extends AsyncTask<String, Void, String> {
+        APIUrlEndpoints APIURLs = new APIUrlEndpoints();
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //TODO: add an indeterminate spinner
+        }
 
         @Override
         protected String doInBackground(String... params) {
-            APIUrlEndpoints APIURLs = new APIUrlEndpoints();
             try {
                 Request request = new Request.Builder()
                             .url(APIURLs.getNowPlaying())
                             .build();
                 Response response = client.newCall(request).execute();
-                return response.body().string();
-
-                //Log.d(MOVIELATEST_TAG, APIUrlEndpoints);
+                String res = response.body().string();
+                //TODO: Creating a JSON object, parsing through it, adding the data to a model and the adapter
+                Log.d(MOVIELATEST_TAG, res);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -137,8 +142,9 @@ public class MovieNowPlaying extends Fragment{
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            //TODO: post results and kill of spinner
         }
     }
 
-/*end*/
+/*END*/
 }
