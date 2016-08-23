@@ -27,6 +27,9 @@ import java.util.List;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Project: Movie Reel
@@ -41,6 +44,7 @@ public class MovieNowPlaying extends Fragment{
     private List<MovieModel> foodModelList;
     private CoordinatorLayout coordinatorLayout;
     private LoadMoviesTask loadMovies;
+    private OkHttpClient client = new OkHttpClient();
 
     public MovieNowPlaying(){}
 
@@ -117,8 +121,13 @@ public class MovieNowPlaying extends Fragment{
         protected String doInBackground(String... params) {
             APIUrlEndpoints APIURLs = new APIUrlEndpoints();
             try {
+                Request request = new Request.Builder()
+                            .url(APIURLs.getNowPlaying())
+                            .build();
+                Response response = client.newCall(request).execute();
+                return response.body().string();
 
-                Log.d(MOVIELATEST_TAG, APIURLs.fetchAllGenres());
+                //Log.d(MOVIELATEST_TAG, APIUrlEndpoints);
             } catch (IOException e) {
                 e.printStackTrace();
             }
