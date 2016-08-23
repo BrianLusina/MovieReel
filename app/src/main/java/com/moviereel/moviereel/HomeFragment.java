@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
  * Created by lusinabrian on 22/08/16 at 19:08
- * Description: Main screen of the application
+ * Description: Main screen of the application, will feature the latest movie
  */
 public class HomeFragment extends Fragment{
 

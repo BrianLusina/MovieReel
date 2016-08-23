@@ -14,53 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--top container-->
-        <LinearLayout
-            android:id="@+id/movie_chef_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <!--account image-->
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/movie_chef_card_img"
-                android:layout_width="36dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_height="36dp"
-                android:contentDescription="@string/movie_chef_card"  app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
 
-            <!--container for chef name and time-->
-            <LinearLayout
-                android:gravity="bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!--chef name-->
+             <!--release date-->
                 <TextView
-                    android:id="@+id/movie_chef_card"
+                    android:id="@+id/movie_release_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/movie_chef_card"
-                    android:textSize="@dimen/movie_chef_size"
-                    android:paddingLeft="@dimen/movie_chef_padding"
-                    android:paddingStart="@dimen/movie_chef_padding"
-                    android:paddingRight="0dp"
-                    android:paddingEnd="0dp"
-                    android:textColor="@color/fire_brick"/>
-
-                <!--date posted-->
-                <TextView
-                    android:id="@+id/movie_date_card"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/movie_date_card"
-                    android:textSize="@dimen/movie_chef_size"
-                    android:paddingRight="@dimen/movie_chef_padding"
-                    android:paddingEnd="@dimen/movie_chef_padding"
-                    android:paddingLeft="@dimen/movie_chef_padding"
-                    android:paddingStart="@dimen/movie_chef_padding"
+                    android:layout_height="wrap_content" android:text="@string/movie_date_card"
+                    android:textSize="@dimen/movie_release_date_size"
                     android:textColor="@color/black"/>
-            </LinearLayout>
-        </LinearLayout>
         <!--Food image-->
         <ImageView
             android:id="@+id/movie_image_card"
@@ -70,7 +31,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/movie_image_card"
             android:scaleType="fitXY"
-            android:layout_below="@id/movie_chef_container"/>
+            android:layout_below="@id/movie_release_date"/>
 
         <!--food title-->
         <TextView

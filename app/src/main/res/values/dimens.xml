@@ -15,7 +15,7 @@
     <dimen name="movie_desc_padding">10dp</dimen>
     <dimen name="movie_desc_size">15sp</dimen>
     <!--chef name-->
-    <dimen name="movie_chef_size">12sp</dimen>
+    <dimen name="movie_release_date_size">20sp</dimen>
     <dimen name="movie_chef_padding">10dp</dimen>
     <dimen name="movie_chef_marginTop">10dp</dimen>
 

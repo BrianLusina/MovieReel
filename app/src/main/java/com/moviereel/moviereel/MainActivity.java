@@ -20,7 +20,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
-import com.moviereel.moviereel.movies.MovieLatest;
+import com.moviereel.moviereel.movies.MovieNowPlaying;
 
 /**
  * Project: Movie Reel
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity{
 
                         /*movies section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_movie_title),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_latest).withIcon(FontAwesome.Icon.faw_times).withIdentifier(1),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_times).withIdentifier(1),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play_circle).withIdentifier(2),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular).withIcon(FontAwesome.Icon.faw_star).withIdentifier(3),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_arrow_up).withIdentifier(4),
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity{
 
                                 /*latest movies*/
                                 case 1:
-                                    fragment = MovieLatest.newInstance();
+                                    fragment = MovieNowPlaying.newInstance();
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 

@@ -46,7 +46,7 @@ public class MovieFetch{
         return response.body().string();
     }
 
-    /*fetches all the genres*/
+    /*fetchesX all the genres*/
     public String fetchAllGenres() throws IOException {
        return run(GENRES);
     }

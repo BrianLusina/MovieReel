@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
     /*FIELDS*/
+    private static final String SPLASH_SCREEN_TAG = SplashActivity.class.getSimpleName();
     private TextView appName;
     private ImageView appIcon;
 
@@ -30,11 +32,12 @@ public class SplashActivity extends AppCompatActivity {
             public void run(){
                 try{
                     sleep(3000);
+                    Intent openMain = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(openMain);
                 }catch(InterruptedException ie){
                     ie.printStackTrace();
+                    Log.d(SPLASH_SCREEN_TAG, ie.toString());
                 }
-                Intent openMain = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(openMain);
             }
         };
         //start timer

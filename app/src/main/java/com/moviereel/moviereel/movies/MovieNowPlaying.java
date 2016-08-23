@@ -35,20 +35,20 @@ import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
  * <p/>
  * Description: displays the latest movies
  */
-public class MovieLatest extends Fragment{
-    private static final String MOVIELATEST_TAG = MovieLatest.class.getSimpleName();
+public class MovieNowPlaying extends Fragment{
+    private static final String MOVIELATEST_TAG = MovieNowPlaying.class.getSimpleName();
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
     private CoordinatorLayout coordinatorLayout;
     private LoadMoviesTask loadMovies;
 
-    public MovieLatest(){}
+    public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
-        MovieLatest movieLatest = new MovieLatest();
-        movieLatest.setRetainInstance(true);
-        return movieLatest;
+        MovieNowPlaying movieNowPlaying = new MovieNowPlaying();
+        movieNowPlaying.setRetainInstance(true);
+        return movieNowPlaying;
     }
 
     @Override
