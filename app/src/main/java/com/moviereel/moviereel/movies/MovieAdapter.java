@@ -52,28 +52,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         holder.bind(MovieModel);
 
         //load images using Glider library
-        Glide.with(mContext).load(MovieModel.getMovie_id()).into(holder.MovieImage);
-        Glide.with(mContext).load(MovieModel.getmoviePosterImage()).into(holder.chefImage);
+        Glide.with(mContext).load(MovieModel.getMovie_backdrop_url()).into(holder.MoviePoster);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public ImageView MovieImage, chefImage;
-        public TextView MovieTitle, MovieDesc, datePosted, moviePosterName;
+        public ImageView MoviePoster;
+        public TextView MovieTitle, MovieOverview, MovieReleaseDate, MovieVoteCount, MoviePopularityCount;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            MovieImage = (ImageView) itemView.findViewById(R.id.movie_image_card);
+            MoviePoster = (ImageView) itemView.findViewById(R.id.movie_image_card);
             MovieTitle = (TextView) itemView.findViewById(R.id.movie_title_card);
-            MovieDesc = (TextView) itemView.findViewById(R.id.movie_desc_card);
-            datePosted = (TextView) itemView.findViewById(R.id.movie_release_date);
-            moviePosterName = (TextView) itemView.findViewById(R.id.movie_chef_card);
-            chefImage = (ImageView)itemView.findViewById(R.id.movie_chef_card_img);
+            MovieOverview = (TextView) itemView.findViewById(R.id.movie_desc_card);
+            MovieReleaseDate = (TextView) itemView.findViewById(R.id.movie_release_date);
+            MovieVoteCount = (TextView) itemView.findViewById(R.id.movie_chef_card);
+            MoviePopularityCount = (TextView)itemView.findViewById(R.id.movie_popularity_count_id);
         }
         public void bind(MovieModel MovieModel){
             MovieTitle.setText(MovieModel.getMovie_title());
-            MovieDesc.setText(MovieModel.getMovie_overview());
-            datePosted.setText(MovieModel.getRelease_date());
-            moviePosterName.setText(MovieModel.getmoviePosterName());
+            MovieOverview.setText(MovieModel.getMovie_overview());
+            MovieReleaseDate.setText(MovieModel.getRelease_date());
+            MovieVoteCount.setText(MovieModel.getMovie_poster_url());
+            MoviePopularityCount.setText(MovieModel.getMovie_popularity());
         }
     }
 

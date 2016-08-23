@@ -11,7 +11,7 @@ public class MovieModel {
     /*fields*/
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movie_vote_count, movie_popularity;
     private int[] movie_genres;
-    private int movie_id, moviePosterImage;
+    private int movie_id;
 
     /*constructor*/
     public MovieModel(){}
@@ -71,14 +71,6 @@ public String getMovie_poster_url() {
         this.movie_title = MovieName;
     }
 
-    public String getmoviePosterName() {
-        return movie_poster_url;
-    }
-
-    public void setmoviePosterName(String moviePosterName) {
-        this.movie_poster_url = moviePosterName;
-    }
-
     public String getMovie_overview() {
         return movie_overview;
     }
@@ -103,12 +95,10 @@ public String getMovie_poster_url() {
         this.release_date = release_date;
     }
 
-    public int getmoviePosterImage() {
-        return moviePosterImage;
+    public int[] getMovie_genres() {
+        return movie_genres;
     }
-
-    public void setmoviePosterImage(int moviePosterImage) {
-        this.moviePosterImage = moviePosterImage;
+    public void setMovie_genres(int[] genres){
+        this.movie_genres = genres;
     }
-
 }
