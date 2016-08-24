@@ -100,10 +100,12 @@ public class MovieNowPlaying extends Fragment{
         alphaAdapter.setInterpolator(new OvershootInterpolator());
         ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(mLinearLayoutManager);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
         recyclerView.setItemAnimator(new LandingAnimator());
         recyclerView.setAdapter(scaleAdapter);
+
         return rootView;
     }
 
@@ -162,7 +164,7 @@ public class MovieNowPlaying extends Fragment{
                         int vote_count = jObject.getInt("vote_count");
 
                         String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
-
+                        MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
                         Log.d(MOVIENOW_PLAYING_TAG, data);
                     }
 
@@ -170,7 +172,6 @@ public class MovieNowPlaying extends Fragment{
                     e.printStackTrace();
                     Log.d(MOVIENOW_PLAYING_TAG, e.toString());
                 }
-                Log.d(MOVIENOW_PLAYING_TAG, res);
             } catch (IOException e) {
                 e.printStackTrace();
             }

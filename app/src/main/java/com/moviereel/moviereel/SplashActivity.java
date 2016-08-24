@@ -42,7 +42,6 @@ public class SplashActivity extends AppCompatActivity {
         };
         //start timer
         timer.start();
-
     }
 
     /**Initializes the User Interface controls
