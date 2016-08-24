@@ -66,4 +66,7 @@ dependencies {
 
     /*okHTTP*/
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
+    /*SWEET ALERT DIALOGS*/
+    compile 'cn.pedant.sweetalert:library:1.3'
 }
