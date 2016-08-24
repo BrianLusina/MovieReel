@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -46,7 +47,7 @@ import okhttp3.Response;
 public class MovieNowPlaying extends Fragment{
     private static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
     private MovieAdapter movieAdapter;
-    private List<MovieModel> foodModelList;
+    private List<MovieModel> MovieModelList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient client = new OkHttpClient();
 
@@ -62,6 +63,8 @@ public class MovieNowPlaying extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LoadMoviesTask loadMovies = new LoadMoviesTask();
+        MovieModelList = new ArrayList<>();
+        movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
         if(isNetworkAvailable()) {
             loadMovies.execute();
         }else{
@@ -164,7 +167,10 @@ public class MovieNowPlaying extends Fragment{
                         int vote_count = jObject.getInt("vote_count");
 
                         String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
+
                         MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
+                        MovieModelList.add(movieModel);
+
                         Log.d(MOVIENOW_PLAYING_TAG, data);
                     }
 

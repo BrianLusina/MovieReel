@@ -9,15 +9,15 @@ package com.moviereel.moviereel.movies;
  */
 public class MovieModel {
     /*fields*/
-    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movie_vote_count;
+    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date;
     private int[] movie_genres;
-    private int movie_id;
+    private int movie_id, movie_vote_count;
     private double movie_popularity;
     /*constructor*/
     public MovieModel(){}
 
     /*constructor*/
-    public MovieModel(String movie_poster_url, String movie_overview, String release_date,int[] movie_genres, int movie_id, String movie_title, String movie_backdrop_url, double movie_popularity, String movie_vote_count) {
+    public MovieModel(String movie_poster_url, String movie_overview, String release_date,int[] movie_genres, int movie_id, String movie_title, String movie_backdrop_url, double movie_popularity, int movie_vote_count) {
         this.movie_genres = movie_genres;
         this.movie_title = movie_title;
         this.movie_poster_url = movie_poster_url;
@@ -46,11 +46,11 @@ public String getMovie_poster_url() {
         this.movie_backdrop_url = movie_backdrop_url;
     }
 
-    public String getMovie_vote_count() {
+    public int getMovie_vote_count() {
         return movie_vote_count;
     }
 
-    public void setMovie_vote_count(String movie_vote_count) {
+    public void setMovie_vote_count(int movie_vote_count) {
         this.movie_vote_count = movie_vote_count;
     }
 
