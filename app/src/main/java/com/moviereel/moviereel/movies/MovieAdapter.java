@@ -70,7 +70,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             MovieOverview.setText(MovieModel.getMovie_overview());
             MovieReleaseDate.setText(MovieModel.getRelease_date());
             MovieVoteCount.setText(MovieModel.getMovie_poster_url());
-            MoviePopularityCount.setText(MovieModel.getMovie_popularity());
+            MoviePopularityCount.setText(String.valueOf(MovieModel.getMovie_popularity()));
         }
     }
 
