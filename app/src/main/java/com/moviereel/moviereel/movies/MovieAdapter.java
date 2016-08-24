@@ -58,11 +58,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
         public ViewHolder(View itemView) {
             super(itemView);
-            MoviePoster = (ImageView) itemView.findViewById(R.id.movie_image_card);
+            MoviePoster = (ImageView) itemView.findViewById(R.id.movie_poster_image_id);
             MovieTitle = (TextView) itemView.findViewById(R.id.movie_title_card);
-            MovieOverview = (TextView) itemView.findViewById(R.id.movie_desc_card);
-            MovieReleaseDate = (TextView) itemView.findViewById(R.id.movie_release_date);
-            MovieVoteCount = (TextView) itemView.findViewById(R.id.movie_chef_card);
+            MovieOverview = (TextView) itemView.findViewById(R.id.movie_overview_card);
+            MovieReleaseDate = (TextView) itemView.findViewById(R.id.movie_release_date_id);
+            MovieVoteCount = (TextView) itemView.findViewById(R.id.movie_vote_count_id);
             MoviePopularityCount = (TextView)itemView.findViewById(R.id.movie_popularity_count_id);
         }
         public void bind(MovieModel MovieModel){

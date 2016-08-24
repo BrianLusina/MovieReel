@@ -79,7 +79,7 @@ public class MovieNowPlaying extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.main_recyclerview_id);
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
         SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
