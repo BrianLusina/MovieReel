@@ -156,8 +156,8 @@ public class MovieNowPlaying extends Fragment{
                     * obtain the JSONObjects storing the relevant data to variables*/
                     for(int x = 0; x < result.length(); x++){
                         JSONObject jObject = result.getJSONObject(x);
-                        String poster_path = jObject.getString("poster_path");
-                        String backdrop_path = jObject.getString("backdrop_path");
+                        String poster_path = APIURLs.getIMAGE_BASE() + jObject.getString("poster_path");
+                        String backdrop_path = APIURLs.getIMAGE_BASE()+ jObject.getString("backdrop_path");
                         String overview = jObject.getString("overview");
                         String release_date = jObject.getString("release_date");
                         JSONArray genre_ids = jObject.getJSONArray("genre_ids");
@@ -170,7 +170,7 @@ public class MovieNowPlaying extends Fragment{
 
                         MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
                         MovieModelList.add(movieModel);
-
+//http://image.tmdb.org/t/p/w500
                         Log.d(MOVIENOW_PLAYING_TAG, data);
                     }
 

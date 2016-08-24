@@ -12,6 +12,7 @@ package com.moviereel.moviereel;
 public class APIUrlEndpoints {
     private String KEY = "?api_key=2f30bdb7e9742c26d4ea364f62f38163";
     private String BASEURL="https://api.themoviedb.org/3/";
+    private String IMAGE_BASE = "http://image.tmdb.org/t/p/w500";
 
     /*url to fetch GENRES*/
     private String GENRES = BASEURL + "genre/movie/list" + KEY;
@@ -50,5 +51,10 @@ public class APIUrlEndpoints {
     public String getMOVIES_PER_GENRE_endpt() {
         return MOVIES_PER_GENRE_endpt;
     }
+
+    public String getIMAGE_BASE() {return IMAGE_BASE;}
+
+    public void setIMAGE_BASE(String IMAGE_BASE) {this.IMAGE_BASE = IMAGE_BASE;}
+
 /*END*/
 }
