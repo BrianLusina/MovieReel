@@ -1,6 +1,5 @@
 package com.moviereel.moviereel.movies;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,9 +21,14 @@ import android.view.animation.OvershootInterpolator;
 import com.moviereel.moviereel.APIUrlEndpoints;
 import com.moviereel.moviereel.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
@@ -40,11 +44,10 @@ import okhttp3.Response;
  * Description: displays the latest movies
  */
 public class MovieNowPlaying extends Fragment{
-    private static final String MOVIELATEST_TAG = MovieNowPlaying.class.getSimpleName();
+    private static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
     private MovieAdapter movieAdapter;
     private List<MovieModel> foodModelList;
     private CoordinatorLayout coordinatorLayout;
-    private LoadMoviesTask loadMovies;
     private OkHttpClient client = new OkHttpClient();
 
     public MovieNowPlaying(){}
@@ -58,6 +61,7 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LoadMoviesTask loadMovies = new LoadMoviesTask();
         if(isNetworkAvailable()) {
             loadMovies.execute();
         }else{
@@ -117,11 +121,15 @@ public class MovieNowPlaying extends Fragment{
      * Method to load movies task, works on a separate thread*/
     private class LoadMoviesTask extends AsyncTask<String, Void, String> {
         APIUrlEndpoints APIURLs = new APIUrlEndpoints();
+        SweetAlertDialog progressDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //TODO: add an indeterminate spinner
+            progressDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.cadet_blue));
+            progressDialog.setTitleText("Hold on");
+            progressDialog.setCancelable(true);
+            progressDialog.show();
         }
 
         @Override
@@ -133,7 +141,36 @@ public class MovieNowPlaying extends Fragment{
                 Response response = client.newCall(request).execute();
                 String res = response.body().string();
                 //TODO: Creating a JSON object, parsing through it, adding the data to a model and the adapter
-                Log.d(MOVIELATEST_TAG, res);
+                try {
+                    /*PASS the response to the JSONObject*/
+                    JSONObject jsonObject = new JSONObject(res);
+                    /*get the results array from the JSON object*/
+                    JSONArray result = jsonObject.getJSONArray("results");
+
+                    /*iterate the result array and add the loop through the objects
+                    * obtain the JSONObjects storing the relevant data to variables*/
+                    for(int x = 0; x < result.length(); x++){
+                        JSONObject jObject = result.getJSONObject(x);
+                        String poster_path = jObject.getString("poster_path");
+                        String backdrop_path = jObject.getString("backdrop_path");
+                        String overview = jObject.getString("overview");
+                        String release_date = jObject.getString("release_date");
+                        JSONArray genre_ids = jObject.getJSONArray("genre_ids");
+                        int id = jObject.getInt("id");
+                        String title =jObject.getString("original_title");
+                        double popularity = jObject.getDouble("popularity");
+                        int vote_count = jObject.getInt("vote_count");
+
+                        String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
+
+                        Log.d(MOVIENOW_PLAYING_TAG, data);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.d(MOVIENOW_PLAYING_TAG, e.toString());
+                }
+                Log.d(MOVIENOW_PLAYING_TAG, res);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -144,6 +181,9 @@ public class MovieNowPlaying extends Fragment{
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             //TODO: post results and kill of spinner
+            if(progressDialog.isShowing()){
+                progressDialog.cancel();
+            }
         }
     }
 
