@@ -49,25 +49,25 @@ public class MainActivity extends AppCompatActivity{
                         new PrimaryDrawerItem().withName(R.string.main_drawer_home_title).withIcon(FontAwesome.Icon.faw_home).withIdentifier(0),
                         /*movies section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_movie_title),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_times).withIdentifier(1),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play_circle).withIdentifier(2),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular).withIcon(FontAwesome.Icon.faw_star).withIdentifier(3),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_arrow_up).withIdentifier(4),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming).withIcon(FontAwesome.Icon.faw_calendar_check_o).withIdentifier(5),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play).withIdentifier(1),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular).withIcon(FontAwesome.Icon.faw_star).withIdentifier(2),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_fire).withIdentifier(3),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming).withIcon(FontAwesome.Icon.faw_calendar_check_o).withIdentifier(4),
 
                         /*Tv series section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_series_title),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_latest).withIcon(FontAwesome.Icon.faw_calendar_plus_o).withIdentifier(6),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_ontheair).withIcon(FontAwesome.Icon.faw_television).withIdentifier(7),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_airing_today).withIcon(FontAwesome.Icon.faw_hourglass_start).withIdentifier(8),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_top_rated).withIcon(FontAwesome.Icon.faw_star).withIdentifier(9),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIdentifier(10),
-                        new PrimaryDrawerItem().withName(R.string.main_drawer_help).withIcon(FontAwesome.Icon.faw_question).withIdentifier(11)
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_latest).withIcon(FontAwesome.Icon.faw_clock_o).withIdentifier(5),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_ontheair).withIcon(FontAwesome.Icon.faw_television).withIdentifier(6),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_airing_today).withIcon(FontAwesome.Icon.faw_hourglass_start).withIdentifier(7),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_top_rated).withIcon(FontAwesome.Icon.faw_star).withIdentifier(8),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIdentifier(9)
                         /*STICKY DRAWER ITEMS*/
                 ).addStickyDrawerItems(
+                        /*HELP*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_help).withIcon(FontAwesome.Icon.faw_question).withIdentifier(10),
                         /*settings*/
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_settings).withIcon(FontAwesome.Icon.faw_cogs).withIdentifier(12),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_about).withIcon(FontAwesome.Icon.faw_exclamation).withIdentifier(13)
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_settings).withIcon(FontAwesome.Icon.faw_cogs).withIdentifier(11),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_about).withIcon(FontAwesome.Icon.faw_exclamation).withIdentifier(12)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -84,69 +84,64 @@ public class MainActivity extends AppCompatActivity{
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*latest movies*/
+                                /*now playing*/
                                 case 1:
                                     fragment = MovieNowPlaying.newInstance();
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Now Playing*/
+                                /*Popular Movies*/
                                 case 2:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Popular Movies*/
+                                /*Top rated*/
                                 case 3:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Top rated*/
+                                /*Upcoming*/
                                 case 4:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Upcoming*/
+                                /*Latest series*/
                                 case 5:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Latest series*/
+                                /*series On the air*/
                                 case 6:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*series On the air*/
+                                /*Series airing today*/
                                 case 7:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Series airing today*/
+                                /*top rated series*/
                                 case 8:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*top rated series*/
+                                /*Popular series*/
                                 case 9:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*Popular series*/
+                                /*help*/
                                 case 10:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*help*/
+                                /*settings*/
                                 case 11:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
-                                /*settings*/
-                                case 12:
-                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
-                                    break;
-
                                 /*about*/
-                                case 13:
+                                case 12:
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 

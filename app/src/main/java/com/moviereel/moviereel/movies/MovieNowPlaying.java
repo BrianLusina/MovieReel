@@ -145,7 +145,6 @@ public class MovieNowPlaying extends Fragment{
                             .build();
                 Response response = client.newCall(request).execute();
                 String res = response.body().string();
-                //TODO: Creating a JSON object, parsing through it, adding the data to a model and the adapter
                 try {
                     /*PASS the response to the JSONObject*/
                     JSONObject jsonObject = new JSONObject(res);
@@ -170,7 +169,6 @@ public class MovieNowPlaying extends Fragment{
 
                         MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
                         MovieModelList.add(movieModel);
-//http://image.tmdb.org/t/p/w500
                         Log.d(MOVIENOW_PLAYING_TAG, data);
                     }
 
@@ -180,6 +178,7 @@ public class MovieNowPlaying extends Fragment{
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.d(MOVIENOW_PLAYING_TAG, e.getMessage());
             }
             return null;
         }
@@ -187,7 +186,6 @@ public class MovieNowPlaying extends Fragment{
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //TODO: post results and kill of spinner
             if(progressDialog.isShowing()){
                 progressDialog.cancel();
             }

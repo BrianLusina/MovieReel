@@ -49,7 +49,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         holder.bind(MovieModel);
 
         //load images using Glider library
-        Glide.with(mContext).load(MovieModel.getMovie_poster_url()).into(holder.MoviePoster);
+        Glide.with(mContext).load(MovieModel.getMovie_poster_url()).centerCrop().crossFade().into(holder.MoviePoster);
+        //Glide.with(mContext).load(MovieModel.getMovie_poster_url()).into(holder.MoviePoster).
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -69,13 +70,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             MovieTitle.setText(MovieModel.getMovie_title());
             MovieOverview.setText(MovieModel.getMovie_overview());
             MovieReleaseDate.setText(MovieModel.getRelease_date());
-            MovieVoteCount.setText(MovieModel.getMovie_vote_count());
+            MovieVoteCount.setText(String.valueOf(MovieModel.getMovie_vote_count()));
             MoviePopularityCount.setText(String.valueOf(MovieModel.getMovie_popularity()));
         }
     }
 
-    public void add(MovieModel itemModel, int postion){
-        MovieModelList.add(postion,itemModel);
+    public void add(MovieModel itemModel, int position){
+        MovieModelList.add(position,itemModel);
         notifyDataSetChanged();
     }
 
