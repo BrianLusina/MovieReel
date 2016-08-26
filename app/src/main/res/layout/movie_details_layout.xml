@@ -29,10 +29,12 @@
             >
 
             <ImageView
+                android:id="@+id/movie_detail_img_id"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/london_flat"
                 android:tint="#BB3E50B4"
+                android:contentDescription="@null"
                 android:scaleType="centerCrop"/>
 
             <android.support.v7.widget.Toolbar
@@ -78,13 +80,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/movie_detail_title_id" android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/movie_title_card"
                         android:textAppearance="@style/TextAppearance.Header"
                         style="@style/TextComponent.ItemRow" />
 
                     <TextView
+                        android:id="@+id/movie_detail_overview_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"

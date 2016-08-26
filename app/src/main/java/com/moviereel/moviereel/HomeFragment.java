@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.moviereel.moviereel.movies.MovieAdapter;
 import com.moviereel.moviereel.movies.MovieModel;
@@ -50,6 +52,9 @@ public class HomeFragment extends Fragment{
     private List<MovieModel> movieList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient okHttpClient = new OkHttpClient();
+    private ImageView movie_poster;
+    private TextView movie_title;
+    private TextView movie_overview;
     private Network network = new Network();
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
@@ -92,6 +97,10 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movie_details_layout, container, false);
         mFab = rootView.findViewById(R.id.flexible_example_fab);
+        movie_poster = (ImageView) rootView.findViewById(R.id.movie_detail_img_id);
+        movie_title = (TextView) rootView.findViewById(R.id.movie_detail_title_id);
+        movie_overview = (TextView)rootView.findViewById(R.id.movie_detail_overview_id);
+
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.flexible_example_toolbar);
 
         AppBarLayout appbar = (AppBarLayout) rootView.findViewById(R.id.flexible_example_appbar);
@@ -164,6 +173,7 @@ public class HomeFragment extends Fragment{
                 int revenue = jsonObject.getInt("revenue");
                 int budget = jsonObject.getInt("budget");
                 String release_date = jsonObject.getString("release_date");
+
 
                 String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genres+ " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count) + " " + tagline + " " + status+ " " +original_language + " " + String.valueOf(is_adult) + " " + String.valueOf(runtime) + " " +String.valueOf(revenue) + " " + String.valueOf(budget);
 
