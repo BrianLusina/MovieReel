@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment{
     private List<MovieModel> movieList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient okHttpClient = new OkHttpClient();
+    private Network network = new Network();
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
     private View mFab;
@@ -61,7 +62,7 @@ public class HomeFragment extends Fragment{
         LoadMoviesTask loadMovies = new LoadMoviesTask();
         MovieModelList = new ArrayList<>();
         movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
-        if(isNetworkAvailable()) {
+        if(network.isNetworkAvailable(getActivity())) {
             loadMovies.execute();
         }else{
             Snackbar snackbar = Snackbar
