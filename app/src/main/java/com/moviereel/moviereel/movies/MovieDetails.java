@@ -50,8 +50,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         if (mMaxScrollSize == 0)
             mMaxScrollSize = appBarLayout.getTotalScrollRange();
 
-        int currentScrollPercentage = (Math.abs(i)) * 100
-                / mMaxScrollSize;
+        int currentScrollPercentage = (Math.abs(i)) * 100 / mMaxScrollSize;
 
         if (currentScrollPercentage >= PERCENTAGE_TO_SHOW_IMAGE) {
             if (!mIsImageHidden) {

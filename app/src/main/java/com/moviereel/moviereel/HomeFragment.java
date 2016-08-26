@@ -2,12 +2,19 @@ package com.moviereel.moviereel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 
 import com.moviereel.moviereel.movies.MovieAdapter;
 import com.moviereel.moviereel.movies.MovieModel;
@@ -15,13 +22,16 @@ import com.moviereel.moviereel.movies.MovieModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 import okhttp3.OkHttpClient;
 
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
  * Created by lusinabrian on 22/08/16 at 19:08
- * Description: Main screen of the application, will feature the latest movies
+ * Description: Main screen of the application, will feature the latest movies, will use Movie details layout as it is the only movie showing
  */
 public class HomeFragment extends Fragment{
 
@@ -30,6 +40,11 @@ public class HomeFragment extends Fragment{
     private List<MovieModel> movieList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient okHttpClient = new OkHttpClient();
+
+    private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
+    private View mFab;
+    private int mMaxScrollSize;
+    private boolean mIsImageHidden;
 
     /*empty constructor*/
     public HomeFragment(){}
@@ -66,8 +81,36 @@ public class HomeFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.homefragment_layout, container, false);
+        View rootView = inflater.inflate(R.layout.movie_details_layout, container, false);
+        mFab = rootView.findViewById(R.id.flexible_example_fab);
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.flexible_example_toolbar);
 
+        AppBarLayout appbar = (AppBarLayout) rootView.findViewById(R.id.flexible_example_appbar);
+        appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (mMaxScrollSize == 0)
+                    mMaxScrollSize = appBarLayout.getTotalScrollRange();
+
+                int currentScrollPercentage = (Math.abs(i)) * 100
+                        / mMaxScrollSize;
+
+                if (currentScrollPercentage >= PERCENTAGE_TO_SHOW_IMAGE) {
+                    if (!mIsImageHidden) {
+                        mIsImageHidden = true;
+
+                        ViewCompat.animate(mFab).scaleY(0).scaleX(0).start();
+                    }
+                }
+
+                if (currentScrollPercentage < PERCENTAGE_TO_SHOW_IMAGE) {
+                    if (mIsImageHidden) {
+                        mIsImageHidden = false;
+                        ViewCompat.animate(mFab).scaleY(1).scaleX(1).start();
+                    }
+                }
+            }
+        });
         return rootView;
     }
 
