@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment{
                 if (mMaxScrollSize == 0)
                     mMaxScrollSize = appBarLayout.getTotalScrollRange();
 
-                int currentScrollPercentage = (Math.abs(i)) * 100
+                int currentScrollPercentage = (Math.abs(verticalOffset)) * 100
                         / mMaxScrollSize;
 
                 if (currentScrollPercentage >= PERCENTAGE_TO_SHOW_IMAGE) {
@@ -150,8 +150,10 @@ public class HomeFragment extends Fragment{
                 String title = jsonObject.getString("original_title");
                 String overview = jsonObject.getString("overview");
                 int popularity = jsonObject.getInt("popularity");
-                String backdrop_path = jsonObject.getString("backdrop_path");
-                String poster_path = jsonObject.getString("poster_path");
+
+                String backdrop_path = jsonObject.getString("backdrop_path") == null ? "" : jsonObject.getString("backdrop_path");
+                String poster_path = (jsonObject.getString("poster_path") == null) ? "" : jsonObject.getString("poster_path");
+
                 String tagline = jsonObject.getString("tagline");
                 int vote_count = jsonObject.getInt("vote_count");
                 String status = jsonObject.getString("status");
@@ -163,6 +165,9 @@ public class HomeFragment extends Fragment{
                 int budget = jsonObject.getInt("budget");
                 String release_date = jsonObject.getString("release_date");
 
+                String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genres+ " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count) + " " + tagline + " " + status+ " " +original_language + " " + String.valueOf(is_adult) + " " + String.valueOf(runtime) + " " +String.valueOf(revenue) + " " + String.valueOf(budget);
+
+                Log.d(HOMEFRAG_TAG, data);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
                 Log.d(HOMEFRAG_TAG, e.getMessage());
