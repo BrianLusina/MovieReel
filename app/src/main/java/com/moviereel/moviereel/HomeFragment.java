@@ -12,6 +12,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,10 @@ import android.view.animation.OvershootInterpolator;
 
 import com.moviereel.moviereel.movies.MovieAdapter;
 import com.moviereel.moviereel.movies.MovieModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,9 +69,7 @@ public class HomeFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LoadMoviesTask loadMovies = new LoadMoviesTask();
-        MovieModelList = new ArrayList<>();
-        movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
+        LoadMovie loadMovies = new LoadMovie();
         if(network.isNetworkAvailable(getActivity())) {
             loadMovies.execute();
         }else{
@@ -141,9 +144,28 @@ public class HomeFragment extends Fragment{
             try {
                 Response response = okHttpClient.newCall(request).execute();
                 String res = response.body().toString();
+                JSONObject jsonObject = new JSONObject(res);
 
-            } catch (IOException e) {
+                int id = jsonObject.getInt("id");
+                String title = jsonObject.getString("original_title");
+                String overview = jsonObject.getString("overview");
+                int popularity = jsonObject.getInt("popularity");
+                String backdrop_path = jsonObject.getString("backdrop_path");
+                String poster_path = jsonObject.getString("poster_path");
+                String tagline = jsonObject.getString("tagline");
+                int vote_count = jsonObject.getInt("vote_count");
+                String status = jsonObject.getString("status");
+                String original_language = jsonObject.getString("original_language");
+                boolean is_adult = jsonObject.getBoolean("adult");
+                JSONArray genres = jsonObject.getJSONArray("genres");
+                int runtime = jsonObject.getInt("runtime");
+                int revenue = jsonObject.getInt("revenue");
+                int budget = jsonObject.getInt("budget");
+                String release_date = jsonObject.getString("release_date");
+
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
+                Log.d(HOMEFRAG_TAG, e.getMessage());
             }
             return null;
         }
