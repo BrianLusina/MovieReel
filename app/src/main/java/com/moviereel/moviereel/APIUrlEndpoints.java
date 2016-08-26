@@ -13,12 +13,14 @@ public class APIUrlEndpoints {
     private String KEY = "?api_key=2f30bdb7e9742c26d4ea364f62f38163";
     private String BASEURL="https://api.themoviedb.org/3/";
     private String IMAGE_BASE = "http://image.tmdb.org/t/p/w500";
+    private String MOVIES = BASEURL + "movie/";
 
     /*url to fetch GENRES*/
     private String GENRES = BASEURL + "genre/movie/list" + KEY;
 
     /*Now playing url for all movies*/
-    private String NOW_PLAYING = BASEURL + "movie/now_playing" + KEY;
+    private String LATEST_MOVIE = BASEURL + MOVIES + "latest" + KEY;
+    private String NOW_PLAYING = BASEURL + MOVIES + "now_playing" + KEY;
 
     /*get movies per genre add id to this link to get movies per genre*/
     private String MOVIES_PER_GENRE = BASEURL + "genre/";
@@ -55,6 +57,10 @@ public class APIUrlEndpoints {
     public String getIMAGE_BASE() {return IMAGE_BASE;}
 
     public void setIMAGE_BASE(String IMAGE_BASE) {this.IMAGE_BASE = IMAGE_BASE;}
+
+    public String getLATEST_MOVIE() {
+        return LATEST_MOVIE;
+    }
 
 /*END*/
 }

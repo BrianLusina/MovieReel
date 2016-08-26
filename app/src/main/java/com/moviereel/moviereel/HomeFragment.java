@@ -20,6 +20,7 @@ import android.view.animation.OvershootInterpolator;
 import com.moviereel.moviereel.movies.MovieAdapter;
 import com.moviereel.moviereel.movies.MovieModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,8 @@ import jp.wasabeef.recyclerview.animators.LandingAnimator;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Project: Movie Reel
@@ -132,6 +135,16 @@ public class HomeFragment extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
+            Request request =  new Request.Builder()
+                    .url(APIURLs.getLATEST_MOVIE())
+                    .build();
+            try {
+                Response response = okHttpClient.newCall(request).execute();
+                String res = response.body().toString();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
