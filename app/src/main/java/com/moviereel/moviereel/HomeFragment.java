@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.RunnableFuture;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
@@ -174,6 +175,7 @@ public class HomeFragment extends Fragment{
                 int budget = jsonObject.getInt("budget");
                 String release_date = jsonObject.getString("release_date");
 
+                // TODO: set data to UI controls
 
                 String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genres+ " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count) + " " + tagline + " " + status+ " " +original_language + " " + String.valueOf(is_adult) + " " + String.valueOf(runtime) + " " +String.valueOf(revenue) + " " + String.valueOf(budget);
 
@@ -193,6 +195,5 @@ public class HomeFragment extends Fragment{
             }
         }
     }
-
     /*END*/
 }
