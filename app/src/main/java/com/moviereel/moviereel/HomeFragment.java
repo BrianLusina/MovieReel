@@ -1,5 +1,6 @@
 package com.moviereel.moviereel;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -22,6 +23,7 @@ import com.moviereel.moviereel.movies.MovieModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
@@ -113,6 +115,33 @@ public class HomeFragment extends Fragment{
             }
         });
         return rootView;
+    }
+
+    private class LoadMovie extends AsyncTask<String, Void, String>{
+        APIUrlEndpoints APIURLs = new APIUrlEndpoints();
+        SweetAlertDialog progressDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.cadet_blue));
+            progressDialog.setTitleText(getResources().getString(R.string.get_latest_movie));
+            progressDialog.setCancelable(true);
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(progressDialog.isShowing()){
+                progressDialog.cancel();
+            }
+        }
     }
 
     /*END*/
