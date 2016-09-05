@@ -22,4 +22,4 @@ ___
     
     App Intro allows simple and short introduction into the application. They are only shown once on 1st ever start of the app. After which the splash screen will be shown for a brief 2 second.
     
-    
+    Remember to use SharedPreferences to enable only one start of this introduction.

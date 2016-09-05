@@ -1,7 +1,9 @@
 package com.moviereel.moviereel.views.introduction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,8 +35,28 @@ public class SplashActivity extends AppCompatActivity {
         Thread timer = new Thread(){
             @Override
             public void run(){
+                SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                //create a new boolean and preference and set it to true
+                boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+                //if activity has never started before
+
+                if(isFirstStart){
+                    //launch this activity
+                    Intent intent = new Intent(SplashActivity.this, AppIntroduction.class);
+                    startActivity(intent);
+
+                    //make a new shared preferences editor
+                    SharedPreferences.Editor editor = getPrefs.edit();
+
+                    //  Edit preference to make it false because we don't want this to run again
+                    editor.putBoolean("firstStart", false);
+
+                    //apply the changes
+                    editor.apply();
+                }
+
                 try{
-                    sleep(3000);
+                    sleep(2000);
                     Intent openMain = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(openMain);
                 }catch(InterruptedException ie){
