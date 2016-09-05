@@ -20,7 +20,7 @@ import com.moviereel.moviereel.APIUrlEndpoints;
 import com.moviereel.moviereel.Network;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
-import com.moviereel.moviereel.movies.MovieModel;
+import com.moviereel.moviereel.models.MovieModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

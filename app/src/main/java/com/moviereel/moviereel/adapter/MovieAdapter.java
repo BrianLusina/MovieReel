@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.movies.MovieModel;
+import com.moviereel.moviereel.models.MovieModel;
 
 import java.util.List;
 
