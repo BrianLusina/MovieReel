@@ -16,6 +16,9 @@
         tools:replace="android:icon"
         android:theme="@style/AppTheme">
 
+        <!--App introduction-->
+        <activity android:name=".views.introduction.AppIntroduction"/>
+
         <!-- splash screen -->
         <activity android:name=".views.introduction.SplashActivity">
             <intent-filter>

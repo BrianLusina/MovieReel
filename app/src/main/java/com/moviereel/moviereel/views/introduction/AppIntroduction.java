@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.moviereel.moviereel.R;
 
@@ -16,7 +17,7 @@ import com.moviereel.moviereel.R;
  * <p/>
  * Description: Simple app introduction class
  */
-public class AppIntroduction extends AppIntro {
+public class AppIntroduction extends AppIntro2 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +35,6 @@ public class AppIntroduction extends AppIntro {
         /*4th Fragment*/
         addSlide(AppIntroFragment.newInstance(getString(R.string.app_name), "desc", R.mipmap.ic_launcher, getResources().getColor(R.color.cadet_blue)));
 
-        setBarColor(ContextCompat.getColor(this,R.color.light_purple));
-        setSeparatorColor(ContextCompat.getColor(this,R.color.rebecca_purple));
-
-        showSkipButton(true);
         setProgressButtonEnabled(true);
     }
 
