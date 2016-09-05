@@ -53,15 +53,15 @@ public class SplashActivity extends AppCompatActivity {
 
                     //apply the changes
                     editor.apply();
-                }
-
-                try{
-                    sleep(2000);
-                    Intent openMain = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(openMain);
-                }catch(InterruptedException ie){
-                    ie.printStackTrace();
-                    Log.d(SPLASH_SCREEN_TAG, ie.toString());
+                }else{
+                    try{
+                        sleep(2000);
+                        Intent openMain = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(openMain);
+                    }catch(InterruptedException ie){
+                        ie.printStackTrace();
+                        Log.d(SPLASH_SCREEN_TAG, ie.toString());
+                    }
                 }
             }
         };

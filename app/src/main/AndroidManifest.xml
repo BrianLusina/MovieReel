@@ -23,7 +23,6 @@
         <activity android:name=".views.introduction.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,7 +31,6 @@
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -41,13 +39,10 @@
         <activity android:name=".views.movies.MovieDetails">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MOVIEDETAILS" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+
     </application>
 
 </manifest>
