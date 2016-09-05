@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.singletons;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -11,11 +11,11 @@ import android.net.NetworkInfo;
  * <p/>
  * Description: checks for network status
  */
-public class Network {
+public class IsNetwork {
 
     /**
      Method to check network availability
-     Using ConnectivityManager to check for Network Connection
+     Using ConnectivityManager to check for IsNetwork Connection
      * */
     public boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);

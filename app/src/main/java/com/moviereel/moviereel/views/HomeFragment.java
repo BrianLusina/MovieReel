@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moviereel.moviereel.APIUrlEndpoints;
-import com.moviereel.moviereel.Network;
+import com.moviereel.moviereel.singletons.IsNetwork;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment{
     private ImageView movie_poster;
     private TextView movie_title;
     private TextView movie_overview;
-    private Network network = new Network();
+    private IsNetwork isNetwork = new IsNetwork();
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
     private View mFab;
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LoadMovie loadMovies = new LoadMovie();
-        if(network.isNetworkAvailable(getActivity())) {
+        if(isNetwork.isNetworkAvailable(getActivity())) {
             loadMovies.execute();
         }else{
             Snackbar snackbar = Snackbar

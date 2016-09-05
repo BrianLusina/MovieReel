@@ -20,7 +20,7 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.movies.MovieNowPlaying;
+import com.moviereel.moviereel.views.movies.MovieNowPlaying;
 
 /**
  * Project: Movie Reel
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity{
 
     /**
      * Method to check network availability
-     Using ConnectivityManager to check for Network Connection
+     Using ConnectivityManager to check for IsNetwork Connection
      * */
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);

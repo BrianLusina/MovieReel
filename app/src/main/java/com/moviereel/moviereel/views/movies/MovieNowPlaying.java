@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.movies;
+package com.moviereel.moviereel.views.movies;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -41,7 +41,7 @@ import okhttp3.Response;
 
 /**
  * Project: Movie Reel
- * Package: com.moviereel.moviereel.movies
+ * Package: com.moviereel.moviereel.views.movies
  * Created by lusinabrian on 22/08/16 at 20:32
  * <p/>
  * Description: displays the latest movies
@@ -116,7 +116,7 @@ public class MovieNowPlaying extends Fragment{
 
     /**
      Method to check network availability
-     Using ConnectivityManager to check for Network Connection
+     Using ConnectivityManager to check for IsNetwork Connection
      * */
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
