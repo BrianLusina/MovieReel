@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.views;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,19 +8,18 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.moviereel.moviereel.movies.MovieAdapter;
+import com.moviereel.moviereel.APIUrlEndpoints;
+import com.moviereel.moviereel.Network;
+import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.movies.MovieModel;
 
 import org.json.JSONArray;
@@ -28,14 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.RunnableFuture;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import jp.wasabeef.recyclerview.animators.LandingAnimator;
-import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

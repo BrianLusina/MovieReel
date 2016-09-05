@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.movies;
+package com.moviereel.moviereel.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.movies.MovieModel;
 
 import java.util.List;
 

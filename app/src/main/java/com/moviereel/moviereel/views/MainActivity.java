@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.views;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -19,6 +19,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.movies.MovieNowPlaying;
 
 /**

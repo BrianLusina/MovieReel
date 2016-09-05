@@ -1,4 +1,4 @@
-package com.moviereel.moviereel;
+package com.moviereel.moviereel.views;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.moviereel.moviereel.R;
 
 public class SplashActivity extends AppCompatActivity {
     /*FIELDS*/
