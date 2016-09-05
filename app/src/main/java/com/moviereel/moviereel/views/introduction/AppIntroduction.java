@@ -33,9 +33,11 @@ public class AppIntroduction extends AppIntro2 {
         addSlide(AppIntroFragment.newInstance(getString(R.string.app_name), "desc", R.mipmap.ic_launcher, getResources().getColor(R.color.cadet_blue)));
 
         /*4th Fragment*/
-        addSlide(AppIntroFragment.newInstance(getString(R.string.app_name), "desc", R.mipmap.ic_launcher, getResources().getColor(R.color.cadet_blue)));
-
+        addSlide(AppIntroFragment.newInstance(getString(R.string.app_name), "GET STARTED", R.mipmap.ic_launcher, getResources().getColor(R.color.cadet_blue)));
         setProgressButtonEnabled(true);
+
+        /*animation*/
+        setDepthAnimation();
     }
 
     @Override
