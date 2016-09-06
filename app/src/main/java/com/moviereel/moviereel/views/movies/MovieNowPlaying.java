@@ -124,7 +124,7 @@ public class MovieNowPlaying extends Fragment{
 
                     @Override
                     public void onItemClick(View view, int position) {
-                        
+
                     }
                 }));
     }
@@ -199,6 +199,7 @@ public class MovieNowPlaying extends Fragment{
                         //apply these edits
                         editor.apply();
                         Log.d(MOVIENOW_PLAYING_TAG, data);
+                        Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
                     }
 
                 } catch (JSONException e) {
