@@ -15,7 +15,6 @@
     android:layout_height="wrap_content"
     android:elevation="3dp"
     card_view:cardCornerRadius="@dimen/card_movie_radius"
-    card_view:contentPadding="10dp"
     android:clickable="true"
     android:layout_margin="@dimen/card_movie_margin">
 
@@ -37,6 +36,7 @@
             android:id="@+id/movie_title_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/movieitem_padding"
             android:layout_below="@id/movie_poster_image_id"
             android:textColor="@color/black"
             android:text="@string/movie_title_card"
@@ -48,6 +48,7 @@
             android:id="@+id/movie_overview_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/movieitem_padding"
             android:layout_below="@id/movie_title_card"
             android:textColor="@color/black"
             android:text="@string/movie_desc_card"
@@ -58,9 +59,7 @@
             android:layout_below="@+id/movie_overview_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/movie_chef_padding"
-            android:paddingRight="@dimen/movie_chef_padding"
-            android:layout_marginTop="@dimen/movie_chef_marginTop"
+            android:padding="@dimen/movieitem_padding"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -72,15 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <net.steamcrafted.materialiconlib.MaterialIconView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:materialIcon="clipboard_arrow_down"
-            app:materialIconColor="#fff"
-            app:materialIconSize="24dp"
-            android:scaleType="center"
-            android:background="@android:color/darker_gray"
-            android:id="@+id/icon" />
             <TextView
  android:id="@+id/movie_popularity_count_id"
                 android:drawableLeft="@drawable/popularity"
