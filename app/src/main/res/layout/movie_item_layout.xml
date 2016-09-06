@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/movie_poster_image_id"
             android:textColor="@color/black"
+            android:padding="@dimen/movie_item_text_padding"
             android:text="@string/movie_title_card"
             android:textStyle="bold"
             android:textSize="@dimen/movie_title_size"/>
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/movie_title_card"
             android:textColor="@color/black"
+            android:padding="@dimen/movie_item_text_padding"
             android:text="@string/movie_desc_card"
             android:textSize="@dimen/movie_desc_size"/>
 
@@ -58,9 +60,7 @@
             android:layout_below="@+id/movie_overview_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/movie_chef_padding"
-            android:paddingRight="@dimen/movie_chef_padding"
-            android:layout_marginTop="@dimen/movie_chef_marginTop"
+            android:padding="@dimen/movie_item_text_padding"
             android:orientation="horizontal"
             android:weightSum="2">
 
