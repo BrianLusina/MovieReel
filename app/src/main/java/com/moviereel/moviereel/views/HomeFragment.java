@@ -80,7 +80,16 @@ public class HomeFragment extends Fragment{
             //private ImageView movie_poster;
             movie_title.setText(title);
             movie_overview.setText(overview);
-            Glide.with(getActivity()).load("http://image.tmdb.org/t/p/w500/"+poster_path).into(movie_poster);
+            //TODO: change fallback image
+            if(poster_path != null){
+                Glide.with(getActivity())
+                        .load(ApiContract.MOVIE_POSTER_PATH+poster_path)
+                        .centerCrop()
+                        .fitCenter()
+                        .fallback(R.mipmap.ic_launcher)
+                        .crossFade()
+                        .into(movie_poster);
+            }
         }else{
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
