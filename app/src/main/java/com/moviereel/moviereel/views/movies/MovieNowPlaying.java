@@ -1,9 +1,6 @@
 package com.moviereel.moviereel.views.movies;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +21,7 @@ import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.singletons.IsNetwork;
 import com.moviereel.moviereel.singletons.RecyclerItemClickListener;
 
 import org.json.JSONArray;
@@ -55,6 +53,7 @@ public class MovieNowPlaying extends Fragment{
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient client = new OkHttpClient();
     private RecyclerView recyclerView;
+    private RippleView rippleView;
     public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
@@ -69,7 +68,7 @@ public class MovieNowPlaying extends Fragment{
         LoadMoviesTask loadMovies = new LoadMoviesTask();
         MovieModelList = new ArrayList<>();
         movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
-        if(isNetworkAvailable()) {
+        if(IsNetwork.isNetworkAvailable(getActivity())) {
             loadMovies.execute();
         }else{
             Snackbar snackbar = Snackbar
@@ -89,7 +88,7 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
-
+        rippleView = (RippleView)rootView.findViewById(R.id.movie_item_ripple_id);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
@@ -125,19 +124,15 @@ public class MovieNowPlaying extends Fragment{
 
                     @Override
                     public void onItemClick(View view, int position) {
-
+                        //register ripple effect
+                        rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+                            @Override
+                            public void onComplete(RippleView rippleView) {
+                                Log.d(MOVIENOW_PLAYING_TAG+ "Ripple", "Ripple completed");
+                            }
+                        });
                     }
                 }));
-    }
-
-    /**
-     Method to check network availability
-     Using ConnectivityManager to check for IsNetwork Connection
-     * */
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null;
     }
 
     /**
