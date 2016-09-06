@@ -26,3 +26,7 @@ ___
 
 + __Glide__
     This library assists in loading images from a Uri resouce and load the images into your ImageViews. This is used for the Movie posters.
+    
++ __Ripple Effect__
+    
+    Adds a ripple effect to the item cards when clicked.

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 
+import com.andexert.library.RippleView;
 import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
@@ -43,7 +44,6 @@ import okhttp3.Response;
  * Project: Movie Reel
  * Package: com.moviereel.moviereel.views.movies
  * Created by lusinabrian on 22/08/16 at 20:32
- * <p/>
  * Description: displays the latest movies
  */
 public class MovieNowPlaying extends Fragment{
@@ -112,6 +112,12 @@ public class MovieNowPlaying extends Fragment{
         recyclerView.setAdapter(scaleAdapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        
     }
 
     /**

@@ -23,15 +23,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--release date-->
-        <TextView
-            android:id="@+id/movie_release_date_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/movie_date_card"
-            android:textSize="@dimen/movie_release_date_size"
-            android:textColor="@color/black"/>
-
         <!--Movie Poster-->
         <ImageView
             android:id="@+id/movie_poster_image_id"
@@ -40,8 +31,7 @@
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/movie_image_card"
-            android:scaleType="fitXY"
-            android:layout_below="@id/movie_release_date_id"/>
+            android:scaleType="fitXY" />
 
         <!--food title-->
         <TextView
