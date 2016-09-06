@@ -18,4 +18,5 @@ public class ApiContract {
     public static final String TOP_RATED = BASE_URL + BuildConfig.TOP_RATED + MOVIE_DB_KEY;
     public static final String UPCOMING = BASE_URL + BuildConfig.UPCOMING + MOVIE_DB_KEY;
     public static final String LATEST_MOVIE = BASE_URL + BuildConfig.LATEST_MOVIE+ MOVIE_DB_KEY;
+    public static final String MOVIE_POSTER_PATH = BASE_URL + BuildConfig.POSTER_PATH;
 }

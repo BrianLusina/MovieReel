@@ -26,6 +26,7 @@ android {
         it.buildConfigField 'String', 'TOP_RATED', TopRated
         it.buildConfigField 'String', 'UPCOMING', Upcoming
         it.buildConfigField 'String', 'LATEST_MOVIE', LatestMovie
+        it.buildConfigField 'String', 'POSTER_PATH', PosterPath
     }
 }
 

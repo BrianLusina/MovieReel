@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.singletons.IsNetwork;
 import com.moviereel.moviereel.R;
@@ -79,7 +80,7 @@ public class HomeFragment extends Fragment{
             //private ImageView movie_poster;
             movie_title.setText(title);
             movie_overview.setText(overview);
-
+            Glide.with(getActivity()).load("http://image.tmdb.org/t/p/w500/"+poster_path).into(movie_poster);
         }else{
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
