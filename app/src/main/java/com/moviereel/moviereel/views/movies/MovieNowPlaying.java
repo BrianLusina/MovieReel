@@ -24,6 +24,7 @@ import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.singletons.RecyclerItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public class MovieNowPlaying extends Fragment{
     private List<MovieModel> MovieModelList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient client = new OkHttpClient();
-
+    private RecyclerView recyclerView;
     public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
@@ -89,7 +90,7 @@ public class MovieNowPlaying extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
         SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
@@ -118,7 +119,15 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //implement item click listener
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
+                new RecyclerItemClickListener.OnItemClickListener(){
 
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+                }));
     }
 
     /**

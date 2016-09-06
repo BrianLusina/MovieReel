@@ -39,3 +39,18 @@ The mode has been set to 0 to allow only this application to have access.
 ``` java
 SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
 ```
+
+Then you have to create an Editor instance and add the data to the SharedPreferences in *Key*, *Value* pairs
+
+``` java
+SharedPreferences.Editor editor = movieData.edit();
+```
+
+Then of course you can then add the Key,Value pairs
+
+``` java
+editor.putString("Key", value);
+//...more data
+```
+
+Now you can access the data as you see fit. Of course you can alternatively use any other type of database to store you data locally(SQLite) or even a file which will only allow your app to have read-write access.
