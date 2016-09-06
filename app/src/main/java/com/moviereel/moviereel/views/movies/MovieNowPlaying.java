@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 
+import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
@@ -126,7 +127,6 @@ public class MovieNowPlaying extends Fragment{
     /**
      * Method to load movies task, works on a separate thread*/
     private class LoadMoviesTask extends AsyncTask<String, Void, String> {
-        APIUrlEndpoints APIURLs = new APIUrlEndpoints();
         SweetAlertDialog progressDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
 
         @Override
@@ -140,9 +140,11 @@ public class MovieNowPlaying extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
+            String url = ApiContract.NOW_PLAYING;
+
             try {
                 Request request = new Request.Builder()
-                            .url(APIURLs.getNowPlaying())
+                            .url(url)
                             .build();
                 Response response = client.newCall(request).execute();
                 String res = response.body().string();
@@ -156,8 +158,8 @@ public class MovieNowPlaying extends Fragment{
                     * obtain the JSONObjects storing the relevant data to variables*/
                     for(int x = 0; x < result.length(); x++){
                         JSONObject jObject = result.getJSONObject(x);
-                        String poster_path = APIURLs.getIMAGE_BASE() + jObject.getString("poster_path");
-                        String backdrop_path = APIURLs.getIMAGE_BASE()+ jObject.getString("backdrop_path");
+                        String poster_path = ApiContract.MOVIE_POSTER_PATH + jObject.getString("poster_path");
+                        String backdrop_path = ApiContract.MOVIE_POSTER_PATH+ jObject.getString("backdrop_path");
                         String overview = jObject.getString("overview");
                         String release_date = jObject.getString("release_date");
                         JSONArray genre_ids = jObject.getJSONArray("genre_ids");
