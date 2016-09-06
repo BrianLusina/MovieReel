@@ -1,6 +1,7 @@
 package com.moviereel.moviereel.views.movies;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -117,7 +118,7 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
+
     }
 
     /**
@@ -174,10 +175,33 @@ public class MovieNowPlaying extends Fragment{
                         double popularity = jObject.getDouble("popularity");
                         int vote_count = jObject.getInt("vote_count");
 
+                        //Store data in sharedpreferences
                         String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
 
                         MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
                         MovieModelList.add(movieModel);
+
+                        /**Get an instance of the shared preferences create and access the MovieData
+                         * Store the data only to the application*/
+                        SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
+
+                        //create an editor
+                        SharedPreferences.Editor editor = movieData.edit();
+
+                        //add data to it
+                        editor.putString("PosterPath", poster_path);
+                        editor.putString("BackdropPath", backdrop_path);
+                        editor.putString("Overview", overview);
+                        editor.putString("ReleaseDate", release_date);
+                        editor.putInt("Id", id);
+
+                        editor.putString("Title", title);
+                        editor.putInt("Popularity", (int)popularity);
+                        editor.putInt("VoteCount", vote_count);
+
+                        //apply these edits
+                        editor.apply();
+
                         Log.d(MOVIENOW_PLAYING_TAG, data);
                     }
 

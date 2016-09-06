@@ -30,3 +30,12 @@ ___
 + __Ripple Effect__
     
     Adds a ripple effect to the item cards when clicked.
+    
+### Data storage
+    
+Data is stored using SharedPreferences. Of course there are several ways to access this data, intention is to allow user to still access this data offline. 
+The mode has been set to 0 to allow only this application to have access.
+
+``` java
+SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
+```
