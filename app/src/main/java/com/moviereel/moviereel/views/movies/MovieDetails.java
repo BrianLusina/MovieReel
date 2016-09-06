@@ -27,16 +27,9 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details_layout);
-        mFab = findViewById(R.id.flexible_example_fab);
+        mFab = findViewById(R.id.moviedetail_fab_share_id);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.flexible_example_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        AppBarLayout appbar = (AppBarLayout) findViewById(R.id.flexible_example_appbar);
+        AppBarLayout appbar = (AppBarLayout) findViewById(R.id.moviedetail_appbar_id);
         appbar.addOnOffsetChangedListener(this);
     }
 
