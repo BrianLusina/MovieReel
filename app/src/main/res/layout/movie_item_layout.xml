@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:elevation="3dp"
     card_view:cardCornerRadius="@dimen/card_movie_radius"
-    card_view:contentPadding="10dp"
     android:clickable="true"
     android:layout_margin="@dimen/card_movie_margin"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,15 +12,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--release date-->
-        <TextView
-            android:id="@+id/movie_release_date_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/movie_date_card"
-            android:textSize="@dimen/movie_release_date_size"
-            android:textColor="@color/black"/>
-
         <!--Movie Poster-->
         <ImageView
             android:id="@+id/movie_poster_image_id"
@@ -30,10 +20,19 @@
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/movie_image_card"
-            android:scaleType="fitXY"
-            android:layout_below="@id/movie_release_date_id"/>
+            android:scaleType="fitXY" />
+<!--
+        &lt;!&ndash;release date&ndash;&gt;
+        <TextView
+            android:id="@+id/movie_release_date_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_date_card"
+            android:textSize="@dimen/movie_release_date_size"
+            android:textColor="@color/black"/>
+-->
 
-        <!--food title-->
+        <!--movie title-->
         <TextView
             android:id="@+id/movie_title_card"
             android:layout_width="match_parent"

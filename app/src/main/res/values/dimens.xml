@@ -7,7 +7,7 @@
     <dimen name="card_movie_radius">0dp</dimen>
     <dimen name="card_movie_margin">5dp</dimen>
     <!--image-->
-    <dimen name="movie_image_height">160dp</dimen>
+    <dimen name="movie_image_height">250dp</dimen>
     <!--food title-->
     <dimen name="movie_title_card_padding">10dp</dimen>
     <dimen name="movie_title_size">15sp</dimen>

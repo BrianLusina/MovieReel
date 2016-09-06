@@ -59,14 +59,14 @@ public class HomeFragment extends Fragment{
 
     private int id,popularity, vote_count, runtime, revenue, budget;
 
-    private String title = "";
-    private String overview = "";
-    private String backdrop_path = "";
-    private String poster_path = "";
-    private String tagline = "";
-    private String status = "";
-    private String original_language = "";
-    private String release_date = "";
+    private String title = " ";
+    private String overview = " ";
+    private String backdrop_path = " ";
+    private String poster_path = " ";
+    private String tagline = " ";
+    private String status = " ";
+    private String original_language = " ";
+    private String release_date = " ";
 
     boolean is_adult;
     JSONArray genres;
