@@ -203,15 +203,14 @@ public class MovieNowPlaying extends Fragment{
                         editor.putString("Overview", overview);
                         editor.putString("ReleaseDate", release_date);
                         editor.putInt("Id", id);
-
                         editor.putString("Title", title);
                         editor.putInt("Popularity", (int)popularity);
                         editor.putInt("VoteCount", vote_count);
 
                         //apply these edits
                         editor.apply();
-
                         Log.d(MOVIENOW_PLAYING_TAG, data);
+                        Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
                     }
 
                 } catch (JSONException e) {
