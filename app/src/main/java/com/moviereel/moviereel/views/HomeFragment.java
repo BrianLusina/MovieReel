@@ -8,7 +8,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.moviereel.moviereel.APIUrlEndpoints;
+import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.singletons.IsNetwork;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
@@ -53,9 +52,14 @@ public class HomeFragment extends Fragment{
     private IsNetwork isNetwork = new IsNetwork();
 
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
-    private View mFab;
+    private View mShareFab;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
+
+    private int id,popularity, vote_count, runtime, revenue, budget;
+    private String title,overview,backdrop_path,poster_path, tagline,status,original_language,release_date;
+    boolean is_adult;
+    JSONArray genres;
 
     /*empty constructor*/
     public HomeFragment(){}
@@ -72,6 +76,10 @@ public class HomeFragment extends Fragment{
         LoadMovie loadMovies = new LoadMovie();
         if(isNetwork.isNetworkAvailable(getActivity())) {
             loadMovies.execute();
+            //private ImageView movie_poster;
+            movie_title.setText(title);
+            movie_overview.setText(overview);
+
         }else{
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
@@ -91,14 +99,12 @@ public class HomeFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movie_details_layout, container, false);
-        mFab = rootView.findViewById(R.id.flexible_example_fab);
+        mShareFab = rootView.findViewById(R.id.moviedetail_fab_share_id);
         movie_poster = (ImageView) rootView.findViewById(R.id.movie_detail_img_id);
         movie_title = (TextView) rootView.findViewById(R.id.movie_detail_title_id);
         movie_overview = (TextView)rootView.findViewById(R.id.movie_detail_overview_id);
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.flexible_example_toolbar);
-
-        AppBarLayout appbar = (AppBarLayout) rootView.findViewById(R.id.flexible_example_appbar);
+        AppBarLayout appbar = (AppBarLayout) rootView.findViewById(R.id.moviedetail_appbar_id);
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -112,14 +118,14 @@ public class HomeFragment extends Fragment{
                     if (!mIsImageHidden) {
                         mIsImageHidden = true;
 
-                        ViewCompat.animate(mFab).scaleY(0).scaleX(0).start();
+                        ViewCompat.animate(mShareFab).scaleY(0).scaleX(0).start();
                     }
                 }
 
                 if (currentScrollPercentage < PERCENTAGE_TO_SHOW_IMAGE) {
                     if (mIsImageHidden) {
                         mIsImageHidden = false;
-                        ViewCompat.animate(mFab).scaleY(1).scaleX(1).start();
+                        ViewCompat.animate(mShareFab).scaleY(1).scaleX(1).start();
                     }
                 }
             }
@@ -128,7 +134,6 @@ public class HomeFragment extends Fragment{
     }
 
     private class LoadMovie extends AsyncTask<String, Void, String>{
-        APIUrlEndpoints APIURLs = new APIUrlEndpoints();
         SweetAlertDialog progressDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
 
         @Override
@@ -142,34 +147,32 @@ public class HomeFragment extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
+            String latestMovieUrl = ApiContract.LATEST_MOVIE;
             Request request =  new Request.Builder()
-                    .url(APIURLs.getLATEST_MOVIE())
+                    .url(latestMovieUrl)
                     .build();
             try {
                 Response response = okHttpClient.newCall(request).execute();
                 String res = response.body().toString();
                 JSONObject jsonObject = new JSONObject(res);
 
-                int id = jsonObject.getInt("id");
-                String title = jsonObject.getString("original_title");
-                String overview = jsonObject.getString("overview");
-                int popularity = jsonObject.getInt("popularity");
+                id = jsonObject.getInt("id");
+                title = jsonObject.getString("original_title");
+                overview = jsonObject.getString("overview");
+                popularity = jsonObject.getInt("popularity");
+                backdrop_path = jsonObject.getString("backdrop_path") == null ? "" : jsonObject.getString("backdrop_path");
+               poster_path = (jsonObject.getString("poster_path") == null) ? "" : jsonObject.getString("poster_path");
 
-                String backdrop_path = jsonObject.getString("backdrop_path") == null ? "" : jsonObject.getString("backdrop_path");
-                String poster_path = (jsonObject.getString("poster_path") == null) ? "" : jsonObject.getString("poster_path");
-
-                String tagline = jsonObject.getString("tagline");
-                int vote_count = jsonObject.getInt("vote_count");
-                String status = jsonObject.getString("status");
-                String original_language = jsonObject.getString("original_language");
-                boolean is_adult = jsonObject.getBoolean("adult");
-                JSONArray genres = jsonObject.getJSONArray("genres");
-                int runtime = jsonObject.getInt("runtime");
-                int revenue = jsonObject.getInt("revenue");
-                int budget = jsonObject.getInt("budget");
-                String release_date = jsonObject.getString("release_date");
-
-                // TODO: set data to UI controls
+                tagline = jsonObject.getString("tagline");
+                vote_count = jsonObject.getInt("vote_count");
+                status = jsonObject.getString("status");
+                original_language = jsonObject.getString("original_language");
+                is_adult = jsonObject.getBoolean("adult");
+                genres = jsonObject.getJSONArray("genres");
+                runtime = jsonObject.getInt("runtime");
+                revenue = jsonObject.getInt("revenue");
+                budget = jsonObject.getInt("budget");
+                release_date = jsonObject.getString("release_date");
 
                 String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genres+ " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count) + " " + tagline + " " + status+ " " +original_language + " " + String.valueOf(is_adult) + " " + String.valueOf(runtime) + " " +String.valueOf(revenue) + " " + String.valueOf(budget);
 

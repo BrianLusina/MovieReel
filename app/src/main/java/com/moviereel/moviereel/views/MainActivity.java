@@ -22,6 +22,8 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.views.movies.MovieNowPlaying;
 
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
@@ -167,12 +169,28 @@ public class MainActivity extends AppCompatActivity{
                 })
                 .withSavedInstance(savedInstanceState)
                 .build();
+
+        //sets the default fragment
+        Fragment fragment = null;
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frame_container, fragment);
+            fragmentTransaction.commit();
+            // set the toolbar title
+            getSupportActionBar().setTitle("Latest Movie");
+        }
+
+        //install the Custom Activity on crash
+        CustomActivityOnCrash.install(this);
+        //TODO: set to false in production
+        CustomActivityOnCrash.setShowErrorDetails(true);
+        CustomActivityOnCrash.setEnableAppRestart(true);
     }
 
     private void initUiCtrls() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main_id);
         setSupportActionBar(mToolbar);
-
     }
 
 
