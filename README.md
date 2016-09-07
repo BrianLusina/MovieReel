@@ -34,6 +34,10 @@ ___
 + __Material View Pager__
     
     Used to display the movie details.
+
++ __Android Iconics__
+
+    Used for fonts and Icons
     
 ### Data storage
     

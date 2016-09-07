@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:id="@+id/movie_item_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="3dp"
     card_view:cardCornerRadius="@dimen/card_movie_radius"
     android:clickable="true"
-    android:layout_margin="@dimen/card_movie_margin"
->
+    android:layout_margin="@dimen/card_movie_margin">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,7 +32,6 @@
             android:textSize="@dimen/movie_release_date_size"
             android:textColor="@color/black"/>
 -->
-
         <!--movie title-->
         <TextView
             android:id="@+id/movie_title_card"
@@ -46,8 +44,8 @@
             android:textStyle="bold"
             android:textSize="@dimen/movie_title_size"/>
 
-        <!--brief description-->
         <TextView
+            android:visibility="gone"
             android:id="@+id/movie_overview_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,36 +57,40 @@
 
         <!--Like count, comment count, bookmark-->
         <LinearLayout
-            android:layout_below="@+id/movie_overview_card"
+            android:layout_below="@+id/movie_title_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/movie_item_text_padding"
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <TextView
-                android:drawableStart="@drawable/thumb_up"
-                android:drawableLeft="@drawable/thumb_up"
-                android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="2">
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                app:iiv_icon="faw-thumbs-up"
                 android:id="@+id/movie_vote_count_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <com.mikepenz.iconics.view.IconicsTextView
+                app:iiv_icon="faw-thumbs-up"
                 android:id="@+id/movie_popularity_count_id"
-                android:drawableLeft="@drawable/popularity"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/popularity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/movie_share_count_id"
-                android:drawableLeft="@drawable/popularity"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/popularity"
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:id="@+id/movie_share_icon_id"
+                android:clickable="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:iiv_color="@android:color/holo_red_dark"
+                app:iiv_icon="gmd-favorite" />
         </LinearLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

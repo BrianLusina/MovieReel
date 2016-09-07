@@ -129,6 +129,7 @@ public class MovieNowPlaying extends Fragment{
                 }));
     }
 
+
     /**
      * Method to load movies task, works on a separate thread*/
     private class LoadMoviesTask extends AsyncTask<String, Void, String> {

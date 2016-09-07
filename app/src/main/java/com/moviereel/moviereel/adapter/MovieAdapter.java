@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.iconics.view.IconicsImageView;
+import com.mikepenz.iconics.view.IconicsTextView;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.MovieModel;
 
@@ -56,15 +59,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView MoviePoster;
-        public TextView MovieTitle, MovieOverview, MovieVoteCount, MoviePopularityCount;
+        public IconicsTextView MovieVoteCount, MoviePopularityCount;
+        public IconicsImageView movieShareItem;
+        public TextView MovieTitle, MovieOverview;
 
         public ViewHolder(View itemView) {
             super(itemView);
             MoviePoster = (ImageView) itemView.findViewById(R.id.movie_poster_image_id);
             MovieTitle = (TextView) itemView.findViewById(R.id.movie_title_card);
             MovieOverview = (TextView) itemView.findViewById(R.id.movie_overview_card);
-            MovieVoteCount = (TextView) itemView.findViewById(R.id.movie_vote_count_id);
-            MoviePopularityCount = (TextView)itemView.findViewById(R.id.movie_popularity_count_id);
+            MovieVoteCount = (IconicsTextView) itemView.findViewById(R.id.movie_vote_count_id);
+            MoviePopularityCount = (IconicsTextView)itemView.findViewById(R.id.movie_popularity_count_id);
+            movieShareItem = (IconicsImageView)itemView.findViewById(R.id.movie_share_icon_id);
         }
         public void bind(MovieModel MovieModel){
             MovieTitle.setText(MovieModel.getMovie_title());
