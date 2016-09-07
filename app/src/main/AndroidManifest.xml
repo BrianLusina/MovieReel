@@ -13,16 +13,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        tools:replace="android:icon"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
 
-        <!--App introduction-->
-        <activity android:name=".views.introduction.AppIntroduction"/>
+        <!-- App introduction -->
+        <activity android:name=".views.introduction.AppIntroduction" />
 
         <!-- splash screen -->
         <activity android:name=".views.introduction.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,6 +32,7 @@
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -39,10 +41,11 @@
         <activity android:name=".views.movies.MovieDetails">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MOVIEDETAILS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".views.movies.MovieItemDetail"></activity>
     </application>
 
 </manifest>

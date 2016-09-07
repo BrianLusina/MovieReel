@@ -1,7 +1,7 @@
 <com.github.florent37.materialviewpager.MaterialViewPager
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/materialViewPager"
+    android:id="@+id/movieitem_materialViewPager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:viewpager_logo="@layout/movie_item_header_logo"
@@ -10,7 +10,7 @@
     app:viewpager_headerHeight="200dp"
     app:viewpager_headerAlpha="1.0"
     app:viewpager_hideLogoWithFade="false"
-    app:viewpager_hideToolbarAndTitle="true"
+    app:viewpager_hideToolbarAndTitle="false"
     app:viewpager_enableToolbarElevation="true"
     app:viewpager_parallaxHeaderFactor="1.5"
     app:viewpager_headerAdditionalHeight="20dp"
@@ -18,4 +18,5 @@
     app:viewpager_transparentToolbar="true"
     app:viewpager_animatedHeaderImage="true"
     app:viewpager_disableToolbar="false"
+    app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_standard"
 />

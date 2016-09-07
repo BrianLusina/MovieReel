@@ -1,5 +1,6 @@
 package com.moviereel.moviereel.views.movies;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -121,7 +122,9 @@ public class MovieNowPlaying extends Fragment{
 
                     @Override
                     public void onItemClick(View view, int position) {
-
+                        /*TODO: test*/
+                        Intent moreDetails = new Intent(getActivity(), MovieItemDetail.class);
+                        startActivity(moreDetails);
                     }
                 }));
     }
