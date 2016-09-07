@@ -53,7 +53,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         holder.bind(MovieModel);
 
         //load images using Glider library
-        Glide.with(mContext).load(MovieModel.getMovie_poster_url()).centerCrop().crossFade().into(holder.MoviePoster);
+        Glide.with(mContext)
+                .load(MovieModel.getMovie_poster_url())
+                .centerCrop()
+                .fitCenter()
+                .crossFade()
+                .into(holder.MoviePoster);
         //Glide.with(mContext).load(MovieModel.getMovie_poster_url()).into(holder.MoviePoster).
     }
 
