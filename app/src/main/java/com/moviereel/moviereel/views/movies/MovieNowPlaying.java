@@ -1,8 +1,6 @@
 package com.moviereel.moviereel.views.movies;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,6 +20,8 @@ import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.singletons.IsNetwork;
+import com.moviereel.moviereel.singletons.RecyclerItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +43,6 @@ import okhttp3.Response;
  * Project: Movie Reel
  * Package: com.moviereel.moviereel.views.movies
  * Created by lusinabrian on 22/08/16 at 20:32
- * <p/>
  * Description: displays the latest movies
  */
 public class MovieNowPlaying extends Fragment{
@@ -52,7 +51,7 @@ public class MovieNowPlaying extends Fragment{
     private List<MovieModel> MovieModelList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient client = new OkHttpClient();
-
+    private RecyclerView recyclerView;
     public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
@@ -67,7 +66,7 @@ public class MovieNowPlaying extends Fragment{
         LoadMoviesTask loadMovies = new LoadMoviesTask();
         MovieModelList = new ArrayList<>();
         movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
-        if(isNetworkAvailable()) {
+        if(IsNetwork.isNetworkAvailable(getActivity())) {
             loadMovies.execute();
         }else{
             Snackbar snackbar = Snackbar
@@ -87,8 +86,7 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
-
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
         SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
@@ -114,14 +112,18 @@ public class MovieNowPlaying extends Fragment{
         return rootView;
     }
 
-    /**
-     Method to check network availability
-     Using ConnectivityManager to check for IsNetwork Connection
-     * */
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null;
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //implement item click listener
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
+                new RecyclerItemClickListener.OnItemClickListener(){
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+                }));
     }
 
     /**
@@ -168,11 +170,33 @@ public class MovieNowPlaying extends Fragment{
                         double popularity = jObject.getDouble("popularity");
                         int vote_count = jObject.getInt("vote_count");
 
+                        //Store data in sharedpreferences
                         String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
 
                         MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
                         MovieModelList.add(movieModel);
+
+                        /**Get an instance of the shared preferences create and access the MovieData
+                         * Store the data only to the application*/
+                        SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
+
+                        //create an editor
+                        SharedPreferences.Editor editor = movieData.edit();
+
+                        //add data to it
+                        editor.putString("PosterPath", poster_path);
+                        editor.putString("BackdropPath", backdrop_path);
+                        editor.putString("Overview", overview);
+                        editor.putString("ReleaseDate", release_date);
+                        editor.putInt("Id", id);
+                        editor.putString("Title", title);
+                        editor.putInt("Popularity", (int)popularity);
+                        editor.putInt("VoteCount", vote_count);
+
+                        //apply these edits
+                        editor.apply();
                         Log.d(MOVIENOW_PLAYING_TAG, data);
+                        Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
                     }
 
                 } catch (JSONException e) {

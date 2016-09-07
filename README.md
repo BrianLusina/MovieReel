@@ -10,7 +10,7 @@ ___
 + Uses Coordinator Layout to enable refreshing of data
 + Source of movies is from [Apiary API](https://www.themoviedb.org)
 
-## Project Requirements
+## Dependencies, APIs and Libraries Used
 
 + __Movie DB API__
     
@@ -26,3 +26,35 @@ ___
 
 + __Glide__
     This library assists in loading images from a Uri resouce and load the images into your ImageViews. This is used for the Movie posters.
+    
++ __Ripple Effect__
+    
+    Adds a ripple effect to the item cards when clicked.
+    
++ __Material View Pager__
+    
+    Used to display the movie details.
+    
+### Data storage
+    
+Data is stored using SharedPreferences. Of course there are several ways to access this data, intention is to allow user to still access this data offline. 
+The mode has been set to 0 to allow only this application to have access.
+
+``` java
+SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
+```
+
+Then you have to create an Editor instance and add the data to the SharedPreferences in *Key*, *Value* pairs
+
+``` java
+SharedPreferences.Editor editor = movieData.edit();
+```
+
+Then of course you can then add the Key,Value pairs
+
+``` java
+editor.putString("Key", value);
+//...more data
+```
+
+Now you can access the data as you see fit. Of course you can alternatively use any other type of database to store you data locally(SQLite) or even a file which will only allow your app to have read-write access.
