@@ -31,8 +31,7 @@ public class SeriesFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.series_frag_layout, container,false);
-        return rootView;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     /*END*/

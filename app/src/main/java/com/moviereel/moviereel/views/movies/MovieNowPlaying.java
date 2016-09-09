@@ -67,7 +67,7 @@ public class MovieNowPlaying extends Fragment{
         super.onCreate(savedInstanceState);
         LoadMoviesTask loadMovies = new LoadMoviesTask();
         MovieModelList = new ArrayList<>();
-        movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
+        movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.reel_item_layout);
 
         mWaveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -94,7 +94,7 @@ public class MovieNowPlaying extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
+        View rootView = inflater.inflate(R.layout.reelrecycler_layout, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 

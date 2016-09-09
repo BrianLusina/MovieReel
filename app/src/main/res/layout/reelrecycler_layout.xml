@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:padding="2dp"
-            tools:listitem="@layout/movie_item_layout" />
+            tools:listitem="@layout/reel_item_layout" />
 
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 
