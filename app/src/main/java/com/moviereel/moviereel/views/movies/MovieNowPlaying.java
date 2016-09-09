@@ -95,10 +95,10 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.reelrecycler_layout, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
-        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.reel_recy_recyclerview_id);
+        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.reel_recy_coordinator_layout);
 
-        mWaveSwipeRefreshLayout = (WaveSwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
+        mWaveSwipeRefreshLayout = (WaveSwipeRefreshLayout) rootView.findViewById(R.id.reel_recy_swiperefresh_layout_id);
 
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(movieAdapter);
         alphaAdapter.setInterpolator(new OvershootInterpolator());

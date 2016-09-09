@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
-    android:id="@+id/movie_item_card"
+    android:id="@+id/reel_item_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="3dp"
@@ -12,7 +12,7 @@
 
     <!--Movie Poster-->
     <ImageView
-        android:id="@+id/movie_poster_image_id"
+        android:id="@+id/reel_poster_image_id"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clickable="true"
@@ -39,7 +39,7 @@
 -->
     <!--movie title-->
     <TextView
-        android:id="@+id/movie_title_card"
+        android:id="@+id/reel_title_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -54,7 +54,7 @@
 
     <TextView
         android:visibility="gone"
-        android:id="@+id/movie_overview_card"
+        android:id="@+id/reel_overview_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -71,7 +71,7 @@
 
     <com.mikepenz.iconics.view.IconicsTextView
         app:iiv_icon="faw-thumbs-up"
-        android:id="@+id/movie_vote_count_id"
+        android:id="@+id/reel_vote_count_id"
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:layout_conversion_absoluteX="16dp"
@@ -81,7 +81,7 @@
 
     <com.mikepenz.iconics.view.IconicsTextView
         app:iiv_icon="faw-thumbs-up"
-        android:id="@+id/movie_popularity_count_id"
+        android:id="@+id/reel_popularity_count_id"
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:layout_conversion_absoluteX="52dp"
@@ -91,7 +91,7 @@
 
 
     <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/movie_share_icon_id"
+        android:id="@+id/reel_share_icon_id"
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

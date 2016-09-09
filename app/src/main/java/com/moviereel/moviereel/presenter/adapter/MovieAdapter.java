@@ -69,12 +69,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
         public ViewHolder(View itemView) {
             super(itemView);
-            MoviePoster = (ImageView) itemView.findViewById(R.id.movie_poster_image_id);
-            MovieTitle = (TextView) itemView.findViewById(R.id.movie_title_card);
-            MovieOverview = (TextView) itemView.findViewById(R.id.movie_overview_card);
-            MovieVoteCount = (IconicsTextView) itemView.findViewById(R.id.movie_vote_count_id);
-            MoviePopularityCount = (IconicsTextView)itemView.findViewById(R.id.movie_popularity_count_id);
-            movieShareItem = (IconicsImageView)itemView.findViewById(R.id.movie_share_icon_id);
+            MoviePoster = (ImageView) itemView.findViewById(R.id.reel_poster_image_id);
+            MovieTitle = (TextView) itemView.findViewById(R.id.reel_title_card);
+            MovieOverview = (TextView) itemView.findViewById(R.id.reel_overview_card);
+            MovieVoteCount = (IconicsTextView) itemView.findViewById(R.id.reel_vote_count_id);
+            MoviePopularityCount = (IconicsTextView)itemView.findViewById(R.id.reel_popularity_count_id);
+            movieShareItem = (IconicsImageView)itemView.findViewById(R.id.reel_share_icon_id);
         }
         public void bind(MovieModel MovieModel){
             MovieTitle.setText(MovieModel.getMovie_title());
