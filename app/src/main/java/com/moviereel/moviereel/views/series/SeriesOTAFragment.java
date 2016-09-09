@@ -7,23 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moviereel.moviereel.R;
-
 /**
  * Project: MovieReel
  * Package: com.moviereel.moviereel.views.series
  * Created by lusinabrian on 09/09/16 at 22:25
  * Description:
  */
-public class SeriesFragment extends Fragment{
+public class SeriesOTAFragment extends Fragment{
 
 
     /*required empty constructor*/
-    public SeriesFragment(){}
+    public SeriesOTAFragment(){}
 
     /**Initialize thr fragment*/
     public static Fragment newInstance() {
-        SeriesFragment fragment = new SeriesFragment();
+        SeriesOTAFragment fragment = new SeriesOTAFragment();
         fragment.setRetainInstance(true);
         return fragment;
     }

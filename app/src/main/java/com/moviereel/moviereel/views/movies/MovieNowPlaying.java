@@ -18,7 +18,7 @@ import android.view.animation.OvershootInterpolator;
 
 import com.moviereel.moviereel.presenter.Contract;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.presenter.adapter.MovieAdapter;
+import com.moviereel.moviereel.presenter.adapter.ReelAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.presenter.singletons.IsNetwork;
 import com.moviereel.moviereel.presenter.singletons.RecyclerItemClickListener;
@@ -48,7 +48,7 @@ import okhttp3.Response;
  */
 public class MovieNowPlaying extends Fragment{
     private static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
-    private MovieAdapter movieAdapter;
+    private ReelAdapter reelAdapter;
     private List<MovieModel> MovieModelList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient client = new OkHttpClient();
@@ -67,7 +67,7 @@ public class MovieNowPlaying extends Fragment{
         super.onCreate(savedInstanceState);
         LoadMoviesTask loadMovies = new LoadMoviesTask();
         MovieModelList = new ArrayList<>();
-        movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.reel_item_layout);
+        reelAdapter = new ReelAdapter(getActivity(), MovieModelList, R.layout.reel_item_layout);
 
         mWaveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -100,7 +100,7 @@ public class MovieNowPlaying extends Fragment{
 
         mWaveSwipeRefreshLayout = (WaveSwipeRefreshLayout) rootView.findViewById(R.id.reel_recy_swiperefresh_layout_id);
 
-        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(movieAdapter);
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(reelAdapter);
         alphaAdapter.setInterpolator(new OvershootInterpolator());
         ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());

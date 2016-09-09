@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.moviereel.moviereel.presenter.Contract;
 import com.moviereel.moviereel.presenter.singletons.IsNetwork;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.presenter.adapter.MovieAdapter;
+import com.moviereel.moviereel.presenter.adapter.ReelAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 
 import org.json.JSONArray;
@@ -43,7 +43,7 @@ import okhttp3.Response;
 public class HomeFragment extends Fragment{
 
     public static final String HOMEFRAG_TAG = HomeFragment.class.getSimpleName();
-    private MovieAdapter movieAdapter;
+    private ReelAdapter reelAdapter;
     private List<MovieModel> movieList;
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient okHttpClient = new OkHttpClient();
@@ -56,19 +56,6 @@ public class HomeFragment extends Fragment{
     private View mShareFab;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
-    private int id,popularity, vote_count, runtime, revenue, budget;
-
-    private String title = " ";
-    private String overview = " ";
-    private String backdrop_path = " ";
-    private String poster_path = " ";
-    private String tagline = " ";
-    private String status = " ";
-    private String original_language = " ";
-    private String release_date = " ";
-
-    boolean is_adult;
-    JSONArray genres;
 
     /*empty constructor*/
     public HomeFragment(){}

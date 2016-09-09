@@ -25,14 +25,14 @@ import java.util.List;
  * foodModelList will hold the Food items in a list.
  * the MovieViewHolder will find the view items with their ids
  */
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
+public class ReelAdapter extends RecyclerView.Adapter<ReelAdapter.ViewHolder>{
     private Context mContext;
     private List<MovieModel> MovieModelList;
     public int itemLayout;
 
 
     // constructor
-    public MovieAdapter(Context mContext, List<MovieModel> MovieModelList, int itemLayout){
+    public ReelAdapter(Context mContext, List<MovieModel> MovieModelList, int itemLayout){
         this.mContext = mContext;
         this.itemLayout = itemLayout;
         this.MovieModelList = MovieModelList;
