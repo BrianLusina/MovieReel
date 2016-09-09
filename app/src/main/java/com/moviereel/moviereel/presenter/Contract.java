@@ -1,15 +1,15 @@
-package com.moviereel.moviereel.Contracts;
+package com.moviereel.moviereel.presenter;
 
 import com.moviereel.moviereel.BuildConfig;
 
 /**
  * Project: Movie Reel
- * Package: com.moviereel.moviereel.Contracts
+ * Package: com.moviereel.moviereel.presenter.Contracts
  * Created by lusinabrian on 05/09/16 at 12:45
  * <p/>
  * Description: contains constants for the MovieDB api
  */
-public class ApiContract {
+public class Contract {
     /*Movie enpoints*/
     public static final String MOVIE_DB_KEY = BuildConfig.MOVIE_DB_KEY;
     public static final String BASE_URL = BuildConfig.BASE_URL;

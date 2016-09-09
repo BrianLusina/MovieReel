@@ -16,10 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.moviereel.moviereel.Contracts.ApiContract;
-import com.moviereel.moviereel.singletons.IsNetwork;
+import com.moviereel.moviereel.presenter.Contract;
+import com.moviereel.moviereel.presenter.singletons.IsNetwork;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.adapter.MovieAdapter;
+import com.moviereel.moviereel.presenter.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 
 import org.json.JSONArray;
@@ -152,7 +152,7 @@ public class HomeFragment extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
-            String latestMovieUrl = ApiContract.LATEST_MOVIE;
+            String latestMovieUrl = Contract.LATEST_MOVIE;
             Request request =  new Request.Builder()
                     .url(latestMovieUrl)
                     .build();
@@ -187,7 +187,7 @@ public class HomeFragment extends Fragment{
                         movie_overview.setText(overview);
                         if(poster_path != null){
                             Glide.with(getActivity())
-                                    .load(ApiContract.MOVIE_POSTER_PATH+poster_path)
+                                    .load(Contract.MOVIE_POSTER_PATH+poster_path)
                                     .centerCrop()
                                     .fitCenter()
                                     .fallback(R.mipmap.ic_launcher)
