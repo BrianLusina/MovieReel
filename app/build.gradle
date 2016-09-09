@@ -104,5 +104,6 @@ dependencies {
     }
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
+    compile group: 'info.movito', name: 'themoviedbapi', version:'1.4'
 }
 apply plugin: 'com.google.gms.google-services'

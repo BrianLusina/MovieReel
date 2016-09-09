@@ -21,6 +21,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.views.movies.MovieNowPlaying;
+import com.moviereel.moviereel.views.series.SeriesFragment;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity{
 
                                 /*series On the air*/
                                 case 6:
+                                    fragment = SeriesFragment.newInstance();
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
 
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity{
                                 /*default is Home screen*/
                                 default:
                                     fragment = HomeFragment.newInstance();
+
                                     title = "Home";
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;

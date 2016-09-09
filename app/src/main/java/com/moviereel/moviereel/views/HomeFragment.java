@@ -38,7 +38,7 @@ import okhttp3.Response;
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
  * Created by lusinabrian on 22/08/16 at 19:08
- * Description: Main screen of the application, will feature the latest movies, will use Movie details layout as it is the only movie showing
+ * Description: Main screen of the application, will feature the latest movie and the latest TV show, will use Movie details layout as it is the only movie showing
  */
 public class HomeFragment extends Fragment{
 

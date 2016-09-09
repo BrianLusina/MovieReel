@@ -10,7 +10,6 @@
     android:clickable="true"
     android:layout_margin="@dimen/card_movie_margin">
 
-
     <!--Movie Poster-->
     <ImageView
         android:id="@+id/movie_poster_image_id"
