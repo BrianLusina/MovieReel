@@ -2,6 +2,7 @@ package com.moviereel.moviereel.views.series;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.databinding.SeriesItemLayoutBinding;
 import com.moviereel.moviereel.models.SeriesBeans;
 import com.moviereel.moviereel.presenter.Contract;
 import com.moviereel.moviereel.presenter.adapter.ReelAdapter;
@@ -176,6 +178,7 @@ public class SeriesOTAFragment extends Fragment{
 
                         SeriesBeans seriesBeans = new SeriesBeans(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
                         SeriesBeansList.add(seriesBeans);
+
 
                         /**Get an instance of the shared preferences create and access the MovieData
                          * Store the data only to the application*/
