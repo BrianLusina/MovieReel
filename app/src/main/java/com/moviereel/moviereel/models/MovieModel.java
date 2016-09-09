@@ -8,6 +8,9 @@ package com.moviereel.moviereel.models;
  * Description: Model class that creates an instance of a single movie item. This will contain the properties of a single movie item, such as name, date posted, user who posted it, recipe, ingredients, brief description
  */
 public class MovieModel {
+    public void setMovie_genres(int[] genres){
+        this.movie_genres = genres;
+    }
     /*fields*/
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date;
     private int[] movie_genres;
@@ -97,8 +100,5 @@ public String getMovie_poster_url() {
 
     public int[] getMovie_genres() {
         return movie_genres;
-    }
-    public void setMovie_genres(int[] genres){
-        this.movie_genres = genres;
     }
 }

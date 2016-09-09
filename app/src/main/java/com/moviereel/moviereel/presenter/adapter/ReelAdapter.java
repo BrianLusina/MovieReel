@@ -1,6 +1,7 @@
 package com.moviereel.moviereel.presenter.adapter;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.mikepenz.iconics.view.IconicsImageView;
 import com.mikepenz.iconics.view.IconicsTextView;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.models.SeriesBeans;
 
 import java.util.List;
 
@@ -28,14 +30,21 @@ import java.util.List;
 public class ReelAdapter extends RecyclerView.Adapter<ReelAdapter.ViewHolder>{
     private Context mContext;
     private List<MovieModel> MovieModelList;
+    private List<SeriesBeans> seriesBeansLst;
     public int itemLayout;
-
 
     // constructor
     public ReelAdapter(Context mContext, List<MovieModel> MovieModelList, int itemLayout){
         this.mContext = mContext;
         this.itemLayout = itemLayout;
         this.MovieModelList = MovieModelList;
+        this.notifyDataSetChanged();
+    }
+
+    public ReelAdapter(FragmentActivity mContext, List<SeriesBeans> seriesBeansList, int itemLayout) {
+        this.mContext = mContext;
+        this.itemLayout = itemLayout;
+        this.seriesBeansLst = seriesBeansList;
         this.notifyDataSetChanged();
     }
 

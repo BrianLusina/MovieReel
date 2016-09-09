@@ -9,10 +9,10 @@
             android:layout_height="match_parent">
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{user.firstName}"/>
+                android:text="@{series.firstName}"/>
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{user.lastName}"/>
+                android:text="@{series.lastName}"/>
         </LinearLayout>
     </data>
 </layout>
