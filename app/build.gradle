@@ -32,6 +32,9 @@ android {
 
 repositories {
     mavenCentral() // jcenter() works as well because it pulls from Maven Central
+    maven {
+        url "https://jitpack.io"
+    }
 }
 
 dependencies {
@@ -95,5 +98,7 @@ dependencies {
     compile ('com.github.florent37:materialviewpager:1.2.0@aar'){
         transitive = true
     }
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
 }
 apply plugin: 'com.google.gms.google-services'

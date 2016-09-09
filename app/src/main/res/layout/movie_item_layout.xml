@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
     android:id="@+id/movie_item_card"
@@ -10,19 +10,25 @@
     android:clickable="true"
     android:layout_margin="@dimen/card_movie_margin">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--Movie Poster-->
-        <ImageView
-            android:id="@+id/movie_poster_image_id"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/movie_image_height"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/movie_image_card"
-            android:scaleType="fitXY" />
-<!--
+
+    <!--Movie Poster-->
+    <ImageView
+        android:id="@+id/movie_poster_image_id"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/movie_image_card"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_creator="1"
+        app:layout_constraintRight_creator="1"
+        app:layout_constraintBottom_creator="1"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_creator="1"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+    <!--
         &lt;!&ndash;release date&ndash;&gt;
         <TextView
             android:id="@+id/movie_release_date_id"
@@ -32,65 +38,70 @@
             android:textSize="@dimen/movie_release_date_size"
             android:textColor="@color/black"/>
 -->
-        <!--movie title-->
-        <TextView
-            android:id="@+id/movie_title_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/movie_poster_image_id"
-            android:textColor="@color/black"
-            android:padding="@dimen/movie_item_text_padding"
-            android:text="@string/movie_title_card"
-            android:textStyle="bold"
-            android:textSize="@dimen/movie_title_size"/>
+    <!--movie title-->
+    <TextView
+        android:id="@+id/movie_title_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:padding="@dimen/movie_item_text_padding"
+        android:text="@string/movie_title_card"
+        android:textStyle="bold"
+        android:textSize="@dimen/movie_title_size"
+        app:layout_conversion_absoluteX="0dp"
+        app:layout_conversion_absoluteY="250dp"
+        app:layout_conversion_absoluteWidth="374dp"
+        app:layout_conversion_absoluteHeight="50dp" />
 
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/movie_overview_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/movie_title_card"
-            android:textColor="@color/black"
-            android:padding="@dimen/movie_item_text_padding"
-            android:text="@string/movie_desc_card"
-            android:textSize="@dimen/movie_desc_size"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/movie_overview_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:padding="@dimen/movie_item_text_padding"
+        android:text="@string/movie_desc_card"
+        android:textSize="@dimen/movie_desc_size"
+        app:layout_conversion_absoluteX="0dp"
+        app:layout_conversion_absoluteY="0dp"
+        app:layout_conversion_absoluteWidth="0dp"
+        app:layout_conversion_absoluteHeight="0dp" />
 
-        <!--Like count, comment count, bookmark-->
-        <LinearLayout
-            android:layout_below="@+id/movie_title_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/movie_item_text_padding"
-            android:orientation="horizontal"
-            android:weightSum="2">
+    <!--Like count, comment count, bookmark-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="2">
 
-            <com.mikepenz.iconics.view.IconicsTextView
-                app:iiv_icon="faw-thumbs-up"
-                android:id="@+id/movie_vote_count_id"
-                android:layout_width="36dp"
-                android:layout_height="36dp" />
-            <com.mikepenz.iconics.view.IconicsTextView
-                app:iiv_icon="faw-thumbs-up"
-                android:id="@+id/movie_popularity_count_id"
-                android:layout_width="36dp"
-                android:layout_height="36dp" />
-            </LinearLayout>
+    <com.mikepenz.iconics.view.IconicsTextView
+        app:iiv_icon="faw-thumbs-up"
+        android:id="@+id/movie_vote_count_id"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_conversion_absoluteX="16dp"
+        app:layout_conversion_absoluteY="316dp"
+        app:layout_conversion_absoluteWidth="36dp"
+        app:layout_conversion_absoluteHeight="36dp" />
 
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/movie_share_icon_id"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                app:iiv_color="@android:color/holo_red_dark"
-                app:iiv_icon="gmd-favorite" />
-        </LinearLayout>
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+    <com.mikepenz.iconics.view.IconicsTextView
+        app:iiv_icon="faw-thumbs-up"
+        android:id="@+id/movie_popularity_count_id"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_conversion_absoluteX="52dp"
+        app:layout_conversion_absoluteY="316dp"
+        app:layout_conversion_absoluteWidth="36dp"
+        app:layout_conversion_absoluteHeight="36dp" />
+
+
+    <com.mikepenz.iconics.view.IconicsImageView
+        android:id="@+id/movie_share_icon_id"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iiv_color="@android:color/holo_red_dark"
+        app:iiv_icon="gmd-favorite"
+        app:layout_conversion_absoluteX="223dp"
+        app:layout_conversion_absoluteY="316dp"
+        app:layout_conversion_absoluteWidth="135dp"
+        app:layout_conversion_absoluteHeight="0dp" />
+
+
+</android.support.constraint.ConstraintLayout>
