@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
@@ -53,6 +54,7 @@ public class MovieNowPlaying extends Fragment{
     private CoordinatorLayout coordinatorLayout;
     private OkHttpClient client = new OkHttpClient();
     private RecyclerView recyclerView;
+    private WaveSwipeRefreshLayout mWaveSwipeRefreshLayout;
     public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
@@ -90,15 +92,7 @@ public class MovieNowPlaying extends Fragment{
         recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
         coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
 
-        SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
-
-        mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.dark_slate_blue,
-                R.color.dark_slate_gray,
-                R.color.dark_cyan,
-                R.color.dark_yellow,
-                R.color.dark_turquoise,
-                R.color.dark_sea_green);
+        mWaveSwipeRefreshLayout = (WaveSwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
 
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(movieAdapter);
         alphaAdapter.setInterpolator(new OvershootInterpolator());
