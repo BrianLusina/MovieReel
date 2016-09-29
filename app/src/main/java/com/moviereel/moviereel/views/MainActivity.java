@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity{
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .addDrawerItems(
-                        /*Home section*/
-                        new PrimaryDrawerItem().withName(R.string.main_drawer_home_title).withIcon(FontAwesome.Icon.faw_home).withIdentifier(0),
                         /*movies section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_movie_title),
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play).withIdentifier(1),
@@ -80,13 +78,6 @@ public class MainActivity extends AppCompatActivity{
                             getSupportActionBar().setTitle(name);
                             String title = "";
                             switch ((int) drawerItem.getIdentifier()){
-                                /*HOME*/
-                                case 0:
-                                    fragment = HomeFragment.newInstance();
-                                    title = ((Nameable) drawerItem).getName().toString();
-                                    Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
-                                    break;
-
                                 /*now playing*/
                                 case 1:
                                     fragment = MovieNowPlaying.newInstance();
@@ -150,8 +141,8 @@ public class MainActivity extends AppCompatActivity{
 
                                 /*default is Home screen*/
                                 default:
-                                    fragment = HomeFragment.newInstance();
-                                    title = "Home";
+                                    fragment = MovieNowPlaying.newInstance();
+                                    title = "Now Playing";
                                     Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                     break;
                                 }
@@ -171,15 +162,13 @@ public class MainActivity extends AppCompatActivity{
                 .build();
 
         //sets the default fragment
-        Fragment fragment = null;
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_container, fragment);
-            fragmentTransaction.commit();
-            // set the toolbar title
-            getSupportActionBar().setTitle("Latest Movie");
-        }
+        Fragment fragment = MovieNowPlaying.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_container, fragment);
+        fragmentTransaction.commit();
+        // set the toolbar title
+        getSupportActionBar().setTitle("Now Playing");
 
         //install the Custom Activity on crash
         CustomActivityOnCrash.install(this);
