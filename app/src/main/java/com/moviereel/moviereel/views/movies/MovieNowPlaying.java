@@ -72,12 +72,9 @@ public class MovieNowPlaying extends Fragment{
         }else{
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
-                    .setAction(getString(R.string.snackbar_no_internet_conn_retry), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Snackbar snackbar1 = Snackbar.make(coordinatorLayout, getString(R.string.snackbar_no_internet_conn_retry), Snackbar.LENGTH_SHORT);
-                            snackbar1.show();
-                        }
+                    .setAction(getString(R.string.snackbar_no_internet_conn_retry), view -> {
+                        Snackbar snackbar1 = Snackbar.make(coordinatorLayout, getString(R.string.snackbar_no_internet_conn_retry), Snackbar.LENGTH_SHORT);
+                        snackbar1.show();
                     });
             snackbar.show();
         }
@@ -118,14 +115,10 @@ public class MovieNowPlaying extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         //implement item click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
-                new RecyclerItemClickListener.OnItemClickListener(){
-
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        /*TODO: test*/
-                        Intent moreDetails = new Intent(getActivity(), MovieItemDetail.class);
-                        startActivity(moreDetails);
-                    }
+                (view1, position) -> {
+                    /*TODO: test*/
+                    Intent moreDetails = new Intent(getActivity(), MovieItemDetail.class);
+                    startActivity(moreDetails);
                 }));
     }
 
