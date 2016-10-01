@@ -65,12 +65,16 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
             List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
             List<Object> someList = new ArrayList<>();
-
             for(int i = 0; i < nowPlayingList.size();i++){
-                someList.add(nowPlayingList.get(i).getGenres());
+                for(int x = 0; x < nowPlayingList.get(i).getGenres().size();i++) {
+                    someList.add(nowPlayingList.get(i).getGenres().get(x) == null ? nowPlayingList.get(i).getGenres().get(x):"Empty");
+                }
+
                 someList.add(nowPlayingList.get(i).getPosterPath());
+                someList.add(nowPlayingList.get(i).getBackdropPath());
+                someList.add(nowPlayingList.get(i).getRuntime());
             }
-            
+
             Log.d(MOVIENOW_PLAYING_TAG+"TMDB", someList.toString());
 
             Request request = new Request.Builder()
