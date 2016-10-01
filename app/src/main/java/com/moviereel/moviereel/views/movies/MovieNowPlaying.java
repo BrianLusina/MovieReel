@@ -42,7 +42,7 @@ import okhttp3.Response;
  * Description: displays the latest movies
  */
 public class MovieNowPlaying extends Fragment{
-    private static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
+    public static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
     private MovieAdapter movieAdapter;
     private List<MovieModel> MovieModelList;
     private CoordinatorLayout coordinatorLayout;
@@ -59,11 +59,11 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LoadMoviesTask loadMovies = new LoadMoviesTask();
+        MovieSync movieSync = new MovieSync(getActivity());
         MovieModelList = new ArrayList<>();
         movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
         if(IsNetwork.isNetworkAvailable(getActivity())) {
-            loadMovies.execute();
+            movieSync.execute();
         }else{
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
@@ -108,100 +108,6 @@ public class MovieNowPlaying extends Fragment{
                 (view1, position) -> {
                     /*TODO: test*/
                 }));
-    }
-
-
-    /**
-     * Method to load movies task, works on a separate thread*/
-    private class LoadMoviesTask extends AsyncTask<String, Void, String> {
-        SweetAlertDialog progressDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.cadet_blue));
-            progressDialog.setTitleText("Hold on");
-            progressDialog.setCancelable(true);
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String url = Contract.NOW_PLAYING;
-
-            try {
-                Request request = new Request.Builder()
-                            .url(url)
-                            .build();
-                Response response = client.newCall(request).execute();
-                String res = response.body().string();
-                try {
-                    /*PASS the response to the JSONObject*/
-                    JSONObject jsonObject = new JSONObject(res);
-                    /*get the results array from the JSON object*/
-                    JSONArray result = jsonObject.getJSONArray("results");
-
-                    /*iterate the result array and add the loop through the objects
-                    * obtain the JSONObjects storing the relevant data to variables*/
-                    for(int x = 0; x < result.length(); x++){
-                        JSONObject jObject = result.getJSONObject(x);
-                        String poster_path = Contract.MOVIE_POSTER_PATH + jObject.getString("poster_path");
-                        String backdrop_path = Contract.MOVIE_POSTER_PATH+ jObject.getString("backdrop_path");
-                        String overview = jObject.getString("overview");
-                        String release_date = jObject.getString("release_date");
-                        JSONArray genre_ids = jObject.getJSONArray("genre_ids");
-                        int id = jObject.getInt("id");
-                        String title =jObject.getString("original_title");
-                        double popularity = jObject.getDouble("popularity");
-                        int vote_count = jObject.getInt("vote_count");
-
-                        //Store data in shared preferences
-                        String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
-
-                        MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);
-                        MovieModelList.add(movieModel);
-
-                        /**Get an instance of the shared preferences create and access the MovieData
-                         * Store the data only to the application*/
-                        SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
-
-                        //create an editor
-                        SharedPreferences.Editor editor = movieData.edit();
-
-                        //add data to it
-                        editor.putString("PosterPath", poster_path);
-                        editor.putString("BackdropPath", backdrop_path);
-                        editor.putString("Overview", overview);
-                        editor.putString("ReleaseDate", release_date);
-                        editor.putInt("Id", id);
-                        editor.putString("Title", title);
-                        editor.putInt("Popularity", (int)popularity);
-                        editor.putInt("VoteCount", vote_count);
-
-                        //apply these edits
-                        editor.apply();
-                        Log.d(MOVIENOW_PLAYING_TAG, data);
-                        Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.d(MOVIENOW_PLAYING_TAG, e.toString());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.d(MOVIENOW_PLAYING_TAG, e.getMessage());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if(progressDialog.isShowing()){
-                progressDialog.cancel();
-            }
-        }
     }
 
 /*END*/
