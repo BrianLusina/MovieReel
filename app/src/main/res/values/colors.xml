@@ -3,6 +3,7 @@
 
     <!--background theme-->
     <color name="background_color">#222B31</color>
+    <color name="background_drawer_color">#0A181B</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

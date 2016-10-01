@@ -64,15 +64,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView MoviePoster;
-        public TextView MovieTitle;
+        public TextView MovieTitle, movieCategories, movieRunTime;
 
         public ViewHolder(View itemView) {
             super(itemView);
             MoviePoster = (ImageView) itemView.findViewById(R.id.movie_poster_image_id);
             MovieTitle = (TextView) itemView.findViewById(R.id.movie_title_card);
+            movieCategories = (TextView)itemView.findViewById(R.id.movie_categories_txt_id);
+            movieRunTime = (TextView)itemView.findViewById(R.id.movie_runtime_txt_id);
         }
         public void bind(MovieModel MovieModel){
             MovieTitle.setText(MovieModel.getMovie_title());
+
         }
     }
 

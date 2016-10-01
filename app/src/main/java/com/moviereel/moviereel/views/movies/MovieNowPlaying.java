@@ -155,7 +155,7 @@ public class MovieNowPlaying extends Fragment{
                         double popularity = jObject.getDouble("popularity");
                         int vote_count = jObject.getInt("vote_count");
 
-                        //Store data in sharedpreferences
+                        //Store data in shared preferences
                         String data = poster_path + " " + backdrop_path + " " + overview + " " + release_date + " " + genre_ids + " " + String.valueOf(id) + " " + title + " " +  String.valueOf(popularity)+ " " + String.valueOf(vote_count);
 
                         MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, id, title,backdrop_path,popularity,vote_count);

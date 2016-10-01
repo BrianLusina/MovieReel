@@ -26,6 +26,7 @@
         android:id="@+id/drawer_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_drawer_color"
         android:layout_below="@id/toolbar_main_id">
 
         <!-- the layout which will be the content of the activity (which will be hosted inside the drawer (NOT the list of the drawer)) -->
