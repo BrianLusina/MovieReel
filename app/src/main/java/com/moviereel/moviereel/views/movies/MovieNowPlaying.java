@@ -46,8 +46,9 @@ public class MovieNowPlaying extends Fragment{
     private MovieAdapter movieAdapter;
     private List<MovieModel> MovieModelList;
     private CoordinatorLayout coordinatorLayout;
-    private OkHttpClient client = new OkHttpClient();
     private RecyclerView recyclerView;
+    private MovieSync movieSync;
+
     public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
@@ -59,8 +60,8 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MovieSync movieSync = new MovieSync(getActivity());
         MovieModelList = new ArrayList<>();
+        movieSync = new MovieSync(getActivity(), MovieModelList);
         movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             movieSync.execute();

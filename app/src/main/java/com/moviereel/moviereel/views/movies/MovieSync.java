@@ -41,8 +41,9 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
     public MovieSync(){}
 
-    public MovieSync(Context context){
+    public MovieSync(Context context, List<MovieModel> MovieModelList){
         this.context = context;
+        this.MovieModelList = MovieModelList;
     }
 
     @Override
@@ -57,14 +58,14 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
-
-        MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
-        List<MovieDb> tmdbUrl = nowPlayingMovies.getResults();
-        Log.d(MOVIENOW_PLAYING_TAG+"TMDB", tmdbUrl.get(1).toString());
-
         String url = Contract.NOW_PLAYING;
         try {
+            TmdbMovies nowPlaying = new TmdbApi("2f30bdb7e9742c26d4ea364f62f38163").getMovies();
+
+            MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
+            List<MovieDb> tmdbUrl = nowPlayingMovies.getResults();
+            Log.d(MOVIENOW_PLAYING_TAG+"TMDB", tmdbUrl.toString());
+
             Request request = new Request.Builder()
                     .url(url)
                     .build();
