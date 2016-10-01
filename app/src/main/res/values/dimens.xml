@@ -10,7 +10,7 @@
     <dimen name="movie_image_height">250dp</dimen>
     <!--food title-->
     <dimen name="movie_title_card_padding">10dp</dimen>
-    <dimen name="movie_title_size">25sp</dimen>
+    <dimen name="movie_title_size">20sp</dimen>
     <!--brief desc-->
     <dimen name="movie_desc_padding">10dp</dimen>
     <dimen name="movie_desc_size">15sp</dimen>

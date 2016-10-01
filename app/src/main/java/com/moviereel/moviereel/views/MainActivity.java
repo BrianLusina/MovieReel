@@ -51,26 +51,44 @@ public class MainActivity extends AppCompatActivity{
                 .addDrawerItems(
                         /*movies section*/
                         new SectionDrawerItem().withTextColor(getResources().getColor(R.color.light_red3)).withName(R.string.main_drawer_movie_title),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(1),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular).withIcon(FontAwesome.Icon.faw_star).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(2),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_fire).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(3),
+
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing).withIcon(FontAwesome.Icon.faw_play).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(1),
+
+                        /*Popular shows*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular).withIcon(FontAwesome.Icon.faw_star).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(2),
+
+                        /*Top rated movies*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_fire).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(3),
+
+                        /*Upcoming movies*/
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(4),
 
                         /*Tv series section*/
                         new SectionDrawerItem().withName(R.string.main_drawer_series_title).withTextColor(getResources().getColor(R.color.white)),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_latest).withIcon(FontAwesome.Icon.faw_clock_o).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(5),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_ontheair).withIcon(FontAwesome.Icon.faw_television).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(6),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_airing_today).withIcon(FontAwesome.Icon.faw_hourglass_start).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(7),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_top_rated).withIcon(FontAwesome.Icon.faw_star).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(8),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(9)
-                        /*STICKY DRAWER ITEMS*/
-                ).addStickyDrawerItems(
-                        /*HELP*/
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_help).withIcon(FontAwesome.Icon.faw_question).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(10),
+                        /*Latest series*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_latest).withIcon(FontAwesome.Icon.faw_clock_o).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(5),
+
+                        /*On the air*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_ontheair).withIcon(FontAwesome.Icon.faw_television).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(6),
+
+                        /*Airing today*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_airing_today).withIcon(FontAwesome.Icon.faw_hourglass_start).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(7),
+
+                        /*top rated*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_top_rated).withIcon(FontAwesome.Icon.faw_star).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(8),
+
+                        /*Popular tv shows*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_series_popular).withIcon(FontAwesome.Icon.faw_bullhorn).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(9),
+
+                        /*HELP section*/
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_help).withIcon(FontAwesome.Icon.faw_question).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(10),
+
                         /*settings*/
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_settings).withIcon(FontAwesome.Icon.faw_cogs).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(11),
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_about).withIcon(FontAwesome.Icon.faw_exclamation).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(12)
-                ).withSliderBackgroundColorRes(R.color.background_drawer_color).withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_settings).withIcon(FontAwesome.Icon.faw_cogs).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(11),
+
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_about).withIcon(FontAwesome.Icon.faw_exclamation).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(12)
+
+                ).withOnDrawerItemClickListener((view, position, drawerItem) -> {
                     if(drawerItem instanceof Nameable){
                         Fragment fragment = null;
                         String name = ((Nameable) drawerItem).getName().getText(MainActivity.this);
