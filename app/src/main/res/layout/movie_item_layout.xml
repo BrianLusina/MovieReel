@@ -25,6 +25,7 @@
             android:layout_height="@dimen/movie_image_height"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
             android:contentDescription="@string/movie_image_card" />
 
         <TextView
