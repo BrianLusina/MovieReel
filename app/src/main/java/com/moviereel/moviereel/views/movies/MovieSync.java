@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -24,7 +25,6 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
 import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAYING_TAG;
 
 /**
@@ -63,8 +63,15 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             TmdbMovies nowPlaying = new TmdbApi("2f30bdb7e9742c26d4ea364f62f38163").getMovies();
 
             MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
-            List<MovieDb> tmdbUrl = nowPlayingMovies.getResults();
-            Log.d(MOVIENOW_PLAYING_TAG+"TMDB", tmdbUrl.toString());
+            List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
+            List<Object> someList = new ArrayList<>();
+
+            for(int i = 0; i < nowPlayingList.size();i++){
+                someList.add(nowPlayingList.get(i).getGenres());
+                someList.add(nowPlayingList.get(i).getPosterPath());
+            }
+            
+            Log.d(MOVIENOW_PLAYING_TAG+"TMDB", someList.toString());
 
             Request request = new Request.Builder()
                     .url(url)
