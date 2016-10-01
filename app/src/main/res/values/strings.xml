@@ -89,4 +89,6 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="get_latest_movie">And the latest movie is...</string>
     <string name="movie_item_header_txt">Movie Title</string>
+    <string name="movie_category_txt">Action, Thriller,...</string>
+    <string name="movie_time_txt">143min</string>
 </resources>

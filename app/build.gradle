@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
-
     defaultConfig {
         applicationId "com.moviereel.moviereel"
         minSdkVersion 14
@@ -61,8 +60,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile group: 'info.movito', name: 'themoviedbapi', version:'1.4'
 
     //card view
@@ -72,7 +69,6 @@ dependencies {
 
     //Recycler View
     compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'jp.wasabeef:recyclerview-animators:1.2.2'
 
     //material drawer library
     compile('com.mikepenz:materialdrawer:5.3.6@aar') {
@@ -117,9 +113,7 @@ dependencies {
     /*App intros*/
     compile 'com.github.paolorotolo:appintro:4.0.0'
 
-    /*Material View Pager*/
-    compile ('com.github.florent37:materialviewpager:1.2.0@aar'){
-        transitive = true
-    }
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
-apply plugin: 'com.google.gms.google-services'
+

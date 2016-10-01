@@ -1,6 +1,5 @@
 package com.moviereel.moviereel.views.movies;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 
 import com.moviereel.moviereel.Contracts.ApiContract;
 import com.moviereel.moviereel.R;
@@ -33,9 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import jp.wasabeef.recyclerview.animators.LandingAnimator;
-import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -93,19 +88,14 @@ public class MovieNowPlaying extends Fragment{
                 R.color.dark_slate_blue,
                 R.color.dark_slate_gray,
                 R.color.dark_cyan,
-                R.color.dark_yellow,
                 R.color.dark_turquoise,
                 R.color.dark_sea_green);
 
-        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(movieAdapter);
-        alphaAdapter.setInterpolator(new OvershootInterpolator());
-        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLinearLayoutManager);
-        recyclerView.setItemAnimator(new LandingAnimator());
-        recyclerView.setAdapter(scaleAdapter);
+        recyclerView.setAdapter(movieAdapter);
 
         return rootView;
     }
@@ -117,8 +107,6 @@ public class MovieNowPlaying extends Fragment{
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                 (view1, position) -> {
                     /*TODO: test*/
-                    Intent moreDetails = new Intent(getActivity(), MovieItemDetail.class);
-                    startActivity(moreDetails);
                 }));
     }
 
