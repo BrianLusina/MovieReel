@@ -21,7 +21,7 @@
         <!--Movie Poster-->
         <ImageView
             android:id="@+id/movie_poster_image_id"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
