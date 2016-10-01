@@ -30,6 +30,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     @BindView(R.id.moviedetail_img_id) ImageView movieDetailImg;
     @BindView(R.id.moviedetail_pagerslidingtabs) PagerSlidingTabStrip pagerSlidingTabStrip;
     @BindView(R.id.moviedetail_viewpager) ViewPager viewPager;
+    @BindView(R.id.moviedetail_appbar_id) AppBarLayout appbar;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
 
@@ -39,7 +40,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         setContentView(R.layout.movie_details_layout);
         ButterKnife.bind(this);
 
-        AppBarLayout appbar = (AppBarLayout) findViewById(R.id.moviedetail_appbar_id);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         appbar.addOnOffsetChangedListener(this);
     }
 
