@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.singletons;
+package com.moviereel.moviereel.utils;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

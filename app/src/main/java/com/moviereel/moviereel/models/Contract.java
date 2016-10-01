@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.Contracts;
+package com.moviereel.moviereel.models;
 
 import com.moviereel.moviereel.BuildConfig;
 
@@ -9,7 +9,7 @@ import com.moviereel.moviereel.BuildConfig;
  * <p/>
  * Description: contains constants for the MovieDB api
  */
-public class ApiContract {
+public class Contract {
     /*Movie enpoints*/
     public static final String MOVIE_DB_KEY = BuildConfig.MOVIE_DB_KEY;
     public static final String BASE_URL = BuildConfig.BASE_URL;

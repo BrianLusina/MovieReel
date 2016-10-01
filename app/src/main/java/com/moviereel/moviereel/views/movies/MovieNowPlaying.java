@@ -15,12 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moviereel.moviereel.Contracts.ApiContract;
+import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
-import com.moviereel.moviereel.singletons.IsNetwork;
-import com.moviereel.moviereel.singletons.RecyclerItemClickListener;
+import com.moviereel.moviereel.utils.IsNetwork;
+import com.moviereel.moviereel.utils.RecyclerItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,7 +127,7 @@ public class MovieNowPlaying extends Fragment{
 
         @Override
         protected String doInBackground(String... params) {
-            String url = ApiContract.NOW_PLAYING;
+            String url = Contract.NOW_PLAYING;
 
             try {
                 Request request = new Request.Builder()
@@ -145,8 +145,8 @@ public class MovieNowPlaying extends Fragment{
                     * obtain the JSONObjects storing the relevant data to variables*/
                     for(int x = 0; x < result.length(); x++){
                         JSONObject jObject = result.getJSONObject(x);
-                        String poster_path = ApiContract.MOVIE_POSTER_PATH + jObject.getString("poster_path");
-                        String backdrop_path = ApiContract.MOVIE_POSTER_PATH+ jObject.getString("backdrop_path");
+                        String poster_path = Contract.MOVIE_POSTER_PATH + jObject.getString("poster_path");
+                        String backdrop_path = Contract.MOVIE_POSTER_PATH+ jObject.getString("backdrop_path");
                         String overview = jObject.getString("overview");
                         String release_date = jObject.getString("release_date");
                         JSONArray genre_ids = jObject.getJSONArray("genre_ids");
