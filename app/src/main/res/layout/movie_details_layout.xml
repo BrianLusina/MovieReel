@@ -102,9 +102,9 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="32dp"
         android:elevation="8dp"
-        android:src="@drawable/ic_adb_24dp"
+        android:src="@android:drawable/ic_menu_share"
+        android:backgroundTint="@color/light_red3"
         app:layout_anchor="@id/moviedetail_cardview_id"
         app:layout_anchorGravity="top|right|end"
-        tools:ignore="RtlHardcoded"
-        />
+        tools:ignore="RtlHardcoded" />
 </android.support.design.widget.CoordinatorLayout>
