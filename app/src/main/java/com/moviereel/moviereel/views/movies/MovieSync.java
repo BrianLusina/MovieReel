@@ -66,11 +66,13 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
             List<Object> someList = new ArrayList<>();
             for(int i = 0; i < nowPlayingList.size();i++){
-                someList.add( nowPlayingList.get(i).getGenres());
                 someList.add(nowPlayingList.get(i).getPosterPath());
                 someList.add(nowPlayingList.get(i).getBackdropPath());
-                someList.add(nowPlayingList.get(i).getTagline());
-                someList.add(nowPlayingList.get(i).getRuntime());
+                someList.add(nowPlayingList.get(i).getOverview());
+                someList.add(nowPlayingList.get(i).getReleaseDate());
+                someList.add(nowPlayingList.get(i).getImdbID());
+                someList.add(nowPlayingList.get(i).getOriginalTitle());
+                someList.add(nowPlayingList.get(i).getVoteCount());
             }
 
             Log.d(MOVIENOW_PLAYING_TAG+"TMDB", someList.toString());

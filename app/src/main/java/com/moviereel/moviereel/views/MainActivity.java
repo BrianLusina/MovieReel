@@ -98,46 +98,55 @@ public class MainActivity extends AppCompatActivity{
                             /*now playing*/
                             case 1:
                                 fragment = MovieNowPlaying.newInstance();
+                                title = "Now Playing";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*Popular Movies*/
                             case 2:
+                                title = "Popular";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*Top rated*/
                             case 3:
+                                title = "Top Rated";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*Upcoming*/
                             case 4:
+                                title = "Upcoming";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*Latest series*/
                             case 5:
+                                title = "Latest Shows";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*series On the air*/
                             case 6:
+                                title = "On The air";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*Series airing today*/
                             case 7:
+                                title = "Airing Today";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*top rated series*/
                             case 8:
+                                title = "Top Rated";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*Popular series*/
                             case 9:
+                                title = "Popular";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
@@ -196,17 +205,6 @@ public class MainActivity extends AppCompatActivity{
     private void initUiCtrls() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main_id);
         setSupportActionBar(mToolbar);
-    }
-
-
-    /**
-     * Method to check network availability
-     Using ConnectivityManager to check for IsNetwork Connection
-     * */
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null;
     }
 
     @Override

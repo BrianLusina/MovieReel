@@ -7,14 +7,13 @@ import android.os.Parcelable;
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
  * Created by lusinabrian on 20/08/16 at 09:50
- * <p/>
  * Description: Model class that creates an instance of a single movie item. This will contain the properties of a single movie item, such as name, date posted, user who posted it, recipe, ingredients, brief description
  */
 public class MovieModel implements Parcelable{
     /*fields*/
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date;
     private int[] movie_genres;
-    private int movie_id, movie_vote_count;
+    private int movie_id, movie_vote_count, movieRuntime;
     private double movie_popularity, voteAverage;
     private boolean isAdult, hasVideo;
 
@@ -177,5 +176,13 @@ public class MovieModel implements Parcelable{
 
     public void setHasVideo(boolean hasVideo) {
         this.hasVideo = hasVideo;
+    }
+
+    public int getMovieRuntime() {
+        return movieRuntime;
+    }
+
+    public void setMovieRuntime(int movieRuntime) {
+        this.movieRuntime = movieRuntime;
     }
 }

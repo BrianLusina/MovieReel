@@ -5,7 +5,7 @@
     android:id="@+id/movie_item_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="6dp"
+    android:elevation="8dp"
     card_view:cardBackgroundColor="@color/background_color"
     android:clickable="true"
     android:layout_margin="@dimen/card_movie_margin"
@@ -18,9 +18,14 @@
         android:orientation="horizontal">
         <!--Movie Poster-->
         <LinearLayout
-            android:layout_width="120dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
             android:orientation="vertical">
+            <ProgressBar
+                android:id="@+id/progress_movie_img"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/movie_poster_image_id"
@@ -55,14 +60,15 @@
                     android:layout_width="match_parent"
                     android:id="@+id/movie_categories_txt_id"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
+                    android:textColor="@color/md_blue_grey_100"
                     android:text="@string/movie_category_txt"/>
 
                 <TextView
                     android:id="@+id/movie_runtime_txt_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
+                    android:textColor="@color/md_blue_grey_100"
+                    android:layout_marginTop="8dp"
                     android:text="@string/movie_time_txt"/>
             </LinearLayout>
 
