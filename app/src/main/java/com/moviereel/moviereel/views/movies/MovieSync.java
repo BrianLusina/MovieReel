@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -53,6 +57,12 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
+        TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
+
+        MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
+        List<MovieDb> tmdbUrl = nowPlayingMovies.getResults();
+        Log.d(MOVIENOW_PLAYING_TAG+"TMDB", tmdbUrl.get(1).toString());
+
         String url = Contract.NOW_PLAYING;
         try {
             Request request = new Request.Builder()
