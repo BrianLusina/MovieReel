@@ -21,44 +21,49 @@
         <!--Movie Poster-->
         <ImageView
             android:id="@+id/movie_poster_image_id"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/movie_image_height"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:clickable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
             android:contentDescription="@string/movie_image_card" />
 
-        <TextView
-            android:id="@+id/movie_title_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/movie_poster_image_id"
-            android:textColor="@color/white"
-            android:padding="@dimen/movie_item_text_padding"
-            android:text="@string/movie_title_card"
-            android:textStyle="bold"
-            android:textSize="@dimen/movie_title_size"/>
-
-        <!--Category, movie time(duration)-->
         <LinearLayout
-            android:layout_below="@+id/movie_title_card"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/movie_item_text_padding"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/movie_poster_image_id"
+            android:layout_toEndOf="@+id/movie_poster_image_id">
             <TextView
+                android:id="@+id/movie_title_card"
                 android:layout_width="match_parent"
-                android:id="@+id/movie_categories_txt_id"
                 android:layout_height="wrap_content"
-                android:textColor="@color/light_gray"
-                android:text="@string/movie_category_txt"/>
+                android:textColor="@color/white"
+                android:padding="@dimen/movie_item_text_padding"
+                android:text="@string/movie_title_card"
+                android:textStyle="bold"
+                android:textSize="@dimen/movie_title_size"/>
 
-            <TextView
-                android:id="@+id/movie_runtime_txt_id"
+            <!--Category, movie time(duration)-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/light_gray"
-                android:text="@string/movie_time_txt"/>
+                android:padding="@dimen/movie_item_text_padding"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/movie_categories_txt_id"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
+                    android:text="@string/movie_category_txt"/>
+
+                <TextView
+                    android:id="@+id/movie_runtime_txt_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
+                    android:text="@string/movie_time_txt"/>
+            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>

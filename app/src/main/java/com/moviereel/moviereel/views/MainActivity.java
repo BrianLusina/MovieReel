@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity{
                 .withToolbar(mToolbar)
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
+                .withSliderBackgroundColorRes(R.color.background_drawer_color)
                 .addDrawerItems(
                         /*movies section*/
                         new SectionDrawerItem().withTextColor(getResources().getColor(R.color.light_red3)).withName(R.string.main_drawer_movie_title),
