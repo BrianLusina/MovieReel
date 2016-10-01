@@ -6,8 +6,8 @@
 
     <!--CUSTOM THEME-->
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/indigo_600</item>
-        <item name="colorPrimaryDark">@color/indigo_500</item>
+        <item name="colorPrimary">@color/light_red3</item>
+        <item name="colorPrimaryDark">@color/fire_brick</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
