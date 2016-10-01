@@ -1,5 +1,8 @@
 package com.moviereel.moviereel.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
@@ -7,12 +10,14 @@ package com.moviereel.moviereel.models;
  * <p/>
  * Description: Model class that creates an instance of a single movie item. This will contain the properties of a single movie item, such as name, date posted, user who posted it, recipe, ingredients, brief description
  */
-public class MovieModel {
+public class MovieModel implements Parcelable{
     /*fields*/
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date;
     private int[] movie_genres;
     private int movie_id, movie_vote_count;
-    private double movie_popularity;
+    private double movie_popularity, voteAverage;
+    private boolean isAdult, hasVideo;
+
     /*constructor*/
     public MovieModel(){}
 
@@ -29,8 +34,57 @@ public class MovieModel {
         this.movie_vote_count = movie_vote_count;
     }
 
-/*ACCESS METHODS*/
-public String getMovie_poster_url() {
+
+    protected MovieModel(Parcel in) {
+        movie_title = in.readString();
+        movie_poster_url = in.readString();
+        movie_backdrop_url = in.readString();
+        movie_overview = in.readString();
+        release_date = in.readString();
+        movie_genres = in.createIntArray();
+        movie_id = in.readInt();
+        movie_vote_count = in.readInt();
+        movie_popularity = in.readDouble();
+        voteAverage = in.readDouble();
+        isAdult = in.readByte() != 0;
+        hasVideo = in.readByte() != 0;
+    }
+
+    public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
+        @Override
+        public MovieModel createFromParcel(Parcel in) {
+            return new MovieModel(in);
+        }
+
+        @Override
+        public MovieModel[] newArray(int size) {
+            return new MovieModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(movie_title);
+        dest.writeString(movie_poster_url);
+        dest.writeString(movie_backdrop_url);
+        dest.writeString(movie_overview);
+        dest.writeString(release_date);
+        dest.writeIntArray(movie_genres);
+        dest.writeInt(movie_id);
+        dest.writeInt(movie_vote_count);
+        dest.writeDouble(movie_popularity);
+        dest.writeDouble(voteAverage);
+        dest.writeByte((byte) (isAdult ? 1 : 0));
+        dest.writeByte((byte) (hasVideo ? 1 : 0));
+    }
+
+    /*ACCESS METHODS*/
+    public String getMovie_poster_url() {
     return movie_poster_url;
 }
 
@@ -61,7 +115,6 @@ public String getMovie_poster_url() {
     public void setMovie_popularity(double movie_popularity) {
         this.movie_popularity = movie_popularity;
     }
-
 
     public String getMovie_title() {
         return movie_title;
@@ -100,5 +153,29 @@ public String getMovie_poster_url() {
     }
     public void setMovie_genres(int[] genres){
         this.movie_genres = genres;
+    }
+
+    public double getVoteAverage() {
+        return voteAverage;
+    }
+
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public boolean isAdult() {
+        return isAdult;
+    }
+
+    public void setAdult(boolean adult) {
+        isAdult = adult;
+    }
+
+    public boolean isHasVideo() {
+        return hasVideo;
+    }
+
+    public void setHasVideo(boolean hasVideo) {
+        this.hasVideo = hasVideo;
     }
 }
