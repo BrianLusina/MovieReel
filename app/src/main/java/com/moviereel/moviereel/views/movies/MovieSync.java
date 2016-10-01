@@ -70,8 +70,11 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                 someList.add(nowPlayingList.get(i).getBackdropPath());
                 someList.add(nowPlayingList.get(i).getOverview());
                 someList.add(nowPlayingList.get(i).getReleaseDate());
-                someList.add(nowPlayingList.get(i).getImdbID());
+                someList.add(nowPlayingList.get(i).getId());
                 someList.add(nowPlayingList.get(i).getOriginalTitle());
+                someList.add(nowPlayingList.get(i).getPopularity());
+                someList.add(nowPlayingList.get(i).getOriginalTitle());
+                someList.add(nowPlayingList.get(i).getVoteAverage());
                 someList.add(nowPlayingList.get(i).getVoteCount());
             }
 
