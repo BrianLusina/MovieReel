@@ -1,25 +1,35 @@
 package com.moviereel.moviereel.views.movies;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.moviereel.moviereel.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
  * Created by lusinabrian on 20/08/16 at 09:58
- * <p/>
  * Description: Display of movie details using flexible space
  */
 public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+    public static final String MOVIEDETAIL_TAG = MovieDetails.class.getSimpleName();
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
-    private View mFab;
+    @BindView(R.id.moviedetail_fab_share_id) View mFab;
+    @BindView(R.id.moviedetail_toolbar) Toolbar toolbar;
+    @BindView(R.id.moviedetail_img_id) ImageView movieDetailImg;
+    @BindView(R.id.moviedetail_pagerslidingtabs) PagerSlidingTabStrip pagerSlidingTabStrip;
+    @BindView(R.id.moviedetail_viewpager) ViewPager viewPager;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
 
@@ -27,7 +37,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details_layout);
-        mFab = findViewById(R.id.moviedetail_fab_share_id);
+        ButterKnife.bind(this);
 
         AppBarLayout appbar = (AppBarLayout) findViewById(R.id.moviedetail_appbar_id);
         appbar.addOnOffsetChangedListener(this);

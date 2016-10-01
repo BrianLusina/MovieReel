@@ -1,5 +1,6 @@
 package com.moviereel.moviereel.views.movies;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -107,7 +108,9 @@ public class MovieNowPlaying extends Fragment{
         //implement item click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                 (view1, position) -> {
-                    /*TODO: test*/
+                    //collect data, mostly the id from the clicked item, transfer to the next activity
+                    //for display
+                    startActivity(new Intent(getActivity(), MovieDetails.class));
                 }));
     }
 
