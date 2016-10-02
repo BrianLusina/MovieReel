@@ -14,14 +14,15 @@ public class MovieModel implements Parcelable{
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date;
     private int[] movie_genres;
     private int movie_id, movie_vote_count, movieRuntime;
-    private double movie_popularity, voteAverage;
+    private float movie_popularity, voteAverage;
     private boolean isAdult, hasVideo;
 
-    /*constructor*/
+    /** Empty constructor for non-parcel objects*/
     public MovieModel(){}
 
-    /*constructor*/
-    public MovieModel(String movie_poster_url, String movie_overview, String release_date,int[] movie_genres, int movie_id, String movie_title, String movie_backdrop_url, double movie_popularity, int movie_vote_count) {
+    /**constructor used to get now playing data for movies
+     **/
+    public MovieModel(String movie_poster_url, String movie_overview, String release_date,int[] movie_genres, int movie_id, String movie_title, String movie_backdrop_url, float movie_popularity, int movie_vote_count, float voteAverage) {
         this.movie_genres = movie_genres;
         this.movie_title = movie_title;
         this.movie_poster_url = movie_poster_url;
@@ -31,6 +32,12 @@ public class MovieModel implements Parcelable{
         this.movie_backdrop_url = movie_backdrop_url;
         this.movie_popularity = movie_popularity;
         this.movie_vote_count = movie_vote_count;
+        this.voteAverage = voteAverage;
+    }
+
+    /**2nd Constructor that will populate this object from the ID of the Movie*/
+    public MovieModel(int movieRuntime){
+        this.movieRuntime = movieRuntime;
     }
 
 
@@ -43,8 +50,8 @@ public class MovieModel implements Parcelable{
         movie_genres = in.createIntArray();
         movie_id = in.readInt();
         movie_vote_count = in.readInt();
-        movie_popularity = in.readDouble();
-        voteAverage = in.readDouble();
+        movie_popularity = in.readFloat();
+        voteAverage = in.readFloat();
         isAdult = in.readByte() != 0;
         hasVideo = in.readByte() != 0;
     }
@@ -111,7 +118,7 @@ public class MovieModel implements Parcelable{
         return movie_popularity;
     }
 
-    public void setMovie_popularity(double movie_popularity) {
+    public void setMovie_popularity(float movie_popularity) {
         this.movie_popularity = movie_popularity;
     }
 
@@ -158,7 +165,7 @@ public class MovieModel implements Parcelable{
         return voteAverage;
     }
 
-    public void setVoteAverage(double voteAverage) {
+    public void setVoteAverage(float voteAverage) {
         this.voteAverage = voteAverage;
     }
 
