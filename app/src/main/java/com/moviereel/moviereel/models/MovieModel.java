@@ -11,11 +11,12 @@ import android.os.Parcelable;
  */
 public class MovieModel implements Parcelable{
     /*fields*/
-    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movieHomepage, movieImdbId, movieStatus, movieTagline;
+    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movieHomepage, movieImdbId, movieStatus, movieTagline, movieGenres, productionCompanies, productionCountries, spokenLanguages;
     private int[] movie_genres;
-    private int movie_id, movie_vote_count, movieRuntime, movieBudget, movieRevenue;
+    private int movie_id, movie_vote_count, movieRuntime, movieBudget;
     private float movie_popularity, voteAverage;
     private boolean isAdult, hasVideo;
+    private long movieRevenue;
 
     /** Empty constructor for non-parcel objects*/
     public MovieModel(){}
@@ -37,7 +38,7 @@ public class MovieModel implements Parcelable{
 
     // TODO: 02/10/16 Add genres, production companies, production countries, spoken languages
     /**2nd Constructor that will populate this object from the ID of the Movie*/
-    public MovieModel(int movieRuntime, boolean isAdult, String movie_backdrop_url, int movieBudget, String movieHomepage, String movieImdbId, int movieRevenue,String movieStatus, String movieTagline,boolean hasVideo){
+    public MovieModel(int movieRuntime, String movieGenres, boolean isAdult, String movie_backdrop_url, int movieBudget, String movieHomepage, String movieImdbId, long movieRevenue,String movieStatus, String movieTagline,boolean hasVideo, String productionCountries, String productionCompanies, String spokenLanguages){
         this.movieRuntime = movieRuntime;
         this.isAdult = isAdult;
         this.movie_backdrop_url = movie_backdrop_url;
@@ -48,6 +49,10 @@ public class MovieModel implements Parcelable{
         this.movieStatus = movieStatus;
         this.hasVideo = hasVideo;
         this.movieTagline = movieTagline;
+        this.movieGenres = movieGenres;
+        this.productionCompanies =productionCompanies;
+        this.productionCountries = productionCountries;
+        this.spokenLanguages = spokenLanguages;
     }
 
 
@@ -201,5 +206,85 @@ public class MovieModel implements Parcelable{
 
     public void setMovieRuntime(int movieRuntime) {
         this.movieRuntime = movieRuntime;
+    }
+
+    public String getMovieHomepage() {
+        return movieHomepage;
+    }
+
+    public void setMovieHomepage(String movieHomepage) {
+        this.movieHomepage = movieHomepage;
+    }
+
+    public String getMovieImdbId() {
+        return movieImdbId;
+    }
+
+    public void setMovieImdbId(String movieImdbId) {
+        this.movieImdbId = movieImdbId;
+    }
+
+    public String getMovieStatus() {
+        return movieStatus;
+    }
+
+    public void setMovieStatus(String movieStatus) {
+        this.movieStatus = movieStatus;
+    }
+
+    public String getMovieTagline() {
+        return movieTagline;
+    }
+
+    public void setMovieTagline(String movieTagline) {
+        this.movieTagline = movieTagline;
+    }
+
+    public String getMovieGenres() {
+        return movieGenres;
+    }
+
+    public void setMovieGenres(String movieGenres) {
+        this.movieGenres = movieGenres;
+    }
+
+    public int getMovieBudget() {
+        return movieBudget;
+    }
+
+    public void setMovieBudget(int movieBudget) {
+        this.movieBudget = movieBudget;
+    }
+
+    public long getMovieRevenue() {
+        return movieRevenue;
+    }
+
+    public void setMovieRevenue(long movieRevenue) {
+        this.movieRevenue = movieRevenue;
+    }
+
+    public String getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(String productionCompanies) {
+        this.productionCompanies = productionCompanies;
+    }
+
+    public String getProductionCountries() {
+        return productionCountries;
+    }
+
+    public void setProductionCountries(String productionCountries) {
+        this.productionCountries = productionCountries;
+    }
+
+    public String getSpokenLanguages() {
+        return spokenLanguages;
+    }
+
+    public void setSpokenLanguages(String spokenLanguages) {
+        this.spokenLanguages = spokenLanguages;
     }
 }

@@ -76,6 +76,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             //pass the id of the movie to another thread to fetch more details about the movie
             movieDetSync = new MovieDetSync(movieId);
+            Log.d("MOVIDETAILS:MovieID",String.valueOf(movieId));
             movieDetSync.doInBackground();
 
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg);
