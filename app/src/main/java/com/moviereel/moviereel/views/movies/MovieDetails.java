@@ -1,6 +1,7 @@
 package com.moviereel.moviereel.views.movies;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.bumptech.glide.Glide;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.ViewPagerAdapter;
 import com.moviereel.moviereel.models.MovieModel;
@@ -29,15 +31,19 @@ import butterknife.ButterKnife;
  */
 public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
     public static final String MOVIEDETAIL_TAG = MovieDetails.class.getSimpleName();
-    private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
+    private MovieModel movieObj;
+    /*UI Views*/
     @BindView(R.id.moviedetail_fab_share_id) View mFab;
     @BindView(R.id.moviedetail_toolbar) Toolbar toolbar;
     @BindView(R.id.moviedetail_img_id) ImageView movieDetailImg;
     @BindView(R.id.moviedetail_pagerslidingtabs) PagerSlidingTabStrip pagerSlidingTabStrip;
     @BindView(R.id.moviedetail_viewpager) ViewPager mViewPager;
     @BindView(R.id.moviedetail_appbar_id) AppBarLayout appbar;
+    @BindView(R.id.moviedetail_collapsingtoolbar) CollapsingToolbarLayout mCollapseToolbar;
+
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
+    private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +52,23 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         ButterKnife.bind(this);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         appbar.addOnOffsetChangedListener(this);
-        initViewPager();
         retrieveObj();
+        initViewPager();
     }
 
     /*Retrieves the object from previous Activity*/
     private void retrieveObj() {
-        MovieModel movieObj = getIntent().getExtras().getParcelable("MovieObj");
+        movieObj = getIntent().getExtras().getParcelable("MovieObj");
         if (movieObj != null) {
-            Log.d(MOVIEDETAIL_TAG, movieObj.getMovie_title());
+            mCollapseToolbar.setTitle(movieObj.getMovie_title());
+            Glide.with(this)
+                    .load(movieObj.getMovie_poster_url())
+                    .into(movieDetailImg);
+            Log.d(MOVIEDETAIL_TAG, movieObj.getMovie_title()+ " Poster" + movieObj.getMovie_poster_url());
         }else{
             Log.d(MOVIEDETAIL_TAG, "No Data Received");
         }
     }
-
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
