@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +30,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     @BindView(R.id.moviedetail_toolbar) Toolbar toolbar;
     @BindView(R.id.moviedetail_img_id) ImageView movieDetailImg;
     @BindView(R.id.moviedetail_pagerslidingtabs) PagerSlidingTabStrip pagerSlidingTabStrip;
-    @BindView(R.id.moviedetail_viewpager) ViewPager viewPager;
+    @BindView(R.id.moviedetail_viewpager) ViewPager mViewPager;
     @BindView(R.id.moviedetail_appbar_id) AppBarLayout appbar;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
@@ -42,6 +43,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         appbar.addOnOffsetChangedListener(this);
+        initViewPager();
     }
 
 
@@ -67,4 +69,11 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
             }
         }
     }
+
+    /**Initialize the ViewPager and set the adapter*/
+    private void initViewPager() {
+        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+    }
+
 }
