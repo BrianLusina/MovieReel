@@ -36,8 +36,8 @@ import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAY
 public class MovieSync extends AsyncTask<String, Void, String> {
     private SweetAlertDialog progressDialog;
     private List<MovieModel> MovieModelList;
-    private OkHttpClient client = new OkHttpClient();
     private Context context;
+    private MovieDetSync movieDetSync;
 
     public MovieSync(){}
 
@@ -62,7 +62,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
         MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
-        List<Object> someList = new ArrayList<>();
         for(int i = 0; i < nowPlayingList.size();i++){
         /*Retrieve the data and store it relevant variables*/
             String poster_path = Contract.MOVIE_POSTER_PATH + nowPlayingList.get(i).getPosterPath();
@@ -75,10 +74,13 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             float movieVoteAvg = nowPlayingList.get(i).getVoteAverage();
             int movieVoteCount = nowPlayingList.get(i).getVoteCount();
 
+            //pass the id of the movie to another thread to fetch more details about the movie
+            movieDetSync = new MovieDetSync(movieId);
+            movieDetSync.doInBackground();
+
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg);
             MovieModelList.add(movieModel);
 
-            //todo: pass the id of the movie to another thread to fetch more details about the movie
 
             /**Get an instance of the shared preferences create and access the MovieData
              * Store the data only to the application*/
@@ -99,7 +101,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             //apply these edits
             editor.apply();
-            Log.d(MOVIENOW_PLAYING_TAG+"TMDB", someList.toString());
             Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
         }
         return null;
