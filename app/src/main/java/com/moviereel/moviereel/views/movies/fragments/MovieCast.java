@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moviereel.moviereel.R;
+
 /**
  * MovieReel
  * com.moviereel.moviereel.views.movies.fragments
@@ -28,6 +30,8 @@ public class MovieCast extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.moviecast_layout, container, false);
+
+        return rootView;
     }
 }

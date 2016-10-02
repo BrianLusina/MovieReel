@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.ViewPagerAdapter;
+import com.moviereel.moviereel.views.movies.fragments.MovieCast;
+import com.moviereel.moviereel.views.movies.fragments.MovieInfo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,7 +75,28 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     /**Initialize the ViewPager and set the adapter*/
     private void initViewPager() {
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mViewPagerAdapter.addFragment(MovieInfo.newInstance(), "Info");
+        mViewPagerAdapter.addFragment(MovieCast.newInstance(), "Cast");
+        mViewPager.setAdapter(mViewPagerAdapter);
 
+        //bind the pagersliding tab strip to the viewpager
+        pagerSlidingTabStrip.setViewPager(mViewPager);
+        pagerSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
 }
