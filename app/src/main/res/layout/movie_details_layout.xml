@@ -75,10 +75,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <com.astuetz.PagerSlidingTabStrip
                         android:id="@+id/moviedetail_pagerslidingtabs"
+                        android:layout_height="25dip"
                         android:layout_width="match_parent"
-                        android:layout_height="25dip" />
+                        app:pstsIndicatorColor="@color/light_red3"
+                        app:pstsTabTextStyle="bold"
+                        app:pstsIndicatorHeight="2dp"
+                        app:pstsShouldExpand="true"
+                        app:pstsTextAllCaps="false"
+                        app:pstsUnderlineHeight="2dp"
+                        app:pstsUnderlineColor="@color/light_gray"/>
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/moviedetail_viewpager"

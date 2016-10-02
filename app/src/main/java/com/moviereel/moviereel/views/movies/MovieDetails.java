@@ -79,7 +79,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         mViewPagerAdapter.addFragment(MovieCast.newInstance(), "Cast");
         mViewPager.setAdapter(mViewPagerAdapter);
 
-        //bind the pagersliding tab strip to the viewpager
+        //bind the pager sliding tab strip to the viewpager
         pagerSlidingTabStrip.setViewPager(mViewPager);
         pagerSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
