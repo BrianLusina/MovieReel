@@ -39,9 +39,11 @@ public class MovieDetSync extends AsyncTask<String, Void, String>  {
         TmdbMovies movieDetails = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
         //pass an id to the movie to get details about the movie
         MovieDb movie = movieDetails.getMovie(movieId,"en");
-
-        Log.d("MOVIEDETAILS", String.valueOf(movie.getRuntime()));
-
+        Log.d("MOVIEDETAILS", String.valueOf(movie.getRuntime()) +
+                " Genres " + movie.getGenres().toString() +
+                " Cast " + movie.getCast().toString() +
+                " Images " + movie.getImages().toString() +
+                " Reviews" +movie.getReviews().toString());
         return null;
     }
 

@@ -11,9 +11,9 @@ import android.os.Parcelable;
  */
 public class MovieModel implements Parcelable{
     /*fields*/
-    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date;
+    private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movieHomepage, movieImdbId, movieStatus, movieTagline;
     private int[] movie_genres;
-    private int movie_id, movie_vote_count, movieRuntime;
+    private int movie_id, movie_vote_count, movieRuntime, movieBudget, movieRevenue;
     private float movie_popularity, voteAverage;
     private boolean isAdult, hasVideo;
 
@@ -35,9 +35,19 @@ public class MovieModel implements Parcelable{
         this.voteAverage = voteAverage;
     }
 
+    // TODO: 02/10/16 Add genres, production companies, production countries, spoken languages
     /**2nd Constructor that will populate this object from the ID of the Movie*/
-    public MovieModel(int movieRuntime){
+    public MovieModel(int movieRuntime, boolean isAdult, String movie_backdrop_url, int movieBudget, String movieHomepage, String movieImdbId, int movieRevenue,String movieStatus, String movieTagline,boolean hasVideo){
         this.movieRuntime = movieRuntime;
+        this.isAdult = isAdult;
+        this.movie_backdrop_url = movie_backdrop_url;
+        this.movieBudget = movieBudget;
+        this.movieHomepage = movieHomepage;
+        this.movieImdbId = movieImdbId;
+        this.movieRevenue = movieRevenue;
+        this.movieStatus = movieStatus;
+        this.hasVideo = hasVideo;
+        this.movieTagline = movieTagline;
     }
 
 
