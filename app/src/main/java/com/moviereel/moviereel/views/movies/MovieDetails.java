@@ -18,7 +18,9 @@ import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.ViewPagerAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.views.movies.fragments.MovieCast;
+import com.moviereel.moviereel.views.movies.fragments.MovieImages;
 import com.moviereel.moviereel.views.movies.fragments.MovieInfo;
+import com.moviereel.moviereel.views.movies.fragments.MovieReviews;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,6 +100,8 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPagerAdapter.addFragment(MovieInfo.newInstance(), "Info");
         mViewPagerAdapter.addFragment(MovieCast.newInstance(), "Cast");
+        mViewPagerAdapter.addFragment(MovieImages.newInstance(), "Images");
+        mViewPagerAdapter.addFragment(MovieReviews.newInstance(), "Reviews");
         mViewPager.setAdapter(mViewPagerAdapter);
 
         //bind the pager sliding tab strip to the viewpager

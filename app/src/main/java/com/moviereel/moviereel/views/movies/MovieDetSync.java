@@ -89,7 +89,7 @@ public class MovieDetSync extends AsyncTask<String, Void, String>  {
 
         //get the production countries
         for(ProductionCountry productionCountry: movie.getProductionCountries()){
-            productionCompanies.add(productionCountry.getName());
+            productionCountries.add(productionCountry.getName());
         }
         //store the results in a string builder
         StringBuilder productionCountriesSb = new StringBuilder();
@@ -101,6 +101,8 @@ public class MovieDetSync extends AsyncTask<String, Void, String>  {
         /*for(Video video:movie.getVideos()){
 
         }*/
+
+        /*Get images of the movie*/
 
         /*todo: get reviews if any*/
         /*
