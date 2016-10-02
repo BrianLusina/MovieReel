@@ -15,21 +15,22 @@ import com.moviereel.moviereel.R;
  * Created by lusinabrian on 02/10/16.
  * Description:
  */
-public class MovieReviews extends Fragment{
-    public static final String MOVIEREVIEWS_TAG = MovieReviews.class.getSimpleName();
 
-    public MovieReviews(){}
+public class MovieMedia extends Fragment {
+    public static final String MOVIEMEDIA_TAG = MovieMedia.class.getSimpleName();
+
+    public MovieMedia(){}
 
     public static Fragment newInstance(){
-        MovieReviews movieReviews = new MovieReviews();
-        movieReviews.setRetainInstance(true);
-        return movieReviews;
+        MovieMedia movieMedia = new MovieMedia();
+        movieMedia.setRetainInstance(true);
+        return movieMedia;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.moviereviews_layout, container, false);
+        View rootView = inflater.inflate(R.layout.moviemedia_layout, container, false);
 
         return rootView;
     }
