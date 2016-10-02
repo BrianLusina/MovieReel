@@ -18,6 +18,8 @@ import info.movito.themoviedbapi.model.Genre;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.ProductionCompany;
 import info.movito.themoviedbapi.model.ProductionCountry;
+import info.movito.themoviedbapi.model.Reviews;
+import info.movito.themoviedbapi.model.Video;
 
 /**
  * MovieReel
@@ -27,6 +29,8 @@ import info.movito.themoviedbapi.model.ProductionCountry;
  */
 
 public class MovieDetSync extends AsyncTask<String, Void, String>  {
+    public static final String MOVIEDETSYNC_TAG = MovieDetSync.class.getSimpleName();
+
     private int movieId;
     private List<MovieModel> movieList;
 
@@ -46,7 +50,7 @@ public class MovieDetSync extends AsyncTask<String, Void, String>  {
         TmdbMovies movieDetails = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
         //pass an id to the movie to get details about the movie
         MovieDb movie = movieDetails.getMovie(movieId,"en");
-        Log.d("MOVIEDETAILS", String.valueOf(movie.getRuntime()) +
+        Log.d(MOVIEDETSYNC_TAG, String.valueOf(movie.getRuntime()) +
                 " Genres " + movie.getGenres().toString() +
                 " HomePage " + movie.getHomepage() +
                 " IMDBID " + movie.getImdbID() +
@@ -93,6 +97,16 @@ public class MovieDetSync extends AsyncTask<String, Void, String>  {
             productionCountriesSb.append(s);
             productionCountriesSb.append(", ");
         }
+        //todo: fetch video urls and keys
+        /*for(Video video:movie.getVideos()){
+
+        }*/
+
+        /*todo: get reviews if any*/
+        /*
+        for(Reviews reviews:movie.getReviews()){
+
+        }*/
 
         int runtime = movie.getRuntime();
         String genres = stringBuilder.toString();
@@ -100,6 +114,14 @@ public class MovieDetSync extends AsyncTask<String, Void, String>  {
         long revenue = movie.getRevenue();
         String productionCoStr = productionCoSb.toString();
         String productionCountriesStr = productionCountriesSb.toString();
+        String homepage = movie.getHomepage();
+
+        Log.d(MOVIEDETSYNC_TAG+ "Data ", String.valueOf(runtime) +
+                " Genres " + genres +
+                " Tagline" + tagline +
+                " revenue" + String.valueOf(revenue) +
+                " ProductionCompanies: " + productionCoStr +
+                " ProductionCountries " + productionCountriesStr);
 
         MovieModel movieModel = new MovieModel();
 
