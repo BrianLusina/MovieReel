@@ -58,7 +58,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        TmdbMovies nowPlaying = new TmdbApi("2f30bdb7e9742c26d4ea364f62f38163").getMovies();
+        TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
 
         MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
@@ -79,8 +79,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             MovieModelList.add(movieModel);
 
             //todo: pass the id of the movie to another thread to fetch more details about the movie
-
-            someList.add(nowPlayingList.get(i).getGenres());
 
             /**Get an instance of the shared preferences create and access the MovieData
              * Store the data only to the application*/

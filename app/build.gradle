@@ -28,12 +28,6 @@ android {
 
     buildTypes.each{
         it.buildConfigField 'String', 'MOVIE_DB_KEY', MovieDbKey
-        it.buildConfigField 'String', 'BASE_URL', BaseUrl
-        it.buildConfigField 'String', 'NOW_PLAYING', NowPlaying
-        it.buildConfigField 'String', 'POPULAR_MOVIES', PopularMovies
-        it.buildConfigField 'String', 'TOP_RATED', TopRated
-        it.buildConfigField 'String', 'UPCOMING', Upcoming
-        it.buildConfigField 'String', 'LATEST_MOVIE', LatestMovie
         it.buildConfigField 'String', 'POSTER_PATH', PosterPath
     }
     packagingOptions{
