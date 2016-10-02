@@ -32,19 +32,13 @@
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <!-- movie details -->
-        <activity android:name=".views.movies.MovieDetails">
-            <intent-filter>
-                <action android:name="com.moviereel.moviereel.MOVIEDETAILS" />
+        <activity android:name=".views.movies.MovieDetails"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

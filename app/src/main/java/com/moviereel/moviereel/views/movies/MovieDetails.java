@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.ViewPagerAdapter;
+import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.views.movies.fragments.MovieCast;
 import com.moviereel.moviereel.views.movies.fragments.MovieInfo;
 
@@ -42,10 +44,20 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details_layout);
         ButterKnife.bind(this);
-
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         appbar.addOnOffsetChangedListener(this);
         initViewPager();
+        retrieveObj();
+    }
+
+    /*Retrieves the object from previous Activity*/
+    private void retrieveObj() {
+        MovieModel movieObj = getIntent().getExtras().getParcelable("MovieObj");
+        if (movieObj != null) {
+            Log.d(MOVIEDETAIL_TAG, movieObj.getMovie_title());
+        }else{
+            Log.d(MOVIEDETAIL_TAG, "No Data Received");
+        }
     }
 
 

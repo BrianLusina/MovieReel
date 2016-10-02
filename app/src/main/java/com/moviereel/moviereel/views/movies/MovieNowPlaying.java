@@ -1,8 +1,6 @@
 package com.moviereel.moviereel.views.movies;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -11,30 +9,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.moviereel.moviereel.utils.RecyclerItemClickListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Project: Movie Reel
@@ -45,7 +31,7 @@ import okhttp3.Response;
 public class MovieNowPlaying extends Fragment{
     public static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
     private MovieAdapter movieAdapter;
-    private List<MovieModel> MovieModelList;
+    private List<MovieModel> movieModelList;
     private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerView;
     private MovieSync movieSync;
@@ -61,9 +47,9 @@ public class MovieNowPlaying extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MovieModelList = new ArrayList<>();
-        movieSync = new MovieSync(getActivity(), MovieModelList);
-        movieAdapter = new MovieAdapter(getActivity(), MovieModelList, R.layout.movie_item_layout);
+        movieModelList = new ArrayList<>();
+        movieSync = new MovieSync(getActivity(), movieModelList);
+        movieAdapter = new MovieAdapter(getActivity(), movieModelList, R.layout.movie_item_layout);
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             movieSync.execute();
         }else{
@@ -108,9 +94,13 @@ public class MovieNowPlaying extends Fragment{
         //implement item click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                 (view1, position) -> {
-                    //collect data, mostly the id from the clicked item, transfer to the next activity
-                    //for display
-                    startActivity(new Intent(getActivity(), MovieDetails.class));
+                    /**
+                     * collect data, mostly the id from the clicked item, transfer to the next activity
+                     * for display
+                     **/
+                    Intent showMovieDet = new Intent(getActivity(),MovieDetails.class);
+                    showMovieDet.putExtra("MovieObj", movieModelList.get(position));
+                    startActivity(showMovieDet);
                 }));
     }
 
