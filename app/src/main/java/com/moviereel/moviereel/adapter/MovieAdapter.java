@@ -91,7 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         }
         public void bind(MovieModel movieModel){
             MovieTitle.setText(movieModel.getMovie_title());
-            movieRunTime.setText(String.valueOf(movieModel.getMovieRuntime()));
+            movieRunTime.setText(String.valueOf(movieModel.getMovieRuntime()) + " min");
             movieCategories.setText(movieModel.getMovieGenres());
         }
     }

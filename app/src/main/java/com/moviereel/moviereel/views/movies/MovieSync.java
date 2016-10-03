@@ -39,11 +39,9 @@ import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAY
 
 public class MovieSync extends AsyncTask<String, Void, String> {
     private static final String MOVIESYNC = MovieSync.class.getSimpleName();
-
     private SweetAlertDialog progressDialog;
     private List<MovieModel> MovieModelList;
     private Context context;
-    private MovieDetSync movieDetSync;
 
     private ArrayList<String> movieGenres = new ArrayList<>();
     private ArrayList<String> productionCompanies = new ArrayList<>();
@@ -166,11 +164,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                     " revenue" + String.valueOf(revenue) +
                     " ProductionCompanies: " + productionCoStr +
                     " ProductionCountries " + productionCountriesStr);
-
-            //pass the id of the movie to another thread to fetch more details about the movie
-            /*
-            movieDetSync = new MovieDetSync(movieId);
-            movieDetSync.doInBackground();*/
 
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg,runtime, genres,isAdult,budget,homepage,imdbid,revenue,status,tagline,false,productionCountriesStr,productionCoStr,languages);
 
