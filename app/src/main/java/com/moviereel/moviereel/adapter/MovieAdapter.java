@@ -75,7 +75,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 .fitCenter()
                 .crossFade()
                 .into(holder.MoviePoster);
-        //Glide.with(mContext).load(MovieModel.getMovie_poster_url()).into(holder.MoviePoster).
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

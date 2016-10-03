@@ -13,10 +13,10 @@ public class MovieModel implements Parcelable{
     /*fields*/
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movieHomepage, movieImdbId, movieStatus, movieTagline, movieGenres, productionCompanies, productionCountries, spokenLanguages;
     private int[] movie_genres;
-    private int movie_id, movie_vote_count, movieRuntime, movieBudget;
+    private int movie_id, movie_vote_count, movieRuntime;
     private float movie_popularity, voteAverage;
     private boolean isAdult, hasVideo;
-    private long movieRevenue;
+    private long movieRevenue, movieBudget;
 
     /** Empty constructor for non-parcel objects*/
     public MovieModel(){}
@@ -36,12 +36,10 @@ public class MovieModel implements Parcelable{
         this.voteAverage = voteAverage;
     }
 
-    // TODO: 02/10/16 Add genres, production companies, production countries, spoken languages
     /**2nd Constructor that will populate this object from the ID of the Movie*/
-    public MovieModel(int movieRuntime, String movieGenres, boolean isAdult, String movie_backdrop_url, int movieBudget, String movieHomepage, String movieImdbId, long movieRevenue,String movieStatus, String movieTagline,boolean hasVideo, String productionCountries, String productionCompanies, String spokenLanguages){
+    public MovieModel(int movieRuntime, String movieGenres, boolean isAdult, long movieBudget, String movieHomepage, String movieImdbId, long movieRevenue,String movieStatus, String movieTagline,boolean hasVideo, String productionCountries, String productionCompanies, String spokenLanguages){
         this.movieRuntime = movieRuntime;
         this.isAdult = isAdult;
-        this.movie_backdrop_url = movie_backdrop_url;
         this.movieBudget = movieBudget;
         this.movieHomepage = movieHomepage;
         this.movieImdbId = movieImdbId;
@@ -55,6 +53,32 @@ public class MovieModel implements Parcelable{
         this.spokenLanguages = spokenLanguages;
     }
 
+    /**3rd constructor with more details about the movie fetched from the movie id*/
+    public MovieModel(String movie_poster_url, String movie_overview, String release_date,int[] movie_genres, int movie_id, String movie_title, String movie_backdrop_url, float movie_popularity, int movie_vote_count, float voteAverage,int movieRuntime, String movieGenres, boolean isAdult, long movieBudget, String movieHomepage, String movieImdbId, long movieRevenue,String movieStatus, String movieTagline,boolean hasVideo, String productionCountries, String productionCompanies, String spokenLanguages) {
+        this.movie_genres = movie_genres;
+        this.movie_title = movie_title;
+        this.movie_poster_url = movie_poster_url;
+        this.movie_overview = movie_overview;
+        this.release_date = release_date;
+        this.movie_id = movie_id;
+        this.movie_backdrop_url = movie_backdrop_url;
+        this.movie_popularity = movie_popularity;
+        this.movie_vote_count = movie_vote_count;
+        this.voteAverage = voteAverage;
+        this.movieRuntime = movieRuntime;
+        this.isAdult = isAdult;
+        this.movieBudget = movieBudget;
+        this.movieHomepage = movieHomepage;
+        this.movieImdbId = movieImdbId;
+        this.movieRevenue = movieRevenue;
+        this.movieStatus = movieStatus;
+        this.hasVideo = hasVideo;
+        this.movieTagline = movieTagline;
+        this.movieGenres = movieGenres;
+        this.productionCompanies =productionCompanies;
+        this.productionCountries = productionCountries;
+        this.spokenLanguages = spokenLanguages;
+    }
 
     protected MovieModel(Parcel in) {
         movie_title = in.readString();
@@ -248,7 +272,7 @@ public class MovieModel implements Parcelable{
         this.movieGenres = movieGenres;
     }
 
-    public int getMovieBudget() {
+    public long getMovieBudget() {
         return movieBudget;
     }
 

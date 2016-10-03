@@ -74,12 +74,17 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             float movieVoteAvg = nowPlayingList.get(i).getVoteAverage();
             int movieVoteCount = nowPlayingList.get(i).getVoteCount();
 
+            //pass an id to the movie to get details about the movie
+            // MovieDb movie = nowPlaying.getMovie(movieId,"en");
+
+
             //pass the id of the movie to another thread to fetch more details about the movie
             movieDetSync = new MovieDetSync(movieId);
             Log.d("MOVIDETAILS:MovieID",String.valueOf(movieId));
             movieDetSync.doInBackground();
 
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg);
+
             MovieModelList.add(movieModel);
 
 
