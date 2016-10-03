@@ -15,7 +15,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.movito.themoviedbapi.TmdbApi;
@@ -43,7 +45,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
     private List<MovieModel> MovieModelList;
     private Context context;
 
-    private ArrayList<String> movieGenres = new ArrayList<>();
+    private Set<String> movieGenres = new HashSet<>();
     private ArrayList<String> productionCompanies = new ArrayList<>();
     private ArrayList<String> productionCountries = new ArrayList<>();
     private ArrayList<String> spokenLanguages = new ArrayList<>();
@@ -158,13 +160,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             String status = movie.getStatus();
             String languages = spokenLangStrBuilder.toString();
 
-            Log.d(MOVIESYNC+ "Data ", String.valueOf(runtime) +
-                    " Genres " + genres +
-                    " Tagline" + tagline +
-                    " revenue" + String.valueOf(revenue) +
-                    " ProductionCompanies: " + productionCoStr +
-                    " ProductionCountries " + productionCountriesStr);
-
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg,runtime, genres,isAdult,budget,homepage,imdbid,revenue,status,tagline,false,productionCountriesStr,productionCoStr,languages);
 
             MovieModelList.add(movieModel);
@@ -189,6 +184,12 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             //apply these edits
             editor.apply();
             Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
+            Log.d(MOVIESYNC+ "Data ", String.valueOf(runtime) +
+                    " Genres " + genres +
+                    " Tagline" + tagline +
+                    " revenue" + String.valueOf(revenue) +
+                    " ProductionCompanies: " + productionCoStr +
+                    " ProductionCountries " + productionCountriesStr);
         }
         return null;
     }
