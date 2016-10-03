@@ -145,6 +145,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             //get credits for the movie, that is cast and crew
             //get the details of the cast for this movie
+/*
             for(PersonCast personCast: movie.getCast()){
                 personCastCastId = personCast.getCastId();
                 personCastId = personCast.getId();
@@ -153,7 +154,9 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                 personCastName = personCast.getName();
                 personCastOrder = personCast.getOrder();
             }
+*/
 
+/*
             //get the crew for the movie
             for(PersonCrew personCrew: movie.getCrew()){
                 personCrewCreditId = personCrew.getCreditId();
@@ -162,6 +165,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                 personCrewName = personCrew.getName();
                 personCrewId = personCrew.getId();
             }
+*/
 
             //todo: fetch video urls and keys
             /*for(Video video:movie.getVideos()){
