@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity{
                         new SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated).withIcon(FontAwesome.Icon.faw_fire).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(3),
 
                         /*Upcoming movies*/
-                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming).withIconColor(getResources().getColor(R.color.white)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withIdentifier(4),
+                        new SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming).withIcon(FontAwesome.Icon.faw_calendar).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(4),
 
                         /*Tv series section*/
-                        new SectionDrawerItem().withName(R.string.main_drawer_series_title).withTextColor(getResources().getColor(R.color.white)),
+                        new SectionDrawerItem().withName(R.string.main_drawer_series_title).withTextColor(getResources().getColor(R.color.light_red3)),
                         /*Latest series*/
                         new SecondaryDrawerItem().withName(R.string.main_drawer_series_latest).withIcon(FontAwesome.Icon.faw_clock_o).withIconColor(getResources().getColor(R.color.white)).withSelectedIconColor(getResources().getColor(R.color.light_red3)).withSelectedTextColor(getResources().getColor(R.color.light_red3)).withTextColor(getResources().getColor(R.color.white)).withSelectedColor(getResources().getColor(R.color.background_drawer_color)).withIdentifier(5),
 
@@ -172,7 +172,8 @@ public class MainActivity extends AppCompatActivity{
                                 new LibsBuilder()
                                         .withActivityStyle(Libs.ActivityStyle.DARK)
                                         .withVersionShown(true)
-                                        .withAboutAppName(getResources().getString(R.string.about_app))
+                                        .withAboutAppName(getResources().getString(R.string.app_name))
+                                        .withAboutDescription(getResources().getString(R.string.about_app))
                                         .withAboutIconShown(true)
                                         .start(this);
                                 title = "About";
