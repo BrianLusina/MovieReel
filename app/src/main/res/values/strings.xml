@@ -91,6 +91,7 @@
     <string name="movie_item_header_txt">Movie Title</string>
     <string name="movie_category_txt">Action, Thriller,...</string>
     <string name="movie_time_txt">143min</string>
+    <string name="about_app">Keeping you updated on your favourite shows.</string>
 
     <string-array name="list_preference_entries">
         <item>Entry 1</item>

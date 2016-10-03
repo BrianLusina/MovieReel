@@ -12,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -165,6 +168,12 @@ public class MainActivity extends AppCompatActivity{
 
                             /*about*/
                             case 12:
+                                new LibsBuilder()
+                                        .withActivityStyle(Libs.ActivityStyle.DARK)
+                                        .withVersionShown(true)
+                                        .withAboutAppName(getResources().getString(R.string.about_app))
+                                        .withAboutIconShown(true)
+                                        .start(this);
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
