@@ -50,6 +50,19 @@
                 android:text="@string/movie_title_card"
                 android:textStyle="bold"
                 android:textSize="@dimen/movie_title_size"/>
+
+            <TextView
+                android:id="@+id/movie_voteavg_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/ic_action_back"
+                android:drawableLeft="@drawable/ic_action_back"
+                android:padding="@dimen/movie_item_text_padding"
+                android:text="@string/movie_voteavg_card"
+                android:textStyle="normal"
+                android:textSize="@dimen/movie_voteavg_size"/>
+
             <!--Category, movie time(duration)-->
             <LinearLayout
                 android:layout_width="match_parent"

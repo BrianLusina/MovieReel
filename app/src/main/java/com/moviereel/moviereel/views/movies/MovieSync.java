@@ -24,6 +24,7 @@ import info.movito.themoviedbapi.model.ProductionCompany;
 import info.movito.themoviedbapi.model.ProductionCountry;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import info.movito.themoviedbapi.model.people.PersonCast;
+import info.movito.themoviedbapi.model.people.PersonCrew;
 
 import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAYING_TAG;
 
@@ -88,6 +89,9 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             int personCastCastId, personCastId,personCastOrder;
             String personCastCharacter, personCastCreditId, personCastName;
 
+            String personCrewCreditId, personCrewDept, personCrewJob, personCrewName;
+            int personCrewId;
+
             //pass an id to the movie to get details about the movie
             MovieDb movie = nowPlaying.getMovie(movieId,"en");
 
@@ -142,14 +146,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             //get credits for the movie, that is cast and crew
             //get the details of the cast for this movie
             for(PersonCast personCast: movie.getCast()){
-                /*     "cast_id": 4,
-      "character": "The Narratorr",
-      "credit_id": "52fe4250c3a36847f80149f3",
-      "id": 819,
-      "name": "Edward Norton",
-      "order": 0,
-      "profile_path": null
-    }*/
                 personCastCastId = personCast.getCastId();
                 personCastId = personCast.getId();
                 personCastCharacter = personCast.getCharacter();
@@ -158,6 +154,14 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                 personCastOrder = personCast.getOrder();
             }
 
+            //get the crew for the movie
+            for(PersonCrew personCrew: movie.getCrew()){
+                personCrewCreditId = personCrew.getCreditId();
+                personCrewDept = personCrew.getDepartment();
+                personCrewJob = personCrew.getJob();
+                personCrewName = personCrew.getName();
+                personCrewId = personCrew.getId();
+            }
 
             //todo: fetch video urls and keys
             /*for(Video video:movie.getVideos()){

@@ -1,5 +1,6 @@
 package com.moviereel.moviereel.models;
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,7 +10,7 @@ import android.os.Parcelable;
  * Created by lusinabrian on 20/08/16 at 09:50
  * Description: Model class that creates an instance of a single movie item. This will contain the properties of a single movie item, such as name, date posted, user who posted it, recipe, ingredients, brief description
  */
-public class MovieModel implements Parcelable{
+public class MovieModel implements Parcelable {
     /*fields*/
     private String movie_title, movie_poster_url, movie_backdrop_url, movie_overview, release_date, movieHomepage, movieImdbId, movieStatus, movieTagline, movieGenres, productionCompanies, productionCountries, spokenLanguages;
     private int[] movie_genres;
@@ -78,54 +79,6 @@ public class MovieModel implements Parcelable{
         this.productionCompanies =productionCompanies;
         this.productionCountries = productionCountries;
         this.spokenLanguages = spokenLanguages;
-    }
-
-    protected MovieModel(Parcel in) {
-        movie_title = in.readString();
-        movie_poster_url = in.readString();
-        movie_backdrop_url = in.readString();
-        movie_overview = in.readString();
-        release_date = in.readString();
-        movie_genres = in.createIntArray();
-        movie_id = in.readInt();
-        movie_vote_count = in.readInt();
-        movie_popularity = in.readFloat();
-        voteAverage = in.readFloat();
-        isAdult = in.readByte() != 0;
-        hasVideo = in.readByte() != 0;
-    }
-
-    public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
-        @Override
-        public MovieModel createFromParcel(Parcel in) {
-            return new MovieModel(in);
-        }
-
-        @Override
-        public MovieModel[] newArray(int size) {
-            return new MovieModel[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(movie_title);
-        dest.writeString(movie_poster_url);
-        dest.writeString(movie_backdrop_url);
-        dest.writeString(movie_overview);
-        dest.writeString(release_date);
-        dest.writeIntArray(movie_genres);
-        dest.writeInt(movie_id);
-        dest.writeInt(movie_vote_count);
-        dest.writeDouble(movie_popularity);
-        dest.writeDouble(voteAverage);
-        dest.writeByte((byte) (isAdult ? 1 : 0));
-        dest.writeByte((byte) (hasVideo ? 1 : 0));
     }
 
     /*ACCESS METHODS*/
@@ -311,4 +264,74 @@ public class MovieModel implements Parcelable{
     public void setSpokenLanguages(String spokenLanguages) {
         this.spokenLanguages = spokenLanguages;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.movie_title);
+        dest.writeString(this.movie_poster_url);
+        dest.writeString(this.movie_backdrop_url);
+        dest.writeString(this.movie_overview);
+        dest.writeString(this.release_date);
+        dest.writeString(this.movieHomepage);
+        dest.writeString(this.movieImdbId);
+        dest.writeString(this.movieStatus);
+        dest.writeString(this.movieTagline);
+        dest.writeString(this.movieGenres);
+        dest.writeString(this.productionCompanies);
+        dest.writeString(this.productionCountries);
+        dest.writeString(this.spokenLanguages);
+        dest.writeIntArray(this.movie_genres);
+        dest.writeInt(this.movie_id);
+        dest.writeInt(this.movie_vote_count);
+        dest.writeInt(this.movieRuntime);
+        dest.writeFloat(this.movie_popularity);
+        dest.writeFloat(this.voteAverage);
+        dest.writeByte(this.isAdult ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasVideo ? (byte) 1 : (byte) 0);
+        dest.writeLong(this.movieRevenue);
+        dest.writeLong(this.movieBudget);
+    }
+
+    protected MovieModel(Parcel in) {
+        this.movie_title = in.readString();
+        this.movie_poster_url = in.readString();
+        this.movie_backdrop_url = in.readString();
+        this.movie_overview = in.readString();
+        this.release_date = in.readString();
+        this.movieHomepage = in.readString();
+        this.movieImdbId = in.readString();
+        this.movieStatus = in.readString();
+        this.movieTagline = in.readString();
+        this.movieGenres = in.readString();
+        this.productionCompanies = in.readString();
+        this.productionCountries = in.readString();
+        this.spokenLanguages = in.readString();
+        this.movie_genres = in.createIntArray();
+        this.movie_id = in.readInt();
+        this.movie_vote_count = in.readInt();
+        this.movieRuntime = in.readInt();
+        this.movie_popularity = in.readFloat();
+        this.voteAverage = in.readFloat();
+        this.isAdult = in.readByte() != 0;
+        this.hasVideo = in.readByte() != 0;
+        this.movieRevenue = in.readLong();
+        this.movieBudget = in.readLong();
+    }
+
+    public static final Parcelable.Creator<MovieModel> CREATOR = new Parcelable.Creator<MovieModel>() {
+        @Override
+        public MovieModel createFromParcel(Parcel source) {
+            return new MovieModel(source);
+        }
+
+        @Override
+        public MovieModel[] newArray(int size) {
+            return new MovieModel[size];
+        }
+    };
 }
