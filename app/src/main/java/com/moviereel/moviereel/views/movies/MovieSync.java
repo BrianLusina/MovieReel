@@ -20,7 +20,11 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.Genre;
+import info.movito.themoviedbapi.model.Language;
 import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.ProductionCompany;
+import info.movito.themoviedbapi.model.ProductionCountry;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,10 +38,21 @@ import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAY
  * Description: Sync Task to fetch movies*/
 
 public class MovieSync extends AsyncTask<String, Void, String> {
+    private static final String MOVIESYNC = MovieSync.class.getSimpleName();
+
     private SweetAlertDialog progressDialog;
     private List<MovieModel> MovieModelList;
     private Context context;
     private MovieDetSync movieDetSync;
+
+    private ArrayList<String> movieGenres = new ArrayList<>();
+    private ArrayList<String> productionCompanies = new ArrayList<>();
+    private ArrayList<String> productionCountries = new ArrayList<>();
+    private ArrayList<String> spokenLanguages = new ArrayList<>();
+    private StringBuilder stringBuilder = new StringBuilder();
+    private StringBuilder productionCoSb = new StringBuilder();
+    private StringBuilder productionCountriesSb = new StringBuilder();
+    private StringBuilder spokenLangStrBuilder = new StringBuilder();
 
     public MovieSync(){}
 
@@ -75,18 +90,91 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             int movieVoteCount = nowPlayingList.get(i).getVoteCount();
 
             //pass an id to the movie to get details about the movie
-            // MovieDb movie = nowPlaying.getMovie(movieId,"en");
+            MovieDb movie = nowPlaying.getMovie(movieId,"en");
 
+            /*get the genres of the movies*/
+            for(Genre genre: movie.getGenres()){
+                movieGenres.add(genre.getName());
+            }
+
+            for(String s: movieGenres){
+                stringBuilder.append(s);
+                stringBuilder.append(", ");
+            }
+
+            //get production companies
+            for(ProductionCompany productionCompany: movie.getProductionCompanies()){
+                productionCompanies.add(productionCompany.getName());
+            }
+
+            //store the results in a string builder
+            for (String s: productionCompanies){
+                productionCoSb.append(s);
+                productionCoSb.append(", ");
+            }
+
+            //get the production countries
+            for(ProductionCountry productionCountry: movie.getProductionCountries()){
+                productionCountries.add(productionCountry.getName());
+            }
+
+            //store the results in a string builder
+            for (String s: productionCountries){
+                productionCountriesSb.append(s);
+                productionCountriesSb.append(", ");
+            }
+
+            /**Get spoken languages*/
+            for(Language lang: movie.getSpokenLanguages()){
+                spokenLanguages.add(lang.getName());
+            }
+
+            for(String spokenLang: spokenLanguages){
+                spokenLangStrBuilder.append(spokenLang);
+                spokenLangStrBuilder.append(", ");
+            }
+
+            //todo: fetch video urls and keys
+        /*for(Video video:movie.getVideos()){
+
+        }*/
+
+        /*Get images of the movie*/
+
+        /*todo: get reviews if any*/
+        /*
+        for(Reviews reviews:movie.getReviews()){
+
+        }*/
+
+            int runtime = movie.getRuntime();
+            String genres = stringBuilder.toString();
+            String tagline = movie.getTagline();
+            long revenue = movie.getRevenue();
+            String productionCoStr = productionCoSb.toString();
+            String productionCountriesStr = productionCountriesSb.toString();
+            String homepage = movie.getHomepage();
+            boolean isAdult = movie.isAdult();
+            long budget = movie.getBudget();
+            String imdbid = movie.getImdbID();
+            String status = movie.getStatus();
+            String languages = spokenLangStrBuilder.toString();
+
+            Log.d(MOVIESYNC+ "Data ", String.valueOf(runtime) +
+                    " Genres " + genres +
+                    " Tagline" + tagline +
+                    " revenue" + String.valueOf(revenue) +
+                    " ProductionCompanies: " + productionCoStr +
+                    " ProductionCountries " + productionCountriesStr);
 
             //pass the id of the movie to another thread to fetch more details about the movie
+            /*
             movieDetSync = new MovieDetSync(movieId);
-            Log.d("MOVIDETAILS:MovieID",String.valueOf(movieId));
-            movieDetSync.doInBackground();
+            movieDetSync.doInBackground();*/
 
-            MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg);
+            MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg,runtime, genres,isAdult,budget,homepage,imdbid,revenue,status,tagline,false,productionCountriesStr,productionCoStr,languages);
 
             MovieModelList.add(movieModel);
-
 
             /**Get an instance of the shared preferences create and access the MovieData
              * Store the data only to the application*/
