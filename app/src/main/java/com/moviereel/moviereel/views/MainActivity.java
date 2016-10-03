@@ -157,15 +157,16 @@ public class MainActivity extends AppCompatActivity{
 
                             /*help*/
                             case 10:
+                                title = "Help";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
                                 break;
 
                             /*settings*/
                             case 11:
                                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                                title = "Settings";
                                 Log.d(MAINACTIVITY_TAG, "Viewing " + title + "Settings");
                                 break;
-
                             /*about*/
                             case 12:
                                 new LibsBuilder()
@@ -174,7 +175,8 @@ public class MainActivity extends AppCompatActivity{
                                         .withAboutAppName(getResources().getString(R.string.about_app))
                                         .withAboutIconShown(true)
                                         .start(this);
-                                Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
+                                title = "About";
+                                Log.d(MAINACTIVITY_TAG, "Viewing " + title + " screen");
                                 break;
 
                             /*default is Home screen*/
