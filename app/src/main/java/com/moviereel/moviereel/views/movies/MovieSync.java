@@ -45,7 +45,9 @@ public class MovieSync extends AsyncTask<String, Void, String> {
     private List<MovieModel> MovieModelList;
     private Context context;
 
-    private Set<String> movieGenres = new HashSet<>();
+    private Set<String> movieGenresSet = new HashSet<>();
+    private ArrayList<String> movieGenresArrLst = new ArrayList<>();
+
     private ArrayList<String> productionCompanies = new ArrayList<>();
     private ArrayList<String> productionCountries = new ArrayList<>();
     private ArrayList<String> spokenLanguages = new ArrayList<>();
@@ -94,10 +96,16 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             /*get the genres of the movies*/
             for(Genre genre: movie.getGenres()){
-                movieGenres.add(genre.getName());
+                movieGenresArrLst.add(genre.getName());
             }
 
-            for(String s: movieGenres){
+            /*Add the whole arraylist to a hash set to remove all duplicates from the Genres list
+            * clear the array list and add the hash set back to the arraylist*/
+            movieGenresSet.addAll(movieGenresArrLst);
+            movieGenresArrLst.clear();
+            movieGenresArrLst.addAll(movieGenresSet);
+
+            for(String s: movieGenresSet){
                 stringBuilder.append(s);
                 stringBuilder.append(", ");
             }
