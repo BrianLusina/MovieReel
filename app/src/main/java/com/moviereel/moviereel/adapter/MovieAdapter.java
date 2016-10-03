@@ -79,7 +79,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView MoviePoster;
-        public TextView MovieTitle, movieCategories, movieRunTime;
+        public TextView MovieTitle, movieCategories, movieRunTime, movieVoteAvg;
         public ProgressBar progressBar;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +88,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             MovieTitle = (TextView) itemView.findViewById(R.id.movie_title_card);
             movieCategories = (TextView)itemView.findViewById(R.id.movie_categories_txt_id);
             movieRunTime = (TextView)itemView.findViewById(R.id.movie_runtime_txt_id);
+            movieVoteAvg = (TextView) itemView.findViewById(R.id.movie_voteavg_card);
         }
         public void bind(MovieModel movieModel){
             MovieTitle.setText(movieModel.getMovie_title());
@@ -95,8 +96,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
             //remove the last coma in the genres string
             String genres = movieModel.getMovieGenres().replace(movieModel.getMovieGenres().charAt(movieModel.getMovieGenres().length() - 1),' ');
-
             movieCategories.setText(genres);
+            /*set the text for the vote average*/
+            movieVoteAvg.setText(String.valueOf(movieModel.getVoteAverage()));
         }
     }
 

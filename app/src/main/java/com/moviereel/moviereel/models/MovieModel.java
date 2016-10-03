@@ -153,7 +153,7 @@ public class MovieModel implements Parcelable {
         this.movie_genres = genres;
     }
 
-    public double getVoteAverage() {
+    public float getVoteAverage() {
         return voteAverage;
     }
 

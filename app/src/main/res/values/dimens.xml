@@ -20,6 +20,6 @@
     <dimen name="movie_chef_marginTop">10dp</dimen>
     <dimen name="movie_item_text_padding">8dp</dimen>
     <dimen name="movieitem_padding">16dp</dimen>
-    <dimen name="movie_voteavg_size">18sp</dimen>
+    <dimen name="movie_voteavg_size">15sp</dimen>
 
 </resources>
