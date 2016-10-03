@@ -9,11 +9,6 @@ import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,9 +23,7 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.ProductionCompany;
 import info.movito.themoviedbapi.model.ProductionCountry;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+
 import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAYING_TAG;
 
 /**
@@ -44,17 +37,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
     private SweetAlertDialog progressDialog;
     private List<MovieModel> MovieModelList;
     private Context context;
-
-    private Set<String> movieGenresSet = new HashSet<>();
-    private ArrayList<String> movieGenresArrLst = new ArrayList<>();
-
-    private ArrayList<String> productionCompanies = new ArrayList<>();
-    private ArrayList<String> productionCountries = new ArrayList<>();
-    private ArrayList<String> spokenLanguages = new ArrayList<>();
-    private StringBuilder stringBuilder = new StringBuilder();
-    private StringBuilder productionCoSb = new StringBuilder();
-    private StringBuilder productionCountriesSb = new StringBuilder();
-    private StringBuilder spokenLangStrBuilder = new StringBuilder();
 
     public MovieSync(){}
 
@@ -80,6 +62,16 @@ public class MovieSync extends AsyncTask<String, Void, String> {
         MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
         for(int i = 0; i < nowPlayingList.size();i++){
+            Set<String> movieGenresSet = new HashSet<>();
+            ArrayList<String> movieGenresArrLst = new ArrayList<>();
+            ArrayList<String> productionCompanies = new ArrayList<>();
+            ArrayList<String> productionCountries = new ArrayList<>();
+            ArrayList<String> spokenLanguages = new ArrayList<>();
+            StringBuilder genresStringBuilder = new StringBuilder();
+            StringBuilder productionCoSb = new StringBuilder();
+            StringBuilder productionCountriesSb = new StringBuilder();
+            StringBuilder spokenLangStrBuilder = new StringBuilder();
+
         /*Retrieve the data and store it relevant variables*/
             String poster_path = Contract.MOVIE_POSTER_PATH + nowPlayingList.get(i).getPosterPath();
             String backdrop_path = Contract.MOVIE_POSTER_PATH + nowPlayingList.get(i).getBackdropPath();
@@ -106,8 +98,8 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             movieGenresArrLst.addAll(movieGenresSet);
 
             for(String s: movieGenresSet){
-                stringBuilder.append(s);
-                stringBuilder.append(", ");
+                genresStringBuilder.append(s);
+                genresStringBuilder.append(", ");
             }
 
             //get production companies
@@ -143,20 +135,19 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             }
 
             //todo: fetch video urls and keys
-        /*for(Video video:movie.getVideos()){
+            /*for(Video video:movie.getVideos()){
+            }*/
 
-        }*/
+            /*Get images of the movie*/
 
-        /*Get images of the movie*/
+            /*todo: get reviews if any*/
+            /*
+            for(Reviews reviews:movie.getReviews()){
 
-        /*todo: get reviews if any*/
-        /*
-        for(Reviews reviews:movie.getReviews()){
-
-        }*/
+            }*/
 
             int runtime = movie.getRuntime();
-            String genres = stringBuilder.toString();
+            String genres = genresStringBuilder.toString();
             String tagline = movie.getTagline();
             long revenue = movie.getRevenue();
             String productionCoStr = productionCoSb.toString();
