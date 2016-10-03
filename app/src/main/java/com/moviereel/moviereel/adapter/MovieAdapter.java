@@ -92,7 +92,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public void bind(MovieModel movieModel){
             MovieTitle.setText(movieModel.getMovie_title());
             movieRunTime.setText(String.valueOf(movieModel.getMovieRuntime()) + " min");
-            movieCategories.setText(movieModel.getMovieGenres());
+
+            //remove the last coma in the genres string
+            String genres = movieModel.getMovieGenres().replace(movieModel.getMovieGenres().charAt(movieModel.getMovieGenres().length() - 1),' ');
+
+            movieCategories.setText(genres);
         }
     }
 

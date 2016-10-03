@@ -23,6 +23,7 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.ProductionCompany;
 import info.movito.themoviedbapi.model.ProductionCountry;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
+import info.movito.themoviedbapi.model.people.PersonCast;
 
 import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAYING_TAG;
 
@@ -72,7 +73,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             StringBuilder productionCountriesSb = new StringBuilder();
             StringBuilder spokenLangStrBuilder = new StringBuilder();
 
-        /*Retrieve the data and store it relevant variables*/
+            /*Retrieve the data and store it relevant variables*/
             String poster_path = Contract.MOVIE_POSTER_PATH + nowPlayingList.get(i).getPosterPath();
             String backdrop_path = Contract.MOVIE_POSTER_PATH + nowPlayingList.get(i).getBackdropPath();
             String overview = nowPlayingList.get(i).getOverview();
@@ -82,6 +83,10 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             float moviePopularity = nowPlayingList.get(i).getPopularity();
             float movieVoteAvg = nowPlayingList.get(i).getVoteAverage();
             int movieVoteCount = nowPlayingList.get(i).getVoteCount();
+
+            /*Person cast Details*/
+            int personCastCastId, personCastId,personCastOrder;
+            String personCastCharacter, personCastCreditId, personCastName;
 
             //pass an id to the movie to get details about the movie
             MovieDb movie = nowPlaying.getMovie(movieId,"en");
@@ -133,6 +138,26 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                 spokenLangStrBuilder.append(spokenLang);
                 spokenLangStrBuilder.append(", ");
             }
+
+            //get credits for the movie, that is cast and crew
+            //get the details of the cast for this movie
+            for(PersonCast personCast: movie.getCast()){
+                /*     "cast_id": 4,
+      "character": "The Narratorr",
+      "credit_id": "52fe4250c3a36847f80149f3",
+      "id": 819,
+      "name": "Edward Norton",
+      "order": 0,
+      "profile_path": null
+    }*/
+                personCastCastId = personCast.getCastId();
+                personCastId = personCast.getId();
+                personCastCharacter = personCast.getCharacter();
+                personCastCreditId = personCast.getCreditId();
+                personCastName = personCast.getName();
+                personCastOrder = personCast.getOrder();
+            }
+
 
             //todo: fetch video urls and keys
             /*for(Video video:movie.getVideos()){
