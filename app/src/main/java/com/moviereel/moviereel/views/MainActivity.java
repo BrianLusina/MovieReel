@@ -1,6 +1,7 @@
 package com.moviereel.moviereel.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.views.movies.MovieNowPlaying;
+import com.moviereel.moviereel.views.settings.SettingsActivity;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
@@ -157,7 +159,8 @@ public class MainActivity extends AppCompatActivity{
 
                             /*settings*/
                             case 11:
-                                Log.d(MAINACTIVITY_TAG, "Viewing " + title + " fragment.");
+                                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                                Log.d(MAINACTIVITY_TAG, "Viewing " + title + "Settings");
                                 break;
 
                             /*about*/
