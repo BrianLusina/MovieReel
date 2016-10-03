@@ -58,6 +58,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:background="@drawable/ic_voteavg_badge"
+                android:drawableStart="@drawable/ic_voteavg_star"
+                android:drawableLeft="@drawable/ic_voteavg_star"
                 android:padding="@dimen/movie_item_text_padding"
                 android:text="@string/movie_voteavg_card"
                 android:textStyle="normal"
