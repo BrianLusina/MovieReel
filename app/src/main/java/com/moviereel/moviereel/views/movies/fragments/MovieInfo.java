@@ -59,12 +59,19 @@ public class MovieInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movieinfo_layout, container, false);
         ButterKnife.bind(this, rootView);
+        setViews();
 
         return rootView;
     }
 
     /**Set the views from the received MovieModel object*/
     private void setViews(){
-
+        movieOverviewTxt.setText(movieModel.getMovie_overview());
+        movieStatusTxt.setText(movieModel.getMovieStatus());
+        movieOriginalLang.setText(movieModel.getSpokenLanguages());
+        movieBudget.setText(String.valueOf(movieModel.getMovieBudget()));
+        movieRevenue.setText(String.valueOf(movieModel.getMovieRevenue()));
+        movieHomepage.setText(movieModel.getMovieHomepage());
+        movieGenres.setText(movieModel.getMovieGenres());
     }
 }
