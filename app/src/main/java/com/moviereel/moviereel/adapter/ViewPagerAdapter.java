@@ -24,8 +24,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(FragmentManager fm, MovieModel movieModel) {
         super(fm);
         this.movieModel = movieModel;
-
-
     }
 
     @Override

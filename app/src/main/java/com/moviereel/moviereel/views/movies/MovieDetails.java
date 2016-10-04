@@ -66,6 +66,8 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         movieObj = getIntent().getExtras().getParcelable("MovieObj");
         bundle = new Bundle();
         bundle.putParcelable("MOVIE_DATA", movieObj);
+        Log.d(MOVIEDETAIL_TAG+"Bundle",bundle.toString());
+
         if (movieObj != null) {
             mCollapseToolbar.setTitle(movieObj.getMovie_title());
             Glide.with(this)

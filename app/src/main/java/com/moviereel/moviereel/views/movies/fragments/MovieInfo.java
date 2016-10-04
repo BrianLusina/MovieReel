@@ -3,6 +3,7 @@ package com.moviereel.moviereel.views.movies.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class MovieInfo extends Fragment {
         //retrieve the arguments and set them to the movie model
         bundle = getArguments();
         movieModel = bundle.getParcelable(PARCEL_KEY);
+        Log.d(MOVIEINFO_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
     }
 
     @Nullable
@@ -63,6 +65,6 @@ public class MovieInfo extends Fragment {
 
     /**Set the views from the received MovieModel object*/
     private void setViews(){
-        
+
     }
 }
