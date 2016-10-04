@@ -37,7 +37,7 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_height="wrap_content">
-
+            
         </LinearLayout>
 
         <!--movie genres and such-->
