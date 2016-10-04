@@ -93,6 +93,7 @@
     <string name="movie_time_txt">143min</string>
     <string name="about_app">Keeping you updated on your favourite shows.</string>
     <string name="movie_voteavg_card">4.7</string>
+    <string name="movieinfo_desc_title">Description</string>
 
     <string-array name="list_preference_entries">
         <item>Entry 1</item>

@@ -6,8 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.moviereel.moviereel.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * MovieReel
@@ -18,6 +22,8 @@ import com.moviereel.moviereel.R;
 
 public class MovieInfo extends Fragment {
     public static final String MOVIEINFO_TAG = MovieInfo.class.getSimpleName();
+    @BindView(R.id.movieinfo_desc_title) TextView movieDescTitle;
+    @BindView(R.id.movieinfo_overview_txt) TextView movieOverviewTxt;
 
     public MovieInfo(){}
 
@@ -31,6 +37,7 @@ public class MovieInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movieinfo_layout, container, false);
+        ButterKnife.bind(this, rootView);
 
         return rootView;
     }
