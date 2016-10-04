@@ -65,7 +65,7 @@
                 app:contentPaddingLeft="16dp"
                 app:contentPaddingRight="16dp"
                 app:cardCornerRadius="4dp"
-                app:cardBackgroundColor="@android:color/white"
+                app:cardBackgroundColor="@color/background_color"
                 app:cardElevation="4dp"
                 android:layout_margin="8dp">
                 <LinearLayout
@@ -75,12 +75,12 @@
 
                     <com.astuetz.PagerSlidingTabStrip
                         android:id="@+id/moviedetail_pagerslidingtabs"
-                        android:layout_height="25dip"
+                        android:layout_height="45dip"
                         android:layout_width="match_parent"
                         app:pstsIndicatorColor="@color/light_red3"
                         app:pstsIndicatorHeight="2dp"
                         app:pstsShouldExpand="true"
-                        app:pstsTextAllCaps="false"
+                        app:pstsTextAllCaps="true"
                         app:pstsUnderlineHeight="2dp"
                         app:pstsUnderlineColor="@color/light_gray"/>
 

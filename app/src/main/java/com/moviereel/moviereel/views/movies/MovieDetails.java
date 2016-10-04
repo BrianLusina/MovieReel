@@ -109,6 +109,9 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
 
         //bind the pager sliding tab strip to the viewpager
         pagerSlidingTabStrip.setViewPager(mViewPager);
+        pagerSlidingTabStrip.setTextColor(R.color.light_red3);
+        pagerSlidingTabStrip.setTextColorResource(R.color.light_red3);
+
         pagerSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
