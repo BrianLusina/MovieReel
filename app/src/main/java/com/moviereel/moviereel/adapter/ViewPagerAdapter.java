@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.moviereel.moviereel.models.MovieModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +19,13 @@ import java.util.List;
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentTitleList = new ArrayList<>();
+    private MovieModel movieModel;
 
-    public ViewPagerAdapter(FragmentManager fm) {
+    public ViewPagerAdapter(FragmentManager fm, MovieModel movieModel) {
         super(fm);
+        this.movieModel = movieModel;
+
+
     }
 
     @Override

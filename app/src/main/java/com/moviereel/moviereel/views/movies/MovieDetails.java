@@ -35,6 +35,7 @@ import butterknife.ButterKnife;
 public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
     public static final String MOVIEDETAIL_TAG = MovieDetails.class.getSimpleName();
     private MovieModel movieObj;
+    private Bundle bundle;
     /*UI Views*/
     @BindView(R.id.moviedetail_fab_share_id) View mFab;
     @BindView(R.id.moviedetail_toolbar) Toolbar toolbar;
@@ -63,13 +64,15 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     /*Retrieves the object from previous Activity*/
     private void retrieveObj() {
         movieObj = getIntent().getExtras().getParcelable("MovieObj");
+        bundle = new Bundle();
+        bundle.putParcelable("MOVIE_DATA", movieObj);
         if (movieObj != null) {
             mCollapseToolbar.setTitle(movieObj.getMovie_title());
             Glide.with(this)
                     .load(movieObj.getMovie_poster_url())
                     .into(movieDetailImg);
-            Log.d(MOVIEDETAIL_TAG, movieObj.getMovie_title()+ " Poster" + movieObj.getMovie_poster_url());
         }else{
+            //TODO: display error to user in such an event
             Log.d(MOVIEDETAIL_TAG, "No Data Received");
         }
     }
@@ -99,8 +102,13 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
 
     /**Initialize the ViewPager and set the adapter*/
     private void initViewPager() {
-        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mViewPagerAdapter.addFragment(MovieInfo.newInstance(), "Info");
+        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), movieObj);
+        /*Pass the bundle to the fragments and set the bundle*/
+        MovieInfo movieInfo = new MovieInfo();
+        movieInfo.setArguments(bundle);
+
+        mViewPagerAdapter.addFragment(movieInfo, "Info");
+
         mViewPagerAdapter.addFragment(MovieCast.newInstance(), "Cast");
         mViewPagerAdapter.addFragment(MovieImages.newInstance(), "Images");
         mViewPagerAdapter.addFragment(MovieReviews.newInstance(), "Reviews");
@@ -111,7 +119,6 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         pagerSlidingTabStrip.setViewPager(mViewPager);
         pagerSlidingTabStrip.setTextColor(R.color.light_red3);
         pagerSlidingTabStrip.setTextColorResource(R.color.light_red3);
-
         pagerSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -129,5 +136,4 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
             }
         });
     }
-
 }

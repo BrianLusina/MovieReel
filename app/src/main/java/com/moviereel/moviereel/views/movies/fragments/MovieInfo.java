@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.models.MovieModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +32,9 @@ public class MovieInfo extends Fragment {
     @BindView(R.id.movieinfo_homepage_field) TextView movieHomepage;
     @BindView(R.id.movieinfo_genres_field) TextView movieGenres;
 
+    private Bundle bundle;
+    private MovieModel movieModel;
+    private String PARCEL_KEY = "MOVIE_DATA";
 
     public MovieInfo(){}
 
@@ -40,6 +44,14 @@ public class MovieInfo extends Fragment {
         return movieInfo;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //retrieve the arguments and set them to the movie model
+        bundle = getArguments();
+        movieModel = bundle.getParcelable(PARCEL_KEY);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,5 +59,10 @@ public class MovieInfo extends Fragment {
         ButterKnife.bind(this, rootView);
 
         return rootView;
+    }
+
+    /**Set the views from the received MovieModel object*/
+    private void setViews(){
+        
     }
 }
