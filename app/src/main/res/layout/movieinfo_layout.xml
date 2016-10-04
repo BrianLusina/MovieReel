@@ -20,7 +20,7 @@
         android:text="@string/movieinfo_desc_title"
         android:textSize="25sp"
         android:textStyle="normal"
-        android:textColor="@color/light_red3"/>
+        android:textColor="@color/wheat"/>
 
     <TextView
         android:id="@+id/movieinfo_overview_txt"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/movieinfo_fact_title"
                 android:textStyle="bold"
-                android:textColor="@color/light_red3"/>
+                android:textColor="@color/wheat"/>
 
             <!--Status-->
             <LinearLayout
@@ -64,13 +64,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_status_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <!--Original language-->
@@ -85,13 +85,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_originallang_lbl"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_origlang_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <!--Runtime-->
@@ -106,13 +106,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_runtime_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_runtime_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <!--Budget-->
@@ -127,13 +127,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_budget_lbl"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_budget_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <!--Revenue-->
@@ -148,13 +148,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_revenue_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_revenue_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <!--Homepage-->
@@ -169,13 +169,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_homepage_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_homepage_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -193,7 +193,7 @@
                 android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                 android:text="@string/movieinfo_genres_title"
                 android:textStyle="bold"
-                android:textColor="@color/light_red3"/>
+                android:textColor="@color/wheat"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -206,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_genres_field"
-                    android:textColor="@color/light_red3"/>
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
