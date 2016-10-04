@@ -20,7 +20,7 @@
         android:text="@string/movieinfo_desc_title"
         android:textSize="25sp"
         android:textStyle="normal"
-        android:textColor="@color/light_purple"/>
+        android:textColor="@color/light_red3"/>
 
     <TextView
         android:id="@+id/movieinfo_overview_txt"
@@ -49,11 +49,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/movieinfo_fact_title"
-                android:textColor="@color/dark_purple"/>
-            <View
-                android:layout_width="35dp"
-                android:layout_height="0.1dp"
-                android:background="@color/light_gray"/>
+                android:textStyle="bold"
+                android:textColor="@color/light_red3"/>
+
             <!--Status-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,13 +64,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
                 <TextView
                     android:id="@+id/movieinfo_status_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
             </LinearLayout>
 
             <!--Original language-->
@@ -87,13 +85,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_originallang_lbl"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
                 <TextView
                     android:id="@+id/movieinfo_origlang_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
             </LinearLayout>
 
             <!--Runtime-->
@@ -108,13 +106,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_runtime_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
                 <TextView
                     android:id="@+id/movieinfo_runtime_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
             </LinearLayout>
 
             <!--Budget-->
@@ -129,13 +127,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_budget_lbl"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
                 <TextView
                     android:id="@+id/movieinfo_budget_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
             </LinearLayout>
 
             <!--Revenue-->
@@ -150,13 +148,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_revenue_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
                 <TextView
                     android:id="@+id/movieinfo_revenue_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
             </LinearLayout>
 
             <!--Homepage-->
@@ -171,13 +169,13 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                     android:text="@string/movieinfo_homepage_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
                 <TextView
                     android:id="@+id/movieinfo_homepage_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_status_title"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -194,12 +192,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp" android:layout_height="wrap_content"
                 android:text="@string/movieinfo_genres_title"
-                android:textColor="@color/dark_purple"/>
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="0.1dp"
-                android:background="@color/light_gray"/>
+                android:textStyle="bold"
+                android:textColor="@color/light_red3"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -212,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_genres_field"
-                    android:textColor="@color/light_purple"/>
+                    android:textColor="@color/light_red3"/>
 
             </LinearLayout>
 
