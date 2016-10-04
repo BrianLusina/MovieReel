@@ -24,6 +24,13 @@ public class MovieInfo extends Fragment {
     public static final String MOVIEINFO_TAG = MovieInfo.class.getSimpleName();
     @BindView(R.id.movieinfo_desc_title) TextView movieDescTitle;
     @BindView(R.id.movieinfo_overview_txt) TextView movieOverviewTxt;
+    @BindView(R.id.movieinfo_status_field) TextView movieStatusTxt;
+    @BindView(R.id.movieinfo_origlang_field) TextView movieOriginalLang;
+    @BindView(R.id.movieinfo_budget_field) TextView movieBudget;
+    @BindView(R.id.movieinfo_revenue_field) TextView movieRevenue;
+    @BindView(R.id.movieinfo_homepage_field) TextView movieHomepage;
+    @BindView(R.id.movieinfo_genres_field) TextView movieGenres;
+
 
     public MovieInfo(){}
 

@@ -30,6 +30,7 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:baselineAligned="false"
+        android:layout_marginTop="16dp"
         android:layout_height="wrap_content">
         <!--Movie facts and data-->
         <LinearLayout
@@ -37,7 +38,142 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_height="wrap_content">
-            
+            <TextView
+                android:id="@+id/movieinfo_fact_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/movieinfo_fact_title"
+                android:textColor="@color/dark_purple"/>
+            <View
+                android:layout_width="35dp"
+                android:layout_height="0.1dp"
+                android:background="@color/light_gray"/>
+            <!--Status-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/movieinfo_status_title"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+                <TextView
+                    android:id="@+id/movieinfo_status_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+            </LinearLayout>
+
+            <!--Original language-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/movieinfo_origlang_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_originallang_lbl"
+                    android:textColor="@color/light_purple"/>
+                <TextView
+                    android:id="@+id/movieinfo_origlang_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+            </LinearLayout>
+
+            <!--Runtime-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/movieinfo_runtime_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_runtime_title"
+                    android:textColor="@color/light_purple"/>
+                <TextView
+                    android:id="@+id/movieinfo_runtime_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+            </LinearLayout>
+
+            <!--Budget-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/movieinfo_budget_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_budget_lbl"
+                    android:textColor="@color/light_purple"/>
+                <TextView
+                    android:id="@+id/movieinfo_budget_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+            </LinearLayout>
+
+            <!--Revenue-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/movieinfo_revenue_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_revenue_title"
+                    android:textColor="@color/light_purple"/>
+                <TextView
+                    android:id="@+id/movieinfo_revenue_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+            </LinearLayout>
+
+            <!--Homepage-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/movieinfo_homepage_title"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_homepage_title"
+                    android:textColor="@color/light_purple"/>
+                <TextView
+                    android:id="@+id/movieinfo_homepage_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_status_title"
+                    android:textColor="@color/light_purple"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <!--movie genres and such-->
@@ -46,6 +182,33 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/movieinfo_genres_lbl"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp" android:layout_height="wrap_content"
+                android:text="@string/movieinfo_genres_title"
+                android:textColor="@color/dark_purple"/>
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="0.1dp"
+                android:background="@color/light_gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/movieinfo_genres_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_genres_field"
+                    android:textColor="@color/light_purple"/>
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

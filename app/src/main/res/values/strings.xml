@@ -94,6 +94,15 @@
     <string name="about_app">Keeping you updated on your favourite shows.</string>
     <string name="movie_voteavg_card">4.7</string>
     <string name="movieinfo_desc_title">Description</string>
+    <string name="movieinfo_fact_title">Facts</string>
+    <string name="movieinfo_status_title">Status:</string>
+    <string name="movieinfo_originallang_lbl">Language:</string>
+    <string name="movieinfo_runtime_title">Runtime:</string>
+    <string name="movieinfo_budget_lbl">Budget:</string>
+    <string name="movieinfo_revenue_title">Revenue:</string>
+    <string name="movieinfo_homepage_title">Homepage</string>
+    <string name="movieinfo_genres_title">Genres</string>
+    <string name="movieinfo_genres_field">Genres</string>
 
     <string-array name="list_preference_entries">
         <item>Entry 1</item>

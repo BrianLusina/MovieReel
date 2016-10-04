@@ -44,6 +44,7 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
     @BindView(R.id.moviedetail_appbar_id) AppBarLayout appbar;
     @BindView(R.id.moviedetail_collapsingtoolbar) CollapsingToolbarLayout mCollapseToolbar;
 
+
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
