@@ -34,13 +34,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:weightSum="2"
         android:baselineAligned="false"
         android:layout_marginTop="16dp"
         android:layout_height="wrap_content">
         <!--Movie facts and data-->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_height="wrap_content">
@@ -178,39 +177,31 @@
                     android:textColor="@color/white"/>
             </LinearLayout>
 
-        </LinearLayout>
-
-        <!--movie genres and such-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/movieinfo_genres_lbl"
-                android:layout_width="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp" android:layout_height="wrap_content"
-                android:text="@string/movieinfo_genres_title"
-                android:textStyle="bold"
-                android:textColor="@color/wheat"/>
-
+            <!--Genres-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
-
+                <TextView
+                    android:id="@+id/movieinfo_genres_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movieinfo_genres_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/wheat"/>
                 <TextView
                     android:id="@+id/movieinfo_genres_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/movieinfo_genres_field"
                     android:textColor="@color/white"/>
-
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
 </ScrollView>
