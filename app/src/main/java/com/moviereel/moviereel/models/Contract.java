@@ -13,4 +13,7 @@ public class Contract {
     /*Movie enpoints*/
     public static final String MOVIE_DB_KEY = BuildConfig.MOVIE_DB_KEY;
     public static final String MOVIE_POSTER_PATH = BuildConfig.POSTER_PATH;
+    public static final String MOVIE_PARCEL_KEY = "MOVIE_DATA";
+    public static final String TV_PARCEL_KEY = "TV_DATA";
+
 }

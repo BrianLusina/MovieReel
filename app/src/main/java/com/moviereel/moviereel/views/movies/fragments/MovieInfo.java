@@ -15,6 +15,8 @@ import com.moviereel.moviereel.models.MovieModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
+
 /**
  * MovieReel
  * com.moviereel.moviereel.views.movies.fragments
@@ -35,7 +37,6 @@ public class MovieInfo extends Fragment {
 
     private Bundle bundle;
     private MovieModel movieModel;
-    private String PARCEL_KEY = "MOVIE_DATA";
 
     public MovieInfo(){}
 
@@ -50,7 +51,7 @@ public class MovieInfo extends Fragment {
         super.onCreate(savedInstanceState);
         //retrieve the arguments and set them to the movie model
         bundle = getArguments();
-        movieModel = bundle.getParcelable(PARCEL_KEY);
+        movieModel = bundle.getParcelable(MOVIE_PARCEL_KEY);
         Log.d(MOVIEINFO_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
     }
 
