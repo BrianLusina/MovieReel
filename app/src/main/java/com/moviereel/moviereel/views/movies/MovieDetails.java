@@ -61,11 +61,16 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         initViewPager();
     }
 
-    /*Retrieves the object from previous Activity*/
+    /**Retrieves the Movie object from previous Activity
+     * initializes the MovieModel object and adds if to a bundle {@code bundle}
+     * The object can then be used to initialze any views in the activity
+     * This bundle is then set as arguments to initialize in the fragments in the viewpager
+     * */
     private void retrieveObj() {
         movieObj = getIntent().getExtras().getParcelable("MovieObj");
         bundle = new Bundle();
         bundle.putParcelable("MOVIE_DATA", movieObj);
+
         Log.d(MOVIEDETAIL_TAG+"Bundle",bundle.toString());
 
         if (movieObj != null) {
@@ -102,19 +107,30 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         }
     }
 
-    /**Initialize the ViewPager and set the adapter*/
+    /**Initialize the ViewPager and set the adapter
+     * This also sets the arguments for tthe fragments, by passing the initilized bundle to the fragments
+     * */
     private void initViewPager() {
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), movieObj);
         /*Pass the bundle to the fragments and set the bundle*/
         MovieInfo movieInfo = new MovieInfo();
+        MovieCast movieCast = new MovieCast();
+        MovieImages movieImages = new MovieImages();
+        MovieReviews movieReviews = new MovieReviews();
+        MovieMedia movieMedia = new MovieMedia();
+
         movieInfo.setArguments(bundle);
+        movieCast.setArguments(bundle);
+        movieImages.setArguments(bundle);
+        movieReviews.setArguments(bundle);
+        movieMedia.setArguments(bundle);
 
         mViewPagerAdapter.addFragment(movieInfo, "Info");
+        mViewPagerAdapter.addFragment(movieCast, "Cast");
+        mViewPagerAdapter.addFragment(movieImages, "Images");
+        mViewPagerAdapter.addFragment(movieReviews, "Reviews");
+        mViewPagerAdapter.addFragment(movieMedia, "Media");
 
-        mViewPagerAdapter.addFragment(MovieCast.newInstance(), "Cast");
-        mViewPagerAdapter.addFragment(MovieImages.newInstance(), "Images");
-        mViewPagerAdapter.addFragment(MovieReviews.newInstance(), "Reviews");
-        mViewPagerAdapter.addFragment(MovieMedia.newInstance(), "Media");
         mViewPager.setAdapter(mViewPagerAdapter);
 
         //bind the pager sliding tab strip to the viewpager
