@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,7 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * MovieReel
  * com.moviereel.moviereel.adapter
  * Created by lusinabrian on 06/10/16.
- * Description:
+ * Description: Adapter for the Movie Cast Recycler to load images and links to the actors' profiles
  */
 
 public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.ViewHolder>{
@@ -79,7 +78,7 @@ public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.View
         public ProgressBar progressBar;
         public ViewHolder(View itemView) {
             super(itemView);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progress_movie_img);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progress_moviecast_progress);
             actorImage = (CircleImageView) itemView.findViewById(R.id.moviecast_item_img);
             actorName = (TextView) itemView.findViewById(R.id.moviecast_item_name);
         }

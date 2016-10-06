@@ -53,4 +53,6 @@ public class MovieCast extends Fragment {
 
         return rootView;
     }
+
+
 }
