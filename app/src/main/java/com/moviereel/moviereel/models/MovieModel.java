@@ -4,6 +4,8 @@ package com.moviereel.moviereel.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Arrays;
+
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel
@@ -334,4 +336,33 @@ public class MovieModel implements Parcelable {
             return new MovieModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "MovieModel{" +
+                "movie_title='" + movie_title + '\'' +
+                ", movie_poster_url='" + movie_poster_url + '\'' +
+                ", movie_backdrop_url='" + movie_backdrop_url + '\'' +
+                ", movie_overview='" + movie_overview + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", movieHomepage='" + movieHomepage + '\'' +
+                ", movieImdbId='" + movieImdbId + '\'' +
+                ", movieStatus='" + movieStatus + '\'' +
+                ", movieTagline='" + movieTagline + '\'' +
+                ", movieGenres='" + movieGenres + '\'' +
+                ", productionCompanies='" + productionCompanies + '\'' +
+                ", productionCountries='" + productionCountries + '\'' +
+                ", spokenLanguages='" + spokenLanguages + '\'' +
+                ", movie_genres=" + Arrays.toString(movie_genres) +
+                ", movie_id=" + movie_id +
+                ", movie_vote_count=" + movie_vote_count +
+                ", movieRuntime=" + movieRuntime +
+                ", movie_popularity=" + movie_popularity +
+                ", voteAverage=" + voteAverage +
+                ", isAdult=" + isAdult +
+                ", hasVideo=" + hasVideo +
+                ", movieRevenue=" + movieRevenue +
+                ", movieBudget=" + movieBudget +
+                '}';
+    }
 }

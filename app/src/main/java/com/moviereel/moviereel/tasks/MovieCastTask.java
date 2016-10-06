@@ -44,16 +44,11 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
         //pass an id to the movie to get details about the movie
         TmdbMovies currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
         Credits movieCredits = currentMovie.getCredits(movieModel.getMovie_id());
-
+        ActorModel actorModel;
         /*Person cast Details*/
-        int personCastCastId = 0;
-        int personCastId = 0;
-        int personCastOrder = 0;
+        int personCastCastId, personCastId,personCastOrder;
 
-        String personCastCharacter = "";
-        String personCastCreditId = "";
-        String personCastName = "";
-        String personCastProfileImage = "";
+        String personCastCharacter,personCastCreditId,personCastName, personCastProfileImage;
 
         //get credits for the movie, that is cast and crew
         //get the details of the cast for this movie
@@ -65,14 +60,13 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
             personCastName = personCast.getName();
             personCastOrder = personCast.getOrder();
             personCastProfileImage = Contract.MOVIE_POSTER_PATH + personCast.getProfilePath();
+
+            //add these to a model object, the model object to the list which will populate recyclerView
+            actorModel = new ActorModel(personCastId, personCastCastId, personCastOrder, personCastCreditId, personCastName, personCastProfileImage, personCastCharacter);
+            Log.d(MOVIECASTTASK_TAG, actorModel.toString());
+            actorModelList.add(actorModel);
         }
 
-        //add these to a model object, the model object to the list which will populate recyclerView
-        ActorModel actorModel = new ActorModel(personCastId, personCastCastId, personCastOrder, personCastCreditId, personCastName, personCastProfileImage, personCastCharacter);
-
-        Log.d(MOVIECASTTASK_TAG, actorModel.toString());
-
-        actorModelList.add(actorModel);
         return null;
     }
 }

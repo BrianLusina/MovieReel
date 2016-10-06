@@ -163,32 +163,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             MovieModelList.add(movieModel);
 
-            /**Get an instance of the shared preferences create and access the MovieData
-             * Store the data only to the application*/
-            SharedPreferences movieData = context.getSharedPreferences("MovieData",0);
-
-            //create an editor
-            SharedPreferences.Editor editor = movieData.edit();
-
-            //add data to it
-            editor.putString("PosterPath", poster_path);
-            editor.putString("BackdropPath", backdrop_path);
-            editor.putString("Overview", overview);
-            editor.putString("ReleaseDate", release_date);
-            editor.putInt("Id", movieId);
-            editor.putString("Title", originalTitle);
-            editor.putFloat("Popularity", (int)moviePopularity);
-            editor.putInt("VoteCount", movieVoteCount);
-
-            //apply these edits
-            editor.apply();
-            Log.d(MOVIENOW_PLAYING_TAG+"Editor", String.valueOf(editor));
-            Log.d(MOVIESYNC+ "Data ", String.valueOf(runtime) +
-                    " Genres " + genres +
-                    " Tagline" + tagline +
-                    " revenue" + String.valueOf(revenue) +
-                    " ProductionCompanies: " + productionCoStr +
-                    " ProductionCountries " + productionCountriesStr);
+            Log.d(MOVIESYNC+ "Data ", movieModel.toString());
         }
         return null;
     }
