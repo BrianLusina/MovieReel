@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.MovieModel;
 
 import java.util.List;
@@ -28,14 +29,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.ViewHolder>{
     private Context mContext;
-    private List<MovieModel> MovieModelList;
+    private List<ActorModel> actorModelList;
     public int itemLayout;
 
     // constructor
-    public MovieCastAdapter(Context mContext, List<MovieModel> MovieModelList, int itemLayout){
+    public MovieCastAdapter(Context mContext, List<ActorModel> actorModelList, int itemLayout){
         this.mContext = mContext;
         this.itemLayout = itemLayout;
-        this.MovieModelList = MovieModelList;
+        this.actorModelList = actorModelList;
         this.notifyDataSetChanged();
     }
 
@@ -47,13 +48,13 @@ public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        MovieModel MovieModel = MovieModelList.get(position);
-        holder.itemView.setTag(MovieModel);
-        holder.bind(MovieModel);
+        ActorModel actorModel = actorModelList.get(position);
+        holder.itemView.setTag(actorModel);
+        holder.bind(actorModel);
 
         //load images using Glider library
         Glide.with(mContext)
-                .load(MovieModel.getMovie_poster_url())
+                .load(actorModel.getProfilePath())
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -82,19 +83,19 @@ public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.View
             actorImage = (CircleImageView) itemView.findViewById(R.id.moviecast_item_img);
             actorName = (TextView) itemView.findViewById(R.id.moviecast_item_name);
         }
-        public void bind(MovieModel movieModel){
-            actorName.setText(movieModel.getMovie_title());
+        public void bind(ActorModel actorModel){
+            actorName.setText(actorModel.getName());
         }
     }
 
-    public void add(MovieModel itemModel, int position){
-        MovieModelList.add(position,itemModel);
+    public void add(ActorModel itemModel, int position){
+        actorModelList.add(position,itemModel);
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return MovieModelList.size();
+        return actorModelList.size();
     }
 
 

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.adapter.MovieCastAdapter;
+import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.utils.IsNetwork;
@@ -44,7 +45,7 @@ public class MovieCast extends Fragment {
     public static final String MOVIECAST_TAG = MovieCast.class.getSimpleName();
     @BindView(R.id.moviecast_recyclerView) RecyclerView movieCastRecycler;
     private MovieModel movieModel;
-    private List<MovieModel> movieModelList;
+    private List<ActorModel> actorModelList;
     private MovieCastAdapter movieCastAdapter;
     private Bundle bundle;
 
@@ -60,14 +61,14 @@ public class MovieCast extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FetchCastTask fetchCastTask = new FetchCastTask();
-        movieModelList = new ArrayList<>();
+        actorModelList = new ArrayList<>();
 
         //retrieve the arguments and set them to the movie model
         bundle = getArguments();
         movieModel = bundle.getParcelable(MOVIE_PARCEL_KEY);
         Log.d(MOVIECAST_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
 
-        movieCastAdapter = new MovieCastAdapter(getActivity(), movieModelList, R.layout.moviecast_item_layout);
+        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
         //check for internet connection
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             fetchCastTask.execute();
