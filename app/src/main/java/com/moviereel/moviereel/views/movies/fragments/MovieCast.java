@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 
@@ -75,7 +76,7 @@ public class MovieCast extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.moviecast_layout, container, false);
-
+        ButterKnife.bind(this, rootView);
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(),2);
         mGridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         movieCastRecycler.setHasFixedSize(true);
