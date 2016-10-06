@@ -103,8 +103,7 @@ public class MovieCast extends Fragment {
             MovieDb movie = nowPlaying.getMovie(movieModel.getMovie_id(),"en");
             /*Person cast Details*/
             int personCastCastId, personCastId,personCastOrder;
-            String personCastCharacter, personCastCreditId, personCastName;
-
+            String personCastCharacter, personCastCreditId, personCastName, personCastProfileImage;
             String personCrewCreditId, personCrewDept, personCrewJob, personCrewName;
             int personCrewId;
 
@@ -117,7 +116,11 @@ public class MovieCast extends Fragment {
                 personCastCreditId = personCast.getCreditId();
                 personCastName = personCast.getName();
                 personCastOrder = personCast.getOrder();
+                personCastProfileImage = Contract.MOVIE_POSTER_PATH+personCast.getProfilePath();
             }
+
+            //add these to a model object, the model object to the list which will populate recyclerView
+
 
             return null;
         }
