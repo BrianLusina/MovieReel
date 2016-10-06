@@ -58,9 +58,9 @@ public class MovieSync extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
-
         MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
+
         for(int i = 0; i < nowPlayingList.size();i++){
             Set<String> movieGenresSet = new HashSet<>();
             ArrayList<String> movieGenresArrLst = new ArrayList<>();
@@ -134,18 +134,6 @@ public class MovieSync extends AsyncTask<String, Void, String> {
                 spokenLangStrBuilder.append(", ");
             }
 
-            //todo: fetch video urls and keys
-            /*for(Video video:movie.getVideos()){
-            }*/
-
-            /*Get images of the movie*/
-
-            /*todo: get reviews if any*/
-            /*
-            for(Reviews reviews:movie.getReviews()){
-
-            }*/
-
             int runtime = movie.getRuntime();
             String genres = genresStringBuilder.toString();
             String tagline = movie.getTagline();
@@ -163,7 +151,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             MovieModelList.add(movieModel);
 
-            Log.d(MOVIESYNC+ "Data ", movieModel.toString());
+            Log.d(MOVIESYNC+ "DATA ", movieModel.toString());
         }
         return null;
     }

@@ -70,7 +70,6 @@ public class MovieCast extends Fragment {
         Log.d(MOVIECAST_TAG+"LISTIN CAST",actorModelList.toString());
         // initialize the MovieCastAdapter
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
-
     }
 
     @Nullable

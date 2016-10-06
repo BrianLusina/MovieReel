@@ -68,6 +68,8 @@ public class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
             actorModelList.add(actorModel);
             Log.d(MOVIECASTTASK_TAG+"LIST", actorModelList.toString());
         }
+
+        Log.d(MOVIECASTTASK_TAG+"LISTRETURN", actorModelList.toString());
         return actorModelList;
     }
 }

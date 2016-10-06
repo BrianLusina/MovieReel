@@ -23,6 +23,9 @@ import com.moviereel.moviereel.utils.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel.views.movies
@@ -33,8 +36,9 @@ public class MovieNowPlaying extends Fragment{
     public static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
     private MovieAdapter movieAdapter;
     private List<MovieModel> movieModelList;
-    private CoordinatorLayout coordinatorLayout;
-    private RecyclerView recyclerView;
+    @BindView(R.id.movie_recy_recyclerview_id) RecyclerView recyclerView;
+    @BindView(R.id.movie_recy_coordinator_layout) CoordinatorLayout coordinatorLayout;
+    @BindView(R.id.movie_recy_swiperefresh_layout_id) SwipeRefreshLayout mSwipeRefreshLayout;
 
     public MovieNowPlaying(){}
 
@@ -49,7 +53,6 @@ public class MovieNowPlaying extends Fragment{
         super.onCreate(savedInstanceState);
         movieModelList = new ArrayList<>();
         MovieSync movieSync = new MovieSync(getActivity(), movieModelList);
-        movieAdapter = new MovieAdapter(getActivity(), movieModelList, R.layout.movie_item_layout);
 
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             movieSync.execute();
@@ -62,17 +65,16 @@ public class MovieNowPlaying extends Fragment{
                     });
             snackbar.show();
         }
+        movieAdapter = new MovieAdapter(getActivity(), movieModelList, R.layout.movie_item_layout);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.movie_recy_recyclerview_id);
-        coordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.movie_recy_coordinator_layout);
+        ButterKnife.bind(this, rootView);
 
-        SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.movie_recy_swiperefresh_layout_id);
-
+        //TODO: set the swipe refresh layout to fetch more data
         mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.dark_slate_blue,
                 R.color.dark_slate_gray,
