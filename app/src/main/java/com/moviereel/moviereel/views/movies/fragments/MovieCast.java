@@ -3,10 +3,8 @@ package com.moviereel.moviereel.views.movies.fragments;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,13 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.adapter.MovieCastAdapter;
 import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.tasks.MovieCastTask;
 import com.moviereel.moviereel.utils.IsNetwork;
-import com.moviereel.moviereel.views.movies.MovieSync;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
@@ -60,15 +57,18 @@ public class MovieCast extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FetchCastTask fetchCastTask = new FetchCastTask();
-        actorModelList = new ArrayList<>();
-
         //retrieve the arguments and set them to the movie model
         bundle = getArguments();
         movieModel = bundle.getParcelable(MOVIE_PARCEL_KEY);
         Log.d(MOVIECAST_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
 
+        // fetch the cast
+        MovieCastTask fetchCastTask = new MovieCastTask(getActivity(),actorModelList,movieModel);
+        actorModelList = new ArrayList<>();
+
+        // initialize the MovieCastAdapter
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
+
         //check for internet connection
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             fetchCastTask.execute();
@@ -92,39 +92,5 @@ public class MovieCast extends Fragment {
         return rootView;
     }
 
-    /**Background async task that fetches data for the cast of the movie
-     * Requires the ID of the movie to fetch that cast*/
-    private class FetchCastTask extends AsyncTask<Void,String,Void>{
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            //pass an id to the movie to get details about the movie
-            TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
-            MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
-            MovieDb movie = nowPlaying.getMovie(movieModel.getMovie_id(),"en");
-            /*Person cast Details*/
-            int personCastCastId, personCastId,personCastOrder;
-            String personCastCharacter, personCastCreditId, personCastName, personCastProfileImage;
-            String personCrewCreditId, personCrewDept, personCrewJob, personCrewName;
-            int personCrewId;
-
-            //get credits for the movie, that is cast and crew
-            //get the details of the cast for this movie
-            for(PersonCast personCast: movie.getCast()){
-                personCastCastId = personCast.getCastId();
-                personCastId = personCast.getId();
-                personCastCharacter = personCast.getCharacter();
-                personCastCreditId = personCast.getCreditId();
-                personCastName = personCast.getName();
-                personCastOrder = personCast.getOrder();
-                personCastProfileImage = Contract.MOVIE_POSTER_PATH+personCast.getProfilePath();
-            }
-
-            //add these to a model object, the model object to the list which will populate recyclerView
-
-
-            return null;
-        }
-    }
 
 }

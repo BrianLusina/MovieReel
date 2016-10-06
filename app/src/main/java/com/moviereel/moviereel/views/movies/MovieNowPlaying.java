@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.tasks.MovieSync;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.moviereel.moviereel.utils.RecyclerItemClickListener;
 

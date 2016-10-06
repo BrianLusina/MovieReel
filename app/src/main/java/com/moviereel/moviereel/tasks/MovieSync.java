@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.views.movies;
+package com.moviereel.moviereel.tasks;
 
 import android.content.Context;
 import android.content.SharedPreferences;
