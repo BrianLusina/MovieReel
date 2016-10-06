@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.moviereel.moviereel.views.movies.MovieSync;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,11 +68,12 @@ public class MovieCast extends Fragment {
         Log.d(MOVIECAST_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
 
         movieCastAdapter = new MovieCastAdapter(getActivity(), movieModelList, R.layout.moviecast_item_layout);
+        //check for internet connection
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             fetchCastTask.execute();
         }else{
             //display tasty toast of no network connection
-
+            TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
 
     }
@@ -79,6 +83,11 @@ public class MovieCast extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.moviecast_layout, container, false);
 
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(),2);
+        mGridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        movieCastRecycler.setHasFixedSize(true);
+        movieCastRecycler.setLayoutManager(mGridLayoutManager);
+        movieCastRecycler.setAdapter(movieCastAdapter);
         return rootView;
     }
 
