@@ -121,4 +121,17 @@ public class ActorModel implements Parcelable {
             return new ActorModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "ActorModel{" +
+                "castId=" + castId +
+                ", id=" + id +
+                ", order=" + order +
+                ", creditId='" + creditId + '\'' +
+                ", name='" + name + '\'' +
+                ", profilePath='" + profilePath + '\'' +
+                ", character='" + character + '\'' +
+                '}';
+    }
 }

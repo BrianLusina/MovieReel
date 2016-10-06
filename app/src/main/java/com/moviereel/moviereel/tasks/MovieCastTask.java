@@ -2,6 +2,7 @@ package com.moviereel.moviereel.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.Contract;
@@ -68,6 +69,9 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
 
         //add these to a model object, the model object to the list which will populate recyclerView
         ActorModel actorModel = new ActorModel(personCastId, personCastCastId, personCastOrder, personCastCreditId, personCastName, personCastProfileImage, personCastCharacter);
+
+        Log.d(MOVIECASTTASK_TAG, actorModel.toString());
+
         actorModelList.add(actorModel);
         return null;
     }

@@ -56,8 +56,8 @@ public class MovieCast extends Fragment {
         Log.d(MOVIECAST_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
 
         // fetch the cast
-        MovieCastTask fetchCastTask = new MovieCastTask(getActivity(),actorModelList,movieModel);
         actorModelList = new ArrayList<>();
+        MovieCastTask fetchCastTask = new MovieCastTask(getActivity(),actorModelList,movieModel);
 
         // initialize the MovieCastAdapter
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
