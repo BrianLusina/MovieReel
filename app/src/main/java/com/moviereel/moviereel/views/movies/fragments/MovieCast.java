@@ -29,7 +29,7 @@ import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
  * MovieReel
  * com.moviereel.moviereel.views.movies.fragments
  * Created by lusinabrian on 02/10/16.
- * Description: The cast of the movie*/
+ * Description: The cast of the movie, displays images and actor names*/
 
 public class MovieCast extends Fragment {
     public static final String MOVIECAST_TAG = MovieCast.class.getSimpleName();
@@ -57,7 +57,7 @@ public class MovieCast extends Fragment {
 
         // fetch the cast
         actorModelList = new ArrayList<>();
-        MovieCastTask fetchCastTask = new MovieCastTask(getActivity(),actorModelList,movieModel);
+        MovieCastTask fetchCastTask = new MovieCastTask(getActivity(), actorModelList, movieModel);
 
         // initialize the MovieCastAdapter
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
@@ -77,6 +77,7 @@ public class MovieCast extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.moviecast_layout, container, false);
         ButterKnife.bind(this, rootView);
+
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(),2);
         mGridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         movieCastRecycler.setHasFixedSize(true);

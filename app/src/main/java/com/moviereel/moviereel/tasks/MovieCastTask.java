@@ -25,14 +25,14 @@ import info.movito.themoviedbapi.model.people.PersonCast;
  * Requires the ID of the movie to fetch that cast
  * */
 
-public class MovieCastTask extends AsyncTask<String,Void, String> {
+public class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
     public static final String MOVIECASTTASK_TAG = MovieCastTask.class.getSimpleName();
     private List<ActorModel> actorModelList;
     private Context context;
     private MovieModel movieModel;
 
     public MovieCastTask(){}
-
+    
     public MovieCastTask (Context context, List<ActorModel > actorModelList, MovieModel movieModel){
         this.context = context;
         this.actorModelList = actorModelList;
@@ -40,14 +40,14 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected List<ActorModel> doInBackground(String... params) {
         //pass an id to the movie to get details about the movie
         TmdbMovies currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
         Credits movieCredits = currentMovie.getCredits(movieModel.getMovie_id());
         ActorModel actorModel;
+
         /*Person cast Details*/
         int personCastCastId, personCastId,personCastOrder;
-
         String personCastCharacter,personCastCreditId,personCastName, personCastProfileImage;
 
         //get credits for the movie, that is cast and crew
@@ -64,9 +64,10 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
             //add these to a model object, the model object to the list which will populate recyclerView
             actorModel = new ActorModel(personCastId, personCastCastId, personCastOrder, personCastCreditId, personCastName, personCastProfileImage, personCastCharacter);
             Log.d(MOVIECASTTASK_TAG, actorModel.toString());
+            // add object to list
             actorModelList.add(actorModel);
+            Log.d(MOVIECASTTASK_TAG+"LIST", actorModelList.toString());
         }
-
-        return null;
+        return actorModelList;
     }
 }
