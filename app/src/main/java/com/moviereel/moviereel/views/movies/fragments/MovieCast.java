@@ -1,6 +1,5 @@
 package com.moviereel.moviereel.views.movies.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,11 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieCastAdapter;
 import com.moviereel.moviereel.models.ActorModel;
-import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.tasks.MovieCastTask;
 import com.moviereel.moviereel.utils.IsNetwork;
@@ -24,11 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.TmdbMovies;
-import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
-import info.movito.themoviedbapi.model.people.PersonCast;
 
 import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 
