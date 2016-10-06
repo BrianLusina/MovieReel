@@ -59,9 +59,6 @@ public class MovieCast extends Fragment {
         actorModelList = new ArrayList<>();
         MovieCastTask fetchCastTask = new MovieCastTask(getActivity(), actorModelList, movieModel);
 
-        // initialize the MovieCastAdapter
-        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
-
         //check for internet connection
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             fetchCastTask.execute();
@@ -69,6 +66,10 @@ public class MovieCast extends Fragment {
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
+
+        Log.d(MOVIECAST_TAG+"LISTIN CAST",actorModelList.toString());
+        // initialize the MovieCastAdapter
+        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
 
     }
 

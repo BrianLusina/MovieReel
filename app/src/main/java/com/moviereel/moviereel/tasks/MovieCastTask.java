@@ -32,7 +32,7 @@ public class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
     private MovieModel movieModel;
 
     public MovieCastTask(){}
-    
+
     public MovieCastTask (Context context, List<ActorModel > actorModelList, MovieModel movieModel){
         this.context = context;
         this.actorModelList = actorModelList;
