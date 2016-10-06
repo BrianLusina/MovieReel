@@ -11,6 +11,7 @@ import java.util.List;
 
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.Credits;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import info.movito.themoviedbapi.model.people.PersonCast;
@@ -24,6 +25,7 @@ import info.movito.themoviedbapi.model.people.PersonCast;
  * */
 
 public class MovieCastTask extends AsyncTask<String,Void, String> {
+    public static final String MOVIECASTTASK_TAG = MovieCastTask.class.getSimpleName();
     private List<ActorModel> actorModelList;
     private Context context;
     private MovieModel movieModel;
@@ -39,9 +41,8 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
     @Override
     protected String doInBackground(String... params) {
         //pass an id to the movie to get details about the movie
-        TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
-        MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en", 1);
-        MovieDb movie = nowPlaying.getMovie(movieModel.getMovie_id(), "en");
+        TmdbMovies currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
+        Credits movieCredits = currentMovie.getCredits(movieModel.getMovie_id());
 
         /*Person cast Details*/
         int personCastCastId = 0;
@@ -55,7 +56,7 @@ public class MovieCastTask extends AsyncTask<String,Void, String> {
 
         //get credits for the movie, that is cast and crew
         //get the details of the cast for this movie
-        for (PersonCast personCast : movie.getCast()) {
+        for (PersonCast personCast : movieCredits.getCast()) {
             personCastCastId = personCast.getCastId();
             personCastId = personCast.getId();
             personCastCharacter = personCast.getCharacter();
