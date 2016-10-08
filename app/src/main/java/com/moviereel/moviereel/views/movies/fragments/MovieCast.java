@@ -112,7 +112,6 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
         progressDialog.setTitleText("Loading...");
         progressDialog.setCancelable(true);
         progressDialog.show();
-
     }
 
     @Override

@@ -149,6 +149,10 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg,runtime, genres,isAdult,budget,homepage,imdbid,revenue,status,tagline,false,productionCountriesStr,productionCoStr,languages);
 
+            /*create a shared preference file for each movie by id*/
+            SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATA"+String.valueOf(movieId), 0);
+            SharedPreferences.Editor editor = mMovie.edit();
+
             MovieModelList.add(movieModel);
 
             Log.d(MOVIESYNC+ "DATA ", movieModel.toString());
