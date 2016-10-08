@@ -1,5 +1,7 @@
 package com.moviereel.moviereel.views.movies.fragments;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,8 +14,8 @@ import android.view.ViewGroup;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieCastAdapter;
 import com.moviereel.moviereel.models.ActorModel;
+import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
-import com.moviereel.moviereel.tasks.MovieCastTask;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -22,6 +24,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.Credits;
+import info.movito.themoviedbapi.model.people.PersonCast;
 
 import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 
@@ -67,7 +73,6 @@ public class MovieCast extends Fragment {
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
 
-        Log.d(MOVIECAST_TAG+"LISTIN CAST",actorModelList.toString());
         // initialize the MovieCastAdapter
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
     }
@@ -85,6 +90,61 @@ public class MovieCast extends Fragment {
         movieCastRecycler.setAdapter(movieCastAdapter);
         return rootView;
     }
+/*------------------------------------************************************--------------------------*/
+private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
+    private final String MOVIECASTTASK_TAG = MovieCastTask.class.getSimpleName();
+    private List<ActorModel> actorModelList;
+    private Context context;
+    private MovieModel movieModel;
 
+    public MovieCastTask(){}
 
+    private MovieCastTask (Context context, List<ActorModel > actorModelList, MovieModel movieModel){
+        this.context = context;
+        this.actorModelList = actorModelList;
+        this.movieModel = movieModel;
+    }
+
+    @Override
+    protected List<ActorModel> doInBackground(String... params) {
+        //pass an id to the movie to get details about the movie
+        TmdbMovies currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
+        Credits movieCredits = currentMovie.getCredits(movieModel.getMovie_id());
+        ActorModel actorModel;
+
+        /*Person cast Details*/
+        int personCastCastId, personCastId,personCastOrder;
+        String personCastCharacter,personCastCreditId,personCastName, personCastProfileImage;
+
+        //get credits for the movie, that is cast and crew
+        //get the details of the cast for this movie
+        for (PersonCast personCast : movieCredits.getCast()) {
+            personCastCastId = personCast.getCastId();
+            personCastId = personCast.getId();
+            personCastCharacter = personCast.getCharacter();
+            personCastCreditId = personCast.getCreditId();
+            personCastName = personCast.getName();
+            personCastOrder = personCast.getOrder();
+            personCastProfileImage = Contract.MOVIE_POSTER_PATH + personCast.getProfilePath();
+
+            //add these to a model object, the model object to the list which will populate recyclerView
+            actorModel = new ActorModel(personCastId, personCastCastId, personCastOrder, personCastCreditId, personCastName, personCastProfileImage, personCastCharacter);
+            Log.d(MOVIECASTTASK_TAG, actorModel.toString());
+            // add object to list
+            actorModelList.add(actorModel);
+        }
+
+        Log.d(MOVIECASTTASK_TAG+"LISTRETURN", actorModelList.toString());
+        return actorModelList;
+    }
+
+    @Override
+    protected void onPostExecute(List<ActorModel> actorModelList) {
+        super.onPostExecute(actorModelList);
+        // initialize the MovieCastAdapter
+        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
+    }
+}
+
+/*THE END*/
 }

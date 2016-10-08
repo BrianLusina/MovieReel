@@ -50,7 +50,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
         super.onPreExecute();
         progressDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
         progressDialog.getProgressHelper().setBarColor(context.getResources().getColor(R.color.cadet_blue));
-        progressDialog.setTitleText("Hold on");
+        progressDialog.setTitleText("Loading...");
         progressDialog.setCancelable(true);
         progressDialog.show();
     }
