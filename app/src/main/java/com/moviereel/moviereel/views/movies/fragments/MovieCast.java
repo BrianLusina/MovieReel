@@ -40,10 +40,7 @@ import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 public class MovieCast extends Fragment {
     public static final String MOVIECAST_TAG = MovieCast.class.getSimpleName();
     @BindView(R.id.moviecast_recyclerView) RecyclerView movieCastRecycler;
-    private MovieModel movieModel;
-    private List<ActorModel> actorModelList;
     private MovieCastAdapter movieCastAdapter;
-    private Bundle bundle;
 
     public MovieCast(){}
 
@@ -57,12 +54,12 @@ public class MovieCast extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //retrieve the arguments and set them to the movie model
-        bundle = getArguments();
-        movieModel = bundle.getParcelable(MOVIE_PARCEL_KEY);
+        Bundle bundle = getArguments();
+        MovieModel movieModel = bundle.getParcelable(MOVIE_PARCEL_KEY);
         Log.d(MOVIECAST_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
 
         // fetch the cast
-        actorModelList = new ArrayList<>();
+        List<ActorModel> actorModelList = new ArrayList<>();
         MovieCastTask fetchCastTask = new MovieCastTask(getActivity(), actorModelList, movieModel);
 
         //check for internet connection
@@ -72,9 +69,9 @@ public class MovieCast extends Fragment {
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
-
+/*
         // initialize the MovieCastAdapter
-        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
+        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);*/
     }
 
     @Nullable
@@ -83,7 +80,7 @@ public class MovieCast extends Fragment {
         View rootView = inflater.inflate(R.layout.moviecast_layout, container, false);
         ButterKnife.bind(this, rootView);
 
-        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(),2);
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(),3);
         mGridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         movieCastRecycler.setHasFixedSize(true);
         movieCastRecycler.setLayoutManager(mGridLayoutManager);
