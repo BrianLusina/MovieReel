@@ -62,6 +62,8 @@ public class MovieSync extends AsyncTask<String, Void, String> {
         MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
         Gson gson = new Gson();
+        /*create a shared preference file for each movie by id*/
+        SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATAPREF", 0);
 
         for(int i = 0; i < nowPlayingList.size();i++){
             Set<String> movieGenresSet = new HashSet<>();
@@ -151,18 +153,10 @@ public class MovieSync extends AsyncTask<String, Void, String> {
 
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg,runtime, genres,isAdult,budget,homepage,imdbid,revenue,status,tagline,false,productionCountriesStr,productionCoStr,languages);
 
-            /*create a shared preference file for each movie by id*/
-            SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATAPREF"+String.valueOf(movieId), 0);
-
             SharedPreferences.Editor editor = mMovie.edit();
-            editor.putString("MovieObj"+String.valueOf(movieId),movieModel.serialize());
-
-            /*to retrieve data
-            * // Read the shared preference value
-            * String serielizedMovieData = editor.getString(MovieObj, null);
-            * // Create a new object from the serialized data with the same state
-            * MovieModel restoredMovieModel = MovieModel.create(serializedMovieData);
-            * */
+            String movieJson = gson.toJson(movieModel);
+            /*append the movie id as a key to allow retrieval of this movie details*/
+            editor.putString("MovieObj"+String.valueOf(movieId),movieJson);
 
             editor.apply();
 
