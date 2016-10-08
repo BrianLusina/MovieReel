@@ -26,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.Credits;
@@ -43,6 +44,7 @@ public class MovieCast extends Fragment {
     public static final String MOVIECAST_TAG = MovieCast.class.getSimpleName();
     @BindView(R.id.moviecast_recyclerView) RecyclerView movieCastRecycler;
     private MovieCastAdapter movieCastAdapter;
+    private SweetAlertDialog progressDialog;
 
     public MovieCast(){}
 
@@ -71,9 +73,6 @@ public class MovieCast extends Fragment {
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
-/*
-        // initialize the MovieCastAdapter
-        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);*/
     }
 
     @Nullable
@@ -107,6 +106,13 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+        progressDialog.getProgressHelper().setBarColor(context.getResources().getColor(R.color.light_red3));
+        progressDialog.setContentView(R.layout.custom_progress_layout);
+        progressDialog.setTitleText("Loading...");
+        progressDialog.setCancelable(true);
+        progressDialog.show();
+
     }
 
     @Override
@@ -133,7 +139,7 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
 
             //add these to a model object, the model object to the list which will populate recyclerView
             actorModel = new ActorModel(personCastId, personCastCastId, personCastOrder, personCastCreditId, personCastName, personCastProfileImage, personCastCharacter);
-            Log.d(MOVIECASTTASK_TAG, actorModel.toString());
+
             // add object to list
             actorModelList.add(actorModel);
         }
@@ -145,6 +151,9 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
     @Override
     protected void onPostExecute(List<ActorModel> actorModelList) {
         super.onPostExecute(actorModelList);
+        if(progressDialog.isShowing()){
+            progressDialog.dismissWithAnimation();
+        }
         // initialize the MovieCastAdapter
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
     }

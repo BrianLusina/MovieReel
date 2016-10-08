@@ -70,9 +70,6 @@ dependencies {
 
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.0'
 
-    //Ring progress
-    compile 'com.github.HotBitmapGG:RingProgressBar:V1.2.2'
-
     compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
     compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
