@@ -42,7 +42,6 @@ import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 public class MovieCast extends Fragment {
     public static final String MOVIECAST_TAG = MovieCast.class.getSimpleName();
     @BindView(R.id.moviecast_recyclerView) RecyclerView movieCastRecycler;
-    @BindView(R.id.progress_moviecast) ProgressBar progressBar;
     private MovieCastAdapter movieCastAdapter;
 
     public MovieCast(){}
