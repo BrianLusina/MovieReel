@@ -63,7 +63,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
         Gson gson = new Gson();
         /*create a shared preference file for each movie by id*/
-        SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATAPREF", 0);
+        SharedPreferences mMovie = context.getSharedPreferences("MOVIE_NOW_PLAYING_PREF", 0);
 
         for(int i = 0; i < nowPlayingList.size();i++){
             Set<String> movieGenresSet = new HashSet<>();
@@ -156,9 +156,14 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             SharedPreferences.Editor editor = mMovie.edit();
             String movieJson = gson.toJson(movieModel);
             /*append the movie id as a key to allow retrieval of this movie details*/
-            editor.putString("MovieObj"+String.valueOf(movieId),movieJson);
+            editor.putString("MovieNowPlayingObj"+String.valueOf(movieId),movieJson);
 
             editor.apply();
+
+            /* to retrieve
+            Gson gson = new Gson();
+            String json = mPrefs.getString("MovieNowPlayingObj"+String.valueOf(movieId), "");
+            MovieModel obj = gson.fromJson(json, MovieModel.class);*/
 
             MovieModelList.add(movieModel);
 
