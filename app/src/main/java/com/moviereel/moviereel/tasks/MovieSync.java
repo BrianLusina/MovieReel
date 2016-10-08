@@ -155,7 +155,8 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATAPREF"+String.valueOf(movieId), 0);
 
             SharedPreferences.Editor editor = mMovie.edit();
-            editor.putString("MovieObj",movieModel.serialize());
+            editor.putString("MovieObj"+String.valueOf(movieId),movieModel.serialize());
+
             /*to retrieve data
             * // Read the shared preference value
             * String serielizedMovieData = editor.getString(MovieObj, null);
