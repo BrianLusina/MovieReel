@@ -2,13 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:padding="25dp"
+    android:layout_width="wrap_content"
+    android:padding="30dp"
+    android:gravity="center"
     android:background="@color/background_color"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="76dp"
+        android:layout_height="175dp"
         android:orientation="vertical">
         <ProgressBar
             android:id="@+id/progress_moviecast_progress"
@@ -19,18 +20,14 @@
             android:id="@+id/moviecast_item_img"
             android:layout_width="match_parent"
             android:src="@drawable/ic_account_circle_black_36dp"
-            android:layout_margin="5dp"
             android:layout_height="match_parent" />
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/moviecast_item_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="20sp"
-        android:textAlignment="center"
+        android:textSize="17sp"
         android:textColor="@color/wheat"
         android:text="@string/moviecast_item_name"/>
 </LinearLayout>
