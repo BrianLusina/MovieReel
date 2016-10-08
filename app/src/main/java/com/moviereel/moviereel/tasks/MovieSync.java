@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
@@ -60,6 +61,7 @@ public class MovieSync extends AsyncTask<String, Void, String> {
         TmdbMovies nowPlaying = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
         MovieResultsPage nowPlayingMovies = nowPlaying.getNowPlayingMovies("en",1);
         List<MovieDb> nowPlayingList = nowPlayingMovies.getResults();
+        Gson gson = new Gson();
 
         for(int i = 0; i < nowPlayingList.size();i++){
             Set<String> movieGenresSet = new HashSet<>();
@@ -150,8 +152,18 @@ public class MovieSync extends AsyncTask<String, Void, String> {
             MovieModel movieModel = new MovieModel(poster_path,overview,release_date,new int[]{}, movieId, originalTitle,backdrop_path,moviePopularity,movieVoteCount, movieVoteAvg,runtime, genres,isAdult,budget,homepage,imdbid,revenue,status,tagline,false,productionCountriesStr,productionCoStr,languages);
 
             /*create a shared preference file for each movie by id*/
-            SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATA"+String.valueOf(movieId), 0);
+            SharedPreferences mMovie = context.getSharedPreferences("MOVIE_DATAPREF"+String.valueOf(movieId), 0);
+
             SharedPreferences.Editor editor = mMovie.edit();
+            editor.putString("MovieObj",movieModel.serialize());
+            /*to retrieve data
+            * // Read the shared preference value
+            * String serielizedMovieData = editor.getString(MovieObj, null);
+            * // Create a new object from the serialized data with the same state
+            * MovieModel restoredMovieModel = MovieModel.create(serializedMovieData);
+            * */
+
+            editor.apply();
 
             MovieModelList.add(movieModel);
 

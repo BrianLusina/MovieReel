@@ -4,6 +4,8 @@ package com.moviereel.moviereel.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+
 import java.util.Arrays;
 
 /**
@@ -20,7 +22,7 @@ public class MovieModel implements Parcelable {
     private float movie_popularity, voteAverage;
     private boolean isAdult, hasVideo;
     private long movieRevenue, movieBudget;
-
+    private Gson gson = new Gson();
     /** Empty constructor for non-parcel objects*/
     public MovieModel(){}
 
@@ -81,6 +83,19 @@ public class MovieModel implements Parcelable {
         this.productionCompanies =productionCompanies;
         this.productionCountries = productionCountries;
         this.spokenLanguages = spokenLanguages;
+    }
+
+    /**Serialize this object class into a JSON string using GSON
+     * This will allow the easy storage in shared preferences*/
+    public String serialize() {
+        return gson.toJson(this);
+    }
+
+    /**Use GSON to instantiate this class using the JSON representation of the state
+     * This allows retrieval from a shared preference file*/
+    static public MovieModel create(String serializedData) {
+        Gson gson = new Gson();
+        return gson.fromJson(serializedData, MovieModel.class);
     }
 
     /*ACCESS METHODS*/
