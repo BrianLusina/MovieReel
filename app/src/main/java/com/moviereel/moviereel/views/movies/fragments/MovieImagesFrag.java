@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.Artwork;
 import info.movito.themoviedbapi.model.MovieImages;
 
 import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
@@ -143,7 +144,26 @@ public class MovieImagesFrag extends Fragment {
             MovieImages movieImages = currentMovie.getImages(movieModel.getMovie_id(), "en");
             ImagesModel imagesModel;
 
-            return null;
+            float aspectRatio,voteAverage;
+            String filePath, iso;
+            int height, width, voteCount;
+
+            for(Artwork artwork: movieImages.getAll()){
+                aspectRatio = artwork.getAspectRatio();
+                filePath =Contract.MOVIE_POSTER_PATH+artwork.getFilePath();
+                height = artwork.getHeight();
+                width = artwork.getWidth();
+                voteCount = artwork.getVoteCount();
+                voteAverage = artwork.getVoteAverage();
+                iso = artwork.getLanguage();
+                //add these to a model object, the model object to the list which will populate recyclerView
+                imagesModel = new ImagesModel(filePath, iso, width,height, voteAverage, voteCount,aspectRatio);
+
+                // add object to list
+                imagesModelsList.add(imagesModel);
+            }
+
+            return imagesModelsList;
         }
 
         @Override
