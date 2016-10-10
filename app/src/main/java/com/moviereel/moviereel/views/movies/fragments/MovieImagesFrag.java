@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.adapter.MovieCastAdapter;
 import com.moviereel.moviereel.adapter.MovieImageAdapter;
 import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.Contract;
@@ -169,6 +170,9 @@ public class MovieImagesFrag extends Fragment {
         @Override
         protected void onPostExecute(List<ImagesModel> imagesModelList) {
             super.onPostExecute(imagesModelList);
+            // initialize the MovieImagesAdapter
+            movieImageAdapter = new MovieImageAdapter(getActivity(), imagesModelList, R.layout.moviecast_item_layout);
+
         }
 }
 
