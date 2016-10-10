@@ -104,6 +104,7 @@
     <string name="movieinfo_genres_title">Genres</string>
     <string name="movieinfo_genres_field">Genres</string>
     <string name="moviecast_item_name">Actor name</string>
+    <string name="moviecast_item_charname">Character name</string>
 
     <string-array name="list_preference_entries">
         <item>Entry 1</item>

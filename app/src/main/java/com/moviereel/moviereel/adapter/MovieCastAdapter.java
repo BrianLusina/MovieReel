@@ -16,6 +16,8 @@ import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.MovieModel;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -75,16 +77,18 @@ public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CircleImageView actorImage;
-        public TextView actorName;
+        public TextView actorName, characterName;
         public ProgressBar progressBar;
         public ViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_moviecast_progress);
             actorImage = (CircleImageView) itemView.findViewById(R.id.moviecast_item_img);
             actorName = (TextView) itemView.findViewById(R.id.moviecast_item_name);
+            characterName = (TextView) itemView.findViewById(R.id.moviecast_item_charname);
         }
         public void bind(ActorModel actorModel){
             actorName.setText(actorModel.getName());
+            characterName.setText(actorModel.getCharacter());
         }
     }
 
@@ -92,6 +96,7 @@ public class MovieCastAdapter extends RecyclerView.Adapter<MovieCastAdapter.View
         actorModelList.add(position,itemModel);
         notifyDataSetChanged();
     }
+
 
     @Override
     public int getItemCount() {

@@ -73,6 +73,9 @@ public class MovieCast extends Fragment {
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
+
+        //set the adapter
+        movieCastRecycler.setAdapter(movieCastAdapter);
     }
 
     @Nullable
@@ -88,6 +91,28 @@ public class MovieCast extends Fragment {
         movieCastRecycler.setAdapter(movieCastAdapter);
         return rootView;
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        movieCastRecycler.setAdapter(movieCastAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
 /*------------------------------------************************************--------------------------*/
 private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
     private final String MOVIECASTTASK_TAG = MovieCastTask.class.getSimpleName();
@@ -97,7 +122,7 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
 
     public MovieCastTask(){}
 
-    private MovieCastTask (Context context, List<ActorModel > actorModelList, MovieModel movieModel){
+    private MovieCastTask (Context context, List<ActorModel> actorModelList, MovieModel movieModel){
         this.context = context;
         this.actorModelList = actorModelList;
         this.movieModel = movieModel;
@@ -143,7 +168,7 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
             actorModelList.add(actorModel);
         }
 
-        Log.d(MOVIECASTTASK_TAG+"LISTRETURN", actorModelList.toString());
+        Log.d(MOVIECASTTASK_TAG, actorModelList.toString());
         return actorModelList;
     }
 
@@ -157,6 +182,7 @@ private class MovieCastTask extends AsyncTask<String, Void, List<ActorModel>> {
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
     }
 }
+
 
 /*THE END*/
 }

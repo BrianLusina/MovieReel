@@ -35,4 +35,13 @@
         android:textColor="@color/wheat"
         android:text="@string/moviecast_item_name"/>
 
+    <TextView
+        android:id="@+id/moviecast_item_charname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:text="@string/moviecast_item_charname"/>
+
 </LinearLayout>
