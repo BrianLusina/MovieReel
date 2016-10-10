@@ -8,17 +8,23 @@
     android:background="@color/background_color"
     android:layout_height="155dp">
 
-    <ProgressBar
-        android:id="@+id/progress_moviecast_progress"
-        android:visibility="gone"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/moviecast_item_img"
-        android:layout_width="match_parent"
-        android:src="@drawable/ic_account_circle_black_36dp"
-        android:layout_height="96dp" />
+        <ProgressBar
+            android:id="@+id/progress_moviecast_progress"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="96dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/moviecast_item_img"
+            android:layout_width="match_parent"
+            android:src="@drawable/ic_account_circle_black_36dp"
+            android:layout_height="96dp" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/moviecast_item_name"

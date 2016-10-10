@@ -68,10 +68,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                         holder.progressBar.setVisibility(View.GONE);
-                        return false;
+                        return true;
                     }
                 })
-                .centerCrop()
                 .fitCenter()
                 .crossFade()
                 .into(holder.MoviePoster);
