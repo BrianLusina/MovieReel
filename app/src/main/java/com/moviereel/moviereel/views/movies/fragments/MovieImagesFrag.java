@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +82,14 @@ public class MovieImagesFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movieimages_layout, container, false);
         ButterKnife.bind(this, rootView);
+
+        /*set a staggered grid layout manager to the recycler view*/
+        StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        mStaggeredGridLayoutManager.setOrientation(StaggeredGridLayoutManager.VERTICAL);
+        mMovieRecyclerView.setHasFixedSize(true);
+        mMovieRecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
+        mMovieRecyclerView.setAdapter(movieImageAdapter);
+
         return rootView;
     }
 
