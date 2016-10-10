@@ -9,11 +9,11 @@ import android.os.Parcelable;
  * Created by lusinabrian on 10/10/16.
  * Description: POJO of Images of a movie or tv series.
  * Fields include:
- * 1. "aspect_ratio": 1.77777777777778,
- * 2. "file_path": "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
- * 3. "height": 720,
- * 4. "iso_639_1": null,
- * 5. "vote_average": 0,
+ * 1. "aspect_ratio": float,
+ * 2. "file_path": String,
+ * 3. "height": int,
+ * 4. "iso_639_1": String,
+ * 5. "vote_average": float,
  * 6. "vote_count": int
  * 7. "width": int
  */

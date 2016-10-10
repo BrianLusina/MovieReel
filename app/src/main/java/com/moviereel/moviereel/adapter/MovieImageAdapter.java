@@ -20,7 +20,7 @@ import java.util.List;
  * MovieReel
  * com.moviereel.moviereel.adapter
  * Created by lusinabrian on 10/10/16.
- * Description:
+ * Description: RecyclerAdapter for the Images of the movie or TVShow
  */
 
 public class MovieImageAdapter extends RecyclerView.Adapter<MovieImageAdapter.ViewHolder>{
