@@ -120,7 +120,7 @@ public class MovieImagesFrag extends Fragment {
 
     /**Task to fetch Movie images for this particular movie*/
     private class MovieImagesTask extends AsyncTask<String, Void, List<ImagesModel>> {
-        private final String MOVIECASTTASK_TAG = MovieImagesTask.class.getSimpleName();
+        private final String MOVIEIMAGESTASK_TAG = MovieImagesTask.class.getSimpleName();
         private List<ImagesModel> imagesModelsList;
         private Context context;
         private MovieModel movieModel;
@@ -163,6 +163,8 @@ public class MovieImagesFrag extends Fragment {
                 // add object to list
                 imagesModelsList.add(imagesModel);
             }
+
+            Log.d(MOVIEIMAGES_TAG, imagesModelsList.toString());
 
             return imagesModelsList;
         }
