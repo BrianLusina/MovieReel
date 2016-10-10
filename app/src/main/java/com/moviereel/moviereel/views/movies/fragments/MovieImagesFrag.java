@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieImageAdapter;
 import com.moviereel.moviereel.models.ActorModel;
+import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.ImagesModel;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.utils.IsNetwork;
@@ -24,6 +25,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbMovies;
+import info.movito.themoviedbapi.model.MovieImages;
 
 import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 
@@ -34,17 +38,17 @@ import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
  * Description:
  */
 
-public class MovieImages extends Fragment {
-    public static final String MOVIEIMAGES_TAG = MovieImages.class.getSimpleName();
+public class MovieImagesFrag extends Fragment {
+    public static final String MOVIEIMAGES_TAG = MovieImagesFrag.class.getSimpleName();
     @BindView(R.id.movieimages_recyclerView) RecyclerView mMovieRecyclerView;
     private MovieImageAdapter movieImageAdapter;
 
-    public MovieImages(){}
+    public MovieImagesFrag(){}
 
     public static Fragment newInstance(){
-        MovieImages movieImages = new MovieImages();
-        movieImages.setRetainInstance(true);
-        return movieImages;
+        MovieImagesFrag movieImagesFrag = new MovieImagesFrag();
+        movieImagesFrag.setRetainInstance(true);
+        return movieImagesFrag;
     }
 
     @Override
@@ -105,15 +109,15 @@ public class MovieImages extends Fragment {
     /**Task to fetch Movie images for this particular movie*/
     private class MovieImagesTask extends AsyncTask<String, Void, List<ImagesModel>> {
         private final String MOVIECASTTASK_TAG = MovieImagesTask.class.getSimpleName();
-        private List<ActorModel> actorModelList;
+        private List<ImagesModel> imagesModelsList;
         private Context context;
         private MovieModel movieModel;
 
         public MovieImagesTask(){}
 
-        private MovieImagesTask (Context context, List<ActorModel> actorModelList, MovieModel movieModel){
+        private MovieImagesTask (Context context, List<ImagesModel> imagesModelList, MovieModel movieModel){
             this.context = context;
-            this.actorModelList = actorModelList;
+            this.imagesModelsList = imagesModelList;
             this.movieModel = movieModel;
         }
 
@@ -124,6 +128,11 @@ public class MovieImages extends Fragment {
 
         @Override
         protected List<ImagesModel> doInBackground(String... params) {
+            //pass an id to the movie to get details about the movie
+            TmdbMovies currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
+            MovieImages movieImages = currentMovie.getImages(movieModel.getMovie_id(), "en");
+            ImagesModel imagesModel;
+
             return null;
         }
 
