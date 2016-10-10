@@ -75,6 +75,8 @@ public class MovieImagesFrag extends Fragment {
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
 
+        movieImageAdapter = new MovieImageAdapter(getActivity(), movieImagesList, R.layout.moviecast_item_layout);
+
         //set the adapter
         mMovieRecyclerView.setAdapter(movieImageAdapter);
     }

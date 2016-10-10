@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.adapter.MovieCastAdapter;
 import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.Contract;
@@ -73,6 +74,8 @@ public class MovieCast extends Fragment {
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
+
+        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
 
         //set the adapter
         movieCastRecycler.setAdapter(movieCastAdapter);
