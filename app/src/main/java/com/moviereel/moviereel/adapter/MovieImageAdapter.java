@@ -1,6 +1,7 @@
 package com.moviereel.moviereel.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class MovieImageAdapter extends RecyclerView.Adapter<MovieImageAdapter.Vi
     public void onBindViewHolder(final ViewHolder holder, int position) {
         ImagesModel imagesModel = imagesModelsList.get(position);
         holder.itemView.setTag(imagesModel);
-
+        holder.bind(imagesModel);
         //load images using Glider library
         Glide.with(mContext)
                 .load(imagesModel.getFilePath())
@@ -77,6 +78,8 @@ public class MovieImageAdapter extends RecyclerView.Adapter<MovieImageAdapter.Vi
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_movieimage_progress);
             moviePoster = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
         }
+
+        public void bind(ImagesModel itemModel){}
 
     }
 
