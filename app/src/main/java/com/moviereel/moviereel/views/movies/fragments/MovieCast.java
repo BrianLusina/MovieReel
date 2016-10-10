@@ -76,9 +76,6 @@ public class MovieCast extends Fragment {
         }
 
         movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
-
-        //set the adapter
-        movieCastRecycler.setAdapter(movieCastAdapter);
     }
 
     @Nullable

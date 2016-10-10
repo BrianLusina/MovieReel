@@ -77,8 +77,6 @@ public class MovieImagesFrag extends Fragment {
 
         movieImageAdapter = new MovieImageAdapter(getActivity(), movieImagesList, R.layout.moviecast_item_layout);
 
-        //set the adapter
-        mMovieRecyclerView.setAdapter(movieImageAdapter);
     }
 
     @Nullable

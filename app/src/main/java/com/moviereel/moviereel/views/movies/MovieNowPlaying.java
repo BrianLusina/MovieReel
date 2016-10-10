@@ -97,10 +97,8 @@ public class MovieNowPlaying extends Fragment{
         //implement item click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                 (view1, position) -> {
-                    /**
-                     * collect data, mostly the id from the clicked item, transfer to the next activity
-                     * for display
-                     **/
+                    /** collect data, mostly the id from the clicked item, transfer to the next activity
+                     * for display**/
                     Intent showMovieDet = new Intent(getActivity(),MovieDetails.class);
                     showMovieDet.putExtra("MovieObj", movieModelList.get(position));
                     startActivity(showMovieDet);
