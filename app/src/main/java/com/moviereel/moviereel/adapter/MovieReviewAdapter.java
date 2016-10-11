@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -50,7 +51,7 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
         holder.itemView.setTag(reviewsModel);
         holder.bind(reviewsModel);
         //load images using Glider library
-        Glide.with(mContext)
+ /*       Glide.with(mContext)
                 .load(reviewsModel.getFilePath())
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
@@ -67,17 +68,18 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
                 .centerCrop()
                 .fitCenter()
                 .crossFade()
-                .into(holder.moviePoster);
+                .into(holder.moviePoster);*/
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public ImageView moviePoster;
+        public ImageView reviewAuthorImg;
+        public TextView reviewAuthorName, reviewContent;
         public ProgressBar progressBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_movieimage_progress);
-            moviePoster = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
+            reviewAuthorImg = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
         }
 
         public void bind(ReviewsModel itemModel){
