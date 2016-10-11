@@ -4,12 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.moviereel.moviereel.R;
+import com.moviereel.moviereel.adapter.MovieCastAdapter;
+import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.utils.IsNetwork;
+import com.sdsmdg.tastytoast.TastyToast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +48,23 @@ public class MovieReviews extends Fragment{
         //retrieve the arguments and set them to the movie model
         Bundle bundle = getArguments();
         MovieModel movieModel = bundle.getParcelable(MOVIE_PARCEL_KEY);
+
+        Log.d(MOVIEREVIEWS_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
+
+        // fetch the cast
+        List<ActorModel> actorModelList = new ArrayList<>();
+        MovieReviewTask fetchCastTask = new MovieReviewCastTask(getActivity(), actorModelList, movieModel);
+
+        //check for internet connection
+        if(IsNetwork.isNetworkAvailable(getActivity())) {
+            fetchCastTask.execute();
+        }else{
+            //display tasty toast of no network connection
+            TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
+        }
+
+        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
+
     }
 
     @Nullable
