@@ -9,7 +9,7 @@
     android:background="@color/background_color">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/moviecast_recyclerView"
+        android:id="@+id/moviereview_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
