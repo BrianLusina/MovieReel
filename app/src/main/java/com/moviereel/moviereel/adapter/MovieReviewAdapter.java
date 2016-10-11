@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.ImagesModel;
+import com.moviereel.moviereel.models.ReviewsModel;
 
 import java.util.List;
 
@@ -79,11 +80,8 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
             moviePoster = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
         }
 
-        public void bind(ImagesModel itemModel){
-            /*if the path is null, set a dummy image*/
-            if(itemModel.getFilePath() == null){
-                itemModel.setFilePath("https://dummyimage.com/400x200/000/fff.png&text=N/A");
-            }
+        public void bind(ReviewsModel itemModel){
+
         }
     }
 
