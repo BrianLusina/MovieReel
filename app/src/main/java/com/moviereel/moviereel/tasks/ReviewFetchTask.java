@@ -31,8 +31,18 @@ public class ReviewFetchTask extends AsyncTask<String, Void, List<ReviewsModel>>
     }
 
     @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+
+    @Override
     protected List<ReviewsModel> doInBackground(String... params) {
         return null;
 
+    }
+
+    @Override
+    protected void onPostExecute(List<ReviewsModel> reviewsModels) {
+        super.onPostExecute(reviewsModels);
     }
 }

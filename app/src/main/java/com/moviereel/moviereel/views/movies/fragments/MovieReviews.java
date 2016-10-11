@@ -3,6 +3,8 @@ package com.moviereel.moviereel.views.movies.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,6 +76,13 @@ public class MovieReviews extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.moviereviews_layout, container, false);
         ButterKnife.bind(this, rootView);
+
+        /*set the adapter*/
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        reviewRecycler.setHasFixedSize(true);
+        reviewRecycler.setLayoutManager(mLinearLayoutManager);
+        reviewRecycler.setAdapter(movieReviewAdapter);
         return rootView;
     }
 
@@ -84,7 +93,7 @@ public class MovieReviews extends Fragment{
 
     @Override
     public void onResume() {
-        super.onResume();
+        reviewRecycler.setAdapter(movieReviewAdapter);
     }
 
     @Override
@@ -101,6 +110,5 @@ public class MovieReviews extends Fragment{
     public void onStart() {
         super.onStart();
     }
-
 
 }
