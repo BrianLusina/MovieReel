@@ -79,7 +79,12 @@ public class MovieImageAdapter extends RecyclerView.Adapter<MovieImageAdapter.Vi
             moviePoster = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
         }
 
-        public void bind(ImagesModel itemModel){}
+        public void bind(ImagesModel itemModel){
+            /*if the path is null, set a dummy image*/
+            if(itemModel.getFilePath() == null){
+                itemModel.setFilePath("https://dummyimage.com/400x200/000/fff.png&text=N/A");
+            }
+        }
 
     }
 
