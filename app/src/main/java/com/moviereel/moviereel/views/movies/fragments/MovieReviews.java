@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieCastAdapter;
+import com.moviereel.moviereel.adapter.MovieReviewAdapter;
 import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.models.ReviewsModel;
+import com.moviereel.moviereel.tasks.FetchTask;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -33,6 +36,7 @@ import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 public class MovieReviews extends Fragment{
     public static final String MOVIEREVIEWS_TAG = MovieReviews.class.getSimpleName();
     @BindView(R.id.moviereview_recyclerView) RecyclerView reviewRecycler;
+    private MovieReviewAdapter movieReviewAdapter;
 
     public MovieReviews(){}
 
@@ -52,18 +56,18 @@ public class MovieReviews extends Fragment{
         Log.d(MOVIEREVIEWS_TAG+"BundleReceived:", movieModel != null ? movieModel.getMovie_title() : null);
 
         // fetch the cast
-        List<ActorModel> actorModelList = new ArrayList<>();
-        MovieReviewTask fetchCastTask = new MovieReviewCastTask(getActivity(), actorModelList, movieModel);
+        List<ReviewsModel> reviewsModelList = new ArrayList<>();
+        FetchTask fetchTask = new FetchTask(getActivity(), reviewsModelList, movieModel);
 
         //check for internet connection
         if(IsNetwork.isNetworkAvailable(getActivity())) {
-            fetchCastTask.execute();
+            fetchTask.execute();
         }else{
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
 
-        movieCastAdapter = new MovieCastAdapter(getActivity(), actorModelList, R.layout.moviecast_item_layout);
+        movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviecast_item_layout);
 
     }
 
