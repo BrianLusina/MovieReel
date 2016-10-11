@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.adapter.MovieCastAdapter;
 import com.moviereel.moviereel.adapter.MovieReviewAdapter;
-import com.moviereel.moviereel.models.ActorModel;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.models.ReviewsModel;
-import com.moviereel.moviereel.tasks.FetchTask;
+import com.moviereel.moviereel.tasks.ReviewFetchTask;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -57,11 +55,11 @@ public class MovieReviews extends Fragment{
 
         // fetch the cast
         List<ReviewsModel> reviewsModelList = new ArrayList<>();
-        FetchTask fetchTask = new FetchTask(getActivity(), reviewsModelList, movieModel);
+        ReviewFetchTask reviewFetchTask = new ReviewFetchTask(getActivity(), reviewsModelList, movieModel);
 
         //check for internet connection
         if(IsNetwork.isNetworkAvailable(getActivity())) {
-            fetchTask.execute();
+            reviewFetchTask.execute();
         }else{
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
