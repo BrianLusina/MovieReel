@@ -10,15 +10,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.models.ImagesModel;
 import com.moviereel.moviereel.models.ReviewsModel;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -89,8 +82,6 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.movirereview_progress);
-            reviewAuthorImg = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
-
             reviewAuthorImg = (ImageView) itemView.findViewById(R.id.moviereview_author_img);
             reviewAuthorName = (TextView) itemView.findViewById(R.id.moviereview_author_name);
             reviewContent = (TextView)itemView.findViewById(R.id.moviereview_content_id);

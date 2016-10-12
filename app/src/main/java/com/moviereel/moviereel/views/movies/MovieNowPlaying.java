@@ -19,6 +19,7 @@ import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.tasks.MovieSync;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.moviereel.moviereel.utils.RecyclerItemClickListener;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,13 +58,8 @@ public class MovieNowPlaying extends Fragment{
         if(IsNetwork.isNetworkAvailable(getActivity())) {
             movieSync.execute();
         }else{
-            Snackbar snackbar = Snackbar
-                    .make(coordinatorLayout, getString(R.string.snackbar_warning_no_internet_conn), Snackbar.LENGTH_SHORT)
-                    .setAction(getString(R.string.snackbar_no_internet_conn_retry), view -> {
-                        Snackbar snackbar1 = Snackbar.make(coordinatorLayout, getString(R.string.snackbar_no_internet_conn_retry), Snackbar.LENGTH_SHORT);
-                        snackbar1.show();
-                    });
-            snackbar.show();
+            //display tasty toast of no network connection
+            TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
         movieAdapter = new MovieAdapter(getActivity(), movieModelList, R.layout.movie_item_layout);
     }
