@@ -48,12 +48,12 @@ public class ReviewFetchTask extends AsyncTask<String, Void, List<ReviewsModel>>
     @Override
     protected List<ReviewsModel> doInBackground(String... params) {
         //pass an id to the movie to get details about the movie
-        TmdbMovies currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getMovies();
-        MovieDb thisMovie = currentMovie.getMovie(movieModel.getMovie_id(), "en");
+        TmdbReviews currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getReviews();
+        TmdbReviews.ReviewResultsPage thisMovie = currentMovie.getReviews(movieModel.getMovie_id(), "en",1);
         String author, content, url, id;
 
         /**for each review in the list, extract the data and store in variables*/
-        for(Reviews reviews : thisMovie.getReviews()){
+        for(Reviews reviews : thisMovie.getResults()){
             author = reviews.getAuthor();
             content = reviews.getContent();
             url = reviews.getUrl();
