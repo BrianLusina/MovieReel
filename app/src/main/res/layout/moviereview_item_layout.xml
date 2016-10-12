@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content">
 
                 <ProgressBar
-                    android:id="@+id/progress_moviecast_progress"
+                    android:id="@+id/movirereview_progress"
                     android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="56dp" />
@@ -71,7 +71,7 @@
         <!--button for read more-->
         <Button
             android:layout_marginTop="20dp"
-            android:id="@+id/email_sign_in_button"
+            android:id="@+id/moviewreview_viewmore_button"
             android:background="@drawable/bt_shape"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"

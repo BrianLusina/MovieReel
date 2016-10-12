@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -77,18 +78,25 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
         public ImageView reviewAuthorImg;
         public TextView reviewAuthorName, reviewContent;
         public ProgressBar progressBar;
+        public Button reviewViewmore;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progress_movieimage_progress);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.movirereview_progress);
             reviewAuthorImg = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
 
             reviewAuthorImg = (ImageView) itemView.findViewById(R.id.moviereview_author_img);
             reviewAuthorName = (TextView) itemView.findViewById(R.id.moviereview_author_name);
+            reviewContent = (TextView)itemView.findViewById(R.id.moviereview_content_id);
+            reviewViewmore = (Button)itemView.findViewById(R.id.moviewreview_viewmore_button);
         }
 
         public void bind(ReviewsModel itemModel){
+            reviewAuthorName.setText(itemModel.getReviewAuthor());
 
+            /*truncate the string*/
+            String content = itemModel.getReviewContent().substring(0, 99);
+            reviewContent.setText(content  + "...");
         }
     }
 
