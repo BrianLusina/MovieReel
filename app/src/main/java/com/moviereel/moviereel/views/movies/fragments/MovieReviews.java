@@ -31,7 +31,7 @@ import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
  * MovieReel
  * com.moviereel.moviereel.views.movies.fragments
  * Created by lusinabrian on 02/10/16.
- * Description: Displayes the reviews for the current movie
+ * Description: Displays the reviews for the current movie
  */
 public class MovieReviews extends Fragment{
     public static final String MOVIEREVIEWS_TAG = MovieReviews.class.getSimpleName();
@@ -68,7 +68,6 @@ public class MovieReviews extends Fragment{
         }
 
         movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviecast_item_layout);
-
     }
 
     @Nullable
@@ -111,5 +110,4 @@ public class MovieReviews extends Fragment{
     public void onStart() {
         super.onStart();
     }
-
 }

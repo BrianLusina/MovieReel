@@ -11,16 +11,14 @@ import android.os.Parcelable;
  */
 public class ReviewsModel implements Parcelable {
     private String reviewId, reviewAuthor, reviewContent, reviewUrl;
-    private int reviewTotalResults;
 
     public ReviewsModel(){}
 
-    public ReviewsModel(String reviewId, String reviewAuthor, String reviewContent, String reviewUrl, int reviewTotalResults) {
+    public ReviewsModel(String reviewId, String reviewAuthor, String reviewContent, String reviewUrl) {
         this.reviewId = reviewId;
         this.reviewAuthor = reviewAuthor;
         this.reviewContent = reviewContent;
         this.reviewUrl = reviewUrl;
-        this.reviewTotalResults = reviewTotalResults;
     }
 
     @Override
@@ -30,7 +28,6 @@ public class ReviewsModel implements Parcelable {
                 ", reviewAuthor='" + reviewAuthor + '\'' +
                 ", reviewContent='" + reviewContent + '\'' +
                 ", reviewUrl='" + reviewUrl + '\'' +
-                ", reviewTotalResults=" + reviewTotalResults +
                 '}';
     }
 
@@ -66,14 +63,6 @@ public class ReviewsModel implements Parcelable {
         this.reviewUrl = reviewUrl;
     }
 
-    public int getReviewTotalResults() {
-        return reviewTotalResults;
-    }
-
-    public void setReviewTotalResults(int reviewTotalResults) {
-        this.reviewTotalResults = reviewTotalResults;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -85,7 +74,6 @@ public class ReviewsModel implements Parcelable {
         dest.writeString(this.reviewAuthor);
         dest.writeString(this.reviewContent);
         dest.writeString(this.reviewUrl);
-        dest.writeInt(this.reviewTotalResults);
     }
 
     protected ReviewsModel(Parcel in) {
@@ -93,7 +81,6 @@ public class ReviewsModel implements Parcelable {
         this.reviewAuthor = in.readString();
         this.reviewContent = in.readString();
         this.reviewUrl = in.readString();
-        this.reviewTotalResults = in.readInt();
     }
 
     public static final Parcelable.Creator<ReviewsModel> CREATOR = new Parcelable.Creator<ReviewsModel>() {
