@@ -18,7 +18,6 @@ import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.ViewPagerAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.views.movies.fragments.MovieCast;
-import com.moviereel.moviereel.views.movies.fragments.MovieImagesFrag;
 import com.moviereel.moviereel.views.movies.fragments.MovieInfo;
 import com.moviereel.moviereel.views.movies.fragments.MovieMedia;
 import com.moviereel.moviereel.views.movies.fragments.MovieReviews;
@@ -115,19 +114,17 @@ public class MovieDetails extends AppCompatActivity implements AppBarLayout.OnOf
         /*Pass the bundle to the fragments and set the bundle*/
         MovieInfo movieInfo = new MovieInfo();
         MovieCast movieCast = new MovieCast();
-        MovieImagesFrag movieImagesFrag = new MovieImagesFrag();
+
         MovieReviews movieReviews = new MovieReviews();
         MovieMedia movieMedia = new MovieMedia();
 
         movieInfo.setArguments(bundle);
         movieCast.setArguments(bundle);
-        movieImagesFrag.setArguments(bundle);
         movieReviews.setArguments(bundle);
         movieMedia.setArguments(bundle);
 
         mViewPagerAdapter.addFragment(movieInfo, "Info");
         mViewPagerAdapter.addFragment(movieCast, "Cast");
-        mViewPagerAdapter.addFragment(movieImagesFrag, "Images");
         mViewPagerAdapter.addFragment(movieReviews, "Reviews");
         mViewPagerAdapter.addFragment(movieMedia, "Media");
 
