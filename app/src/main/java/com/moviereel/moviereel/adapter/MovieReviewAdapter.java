@@ -54,7 +54,7 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
         holder.itemView.setTag(reviewsModel);
         holder.bind(reviewsModel);
         //load images using Glider library
- /*       Glide.with(mContext)
+        /*Glide.with(mContext)
                 .load(reviewsModel.getFilePath())
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
@@ -72,6 +72,12 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
                 .fitCenter()
                 .crossFade()
                 .into(holder.moviePoster);*/
+
+        /*set on click listener for the review items*/
+        holder.reviewViewmore.setOnClickListener(v -> {
+            //start next activity to read more on the review
+
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -89,6 +95,7 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
             reviewAuthorName = (TextView) itemView.findViewById(R.id.moviereview_author_name);
             reviewContent = (TextView)itemView.findViewById(R.id.moviereview_content_id);
             reviewViewmore = (Button)itemView.findViewById(R.id.moviewreview_viewmore_button);
+
         }
 
         public void bind(ReviewsModel itemModel){
@@ -98,6 +105,7 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
             String content = itemModel.getReviewContent().substring(0, 99);
             reviewContent.setText(content  + "...");
         }
+
     }
 
     public void add(ReviewsModel itemModel, int position){
