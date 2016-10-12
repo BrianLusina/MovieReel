@@ -21,5 +21,7 @@
     <dimen name="movie_item_text_padding">8dp</dimen>
     <dimen name="movieitem_padding">16dp</dimen>
     <dimen name="movie_voteavg_size">18sp</dimen>
+    <dimen name="moviereview_author_name_size">18sp</dimen>
+    <dimen name="moviereview_content_padding">10dp</dimen>
 
 </resources>

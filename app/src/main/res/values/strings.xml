@@ -3,7 +3,7 @@
 
     <string name="movie_image_card">Movie item Image</string>
     <string name="movie_title_card">Movie Title</string>
-    <string name="movie_desc_card">Lorem ipsum dolor sit amet, quo justo semper maiestatis te. Natum minim nominavi eu cum, his mucius numquam ocurreret eu, in dicunt impedit suscipiantur pro.</string>
+    <string name="dummy_text">Lorem ipsum dolor sit amet, quo justo semper maiestatis te. Natum minim nominavi eu cum, his mucius numquam ocurreret eu, in dicunt impedit suscipiantur pro.</string>
     <string name="movie_date_card">release date</string>
     <string name="snackbar_warning_no_internet_conn">No Internet Connection</string>
     <string name="snackbar_no_internet_conn_retry">Retry</string>
@@ -87,9 +87,9 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="get_latest_movie">And the latest movie is...</string>
+    <string name="get_latest_movie">And the latest movie is…</string>
     <string name="movie_item_header_txt">Movie Title</string>
-    <string name="movie_category_txt">Action, Thriller,...</string>
+    <string name="movie_category_txt">Action, Thriller,…</string>
     <string name="movie_time_txt">143min</string>
     <string name="about_app">Keeping you updated on your favourite shows.</string>
     <string name="movie_voteavg_card">4.7</string>
@@ -105,6 +105,8 @@
     <string name="movieinfo_genres_field">Genres</string>
     <string name="moviecast_item_name">Actor name</string>
     <string name="moviecast_item_charname">Character name</string>
+    <string name="moviereview_author_name">Author name</string>
+    <string name="moviereview_viewmore">View more</string>
 
     <string-array name="list_preference_entries">
         <item>Entry 1</item>

@@ -17,6 +17,8 @@ import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.ImagesModel;
 import com.moviereel.moviereel.models.ReviewsModel;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -80,6 +82,9 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_movieimage_progress);
             reviewAuthorImg = (ImageView) itemView.findViewById(R.id.movieimage_item_img);
+
+            reviewAuthorImg = (ImageView) itemView.findViewById(R.id.moviereview_author_img);
+            reviewAuthorName = (TextView) itemView.findViewById(R.id.moviereview_author_name);
         }
 
         public void bind(ReviewsModel itemModel){
