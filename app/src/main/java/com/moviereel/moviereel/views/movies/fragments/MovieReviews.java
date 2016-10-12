@@ -71,7 +71,7 @@ public class MovieReviews extends Fragment{
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
 
-        movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviecast_item_layout);
+        movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviereview_item_layout);
     }
 
     @Nullable
@@ -159,7 +159,7 @@ private class ReviewFetchTask extends AsyncTask<String, Void, List<ReviewsModel>
     @Override
     protected void onPostExecute(List<ReviewsModel> reviewsModels) {
         super.onPostExecute(reviewsModels);
-        movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviecast_item_layout);
+        movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviereview_item_layout);
     }
 }
 
