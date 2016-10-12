@@ -1,9 +1,10 @@
 package com.moviereel.moviereel.views.movies.fragments;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,9 +14,9 @@ import android.view.ViewGroup;
 
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieReviewAdapter;
+import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.models.ReviewsModel;
-import com.moviereel.moviereel.tasks.ReviewFetchTask;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -24,6 +25,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbReviews;
+import info.movito.themoviedbapi.model.Reviews;
 
 import static com.moviereel.moviereel.models.Contract.MOVIE_PARCEL_KEY;
 
@@ -110,4 +114,53 @@ public class MovieReviews extends Fragment{
     public void onStart() {
         super.onStart();
     }
+/*-**-*-*-*-*-*-*-*-*-*--**********************-------------------*-*-*-*-*-*--*-*-*/
+private class ReviewFetchTask extends AsyncTask<String, Void, List<ReviewsModel>> {
+    private final String REVIEWFETCHTASK_TAG = ReviewFetchTask.class.getSimpleName();
+    private List<ReviewsModel> reviewsModelList;
+    private Context context;
+    private MovieModel movieModel;
+    private ReviewsModel reviewsModel;
+
+    public ReviewFetchTask(){}
+
+    public ReviewFetchTask(Context context, List<ReviewsModel> reviewsModelList, MovieModel movieModel){
+        this.context = context;
+        this.reviewsModelList = reviewsModelList;
+        this.movieModel = movieModel;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+
+    @Override
+    protected List<ReviewsModel> doInBackground(String... params) {
+        //pass an id to the movie to get details about the movie
+        TmdbReviews currentMovie = new TmdbApi(Contract.MOVIE_DB_KEY).getReviews();
+        TmdbReviews.ReviewResultsPage thisMovie = currentMovie.getReviews(movieModel.getMovie_id(), "en",1);
+        String author, content, url, id;
+
+        /**for each review in the list, extract the data and store in variables*/
+        for(Reviews reviews : thisMovie.getResults()){
+            author = reviews.getAuthor();
+            content = reviews.getContent();
+            url = reviews.getUrl();
+            id = reviews.getId();
+            reviewsModel = new ReviewsModel(id, author,content,url);
+            reviewsModelList.add(reviewsModel);
+        }
+        /*log the data for debugging*/
+        Log.d(REVIEWFETCHTASK_TAG, reviewsModelList.toString());
+        return reviewsModelList;
+    }
+
+    @Override
+    protected void onPostExecute(List<ReviewsModel> reviewsModels) {
+        super.onPostExecute(reviewsModels);
+        movieReviewAdapter = new MovieReviewAdapter(getActivity(), reviewsModelList, R.layout.moviecast_item_layout);
+    }
+}
+
 }
