@@ -1,6 +1,11 @@
 package com.moviereel.moviereel.movienowplaying;
 
-import static com.moviereel.moviereel.utils.Constants.MOVIE_OBJ;
+
+import android.content.Context;
+
+import com.moviereel.moviereel.models.MovieModel;
+
+import java.util.List;
 
 /**
  * MovieReel
@@ -9,12 +14,15 @@ import static com.moviereel.moviereel.utils.Constants.MOVIE_OBJ;
  * Description:
  */
 
-class MovieNPPresenterImpl implements MovieNPPresenter {
+class MovieNPPresenterImpl implements MovieNPPresenter, MovieNPInteractor.OnFinishedListener{
     private MovieNPView movieNPView;
+    private MovieNPInteractor movieNPInteractor;
+    private Context context;
 
-
-    public MovieNPPresenterImpl(MovieNPView movieNPView) {
+    MovieNPPresenterImpl(Context context, MovieNPView movieNPView, MovieNPInteractor movieNPInteractor) {
         this.movieNPView = movieNPView;
+        this.context = context;
+        this.movieNPInteractor = movieNPInteractor;
     }
 
     @Override
@@ -24,7 +32,7 @@ class MovieNPPresenterImpl implements MovieNPPresenter {
         }
 
         /*find the items from the model layer*/
-
+        movieNPInteractor.findItems(context, this);
     }
 
     @Override
@@ -39,5 +47,17 @@ class MovieNPPresenterImpl implements MovieNPPresenter {
     @Override
     public void onDestroy() {
         movieNPView = null;
+    }
+
+    @Override
+    public void onFinished(List<MovieModel> items) {
+        if(movieNPView != null){
+            movieNPView.setItems(items);
+            movieNPView.dismissProgress();
+        }
+    }
+
+    public MovieNPView getMainView() {
+        return movieNPView;
     }
 }

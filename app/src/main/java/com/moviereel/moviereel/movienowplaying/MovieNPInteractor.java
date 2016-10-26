@@ -1,5 +1,7 @@
 package com.moviereel.moviereel.movienowplaying;
 
+import android.content.Context;
+
 import com.moviereel.moviereel.models.MovieModel;
 
 import java.util.List;
@@ -18,5 +20,5 @@ interface MovieNPInteractor {
     }
 
     /**Find the items*/
-    void findItems(OnFinishedListener listener);
+    void findItems(Context context, OnFinishedListener listener);
 }

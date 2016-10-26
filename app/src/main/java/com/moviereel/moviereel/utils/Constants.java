@@ -10,6 +10,8 @@ import com.moviereel.moviereel.movienowplaying.MovieNowPlaying;
  */
 
 public class Constants {
+
+    /*class tags*/
     public static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
 
     /*Bundle keys*/
@@ -17,4 +19,6 @@ public class Constants {
     /**kEY FOR clicked Movie Now Playing items*/
     public static final String MOVIE_OBJ = "MovieObj";
 
+    /**Shared Preferences*/
+    public static final String MOVIE_NP_PREF ="MOVIE_NOW_PLAYING_PREF";
 }

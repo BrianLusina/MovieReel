@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +16,10 @@ import android.view.ViewGroup;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
-import com.moviereel.moviereel.tasks.MovieSync;
-import com.moviereel.moviereel.utils.IsNetwork;
 import com.moviereel.moviereel.utils.RecyclerItemClickListener;
 import com.moviereel.moviereel.views.movies.MovieDetails;
 import com.sdsmdg.tastytoast.TastyToast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,18 +53,13 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
-        movieModelList = new ArrayList<>();
-        MovieSync movieSync = new MovieSync(getActivity(), movieModelList);
-
-        if(IsNetwork.isNetworkAvailable(getActivity())) {
+        /*        if(IsNetwork.isNetworkAvailable(getActivity())) {
             movieSync.execute();
         }else{
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
 */
-
     }
 
     @Nullable
@@ -74,6 +67,10 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movierecy_layout, container, false);
         ButterKnife.bind(this, rootView);
+
+        /*initialize the progress dialog*/
+        progressDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        movieNPPresenter = new MovieNPPresenterImpl(getActivity(), this, new MovieNPInteractorImpl());
 
         //TODO: set the swipe refresh layout to fetch more data
         mSwipeRefreshLayout.setColorSchemeResources(
@@ -87,7 +84,6 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLinearLayoutManager);
-
         return rootView;
     }
 
@@ -107,17 +103,22 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
 
     @Override
     public void showProgress() {
-
+        progressDialog.getProgressHelper().setBarColor(ContextCompat.getColor(getActivity(),R.color.cadet_blue));
+        progressDialog.setTitleText("Loading...");
+        progressDialog.setCancelable(true);
+        progressDialog.show();
     }
 
     @Override
     public void dismissProgress() {
-
+        if(progressDialog.isShowing()){
+            progressDialog.dismissWithAnimation();
+        }
     }
 
     @Override
     public void displayToast(String message, int messageType) {
-
+        TastyToast.makeText(getActivity(),message,messageType, TastyToast.LENGTH_SHORT);
     }
 
     @Override
@@ -133,6 +134,18 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
                     showMovieDet.putExtra(bundleKey, moviePosition);
                     startActivity(showMovieDet);
                 }));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        movieNPPresenter.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        movieNPPresenter.onDestroy();
+        super.onDestroy();
     }
 
 /*END*/
