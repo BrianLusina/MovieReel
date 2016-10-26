@@ -12,20 +12,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.adapter.MovieAdapter;
 import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.utils.RecyclerItemClickListener;
 import com.moviereel.moviereel.views.movies.MovieDetails;
 import com.sdsmdg.tastytoast.TastyToast;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-
 import static com.moviereel.moviereel.utils.Constants.MOVIE_OBJ;
 
 /**
