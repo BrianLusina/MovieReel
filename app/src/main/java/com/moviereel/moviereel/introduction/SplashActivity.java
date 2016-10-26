@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.views.introduction;
+package com.moviereel.moviereel.introduction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.views.MainActivity;
+import com.moviereel.moviereel.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     /*FIELDS*/

@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.views.settings;
+package com.moviereel.moviereel.settings;
 
 
 import android.annotation.TargetApi;

@@ -1,9 +1,6 @@
-package com.moviereel.moviereel.views;
+package com.moviereel.moviereel.main;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,21 +8,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.views.movies.MovieNowPlaying;
-import com.moviereel.moviereel.views.settings.SettingsActivity;
+import com.moviereel.moviereel.movienowplaying.MovieNowPlaying;
+import com.moviereel.moviereel.settings.SettingsActivity;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 

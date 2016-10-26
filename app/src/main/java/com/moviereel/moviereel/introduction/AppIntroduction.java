@@ -1,4 +1,4 @@
-package com.moviereel.moviereel.views.introduction;
+package com.moviereel.moviereel.introduction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.support.v4.content.ContextCompat;
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.moviereel.moviereel.R;
-import com.moviereel.moviereel.views.MainActivity;
+import com.moviereel.moviereel.main.MainActivity;
 
 /**
  * Project: Movie Reel
- * Package: com.moviereel.moviereel.views.introduction
+ * Package: com.moviereel.moviereel.introduction
  * Created by lusinabrian on 05/09/16 at 15:24
  * Description: Simple app introduction class
  */

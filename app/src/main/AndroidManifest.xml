@@ -17,10 +17,10 @@
         tools:replace="android:icon">
 
         <!-- App introduction -->
-        <activity android:name=".views.introduction.AppIntroduction" />
+        <activity android:name=".introduction.AppIntroduction" />
 
         <!-- splash screen -->
-        <activity android:name=".views.introduction.SplashActivity">
+        <activity android:name=".introduction.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
         </activity>
 
         <!-- main activity -->
-        <activity android:name=".views.MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
 
@@ -40,7 +40,7 @@
         <!-- movie details -->
         <activity android:name=".views.movies.MovieDetails" />
         <activity
-            android:name=".views.settings.SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
     </application>
 

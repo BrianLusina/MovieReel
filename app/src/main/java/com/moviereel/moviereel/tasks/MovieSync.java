@@ -25,8 +25,6 @@ import info.movito.themoviedbapi.model.ProductionCompany;
 import info.movito.themoviedbapi.model.ProductionCountry;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
-import static com.moviereel.moviereel.views.movies.MovieNowPlaying.MOVIENOW_PLAYING_TAG;
-
 /**
  * MovieReel
  * com.moviereel.moviereel.views.movies

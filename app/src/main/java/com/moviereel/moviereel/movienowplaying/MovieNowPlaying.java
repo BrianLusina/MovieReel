@@ -1,10 +1,9 @@
-package com.moviereel.moviereel.views.movies;
+package com.moviereel.moviereel.movienowplaying;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +18,7 @@ import com.moviereel.moviereel.models.MovieModel;
 import com.moviereel.moviereel.tasks.MovieSync;
 import com.moviereel.moviereel.utils.IsNetwork;
 import com.moviereel.moviereel.utils.RecyclerItemClickListener;
+import com.moviereel.moviereel.views.movies.MovieDetails;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
