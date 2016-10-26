@@ -29,7 +29,8 @@
         </activity>
 
         <!-- main activity -->
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
 

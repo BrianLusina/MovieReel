@@ -83,9 +83,7 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
         super.onViewCreated(view, savedInstanceState);
         //implement item click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
-                (view1, position) -> {
-                    startActivityForClickedItem(MOVIE_OBJ, position);
-                }));
+                (view1, position) -> startActivityForClickedItem(MOVIE_OBJ, position)));
     }
 
     @Override
@@ -121,6 +119,11 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
                     showMovieDet.putExtra(bundleKey, moviePosition);
                     startActivity(showMovieDet);
                 }));
+    }
+
+    @Override
+    public void onRecyclerItemClicked(String bundleKey, int position) {
+        movieNPPresenter.onItemClicked(bundleKey, position);
     }
 
     @Override

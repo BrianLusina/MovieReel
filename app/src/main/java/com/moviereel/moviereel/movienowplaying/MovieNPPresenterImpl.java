@@ -7,6 +7,8 @@ import com.moviereel.moviereel.models.MovieModel;
 
 import java.util.List;
 
+import static com.moviereel.moviereel.utils.Constants.MOVIE_OBJ;
+
 /**
  * MovieReel
  * com.moviereel.moviereel.movienowplaying
@@ -38,9 +40,10 @@ class MovieNPPresenterImpl implements MovieNPPresenter, MovieNPInteractor.OnFini
     @Override
     public void onItemClicked(String bundleKey, int position) {
         if(movieNPView != null){
+            bundleKey = MOVIE_OBJ;
 
             //fetch items from the clicked item
-            movieNPView.startActivityForClickedItem(bundleKey, position);
+            movieNPView.onRecyclerItemClicked(bundleKey, position);
         }
     }
 
