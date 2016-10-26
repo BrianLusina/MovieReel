@@ -33,7 +33,8 @@ import butterknife.ButterKnife;
  * Created by lusinabrian on 22/08/16 at 20:32
  * Description: displays the latest movies
  */
-public class MovieNowPlaying extends Fragment{
+public class MovieNowPlaying extends Fragment implements MovieNPView{
+
     public static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
     private MovieAdapter movieAdapter;
     private List<MovieModel> movieModelList;

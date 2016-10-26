@@ -4,9 +4,9 @@ package com.moviereel.moviereel.movienowplaying;
  * MovieReel
  * com.moviereel.moviereel.movienowplaying
  * Created by lusinabrian on 26/10/16.
- * Description: View Interface for {@link MovieNowPlaying}
+ * Description:
  */
 
-interface MovieNPView {
+class MovieNPInteractorImpl implements MovieNPInteractor {
 
 }
