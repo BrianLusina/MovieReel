@@ -27,4 +27,9 @@ interface MovieNPView {
     /**responsible for setting the items to the RecyclerView
      * @param movieModelList The List of Movie Objects fetched from Model layer*/
     void setItems(List<MovieModel> movieModelList);
+
+    /**picks the data of the item clicked in the RecyclerView
+     start activity for the clicked movie item*/
+    void startActivityForClickedItem(String bundleKey, int moviePosition);
+
 }

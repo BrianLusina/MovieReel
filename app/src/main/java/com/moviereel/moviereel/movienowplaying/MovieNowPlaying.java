@@ -26,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Project: Movie Reel
@@ -35,13 +36,14 @@ import butterknife.ButterKnife;
  */
 public class MovieNowPlaying extends Fragment implements MovieNPView{
 
-    public static final String MOVIENOW_PLAYING_TAG = MovieNowPlaying.class.getSimpleName();
-    private MovieAdapter movieAdapter;
-    private List<MovieModel> movieModelList;
     @BindView(R.id.movie_recy_recyclerview_id) RecyclerView recyclerView;
     @BindView(R.id.movie_recy_coordinator_layout) CoordinatorLayout coordinatorLayout;
     @BindView(R.id.movie_recy_swiperefresh_layout_id) SwipeRefreshLayout mSwipeRefreshLayout;
 
+    private MovieNPPresenter movieNPPresenter;
+    private SweetAlertDialog progressDialog;
+
+    /**Empty required public constructor*/
     public MovieNowPlaying(){}
 
     public static Fragment newInstance(){
@@ -53,6 +55,7 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+/*
         movieModelList = new ArrayList<>();
         MovieSync movieSync = new MovieSync(getActivity(), movieModelList);
 
@@ -62,7 +65,8 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
             //display tasty toast of no network connection
             TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
         }
-        movieAdapter = new MovieAdapter(getActivity(), movieModelList, R.layout.movie_item_layout);
+*/
+
     }
 
     @Nullable
@@ -83,7 +87,6 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLinearLayoutManager);
-        recyclerView.setAdapter(movieAdapter);
 
         return rootView;
     }
@@ -98,6 +101,36 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
                      * for display**/
                     Intent showMovieDet = new Intent(getActivity(),MovieDetails.class);
                     showMovieDet.putExtra("MovieObj", movieModelList.get(position));
+                    startActivity(showMovieDet);
+                }));
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
+
+    @Override
+    public void displayToast(String message, int messageType) {
+
+    }
+
+    @Override
+    public void setItems(List<MovieModel> movieModelList) {
+        recyclerView.setAdapter(new MovieAdapter(getActivity(), movieModelList, R.layout.movie_item_layout));
+    }
+
+    @Override
+    public void startActivityForClickedItem(String bundleKey, int moviePosition) {
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
+                (view1, position) -> {
+                    Intent showMovieDet = new Intent(getActivity(),MovieDetails.class);
+                    showMovieDet.putExtra(bundleKey, moviePosition);
                     startActivity(showMovieDet);
                 }));
     }
