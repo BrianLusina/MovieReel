@@ -29,7 +29,7 @@ interface MovieNPView {
 
     /**picks the data of the item clicked in the RecyclerView
      start activity for the clicked movie item*/
-    void startActivityForClickedItem(String bundleKey, int moviePosition);
+    void startActivityForClickedItem(String bundleKey, List<MovieModel> movieList);
 
-    void onRecyclerItemClicked(String bundleKey,int position);
+    void onRecyclerItemClicked(String bundleKey, List<MovieModel> movieList);
 }

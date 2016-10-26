@@ -38,12 +38,12 @@ class MovieNPPresenterImpl implements MovieNPPresenter, MovieNPInteractor.OnFini
     }
 
     @Override
-    public void onItemClicked(String bundleKey, int position) {
+    public void onItemClicked(String bundleKey, List<MovieModel> movieList) {
         if(movieNPView != null){
             bundleKey = MOVIE_OBJ;
 
             //fetch items from the clicked item
-            movieNPView.onRecyclerItemClicked(bundleKey, position);
+            movieNPView.onRecyclerItemClicked(bundleKey, movieList);
         }
     }
 
