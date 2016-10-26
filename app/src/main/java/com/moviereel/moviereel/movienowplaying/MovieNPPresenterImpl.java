@@ -57,6 +57,14 @@ class MovieNPPresenterImpl implements MovieNPPresenter, MovieNPInteractor.OnFini
         }
     }
 
+    @Override
+    public void onNetworkError(String message, int messageType) {
+        if(movieNPView != null){
+            movieNPView.displayToast(message, messageType);
+            movieNPView.dismissProgress();
+        }
+    }
+
     public MovieNPView getMainView() {
         return movieNPView;
     }

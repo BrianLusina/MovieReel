@@ -17,6 +17,9 @@ interface MovieNPInteractor {
     interface OnFinishedListener {
         /**on finished loading, set the movie items to the adapter*/
         void onFinished(List<MovieModel> items);
+
+        /**display network eror*/
+        void onNetworkError(String message, int messageType);
     }
 
     /**Find the items*/

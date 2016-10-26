@@ -2,21 +2,19 @@ package com.moviereel.moviereel.movienowplaying;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.google.gson.Gson;
 import com.moviereel.moviereel.R;
 import com.moviereel.moviereel.models.Contract;
 import com.moviereel.moviereel.models.MovieModel;
+import com.moviereel.moviereel.utils.IsNetwork;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.Genre;
@@ -41,7 +39,12 @@ class MovieNPInteractorImpl implements MovieNPInteractor {
     @Override
     public void findItems(Context context, OnFinishedListener listener) {
         MovieSync movieSync = new MovieSync(context,listener);
-        movieSync.execute();
+        if(IsNetwork.isNetworkAvailable(context)) {
+            movieSync.execute();
+        }else{
+            //display tasty toast of no network connection
+            listener.onNetworkError(context.getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.ERROR);
+        }
     }
 
     private class MovieSync extends AsyncTask<String, Void, List<MovieModel>> {
@@ -102,7 +105,7 @@ class MovieNPInteractorImpl implements MovieNPInteractor {
                 }
 
             /*Add the whole arraylist to a hash set to remove all duplicates from the Genres list
-            * clear the array list and add the hash set back to the arraylist*/
+            * clear the array list and add the hash set back to the array list*/
                 movieGenresSet.addAll(movieGenresArrLst);
                 movieGenresArrLst.clear();
                 movieGenresArrLst.addAll(movieGenresSet);

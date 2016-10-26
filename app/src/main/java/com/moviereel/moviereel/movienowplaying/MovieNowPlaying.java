@@ -26,6 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.moviereel.moviereel.utils.Constants.MOVIE_OBJ;
+
 /**
  * Project: Movie Reel
  * Package: com.moviereel.moviereel.views.movies
@@ -53,13 +55,6 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*        if(IsNetwork.isNetworkAvailable(getActivity())) {
-            movieSync.execute();
-        }else{
-            //display tasty toast of no network connection
-            TastyToast.makeText(getActivity(),getResources().getString(R.string.snackbar_warning_no_internet_conn), TastyToast.LENGTH_SHORT,TastyToast.ERROR);
-        }
-*/
     }
 
     @Nullable
@@ -93,11 +88,7 @@ public class MovieNowPlaying extends Fragment implements MovieNPView{
         //implement item click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                 (view1, position) -> {
-                    /** collect data, mostly the id from the clicked item, transfer to the next activity
-                     * for display**/
-                    Intent showMovieDet = new Intent(getActivity(),MovieDetails.class);
-                    showMovieDet.putExtra("MovieObj", movieModelList.get(position));
-                    startActivity(showMovieDet);
+                    startActivityForClickedItem(MOVIE_OBJ, position);
                 }));
     }
 

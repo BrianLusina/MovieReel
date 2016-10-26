@@ -30,4 +30,5 @@ interface MovieNPView {
     /**picks the data of the item clicked in the RecyclerView
      start activity for the clicked movie item*/
     void startActivityForClickedItem(String bundleKey, int moviePosition);
+
 }
