@@ -1,5 +1,7 @@
 # Movie Reel
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c1b48e5c27784d79a3234df3ced6d5c6)](https://www.codacy.com/app/BrianLusina/MovieReel-app?utm_source=github.com&utm_medium=referral&utm_content=BrianLusina/MovieReel-app&utm_campaign=badger)
+
 Simple Android application which features your latest movies.
 
 ##__Features and User Stories__
