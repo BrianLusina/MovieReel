@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/movie_item_card"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:elevation="8dp"
+    card_view:cardBackgroundColor="@color/background_color"
+    android:clickable="true"
+    android:layout_margin="@dimen/card_movie_margin"
+    card_view:cardCornerRadius="@dimen/card_movie_radius"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <!--Author image-->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/movirereview_progress"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/moviereview_author_img"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/ic_account_circle_black_36dp"
+                    android:layout_height="56dp" />
+            </FrameLayout>
+
+            <!--Author name-->
+            <TextView
+                android:id="@+id/moviereview_author_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="@dimen/movie_item_text_padding"
+                android:text="@string/moviereview_author_name"
+                android:textStyle="normal"
+                android:textSize="@dimen/moviereview_author_name_size"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/moviereview_content_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/moviereview_content_padding"
+            android:textColor="@color/md_blue_grey_100"
+            android:text="@string/dummy_text"/>
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/light_red3"/>
+
+        <!--button for read more-->
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/moviewreview_viewmore_button"
+            android:background="@drawable/bt_shape"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/moviereview_viewmore"
+            android:textColor="@color/wheat"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

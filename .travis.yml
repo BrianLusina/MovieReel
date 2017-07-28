@@ -1,0 +1,103 @@
+language: android
+sudo: false
+jdk: oraclejdk7
+
+env:
+  matrix:
+    # re-executes the script for each Android API
+    - ANDROID_SDKS=android-19,sysimg-19 ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-20,sysimg-20 ANDROID_TARGET=android-20 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-21,sysimg-21 ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-22,sysimg-22 ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-23,sysimg-23 ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-24,sysimg-24 ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
+
+  global:
+    # wait up to 10 minutes for ADB to connect to emulator
+    - ADB_INSTALL_TIMEOUT=10
+
+android:
+  components:
+    # use the latest Android SDK tools
+    - platform-tools
+    - tools
+
+    # build tools version used
+    - build-tools-24.0.2
+    # design support library
+    - extra-android-m2repository
+    - extra-android-support
+
+    # SDK version used to compile project (Travis currently supports upto android--22)
+    - android-21
+    - android-22
+    - android-23
+    - android-24
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-armeabi-v7a-android-19
+    - sys-img-armeabi-v7a-android-20
+    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-22
+    - sys-img-armeabi-v7a-android-23
+    - sys-img-armeabi-v7a-android-24
+
+  licenses:
+    - android-sdk-license-.+
+
+before_cache:
+  # avoid uploading cache after every build
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb devices
+  - adb shell input keyevent 82 &
+  - ./gradlew connectedCheck
+
+# Change the gradle version to match yours
+cache:
+  directories:
+    - $HOME/.gradle/caches/2.14.1
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/caches/jars-1
+    - $HOME/.gradle/wrapper/
+    - $HOME/.gradle/daemon
+    - $HOME/.gradle/native
+
+before_install:
+  - curl -sL https://github.com/jpm4j/jpm4j.installers/raw/master/dist/biz.aQute.jpm.run.jar >jpm4j.jar
+  - java -jar jpm4j.jar -u init
+  - ~/jpm/bin/jpm install com.codacy:codacy-coverage-reporter:assembly
+
+# execute instrumentation tests
+before_script:
+  - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+
+script:
+  - ./gradlew connectedCheck --continue --stacktrace
+  - ./gradlew check --continue --stacktrace
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+  - ./gradlew testDebugUnitTestCoverage
+  # upload coverage report
+  - ./gradlew uploadCoverageToCodacy
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  # upload coverage report to codacy
+  - ~/jpm/bin/codacy-coverage-reporter -l Java -r build/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml
+
+after_failure:
+  - wget http://imgur.com/tools/imgurbash.sh
+  - chmod a+x imgurbash.sh
+  - adb shell screencap -p | sed 's/\r$//' > screen.png
+  - ./imgurbash.sh screen.png
+  - pandoc builder/build/reports/tests/index.html -t plain | sed -n '/^Failed tests/,/default-package/p'
+
+after_script:
+  # print lint results details
+  - for f in app/build/outputs/lint-results.html; do pandoc $f -t plain; done
+  - for f in data/build/outputs/lint-results.html; do pandoc $f -t plain; done

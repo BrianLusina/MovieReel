@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles">
+        <item>Info</item>
+        <item>Cast</item>
+        <item>Images</item>
+        <item>Reviews</item>
+        <item>Media</item>
+    </string-array>
+
+</resources>

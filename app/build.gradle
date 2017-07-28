@@ -1,0 +1,293 @@
+apply plugin: "com.android.application"
+apply plugin: "org.greenrobot.greendao"
+apply plugin: "kotlin-android"
+apply plugin: "io.fabric"
+apply plugin: "signing"
+apply from: "../jacoco.gradle"
+apply plugin: 'kotlin-kapt'
+
+// todo: move this to signing.gradle file
+// enable reading from keystore.properties file, change this if your properties file has a different name
+//def keystorePropertiesFile = rootProject.file("keystore.properties");
+//def keystoreProperties = new Properties()
+//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.moviereel"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = false
+    }
+
+    productFlavors {
+
+    }
+    /**
+     * The aapt tool may inflate PNG files that have already been compressed.
+     * To prevent this, you can use the cruncherEnabled flag in Gradle to disable this
+     * process for PNG files:
+     * */
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    // TODO: signing configs
+//    signingConfigs {
+//        release {
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile rootProject.file(keystoreProperties['storeFile'])
+//            storePassword keystoreProperties['storePassword']
+//        }
+//    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            applicationIdSuffix ".debug"
+            testCoverageEnabled true
+            resValue("string", "PORT_NUMBER", "8081")
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
+
+    buildTypes.each {
+        it.buildConfigField "String", "MOVIE_DB_KEY", MovieDbKey
+        it.buildConfigField "String", "POSTER_PATH", PosterPath
+        it.buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+    }
+
+    packagingOptions {
+        exclude "META-INF/LICENSE.txt"
+        exclude "META-INF/NOTICE.txt"
+        exclude "META-INF/DEPENDENCIES.txt"
+        exclude "META-INF/DEPENDENCIES"
+        exclude "META-INF/dependencies.txt"
+        exclude "META-INF/LICENSE"
+        exclude "META-INF/license.txt"
+        exclude "META-INF/LGPL2.1"
+        exclude "META-INF/NOTICE.txt"
+        exclude "META-INF/NOTICE"
+        exclude "META-INF/notice.txt"
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:support-annotations:" + rootProject.ext.supportLibVersion
+            //force "com.google.guava:guava:18.0"
+        }
+    }
+
+    // this enables the modularizing of application resources
+    sourceSets {
+        main {
+            java.srcDirs += "src/main/kotlin"
+            res.srcDirs = [
+                    "src/main/res/layouts/activities",
+                    "src/main/res/layouts/fragments",
+                    "src/main/res/layouts/components",
+                    "src/main/res/layouts/items",
+                    "src/main/res/layouts",
+                    "src/main/res"
+            ]
+        }
+
+        androidTest {
+            java.srcDirs += "src/androidTest/kotlin"
+        }
+
+        test {
+            java.srcDirs += "src/test/kotlin"
+        }
+    }
+
+    lintOptions {
+        quiet true         // set to true to turn off analysis progress reporting by lint
+        abortOnError false        // if true, stop the gradle build if errors are found
+        ignoreWarnings true        // if true, only report errors
+    }
+
+    // used to track the time and date this apk was released
+    // this will generate an apk with the given name
+    // moja-<BUILD_TYPE>-v<VERSION_NAME>-<FORMATTED_DATE>.apk
+    // this will be for both release and debug types
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def date = new Date()
+            def formattedDate = date.format("yyyyMMdd_HHmmss")
+            outputFileName = "moviereel-${variant.getBuildType().name}-v${variant.versionName}-${formattedDate}.apk"
+        }
+    }
+}
+
+repositories {
+    maven { url "https://maven.fabric.io/public" }
+    mavenCentral()
+    jcenter()
+}
+
+greendao {
+    schemaVersion 1
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Android support libraries
+    implementation "com.android.support:support-v4:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:design:$supportLibVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
+    implementation "com.android.support:support-vector-drawable:$supportLibVersion"
+    implementation "com.android.support:support-annotations:$supportLibVersion"
+    implementation "com.android.support:palette-v7:$supportLibVersion"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // database ORM for android
+    implementation "org.greenrobot:greendao:$greenDaoVersion"
+
+    // navigation tab strip
+    implementation "com.github.devlight.navigationtabstrip:navigationtabstrip:$navTabStripVersion"
+
+    //material drawer library
+    implementation("com.mikepenz:materialdrawer:$mikepenzMaterialDrawer") {
+        transitive = true
+    }
+
+    // https://github.com/mikepenz/AboutLibraries
+    implementation("com.mikepenz:aboutlibraries:$mikepenzAboutLib") {
+        transitive = true
+        exclude module: "fastadapter"
+    }
+
+    implementation "com.mikepenz:google-material-typeface:$mikepenzMaterialTypeface"
+    implementation "com.mikepenz:fontawesome-typeface:$mikepenzFontAwesome"
+    implementation "com.mikepenz:octicons-typeface:$mikepenzOctIcons"
+    implementation "com.mikepenz:itemanimators:$mikepenzeItemAnims"
+
+    /*Android job to schedule tasks to run.*/
+    implementation "com.evernote:android-job:$evernoteJobVersion"
+
+    // network
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterVersion"
+
+    //GSON, enable modification of Parcelable objects from JSON and back, parser
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
+    // glide for loading images
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    // round images
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+
+    // sweet alerts
+    implementation "cn.pedant.sweetalert:library:$sweetAlertVersion"
+
+    // view binding
+    implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    // app intro
+    implementation "com.github.paolorotolo:appintro:$appIntroVersion"
+
+    // crashlytics and error handling
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion") {
+        transitive = true
+    }
+
+    // custom crash
+    implementation "cat.ereza:customactivityoncrash:$customActivityOnCrashVersion"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    compileOnly "javax.annotation:jsr250-api:1.0"
+    // org.glassfish:javax.annotation:10.0-b28
+    implementation "javax.inject:javax.inject:1"
+    //annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+
+    // android debug database
+    debugImplementation "com.amitshekhar.android:debug-db:$debugDatabaseVersion"
+
+    //-----------------------TEST DEPENDENCIES-----------------------------------------------------
+
+    // Instrumented tests
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espressoContribVersion") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+    // androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    //Unit Tests
+    //---------------TEST DEPENDENCIES--------------------
+
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "org.assertj:assertj-core:$assertJVersion"
+    testImplementation "org.jetbrains.spek:spek-api:$spekVersion"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
+
+    // Fix for https://github.com/robolectric/robolectric/issues/2566
+    testImplementation "org.khronos:opengl-api:gl1.1-android-2.1_r1"
+    // testAnnotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
+}
+
+
+configurations.all {
+    resolutionStrategy.force "com.android.support:support-annotations:$supportLibVersion"
+}
