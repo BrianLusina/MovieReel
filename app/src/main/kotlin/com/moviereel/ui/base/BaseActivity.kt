@@ -21,6 +21,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.moviereel.R
 import com.moviereel.app.MovieReelApp
 import com.moviereel.di.components.ActivityComponent
+import com.moviereel.di.components.DaggerActivityComponent
 import com.moviereel.di.modules.ActivityModule
 import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.CommonUtils
@@ -44,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
         super.onCreate(savedInstanceState)
         activityComponent = DaggerActivityComponent.builder()
                 .activityModule(ActivityModule(this))
-                .applicationComponent((application as MovieReelApp).component)
+                .appComponent((application as MovieReelApp).component)
                 .build()
     }
 
@@ -156,8 +157,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
         snackbar.show()
     }
 
-    override fun showNetworkErrorSnackbar(@StringRes resId: Int, length: Int) {
-        showNetworkErrorSnackbar(getString(resId), length)
+    override fun showNetworkErrorSnackbar(@StringRes message: Int, length: Int) {
+        showNetworkErrorSnackbar(getString(message), length)
     }
 
     override fun showNetworkErrorSnackbar(message: String, length: Int) {

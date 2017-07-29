@@ -10,6 +10,6 @@ import dagger.Component
  */
 
 @PerService
-@Component(dependencies = arrayOf(ApplicationComponent::class), modules = arrayOf(ServiceModule::class))
+@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(ServiceModule::class))
 interface ServiceComponent// TODO: 27/03/17 inject services here
 // void inject();

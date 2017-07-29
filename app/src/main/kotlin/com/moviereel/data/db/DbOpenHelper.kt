@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 
 import com.moviereel.data.db.models.movie.DaoMaster
-import com.moviereel.di.ApplicationContext
+import com.moviereel.di.AppContext
 import com.moviereel.di.DatabaseInfo
 
 import org.greenrobot.greendao.database.Database
@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
 @Singleton
 class DbOpenHelper @Inject
-constructor(@ApplicationContext context: Context, @DatabaseInfo name: String) : DaoMaster.OpenHelper(context, name) {
+constructor(@AppContext context: Context, @DatabaseInfo name: String) : DaoMaster.OpenHelper(context, name) {
     private val TAG = DbOpenHelper::class.java.simpleName
 
     override fun onCreate(db: Database?) {

@@ -8,6 +8,8 @@ import com.google.gson.Gson
 import com.moviereel.BuildConfig
 import com.moviereel.data.api.ApiHelper
 import com.moviereel.data.api.ApiKeyInterceptor
+import com.moviereel.data.api.ApiRetrofitService
+import com.moviereel.di.AppContext
 import dagger.Provides
 import okhttp3.Cache
 import javax.inject.Singleton
@@ -53,14 +55,14 @@ class ApiModule {
     }
 
     @Provides @Singleton
-    fun provideOkHttpCache(context: Context): Cache {
+    fun provideOkHttpCache(@AppContext context: Context): Cache {
         val cacheSize = 10 * 1024 * 1024 // 10 MB
         return Cache(context.cacheDir, cacheSize.toLong())
     }
 
     @Provides
     @Singleton
-    fun provideTheMovieDbApiService(retrofit: Retrofit) : ApiHelper{
-        return retrofit.create(ApiHelper::class.java)
+    fun provideTheMovieDbApiService(retrofit: Retrofit) : ApiRetrofitService{
+        return retrofit.create(ApiRetrofitService::class.java)
     }
 }

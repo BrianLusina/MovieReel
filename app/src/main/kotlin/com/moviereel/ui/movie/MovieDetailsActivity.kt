@@ -25,7 +25,7 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
     @Inject
     lateinit var movieDetailsPresenter: MovieDetailsPresenter<MovieDetailsView>
 
-    @Inject
+    //@Inject
     lateinit var movieViewPagerAdapter: MovieDetailsViewPagerAdapter
 
     lateinit var movieObject: BaseResultsResponse.MovieResultsResponse

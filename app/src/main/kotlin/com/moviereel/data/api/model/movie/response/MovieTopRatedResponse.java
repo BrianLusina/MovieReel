@@ -3,6 +3,7 @@ package com.moviereel.data.api.model.movie.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.moviereel.data.api.model.BaseResponse;
+import com.moviereel.data.api.model.BaseResultsResponse.MovieResultsResponse;
 
 import java.util.List;
 

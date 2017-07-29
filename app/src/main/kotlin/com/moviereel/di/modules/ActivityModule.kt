@@ -3,8 +3,8 @@ package com.moviereel.di.modules
 import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
+import com.moviereel.data.api.model.BaseResultsResponse
 
-import com.moviereel.data.api.model.movie.response.MovieResultsResponse
 import com.moviereel.di.ActivityContext
 import com.moviereel.di.PerActivity
 import com.moviereel.ui.intro.splash.SplashPresenter
@@ -34,7 +34,7 @@ import io.reactivex.disposables.CompositeDisposable
  */
 
 @Module
-class ActivityModule(private val mActivity: AppCompatActivity) {
+class ActivityModule(val mActivity: AppCompatActivity) {
 
     @Provides
     @ActivityContext
@@ -76,14 +76,16 @@ class ActivityModule(private val mActivity: AppCompatActivity) {
         return movieDetailsPresenter
     }
 
-    @Provides
-    fun provideMovieDetailsViewPagerAdapter(): MovieDetailsViewPagerAdapter {
-        return MovieDetailsViewPagerAdapter(mActivity.supportFragmentManager, MovieResultsResponse())
-    }
+//    @Provides
+//    fun provideMovieDetailsViewPagerAdapter(): MovieDetailsViewPagerAdapter {
+//        return MovieDetailsViewPagerAdapter(
+//                mActivity.supportFragmentManager,
+//                BaseResultsResponse.MovieResultsResponse())
+//    }
 
     @Provides
     fun provideMovieNpAdapter(): MovieNPAdapter {
-        return MovieNPAdapter(ArrayList<MovieResultsResponse>(), mActivity)
+        return MovieNPAdapter(ArrayList<BaseResultsResponse.MovieResultsResponse>())
     }
 
 }

@@ -12,7 +12,6 @@ import com.moviereel.ui.main.MainActivity
 
 import javax.inject.Inject
 
-import butterknife.ButterKnife
 import com.moviereel.ui.base.BaseActivity
 
 class SplashActivity : BaseActivity(), SplashView {
@@ -29,9 +28,7 @@ class SplashActivity : BaseActivity(), SplashView {
 
         activityComponent!!.inject(this)
 
-        setUnbinder(ButterKnife.bind(this))
-
-        splashPresenter!!.onAttach(this)
+        splashPresenter.onAttach(this)
     }
 
     /**

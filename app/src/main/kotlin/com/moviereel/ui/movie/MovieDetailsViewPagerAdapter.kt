@@ -9,4 +9,8 @@ import javax.inject.Inject
  * @author lusinabrian on 10/06/17.
  * @Notes Movie details view pager adapter
  */
-class MovieDetailsViewPagerAdapter @Inject constructor(fragmentManager: FragmentManager, itemObject: BaseResultsResponse.MovieResultsResponse) : BaseViewPagerAdapter(fragmentManager, itemObject)
+class MovieDetailsViewPagerAdapter
+//@Inject
+constructor(
+        fragmentManager: FragmentManager,
+        itemObject: BaseResultsResponse.MovieResultsResponse) : BaseViewPagerAdapter(fragmentManager, itemObject)

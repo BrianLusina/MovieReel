@@ -17,7 +17,7 @@ import dagger.Component
  * @author lusinabrian on 27/03/17
  */
 @PerActivity
-@Component(dependencies = arrayOf(ApplicationComponent::class), modules = arrayOf(ActivityModule::class))
+@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
 
     fun inject(splashActivity: SplashActivity)

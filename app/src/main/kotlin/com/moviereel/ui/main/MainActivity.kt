@@ -402,8 +402,4 @@ class MainActivity : BaseActivity(), MainView {
                 .withAboutIconShown(true)
                 .start(this@MainActivity)
     }
-
-    companion object {
-        private val TAG = MainActivity::class.java.simpleName
-    }
 }

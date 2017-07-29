@@ -6,15 +6,16 @@ import com.crashlytics.android.Crashlytics
 import com.moviereel.BuildConfig
 import com.moviereel.R
 import com.moviereel.data.DataManager
-import com.moviereel.di.components.ApplicationComponent
-import com.moviereel.di.components.DaggerApplicationComponent
-import com.moviereel.di.modules.ApplicationModule
+import com.moviereel.di.components.AppComponent
+import com.moviereel.di.modules.AppModule
 import com.moviereel.ui.main.MainActivity
 import com.moviereel.utils.ClassPreamble
 
 import javax.inject.Inject
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash
+import com.moviereel.di.components.DaggerAppComponent
+import com.moviereel.di.modules.ApiModule
 import io.fabric.sdk.android.Fabric
 
 
@@ -23,14 +24,16 @@ class MovieReelApp : Application() {
     @Inject lateinit var mDataManager: DataManager
 
     // Needed to replace the component with a test specific one
-    lateinit var component: ApplicationComponent
+    lateinit var component: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
 
-        component = DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this)).build()
+        component = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .apiModule(ApiModule())
+                .build()
 
         component.inject(this)
 

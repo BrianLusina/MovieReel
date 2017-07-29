@@ -13,7 +13,7 @@ import com.moviereel.data.db.models.movie.MoviePopularModel
 import com.moviereel.data.db.models.movie.MovieTopRatedModel
 import com.moviereel.data.files.FileHelper
 import com.moviereel.data.prefs.PreferencesHelper
-import com.moviereel.di.ApplicationContext
+import com.moviereel.di.AppContext
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -42,7 +42,7 @@ class DataManagerImpl
  * */
 @Inject
 constructor(
-        @ApplicationContext
+        @AppContext
         val mContext: Context,
 
         val mDbHelper: DbHelper,

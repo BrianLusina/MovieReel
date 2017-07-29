@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import org.greenrobot.greendao.annotation.Property
 
 /**
  * @author lusinabrian on 31/03/17
@@ -65,30 +66,30 @@ sealed class BaseResultsResponse(
             @Expose
             @SerializedName("original_title")
             var originalTitle: String
-    ) : BaseResultsResponse(), Parcelable{
-            companion object {
-                    @JvmField val CREATOR: Parcelable.Creator<MovieResultsResponse> = object : Parcelable.Creator<MovieResultsResponse> {
-                            override fun createFromParcel(source: Parcel): MovieResultsResponse = MovieResultsResponse(source)
-                            override fun newArray(size: Int): Array<MovieResultsResponse?> = arrayOfNulls(size)
-                    }
+    ) : BaseResultsResponse(), Parcelable {
+        companion object {
+            @JvmField val CREATOR: Parcelable.Creator<MovieResultsResponse> = object : Parcelable.Creator<MovieResultsResponse> {
+                override fun createFromParcel(source: Parcel): MovieResultsResponse = MovieResultsResponse(source)
+                override fun newArray(size: Int): Array<MovieResultsResponse?> = arrayOfNulls(size)
             }
+        }
 
-            constructor(source: Parcel) : this(
-            source.readString(),
-            source.readString(),
-            source.readString()
-            )
+        constructor(source: Parcel) : this(
+                source.readString(),
+                source.readString(),
+                source.readString()
+        )
 
-            override fun describeContents() = 0
+        override fun describeContents() = 0
 
-            override fun writeToParcel(dest: Parcel, flags: Int) {
-                    dest.writeString(releaseDate)
-                    dest.writeString(title)
-                    dest.writeString(originalTitle)
-            }
+        override fun writeToParcel(dest: Parcel, flags: Int) {
+            dest.writeString(releaseDate)
+            dest.writeString(title)
+            dest.writeString(originalTitle)
+        }
     }
 
-        /***/
+    /***/
     data class MovieLatestResponse(
             @Expose
             @SerializedName("belongs_to_collection")
@@ -139,4 +140,26 @@ sealed class BaseResultsResponse(
             private val tagline: String
     ) : BaseResultsResponse()
 
+    data class TvResultsResponse(
+
+            @Expose
+            @SerializedName("first_air_date")
+            @Property(nameInDb = "first_air_date")
+            var firstAirDate: String,
+
+            @Expose
+            @SerializedName("origin_country")
+            @Property(nameInDb = "origin_country")
+            var originCountry: List<String>,
+
+            @Expose
+            @SerializedName("name")
+            @Property(nameInDb = "name")
+            var name: String,
+
+            @Expose
+            @SerializedName("original_name")
+            @Property(nameInDb = "original_name")
+            var originalName: String
+    ) : BaseResultsResponse()
 }

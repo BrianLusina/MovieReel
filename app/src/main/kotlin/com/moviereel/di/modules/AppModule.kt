@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 
 import com.moviereel.BuildConfig
-import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.data.DataManagerImpl
 import com.moviereel.data.api.ApiHeader
@@ -17,7 +16,7 @@ import com.moviereel.data.files.FileHelperImpl
 import com.moviereel.data.prefs.PreferencesHelper
 import com.moviereel.data.prefs.PreferencesHelperImpl
 import com.moviereel.di.ApiInfo
-import com.moviereel.di.ApplicationContext
+import com.moviereel.di.AppContext
 import com.moviereel.di.DatabaseInfo
 import com.moviereel.di.PreferenceInfo
 import com.moviereel.utils.Constants
@@ -33,10 +32,10 @@ import javax.inject.Named
  */
 
 @Module
-class ApplicationModule(private val mApplication: Application) {
+class AppModule(private val mApplication: Application) {
 
     @Provides
-    @ApplicationContext
+    @AppContext
     fun provideContext(): Context {
         return mApplication
     }

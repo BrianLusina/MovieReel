@@ -8,7 +8,7 @@ import com.moviereel.ui.base.BasePresenter
  */
 
 @PerActivity
-interface MainPresenter<in V : MainView> : BasePresenter<V> {
+interface MainPresenter<V : MainView> : BasePresenter<V> {
 
     /**
      * Callback for when the now playing movies drawer option is clicked

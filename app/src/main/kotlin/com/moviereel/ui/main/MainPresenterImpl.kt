@@ -14,7 +14,8 @@ import io.reactivex.disposables.CompositeDisposable
  * @author lusinabrian on 12/04/17
  */
 
-class MainPresenterImpl<V : MainView> @Inject
+class MainPresenterImpl<V : MainView>
+@Inject
 constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable) : BasePresenterImpl<V>(mDataManager, mCompositeDisposable), MainPresenter<V> {
 
     /**
@@ -26,7 +27,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
 
         // if not online, display snack bar
         if (!baseView!!.isNetworkConnected) {
-            baseView!!.showNetworkErrorSnackbar(R.string.snackbar_warning_no_internet_conn, Snackbar.LENGTH_INDEFINITE)
+            baseView?.showNetworkErrorSnackbar(R.string.snackbar_warning_no_internet_conn, Snackbar.LENGTH_INDEFINITE)
         }
     }
 
@@ -38,83 +39,83 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
      * Callback for when the now playing movies drawer option is clicked
      */
     override fun onDrawerOptionNowPlayingMoviesClicked() {
-        baseView!!.showNowPlayingMoviesFragment()
+        baseView?.showNowPlayingMoviesFragment()
     }
 
     /**
      * Callback for when popular movies drawer option is clicked
      */
     override fun onDrawerOptionPopularMoviesClicked() {
-        baseView!!.showPopularMoviesFragment()
+        baseView?.showPopularMoviesFragment()
     }
 
     /**
      * Callback for when top rated movies is clicked
      */
     override fun onDrawerOptionTopRatedMoviesClicked() {
-        baseView!!.showTopRatedMoviesFragment()
+        baseView?.showTopRatedMoviesFragment()
     }
 
     /**
      * Callback for when upcoming movies drawer option is clicked
      */
     override fun onDrawerOptionUpcomingMoviesClicked() {
-        baseView!!.showUpcomingMoviesFragment()
+        baseView?.showUpcomingMoviesFragment()
     }
 
     /**
      * Callback for when the latest series drawer option is clicked
      */
     override fun onDrawerOptionLatestSeriesClicked() {
-        baseView!!.showLatestSeriesFragment()
+        baseView?.showLatestSeriesFragment()
     }
 
     /**
      * Callback for when the series on the air drawer option is clicked
      */
     override fun onDrawerOptionOnTheAirSeriesClicked() {
-        baseView!!.showOnTheAirSeriesFragment()
+        baseView?.showOnTheAirSeriesFragment()
     }
 
     /**
      * Callback for airing today drawer option is clicked
      */
     override fun onDrawerOptionAiringTodaySeriesClicked() {
-        baseView!!.showAiringTodaySeriesFragment()
+        baseView?.showAiringTodaySeriesFragment()
     }
 
     /**
      * Drawer option callback for when the top rated series option is clicked
      */
     override fun onDrawerOptionTopRatedSeriesClicked() {
-        baseView!!.showTopRatedSeriesFragment()
+        baseView?.showTopRatedSeriesFragment()
     }
 
     /**
      * Callback for when the popular series drawer options is clicked
      */
     override fun onDrawerOptionPopularSeriesClicked() {
-        baseView!!.showPopularSeriesFragment()
+        baseView?.showPopularSeriesFragment()
     }
 
     /**
      * Callback for when the help drawer option is clicked
      */
     override fun onDrawerOptionHelpClicked() {
-        baseView!!.showHelpSection()
+        baseView?.showHelpSection()
     }
 
     /**
      * Callback to display the settings screen option is clicked
      */
     override fun onDrawerOptionSettingsClicked() {
-        baseView!!.showSettingsScreen()
+        baseView?.showSettingsScreen()
     }
 
     /**
      * Callback that is responsible for displaying the about screen/fragment
      */
     override fun onDrawerOptionAboutClicked() {
-        baseView!!.showAboutFragment()
+        baseView?.showAboutFragment()
     }
 }

@@ -3,7 +3,7 @@ package com.moviereel.data.prefs
 import android.content.Context
 import android.content.SharedPreferences
 
-import com.moviereel.di.ApplicationContext
+import com.moviereel.di.AppContext
 import com.moviereel.di.PreferenceInfo
 
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import javax.inject.Singleton
 
 @Singleton
 class PreferencesHelperImpl @Inject
-constructor(@ApplicationContext context: Context, @PreferenceInfo prefFilename: String) : PreferencesHelper {
+constructor(@AppContext context: Context, @PreferenceInfo prefFilename: String) : PreferencesHelper {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(prefFilename, Context.MODE_PRIVATE)
 

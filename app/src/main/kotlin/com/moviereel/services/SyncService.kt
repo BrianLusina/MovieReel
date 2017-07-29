@@ -18,10 +18,10 @@ import io.reactivex.disposables.CompositeDisposable
 class SyncService : Service() {
 
     @Inject
-    internal var mDataManager: DataManager? = null
+    lateinit var mDataManager: DataManager
 
     @Inject
-    internal var mCompositeDisposable: CompositeDisposable? = null
+    lateinit var mCompositeDisposable: CompositeDisposable
 
     override fun onCreate() {
         super.onCreate()
