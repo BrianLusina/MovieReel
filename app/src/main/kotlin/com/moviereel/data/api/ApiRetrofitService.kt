@@ -34,8 +34,8 @@ interface ApiRetrofitService {
      * @return [MovieNowPlayingResponse] response to return from the api call
      * */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_NOW_PLAYING)
-    fun <T> getMoviesNowPlaying(@QueryMap language: Map<String, T>
-                                     /*,@QueryMap page: Map<String, Int>*/) :
+    fun getMoviesNowPlaying(@QueryMap language: Map<String, String>,
+                            @QueryMap page: Map<String, Int>):
             Observable<MovieNowPlayingResponse>
 
     /*** API call to get the latest movies being shown* */
@@ -48,8 +48,8 @@ interface ApiRetrofitService {
      */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_POPULAR)
     fun doGetMoviesPopularApiCall(
-            @QueryMap page : Map<String, Int>,
-            @QueryMap language : Map<String, String>): Observable<MoviePopularResponse>
+            @QueryMap page: Map<String, Int>,
+            @QueryMap language: Map<String, String>): Observable<MoviePopularResponse>
 
     /**
      * Makes an api call to fetch the top rated movies

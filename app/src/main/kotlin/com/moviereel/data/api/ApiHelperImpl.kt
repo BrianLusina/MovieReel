@@ -34,12 +34,12 @@ constructor(val mApiHeader: ApiHeader, val mApiRetrofitService: ApiRetrofitServi
      */
     override fun getMoviesNowPlayingApiCall(page: Int, language: String): Observable<MovieNowPlayingResponse> {
         return mApiRetrofitService.getMoviesNowPlaying(
-                createQueryMap(page, language)
-                /*hashMapOf("language" to language),
-                hashMapOf("page" to page)*/
+                hashMapOf("language" to language),
+                hashMapOf("page" to page)
         )
     }
 
+    // todo: RnD
     fun <T> createQueryMap(vararg queryList : T): Map<String, T> {
         val result = mutableMapOf<String, T>()
         for (query in queryList){
