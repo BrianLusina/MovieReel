@@ -23,7 +23,7 @@
 
             <!--Todo: open modal when image is clicked-->
             <ImageView
-                android:id="@+id/item_movie_imgView"
+                android:id="@+id/itemMovieImgView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
@@ -32,7 +32,7 @@
 
             <!--android:src="@drawable/red_button_background"-->
             <ProgressBar
-                android:id="@+id/item_movie_progressbar"
+                android:id="@+id/itemMovieProgressbar"
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -47,7 +47,7 @@
 
             <!--Movie title-->
             <TextView
-                android:id="@+id/item_movie_title_txtView"
+                android:id="@+id/itemMovieTitleTxtView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -70,7 +70,7 @@
                     android:src="@drawable/ic_voteavg_star"
                     android:contentDescription="@null"/>
                 <TextView
-                    android:id="@+id/item_movie_voteAvg_txtView"
+                    android:id="@+id/itemMovieVoteAvgTxtView"
                     android:padding="1dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,13 +89,13 @@
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
-                    android:id="@+id/item_movieCategories_txtView"
+                    android:id="@+id/itemMovieCategoriesTxtView"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_blue_grey_100"
                     android:text="@string/movie_category_txt"/>
 
                 <TextView
-                    android:id="@+id/item_movieRuntime_txtView"
+                    android:id="@+id/itemMovieRuntimeTxtView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_blue_grey_100"

@@ -1,20 +1,14 @@
 package com.moviereel.ui.views.viewholders
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.GlideDrawable
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.google.gson.Gson
-import com.moviereel.BuildConfig
 import com.moviereel.R
-import com.moviereel.data.api.model.movie.response.MovieResultsResponse
+import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.ui.base.BaseViewHolder
 
 /**
@@ -29,18 +23,18 @@ class MovieNPViewHolder(itemView: View) : BaseViewHolder(itemView){
     lateinit var movieVoteAvg: TextView
     lateinit var movieCategories: TextView
     lateinit var movieRuntime: TextView
-    lateinit var movieResultsResponseList: List<MovieResultsResponse>
+    lateinit var movieResultsResponseList: List<BaseResultsResponse.MovieResultsResponse>
 
-    init {
-        var progressBar = itemView.findViewById(R.id.item_movie_progressbar) as ProgressBar
-        var movieImageView = itemView.findViewById(R.id.item_movie_imgView) as ImageView
-        var movieTitle = itemView.findViewById(R.id.item_movie_title_txtView) as TextView
-        var movieVoteAvg = itemView.findViewById(R.id.item_movie_voteAvg_txtView) as TextView
-        var movieCategories = itemView.findViewById(R.id.item_movieCategories_txtView) as TextView
-        var movieRuntime = itemView.findViewById(R.id.item_movieRuntime_txtView) as TextView
-    }
+//    init {
+//        var progressBar = itemView.findViewById(R.id.itemMovieProgressbar) as ProgressBar
+//        var movieImageView = itemView.findViewById(R.id.itemMovieImgView) as ImageView
+//        var movieTitle = itemView.findViewById(R.id.itemMovieTitleTxtView) as TextView
+//        var movieVoteAvg = itemView.findViewById(R.id.itemMovieVoteAvgTxtView) as TextView
+//        var movieCategories = itemView.findViewById(R.id.itemMovieCategoriesTxtView) as TextView
+//        var movieRuntime = itemView.findViewById(R.id.itemMovieRuntimeTxtView) as TextView
+//    }
 
-    constructor(itemView: View, movieResultsResponseList : List<MovieResultsResponse>) : this(itemView){
+    constructor(itemView: View, movieResultsResponseList : List<BaseResultsResponse.MovieResultsResponse>) : this(itemView){
         this.movieResultsResponseList = movieResultsResponseList
     }
 
@@ -50,8 +44,8 @@ class MovieNPViewHolder(itemView: View) : BaseViewHolder(itemView){
 
     override fun onBind(position: Int) {
         val movieResultsResponse = movieResultsResponseList.get(position)
-        movieTitle.setText(movieResultsResponse.getTitle())
-        movieVoteAvg.setText(movieResultsResponse.getVoteAverage().toString())
+        movieTitle.setText(movieResultsResponse.title)
+        movieVoteAvg.setText(movieResultsResponse.voteAverage.toString())
 
         // glide images to image views
 //        Glide.with(mContext)

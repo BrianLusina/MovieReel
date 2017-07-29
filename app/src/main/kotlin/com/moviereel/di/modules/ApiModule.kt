@@ -60,7 +60,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideMovieNowPlayingService(retrofit: Retrofit) : ApiHelper{
+    fun provideTheMovieDbApiService(retrofit: Retrofit) : ApiHelper{
         return retrofit.create(ApiHelper::class.java)
     }
 }

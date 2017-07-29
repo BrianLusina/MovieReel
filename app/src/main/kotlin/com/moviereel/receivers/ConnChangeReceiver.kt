@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
-import com.moviereel.ui.activities.main.MainActivity
+import com.moviereel.ui.main.MainActivity
 import com.moviereel.utils.NetworkUtils
 
 /**

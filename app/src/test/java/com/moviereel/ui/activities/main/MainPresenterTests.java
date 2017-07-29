@@ -1,6 +1,8 @@
 package com.moviereel.ui.activities.main;
 
 import com.moviereel.data.DataManager;
+import com.moviereel.ui.main.MainPresenterImpl;
+import com.moviereel.ui.main.MainView;
 
 import org.junit.After;
 import org.junit.Before;

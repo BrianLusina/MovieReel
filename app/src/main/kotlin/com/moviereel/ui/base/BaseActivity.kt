@@ -1,9 +1,8 @@
 package com.moviereel.ui.base
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
-import android.support.v7.app.AppCompatActivity
 import android.annotation.TargetApi
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -14,9 +13,11 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.moviereel.R
 import com.moviereel.app.MovieReelApp
 import com.moviereel.di.components.ActivityComponent
@@ -24,10 +25,6 @@ import com.moviereel.di.modules.ActivityModule
 import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.CommonUtils
 import com.moviereel.utils.NetworkUtils
-import butterknife.Unbinder
-import cn.pedant.SweetAlert.SweetAlertDialog
-import com.moviereel.di.components.DaggerActivityComponent
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
  * @author lusinabrian on 10/06/17.
@@ -42,7 +39,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     private val mProgressDialog: ProgressDialog? = null
     var activityComponent: ActivityComponent? = null
         private set
-    private var mUnbinder: Unbinder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,20 +93,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
         get() = NetworkUtils.isNetworkAvailable(applicationContext)
 
     /**
-     * this binds the activity
-     * @param mUnbinder the butterknife views
-     */
-    fun setUnbinder(mUnbinder: Unbinder) {
-        this.mUnbinder = mUnbinder
-    }
-
-    /**
      * before destroying the view, do a sanity check of the view bindings before destroying the
      * activity  */
     public override fun onDestroy() {
-        if (mUnbinder != null) {
-            mUnbinder!!.unbind()
-        }
         super.onDestroy()
     }
 

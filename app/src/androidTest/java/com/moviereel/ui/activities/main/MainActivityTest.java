@@ -4,6 +4,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.moviereel.R;
+import com.moviereel.ui.main.MainActivity;
 
 import org.junit.Ignore;
 import org.junit.Rule;

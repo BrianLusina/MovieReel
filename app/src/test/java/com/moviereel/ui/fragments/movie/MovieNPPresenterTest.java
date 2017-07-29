@@ -4,8 +4,8 @@ import android.support.design.widget.Snackbar;
 
 import com.moviereel.R;
 import com.moviereel.data.DataManager;
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPPresenterImpl;
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPView;
+import com.moviereel.ui.movie.nowplaying.MovieNPPresenterImpl;
+import com.moviereel.ui.movie.nowplaying.MovieNPView;
 
 import org.junit.After;
 import org.junit.Before;

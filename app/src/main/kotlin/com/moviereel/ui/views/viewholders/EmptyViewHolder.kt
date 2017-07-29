@@ -3,9 +3,6 @@ package com.moviereel.ui.views.viewholders
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.moviereel.R
 import com.moviereel.ui.base.BaseViewHolder
 
@@ -15,10 +12,8 @@ import com.moviereel.ui.base.BaseViewHolder
  */
 class EmptyViewHolder(itemView: View) : BaseViewHolder(itemView) {
 
-    @BindView(R.id.btn_retry)
     lateinit var retryButton: Button
 
-    @BindView(R.id.tv_message)
     lateinit var messageTextView: TextView
 
     override fun clear() {

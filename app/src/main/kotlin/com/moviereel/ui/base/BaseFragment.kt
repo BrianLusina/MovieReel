@@ -6,20 +6,19 @@ import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.View
 import com.moviereel.di.components.ActivityComponent
-import butterknife.Unbinder
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * @author lusinabrian on 01/04/17
  */
 
-abstract class BaseFragment : Fragment(), BaseView {
+abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
     /**
      * Gets the base activity this fragment is attached to
      * @return [BaseActivity]
      */
     var baseActivity: BaseActivity? = null
         private set
-    private var mUnbinder: Unbinder? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -141,12 +140,6 @@ abstract class BaseFragment : Fragment(), BaseView {
         get() = baseActivity!!.activityComponent!!
 
     /**
-     * Sets the butterknife binding views */
-    fun setUnbinder(mUnbinder: Unbinder) {
-        this.mUnbinder = mUnbinder
-    }
-
-    /**
      * Used to setup views in this fragment */
     protected abstract fun setUp(view: View)
 
@@ -154,9 +147,6 @@ abstract class BaseFragment : Fragment(), BaseView {
      * before destroying the fragment, check if the attached view in the hierarchy are still bound and
      * unbind them */
     override fun onDestroy() {
-        if (mUnbinder != null) {
-            mUnbinder!!.unbind()
-        }
         super.onDestroy()
     }
 

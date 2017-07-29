@@ -11,16 +11,16 @@ import com.moviereel.BuildConfig
 internal object ApiEndPoint {
 
     // movie endpoints
-    val ENDPOINT_MOVIE_NOW_PLAYING = BuildConfig.BASE_URL + "movie/now_playing"
-    val ENDPOINT_MOVIE_LATEST = BuildConfig.BASE_URL + "movie/latest"
-    val ENDPOINT_MOVIE_POPULAR = BuildConfig.BASE_URL + "movie/popular"
-    val ENDPOINT_MOVIE_TOP_RATED = BuildConfig.BASE_URL + "movie/top_rated"
-    val ENDPOINT_MOVIE_UPCOMING = BuildConfig.BASE_URL + "movie/upcoming"
+    const val ENDPOINT_MOVIE_NOW_PLAYING = "movie/now_playing"
+    const val ENDPOINT_MOVIE_LATEST = "movie/latest"
+    const val ENDPOINT_MOVIE_POPULAR = "movie/popular"
+    const val ENDPOINT_MOVIE_TOP_RATED = "movie/top_rated"
+    const val ENDPOINT_MOVIE_UPCOMING = "movie/upcoming"
 
     // tv endpoints
-    val ENDPOINT_TV_TOP_RATED = BuildConfig.BASE_URL + "tv/top_rated"
-    val ENDPOINT_TV_ON_THE_AIR = BuildConfig.BASE_URL + "tv/on_the_air"
-    val ENDPOINT_TV_AIRING_TODAY = BuildConfig.BASE_URL + "tv/airing_today"
-    val ENDPOINT_TV_POPULAR = BuildConfig.BASE_URL + "tv/popular"
-    val ENDPOINT_TV_LATEST = BuildConfig.BASE_URL + "tv/latest"
-}//this class is not publicly instantiable
+    const val ENDPOINT_TV_TOP_RATED = "tv/top_rated"
+    const val ENDPOINT_TV_ON_THE_AIR = "tv/on_the_air"
+    const val ENDPOINT_TV_AIRING_TODAY = "tv/airing_today"
+    const val ENDPOINT_TV_POPULAR = "tv/popular"
+    const val ENDPOINT_TV_LATEST = "tv/latest"
+}

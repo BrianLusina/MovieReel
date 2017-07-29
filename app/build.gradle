@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "org.greenrobot.greendao"
 apply plugin: "kotlin-android"
+apply plugin: 'kotlin-android-extensions'
 apply plugin: "io.fabric"
 apply plugin: "signing"
 apply from: "../jacoco.gradle"
@@ -219,10 +220,6 @@ dependencies {
 
     // sweet alerts
     implementation "cn.pedant.sweetalert:library:$sweetAlertVersion"
-
-    // view binding
-    implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     // app intro
     implementation "com.github.paolorotolo:appintro:$appIntroVersion"

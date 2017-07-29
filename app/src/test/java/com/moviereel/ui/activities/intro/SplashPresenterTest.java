@@ -1,8 +1,8 @@
 package com.moviereel.ui.activities.intro;
 
 import com.moviereel.data.DataManager;
-import com.moviereel.ui.activities.intro.splash.SplashPresenterImpl;
-import com.moviereel.ui.activities.intro.splash.SplashView;
+import com.moviereel.ui.intro.splash.SplashPresenterImpl;
+import com.moviereel.ui.intro.splash.SplashView;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

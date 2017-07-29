@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="RtlHardcoded"
-    tools:context=".ui.activities.itemdetails.movie.MovieDetailsActivity">
+    tools:context=".ui.movie.MovieDetailsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/moviedetail_appbar_id"

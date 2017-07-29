@@ -18,10 +18,10 @@
         tools:replace="android:icon">
 
         <!-- App introduction -->
-        <activity android:name=".ui.activities.intro.AppIntroduction" />
+        <activity android:name=".ui.intro.AppIntroduction" />
 
         <!-- splash screen -->
-        <activity android:name=".ui.activities.intro.splash.SplashActivity">
+        <activity android:name=".ui.intro.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,7 @@
 
         <!-- main activity -->
         <activity
-            android:name=".ui.activities.main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="com.moviereel.moviereel.MAINACTIVITY" />
@@ -40,15 +40,15 @@
         </activity>
 
         <!-- movie details -->
-        <activity android:name=".ui.activities.itemdetails.movie.MovieDetailsActivity"/>
+        <activity android:name=".ui.movie.MovieDetailsActivity"/>
 
         <activity
-            android:name=".ui.activities.settings.SettingsActivity"
+            android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings" />
 
         <!-- Custom crash -->
         <activity
-            android:name=".ui.activities.customerror.CustomErrorActivity"
+            android:name=".ui.customerror.CustomErrorActivity"
             android:label="@string/custom_error_activity_label"
             android:process=":error_activity">
             <intent-filter>

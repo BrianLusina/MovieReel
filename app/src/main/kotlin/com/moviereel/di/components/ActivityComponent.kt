@@ -2,14 +2,14 @@ package com.moviereel.di.components
 
 import com.moviereel.di.PerActivity
 import com.moviereel.di.modules.ActivityModule
-import com.moviereel.ui.activities.customerror.CustomErrorActivity
-import com.moviereel.ui.activities.intro.AppIntroduction
-import com.moviereel.ui.activities.intro.splash.SplashActivity
-import com.moviereel.ui.activities.itemdetails.movie.MovieDetailsActivity
+import com.moviereel.ui.customerror.CustomErrorActivity
+import com.moviereel.ui.intro.AppIntroduction
+import com.moviereel.ui.intro.splash.SplashActivity
+import com.moviereel.ui.movie.MovieDetailsActivity
 
-import com.moviereel.ui.activities.main.MainActivity
-import com.moviereel.ui.activities.settings.SettingsActivity
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.main.MainActivity
+import com.moviereel.ui.settings.SettingsActivity
+import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 
 import dagger.Component
 

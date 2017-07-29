@@ -4,24 +4,23 @@ import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 
-import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.response.MovieResultsResponse
 import com.moviereel.di.ActivityContext
 import com.moviereel.di.PerActivity
-import com.moviereel.ui.activities.intro.splash.SplashPresenter
-import com.moviereel.ui.activities.intro.splash.SplashPresenterImpl
-import com.moviereel.ui.activities.intro.splash.SplashView
-import com.moviereel.ui.activities.itemdetails.movie.MovieDetailsPresenter
-import com.moviereel.ui.activities.itemdetails.movie.MovieDetailsPresenterImpl
-import com.moviereel.ui.activities.itemdetails.movie.MovieDetailsView
-import com.moviereel.ui.activities.itemdetails.movie.MovieDetailsViewPagerAdapter
-import com.moviereel.ui.activities.main.MainPresenter
-import com.moviereel.ui.activities.main.MainPresenterImpl
-import com.moviereel.ui.activities.main.MainView
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPAdapter
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPPresenter
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPPresenterImpl
-import com.moviereel.ui.fragments.movie.nowplaying.MovieNPView
+import com.moviereel.ui.intro.splash.SplashPresenter
+import com.moviereel.ui.intro.splash.SplashPresenterImpl
+import com.moviereel.ui.intro.splash.SplashView
+import com.moviereel.ui.movie.MovieDetailsPresenter
+import com.moviereel.ui.movie.MovieDetailsPresenterImpl
+import com.moviereel.ui.movie.MovieDetailsView
+import com.moviereel.ui.movie.MovieDetailsViewPagerAdapter
+import com.moviereel.ui.main.MainPresenter
+import com.moviereel.ui.main.MainPresenterImpl
+import com.moviereel.ui.main.MainView
+import com.moviereel.ui.movie.nowplaying.MovieNPAdapter
+import com.moviereel.ui.movie.nowplaying.MovieNPPresenter
+import com.moviereel.ui.movie.nowplaying.MovieNPPresenterImpl
+import com.moviereel.ui.movie.nowplaying.MovieNPView
 
 import java.util.ArrayList
 

@@ -5,7 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.moviereel.R;
-import com.moviereel.ui.activities.intro.splash.SplashActivity;
+import com.moviereel.ui.intro.splash.SplashActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

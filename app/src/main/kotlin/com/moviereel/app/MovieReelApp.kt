@@ -9,7 +9,7 @@ import com.moviereel.data.DataManager
 import com.moviereel.di.components.ApplicationComponent
 import com.moviereel.di.components.DaggerApplicationComponent
 import com.moviereel.di.modules.ApplicationModule
-import com.moviereel.ui.activities.main.MainActivity
+import com.moviereel.ui.main.MainActivity
 import com.moviereel.utils.ClassPreamble
 
 import javax.inject.Inject
