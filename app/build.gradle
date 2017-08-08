@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: "org.greenrobot.greendao"
 apply plugin: "kotlin-android"
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "io.fabric"
@@ -160,10 +159,6 @@ repositories {
     jcenter()
 }
 
-greendao {
-    schemaVersion 1
-}
-
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
@@ -179,8 +174,10 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    // database ORM for android
-    implementation "org.greenrobot:greendao:$greenDaoVersion"
+    // ***************** database ORM ******************************
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
 
     // navigation tab strip
     implementation "com.github.devlight.navigationtabstrip:navigationtabstrip:$navTabStripVersion"
@@ -240,7 +237,6 @@ dependencies {
     compileOnly "javax.annotation:jsr250-api:1.0"
     // org.glassfish:javax.annotation:10.0-b28
     implementation "javax.inject:javax.inject:1"
-    //annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // reactive
@@ -263,7 +259,6 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
-    // androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
 
     //Unit Tests
@@ -280,7 +275,6 @@ dependencies {
 
     // Fix for https://github.com/robolectric/robolectric/issues/2566
     testImplementation "org.khronos:opengl-api:gl1.1-android-2.1_r1"
-    // testAnnotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
 }
 

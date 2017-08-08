@@ -1,5 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext.kotlin_version = '1.1.3-2'
     repositories {
@@ -11,9 +9,8 @@ buildscript {
 
     dependencies {
         classpath "io.fabric.tools:gradle:1+"
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha8'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha9'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
@@ -56,7 +53,9 @@ ext{
     // crashlytics
     crashlyticsVersion = "2.6.7@aar"
 
-    greenDaoVersion = "3.2.0"
+    // database & orm
+    roomVersion = "1.0.0-alpha8"
+
     butterknifeVersion ="8.6.0"
     gsonVersion = "2.8.0"
 

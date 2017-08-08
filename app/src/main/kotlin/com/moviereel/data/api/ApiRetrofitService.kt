@@ -21,13 +21,6 @@ import retrofit2.http.QueryMap
 interface ApiRetrofitService {
 
     /**
-     * gets the [ApiHeader] which will be used when making requests
-     * @return [ApiHeader]
-     * *
-     */
-    fun getApiHeader(): ApiHeader
-
-    /**
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently
      * now playing
