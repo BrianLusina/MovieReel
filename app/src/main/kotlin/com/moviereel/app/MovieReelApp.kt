@@ -17,6 +17,7 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.moviereel.di.components.DaggerAppComponent
 import com.moviereel.di.modules.ApiModule
 import com.moviereel.di.modules.DatabaseModule
+import com.moviereel.di.modules.RepositoryModule
 import io.fabric.sdk.android.Fabric
 
 
@@ -35,6 +36,7 @@ class MovieReelApp : Application() {
                 .appModule(AppModule(this))
                 .apiModule(ApiModule())
                 .databaseModule(DatabaseModule())
+                .repositoryModule(RepositoryModule())
                 .build()
 
         component.inject(this)

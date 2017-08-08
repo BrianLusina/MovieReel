@@ -1,23 +1,22 @@
 package com.moviereel.di.modules
 
 import android.content.Context
-import dagger.Module
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.moviereel.BuildConfig
-import com.moviereel.data.api.ApiHelper
 import com.moviereel.data.api.ApiKeyInterceptor
 import com.moviereel.data.api.ApiRetrofitService
+import com.moviereel.di.ApiInfo
 import com.moviereel.di.AppContext
+import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
-import javax.inject.Singleton
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.Retrofit
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
+import javax.inject.Singleton
 
 /**
  * @author lusinabrian on 28/07/17.
@@ -34,6 +33,27 @@ class ApiModule {
         return gsonBuilder.create()
     }
 
+    @Provides
+    @Singleton
+    @Named("baseUrl")
+    fun provideBaseUrl(): String {
+        // return BuildConfig.BASE_URL
+        return "https://api.themoviedb.org/3/"
+    }
+
+
+    @Provides
+    @Singleton
+    @Named("posterPath")
+    fun provideBasePosterPath(): String {
+        return "http://image.tmdb.org/t/p/w500"
+    }
+
+    @Provides
+    @ApiInfo
+    fun provideApiKey(): String {
+        return BuildConfig.MOVIE_DB_KEY
+    }
 
     @Provides
     @Singleton
@@ -62,7 +82,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideTheMovieDbApiService(retrofit: Retrofit) : ApiRetrofitService{
+    fun provideTheMovieDbApiService(retrofit: Retrofit): ApiRetrofitService {
         return retrofit.create(ApiRetrofitService::class.java)
     }
 }

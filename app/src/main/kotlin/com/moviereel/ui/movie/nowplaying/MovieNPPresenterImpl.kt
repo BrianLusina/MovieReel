@@ -3,17 +3,14 @@ package com.moviereel.ui.movie.nowplaying
 
 import android.support.design.widget.Snackbar
 import android.util.Log
-
 import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BasePresenterImpl
-
-import javax.inject.Inject
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 
 /**
@@ -42,18 +39,21 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
     }
 
     override fun onViewInitialized() {
+        // is there network?, if true, we can retrieve from remote API
+        // if(NetworkUtils.isNetworkAvailable())
+
+        // else we can retrieve from local API
 
         // show loading
         // getBaseView().showSweetAlertLoadingProgress();
 
         // it is here that the data is fetched from the api and added to a database
         compositeDisposable.addAll(
-                dataManager.getMoviesNowPlayingApiCall(1, "en-US")
+                dataManager.getMoviesNowPlaying(true,1, "en-US")
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
-                        .subscribe({ movieNowPlayingResponses ->
+                        .subscribe({
                             // val movieNPModel = MovieNPEntity()
-
                             // add items to the list
 //                            for (resultsResponse in movieNowPlayingResponses.results) {
 //                                movieNPModel.moviePosterUrl = resultsResponse.posterPath
@@ -85,7 +85,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
 //                            }
 
                             // update the recycler view
-                            baseView?.updateMoviesNowPlaying(movieNowPlayingResponses.results)
+                            baseView?.updateMoviesNowPlaying(it.results)
                             // throw an error
                         }) { throwable ->
                             Log.e(TAG, "accept: " + throwable.message, throwable)
