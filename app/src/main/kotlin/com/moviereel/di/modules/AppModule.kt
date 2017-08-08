@@ -72,11 +72,6 @@ class AppModule(private val mApplication: Application) {
         return Constants.MOVIE_PREFS_FILE_NAME
     }
 
-    @Provides
-    @DatabaseInfo
-    fun provideDatabaseName(): String {
-        return Constants.DATABASE_NAME
-    }
 
     @Provides
     @Singleton

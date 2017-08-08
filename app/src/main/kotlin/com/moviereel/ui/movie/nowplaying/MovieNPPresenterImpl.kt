@@ -6,7 +6,7 @@ import android.util.Log
 
 import com.moviereel.R
 import com.moviereel.data.DataManager
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BasePresenterImpl
 
 import javax.inject.Inject
@@ -52,7 +52,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
                         .subscribe({ movieNowPlayingResponses ->
-                            val movieNPModel = MovieNowPlayingModel()
+                            val movieNPModel = MovieNPEntity()
 
                             // add items to the list
 //                            for (resultsResponse in movieNowPlayingResponses.results) {
@@ -114,7 +114,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
      * *
      * @param movieList
      */
-    override fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingModel>) {
+    override fun onItemClicked(bundleKey: String, movieList: List<MovieNPEntity>) {
 
     }
 

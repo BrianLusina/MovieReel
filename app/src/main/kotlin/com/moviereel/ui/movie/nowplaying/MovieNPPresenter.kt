@@ -1,6 +1,6 @@
 package com.moviereel.ui.movie.nowplaying
 
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.di.PerActivity
 import com.moviereel.ui.base.BasePresenter
 
@@ -20,7 +20,7 @@ interface MovieNPPresenter<V : MovieNPView> : BasePresenter<V> {
 
     /**picks the data of the item clicked in the RecyclerView
      * start activity for the clicked movie item */
-    fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingModel>)
+    fun onItemClicked(bundleKey: String, movieList: List<MovieNPEntity>)
 
     /**Handles what will happen when the Fragment is destroyed */
     fun onDestroy()

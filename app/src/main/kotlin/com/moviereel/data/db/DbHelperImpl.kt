@@ -1,16 +1,13 @@
 package com.moviereel.data.db
 
-import com.moviereel.data.db.models.movie.DaoMaster
-import com.moviereel.data.db.models.movie.DaoSession
-import com.moviereel.data.db.models.movie.MovieLatestModel
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
-import com.moviereel.data.db.models.movie.MoviePopularModel
-import com.moviereel.data.db.models.movie.MovieTopRatedModel
-
+import com.moviereel.data.db.dao.MovieNPDao
+import com.moviereel.data.db.entities.movie.MovieLatestEntity
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
+import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
-
-import io.reactivex.Observable
 
 /**
  * @author lusinabrian on 28/03/17
@@ -18,159 +15,179 @@ import io.reactivex.Observable
  */
 
 @Singleton
-class DbHelperImpl @Inject
-internal constructor(dbOpenHelper: DbOpenHelper) : DbHelper {
+class DbHelperImpl
+@Inject
+constructor(val movieNpDao: MovieNPDao) : DbHelper {
 
-    private val mDaoSession: DaoSession = DaoMaster(dbOpenHelper.writableDb).newSession()
-
-    override fun insertMovieNowPlayingItem(movieNowPlayingModel: MovieNowPlayingModel): Observable<Boolean> {
+    override fun insertMovieNowPlayingItem(movieNPEntity: MovieNPEntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieNowPlayingModelDao.insert(movieNowPlayingModel)
+            // movieNpDao.insertMovieNp(movieNPEntity)
             true
         }
     }
 
-    override fun insertMovieNowPlayingItemList(movieNowPlayingModels: List<MovieNowPlayingModel>): Observable<Boolean> {
+    override fun insertMovieNowPlayingItemList(movieNPEntities: List<MovieNPEntity>): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieNowPlayingModelDao.insertInTx(movieNowPlayingModels)
+            // // movieNpDao.movieNowPlayingModelDao.insertInTx(movieNPEntities)
             true
         }
     }
 
-    override fun insertMovieLatestItem(movieLatestModel: MovieLatestModel): Observable<Boolean> {
+    override fun insertMovieLatestItem(movieLatestEntity: MovieLatestEntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieLatestModelDao.insertInTx(movieLatestModel)
+            // // movieNpDao.movieLatestModelDao.insertInTx(movieLatestEntity)
             true
         }
     }
 
-    override fun insertMoviePopularItem(moviePopularModel: MoviePopularModel): Observable<Boolean> {
+    override fun insertMoviePopularItem(moviePEntity: MoviePEntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.moviePopularModelDao.insert(moviePopularModel)
+            // // movieNpDao.moviePopularModelDao.insert(moviePEntity)
             true
         }
     }
 
-    override fun insertMoviePopularItemList(moviePopularModels: List<MoviePopularModel>): Observable<Boolean> {
+    override fun insertMoviePopularItemList(moviePEntities: List<MoviePEntity>): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.moviePopularModelDao.insertInTx(moviePopularModels)
+            // movieNpDao.moviePopularModelDao.insertInTx(moviePEntities)
             true
         }
     }
 
-    override fun insertMovieTopRatedItem(movieTopRatedModel: MovieTopRatedModel): Observable<Boolean> {
+    override fun insertMovieTopRatedItem(movieTREntity: MovieTREntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieTopRatedModelDao.insert(movieTopRatedModel)
+            // movieNpDao.movieTopRatedModelDao.insert(movieTREntity)
             true
         }
     }
 
-    override fun insertMovieTopRatedItemList(movieTopRatedModels: List<MovieTopRatedModel>): Observable<Boolean> {
+    override fun insertMovieTopRatedItemList(movieTREntities: List<MovieTREntity>): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieTopRatedModelDao.insertInTx(movieTopRatedModels)
+            // movieNpDao.movieTopRatedModelDao.insertInTx(movieTREntities)
             true
         }
     }
 
-    override fun getNowPlayingMovieItem(movieNowPlayingId: Long): Observable<MovieNowPlayingModel> {
-        return Observable.fromCallable { mDaoSession.movieNowPlayingModelDao.loadByRowId(movieNowPlayingId) }
-    }
-
-    override val movieNowPlayingItems: Observable<List<MovieNowPlayingModel>>
-        get() = Observable.fromCallable { mDaoSession.movieNowPlayingModelDao.loadAll() }
-
-    override fun getMovieLatestItem(movieLatestModelId: Long): Observable<MovieLatestModel> {
-        return Observable.fromCallable { mDaoSession.movieLatestModelDao.loadByRowId(movieLatestModelId) }
-    }
-
-    override fun getMoviePopularItem(moviePopularId: Long): Observable<MoviePopularModel> {
-        return Observable.fromCallable { mDaoSession.moviePopularModelDao.loadByRowId(moviePopularId) }
-    }
-
-    override val moviePopularItemList: Observable<List<MoviePopularModel>>
-        get() = Observable.fromCallable { mDaoSession.moviePopularModelDao.loadAll() }
-
-    override fun getMovieTopRatedItem(movieTopRatedId: Long): Observable<MovieTopRatedModel> {
-        return Observable.fromCallable { mDaoSession.movieTopRatedModelDao.loadByRowId(movieTopRatedId) }
-    }
-
-    override val movieTopRatedItemList: Observable<List<MovieTopRatedModel>>
-        get() = Observable.fromCallable { mDaoSession.movieTopRatedModelDao.loadAll() }
-
-    override fun updateNowPlayingMovieItem(movieNowPlayingModel: MovieNowPlayingModel): Observable<Boolean> {
+    override fun getNowPlayingMovieItem(movieNowPlayingId: Long): Observable<MovieNPEntity> {
         return Observable.fromCallable {
-            mDaoSession.movieNowPlayingModelDao.update(movieNowPlayingModel)
+            // movieNpDao.movieNowPlayingModelDao.loadByRowId(movieNowPlayingId)
+            null
+        }
+    }
+
+    override val movieNPItems: Observable<List<MovieNPEntity>>
+        get() = Observable.fromCallable {
+            // movieNpDao.movieNowPlayingModelDao.loadAll() }
+            null
+        }
+
+    override fun getMovieLatestItem(movieLatestModelId: Long): Observable<MovieLatestEntity> {
+        return Observable.fromCallable {
+            // movieNpDao.movieLatestModelDao.loadByRowId(movieLatestModelId)
+            null
+        }
+    }
+
+    override fun getMoviePopularItem(moviePopularId: Long): Observable<MoviePEntity> {
+        return Observable.fromCallable {
+            // movieNpDao.moviePopularModelDao.loadByRowId(moviePopularId)
+            null
+        }
+    }
+
+    override val moviePItemList: Observable<List<MoviePEntity>>
+        get() = Observable.fromCallable {
+            // movieNpDao.moviePopularModelDao.loadAll() }
+            null
+        }
+
+    override fun getMovieTopRatedItem(movieTopRatedId: Long): Observable<MovieTREntity> {
+        return Observable.fromCallable {
+            // movieNpDao.movieTopRatedModelDao.loadByRowId(movieTopRatedId) }
+            null
+        }
+    }
+
+    override val movieTRItemList: Observable<List<MovieTREntity>>
+        get() = Observable.fromCallable {
+            // movieNpDao.movieTopRatedModelDao.loadAll() }
+            null
+        }
+
+    override fun updateNowPlayingMovieItem(movieNPEntity: MovieNPEntity): Observable<Boolean> {
+        return Observable.fromCallable {
+            // movieNpDao.movieNowPlayingModelDao.update(movieNPEntity)
             true
         }
     }
 
-    override fun updateMovieLatestItem(movieLatestModel: MovieLatestModel): Observable<Boolean> {
+    override fun updateMovieLatestItem(movieLatestEntity: MovieLatestEntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieLatestModelDao.update(movieLatestModel)
+            // movieNpDao.movieLatestModelDao.update(movieLatestEntity)
             true
         }
     }
 
-    override fun updateMoviePopularItem(moviePopularModel: MoviePopularModel): Observable<Boolean> {
+    override fun updateMoviePopularItem(moviePEntity: MoviePEntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.moviePopularModelDao.update(moviePopularModel)
+            // movieNpDao.moviePopularModelDao.update(moviePEntity)
             true
         }
     }
 
-    override fun updateMovieTopRatedItem(movieTopRatedModel: MovieTopRatedModel): Observable<Boolean> {
+    override fun updateMovieTopRatedItem(movieTREntity: MovieTREntity): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieTopRatedModelDao.update(movieTopRatedModel)
+            // movieNpDao.movieTopRatedModelDao.update(movieTREntity)
             true
         }
     }
 
     override fun deleteNowPlayingMovieItem(movieNowPlayingId: Long): Observable<Long> {
         return Observable.fromCallable {
-            // mDaoSession.movieNowPlayingModelDao.deleteByKey(movieNowPlayingId)
+            // // movieNpDao.movieNowPlayingModelDao.deleteByKey(movieNowPlayingId)
             movieNowPlayingId
         }
     }
 
-    override fun deleteMovieNowPlayingItems(movieNowPlayingModels: List<MovieNowPlayingModel>): Observable<Int> {
+    override fun deleteMovieNowPlayingItems(movieNPEntities: List<MovieNPEntity>): Observable<Int> {
         return Observable.fromCallable {
-            mDaoSession.movieNowPlayingModelDao.deleteInTx(movieNowPlayingModels)
-            movieNowPlayingModels.size
+            // movieNpDao.movieNowPlayingModelDao.deleteInTx(movieNPEntities)
+            movieNPEntities.size
         }
     }
 
     override fun deleteMovieLatestItem(movieLatestId: Long): Observable<Boolean> {
         return Observable.fromCallable {
-            mDaoSession.movieLatestModelDao.deleteByKey(movieLatestId)
+            // movieNpDao.movieLatestModelDao.deleteByKey(movieLatestId)
             true
         }
     }
 
     override fun deleteMoviePopularItem(moviePopularId: Long): Observable<Long> {
         return Observable.fromCallable {
-            mDaoSession.moviePopularModelDao.deleteByKey(moviePopularId)
+            // movieNpDao.moviePopularModelDao.deleteByKey(moviePopularId)
             moviePopularId
         }
     }
 
-    override fun deleteMoviePopularItemList(moviePopularModels: List<MoviePopularModel>): Observable<Int> {
+    override fun deleteMoviePopularItemList(moviePEntities: List<MoviePEntity>): Observable<Int> {
         return Observable.fromCallable {
-            mDaoSession.moviePopularModelDao.deleteInTx(moviePopularModels)
-            moviePopularModels.size
+            // movieNpDao.moviePopularModelDao.deleteInTx(moviePEntities)
+            moviePEntities.size
         }
     }
 
     override fun deleteMovieTopRatedItem(movieTopRatedId: Long): Observable<Long> {
         return Observable.fromCallable {
-            mDaoSession.movieTopRatedModelDao.deleteByKey(movieTopRatedId)
+            // movieNpDao.movieTopRatedModelDao.deleteByKey(movieTopRatedId)
             movieTopRatedId
         }
     }
 
-    override fun deleteMovieTopRatedItemList(movieTopRatedModels: List<MovieTopRatedModel>): Observable<Int> {
+    override fun deleteMovieTopRatedItemList(movieTREntities: List<MovieTREntity>): Observable<Int> {
         return Observable.fromCallable {
-            mDaoSession.movieTopRatedModelDao.deleteInTx(movieTopRatedModels)
-            movieTopRatedModels.size
+            // movieNpDao.movieTopRatedModelDao.deleteInTx(movieTREntities)
+            movieTREntities.size
         }
     }
 }

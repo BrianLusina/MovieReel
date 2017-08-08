@@ -2,19 +2,15 @@ package com.moviereel.ui.movie.nowplaying
 
 import android.os.Bundle
 import android.support.annotation.StringRes
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseFragment
 import com.moviereel.utils.ClassPreamble
-import com.moviereel.utils.RecyclerItemClickListener
 
 import javax.inject.Inject
 
@@ -102,7 +98,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         activity.toast(message)
     }
 
-    override fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNowPlayingModel>) {
+    override fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNPEntity>) {
 //        mRecyclerView.addOnItemTouchListener(RecyclerItemClickListener(activity,
 //                RecyclerItemClickListener.OnItemClickListener { view, position ->
 //                    //Intent showMovieDet = new Intent(getActivity(),MovieDetails.class);
@@ -112,7 +108,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
 //                }))
     }
 
-    override fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNowPlayingModel>) {
+    override fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNPEntity>) {
         movieNPPresenter.onItemClicked(bundleKey, movieList)
     }
 

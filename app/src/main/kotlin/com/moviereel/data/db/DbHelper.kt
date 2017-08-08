@@ -1,9 +1,9 @@
 package com.moviereel.data.db
 
-import com.moviereel.data.db.models.movie.MovieLatestModel
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
-import com.moviereel.data.db.models.movie.MoviePopularModel
-import com.moviereel.data.db.models.movie.MovieTopRatedModel
+import com.moviereel.data.db.entities.movie.MovieLatestEntity
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
 
 import io.reactivex.Observable
 
@@ -20,62 +20,62 @@ interface DbHelper {
 
     /**
      * Inserts a movie item into the database. This will map the POJO to a movie item
-     * @param movieNowPlayingModel POJO representation of a movie item received from API
+     * @param movieNPEntity POJO representation of a movie item received from API
      * *
      * @return [Boolean] True if insertion is successful, false, otherwise
      * *
      */
-    fun insertMovieNowPlayingItem(movieNowPlayingModel: MovieNowPlayingModel): Observable<Boolean>
+    fun insertMovieNowPlayingItem(movieNPEntity: MovieNPEntity): Observable<Boolean>
 
     /**
      * Inserts a movie item list into the database, BULK INSERT
-     * @param movieNowPlayingModels List of movie items
+     * @param movieNPEntities List of movie items
      * *
      * @return [Boolean] True if insertion is a success, false otherwise
      * *
      */
-    fun insertMovieNowPlayingItemList(movieNowPlayingModels: List<MovieNowPlayingModel>): Observable<Boolean>
+    fun insertMovieNowPlayingItemList(movieNPEntities: List<MovieNPEntity>): Observable<Boolean>
 
     /**
      * Inserts the latest movie item to the data
-     * @param movieLatestModel latest movie model
+     * @param movieLatestEntity latest movie model
      * *
      * @return [Boolean] True if data insertion is a success, False otherwise
      * *
      */
-    fun insertMovieLatestItem(movieLatestModel: MovieLatestModel): Observable<Boolean>
+    fun insertMovieLatestItem(movieLatestEntity: MovieLatestEntity): Observable<Boolean>
 
     /**
      * Inserts a popular movie item to the database
-     * @param moviePopularModel POJO with data relating to a popular movie item
+     * @param moviePEntity POJO with data relating to a popular movie item
      * *
      * @return [Boolean] True if insertion of data is a success, False otherwise
      */
-    fun insertMoviePopularItem(moviePopularModel: MoviePopularModel): Observable<Boolean>
+    fun insertMoviePopularItem(moviePEntity: MoviePEntity): Observable<Boolean>
 
     /**
      * Inserts a list of Popular movie items to the database
-     * @param moviePopularModels List of popular movie items
+     * @param moviePEntities List of popular movie items
      * *
      * @return [Boolean] True if insertion of list is a success
      */
-    fun insertMoviePopularItemList(moviePopularModels: List<MoviePopularModel>): Observable<Boolean>
+    fun insertMoviePopularItemList(moviePEntities: List<MoviePEntity>): Observable<Boolean>
 
     /**
      * Inserts a single top rated movie into the database
-     * @param movieTopRatedModel top rated movie model
+     * @param movieTREntity top rated movie model
      * *
      * @return [Boolean] True if insertion of data is successful
      */
-    fun insertMovieTopRatedItem(movieTopRatedModel: MovieTopRatedModel): Observable<Boolean>
+    fun insertMovieTopRatedItem(movieTREntity: MovieTREntity): Observable<Boolean>
 
     /**
      * Inserts a list of top rated movies
-     * @param movieTopRatedModels list of top rated movies to insert
+     * @param movieTREntities list of top rated movies to insert
      * *
      * @return [Boolean] True, if insertion is a success
      */
-    fun insertMovieTopRatedItemList(movieTopRatedModels: List<MovieTopRatedModel>): Observable<Boolean>
+    fun insertMovieTopRatedItemList(movieTREntities: List<MovieTREntity>): Observable<Boolean>
 
     //----------------------------------------------------------------------------------------------
     // READ
@@ -85,54 +85,54 @@ interface DbHelper {
      * Gets a now playing movie item from the database database.
      * @param movieNowPlayingId Id of a now playing movie item
      * *
-     * @return [MovieNowPlayingModel] MovieNowPlaying Model
+     * @return [MovieNPEntity] MovieNowPlaying Model
      * *
      */
-    fun getNowPlayingMovieItem(movieNowPlayingId: Long): Observable<MovieNowPlayingModel>
+    fun getNowPlayingMovieItem(movieNowPlayingId: Long): Observable<MovieNPEntity>
 
     /**
      * Retrieves all the now playing movie items from a database
      * @return [<] List of now playing movie items
      * *
      */
-    val movieNowPlayingItems: Observable<List<MovieNowPlayingModel>>
+    val movieNPItems: Observable<List<MovieNPEntity>>
 
     /**
      * Gets the latest movie item by its given id
      * @param movieLatestModelId latest movie model id
      * *
-     * @return [MovieLatestModel] Latest Movie Latest model
+     * @return [MovieLatestEntity] Latest Movie Latest model
      * *
      */
-    fun getMovieLatestItem(movieLatestModelId: Long): Observable<MovieLatestModel>
+    fun getMovieLatestItem(movieLatestModelId: Long): Observable<MovieLatestEntity>
 
     /**
      * Gets a popular movie item from the database
      * @param moviePopularId Id of a popular movie item
      * *
-     * @return [MoviePopularModel] popular movie item
+     * @return [MoviePEntity] popular movie item
      */
-    fun getMoviePopularItem(moviePopularId: Long): Observable<MoviePopularModel>
+    fun getMoviePopularItem(moviePopularId: Long): Observable<MoviePEntity>
 
     /**
      * Gets a list of popular movie items from db
      * @return [<] List of popular movie items
      */
-    val moviePopularItemList: Observable<List<MoviePopularModel>>
+    val moviePItemList: Observable<List<MoviePEntity>>
 
     /**
      * Inserts a single top rated movie into the database
      * @param movieTopRatedId top rated movie model id
      * *
-     * @return [MovieTopRatedModel] Top rated movie model
+     * @return [MovieTREntity] Top rated movie model
      */
-    fun getMovieTopRatedItem(movieTopRatedId: Long): Observable<MovieTopRatedModel>
+    fun getMovieTopRatedItem(movieTopRatedId: Long): Observable<MovieTREntity>
 
     /**
      * Inserts a list of top rated movies
      * @return [<] List of top rated movies
      */
-    val movieTopRatedItemList: Observable<List<MovieTopRatedModel>>
+    val movieTRItemList: Observable<List<MovieTREntity>>
 
     //----------------------------------------------------------------------------------------------
     // UPDATE
@@ -140,37 +140,37 @@ interface DbHelper {
 
     /**
      * Updates a now playing movie item.
-     * @param movieNowPlayingModel Id of a now playing movie item
+     * @param movieNPEntity Id of a now playing movie item
      * *
      * @return [Boolean] True if update is a success
      * *
      */
-    fun updateNowPlayingMovieItem(movieNowPlayingModel: MovieNowPlayingModel): Observable<Boolean>
+    fun updateNowPlayingMovieItem(movieNPEntity: MovieNPEntity): Observable<Boolean>
 
     /**
      * Updates latest movie item
-     * @param movieLatestModel latest movie model
+     * @param movieLatestEntity latest movie model
      * *
      * @return [Boolean] True if data insertion is a success, False otherwise
      * *
      */
-    fun updateMovieLatestItem(movieLatestModel: MovieLatestModel): Observable<Boolean>
+    fun updateMovieLatestItem(movieLatestEntity: MovieLatestEntity): Observable<Boolean>
 
     /**
      * Updates a popular movie item
-     * @param moviePopularModel POJO with data relating to a popular movie item
+     * @param moviePEntity POJO with data relating to a popular movie item
      * *
      * @return [Boolean] True if updating the data item was a success
      */
-    fun updateMoviePopularItem(moviePopularModel: MoviePopularModel): Observable<Boolean>
+    fun updateMoviePopularItem(moviePEntity: MoviePEntity): Observable<Boolean>
 
     /**
      * Updates a top rated movie item
-     * @param movieTopRatedModel top rated movie model
+     * @param movieTREntity top rated movie model
      * *
      * @return [Boolean] True if updating of data is successful
      */
-    fun updateMovieTopRatedItem(movieTopRatedModel: MovieTopRatedModel): Observable<Boolean>
+    fun updateMovieTopRatedItem(movieTREntity: MovieTREntity): Observable<Boolean>
 
     //----------------------------------------------------------------------------------------------
     // DELETE
@@ -190,7 +190,7 @@ interface DbHelper {
      * @return [Integer] Number of deleted items from the database
      * *
      */
-    fun deleteMovieNowPlayingItems(movieNowPlayingModels: List<MovieNowPlayingModel>): Observable<Int>
+    fun deleteMovieNowPlayingItems(movieNPEntities: List<MovieNPEntity>): Observable<Int>
 
     /**
      * Deletes the latest movie item given its id
@@ -211,11 +211,11 @@ interface DbHelper {
 
     /**
      * Inserts a list of Popular movie items to the database
-     * @param moviePopularModels List of popular movie items
+     * @param moviePEntities List of popular movie items
      * *
      * @return [Integer] number of deleted items
      */
-    fun deleteMoviePopularItemList(moviePopularModels: List<MoviePopularModel>): Observable<Int>
+    fun deleteMoviePopularItemList(moviePEntities: List<MoviePEntity>): Observable<Int>
 
     /**
      * Deletes a single top rated movie item from db
@@ -227,9 +227,9 @@ interface DbHelper {
 
     /**
      * Deletes top rated movie item list
-     * @param movieTopRatedModels list of top rated movies to insert
+     * @param movieTREntities list of top rated movies to insert
      * *
      * @return [Integer] List size of deleted items from database
      */
-    fun deleteMovieTopRatedItemList(movieTopRatedModels: List<MovieTopRatedModel>): Observable<Int>
+    fun deleteMovieTopRatedItemList(movieTREntities: List<MovieTREntity>): Observable<Int>
 }

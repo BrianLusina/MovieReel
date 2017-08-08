@@ -3,7 +3,7 @@ package com.moviereel.ui.movie.nowplaying
 import android.support.annotation.StringRes
 import com.moviereel.data.api.model.BaseResultsResponse
 
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseView
 
 /**
@@ -40,9 +40,9 @@ interface MovieNPView : BaseView {
 
     /**picks the data of the item clicked in the RecyclerView
      * start activity for the clicked movie item */
-    fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNowPlayingModel>)
+    fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNPEntity>)
 
-    fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNowPlayingModel>)
+    fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNPEntity>)
 
     /**
      * Sets adapter for the recycler view
