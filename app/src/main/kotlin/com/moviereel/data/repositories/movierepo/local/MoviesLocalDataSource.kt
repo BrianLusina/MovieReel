@@ -9,6 +9,8 @@ import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.error
+import org.jetbrains.anko.info
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -47,6 +49,7 @@ constructor(
                     }
                 }) {
                     // consume error
+                    error("Error saving to database ${it.message}", it)
                 }
     }
 
