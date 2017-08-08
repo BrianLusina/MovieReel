@@ -60,7 +60,7 @@ class MovieTREntity {
     var voteCount: Int = 0
 
     @ColumnInfo(name = "video")
-    private var video: Boolean = false
+    var video: Boolean = false
 
     @ColumnInfo(name = "vote_average")
     var voteAverage: Long = 0

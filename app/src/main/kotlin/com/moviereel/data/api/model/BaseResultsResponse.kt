@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import org.greenrobot.greendao.annotation.Property
 
 /**
  * @author lusinabrian on 31/03/17
@@ -144,22 +143,18 @@ sealed class BaseResultsResponse(
 
             @Expose
             @SerializedName("first_air_date")
-            @Property(nameInDb = "first_air_date")
             var firstAirDate: String,
 
             @Expose
             @SerializedName("origin_country")
-            @Property(nameInDb = "origin_country")
             var originCountry: List<String>,
 
             @Expose
             @SerializedName("name")
-            @Property(nameInDb = "name")
             var name: String,
 
             @Expose
             @SerializedName("original_name")
-            @Property(nameInDb = "original_name")
             var originalName: String
     ) : BaseResultsResponse()
 }

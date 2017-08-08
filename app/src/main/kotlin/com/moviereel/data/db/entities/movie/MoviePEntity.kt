@@ -17,7 +17,7 @@ data class MoviePEntity(
         var id: Long = 0,
 
         @ColumnInfo(name = "adult")
-        private var adult: Boolean = false,
+        var adult: Boolean = false,
 
         @ColumnInfo(name = "poster_path")
         var posterPath: String,
@@ -32,7 +32,7 @@ data class MoviePEntity(
         var backdropPath: String,
 
         @ColumnInfo(name = "video")
-        private var video: Boolean,
+        var video: Boolean,
         @ColumnInfo(name = "vote_count")
         var voteCount: Int = 0,
 

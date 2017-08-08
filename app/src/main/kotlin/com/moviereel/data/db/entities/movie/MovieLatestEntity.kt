@@ -29,18 +29,18 @@ data class MovieLatestEntity(
 
         // TODO: ADD RELATIONS TO OTHER TABLES, production companies, countries and spoken languages
 //    @ColumnInfo
-//    private Genres genres;
+//    Genres genres;
 //    @ColumnInfo
-//    private List<ProductionCompany> productionCompanies;
+//    List<ProductionCompany> productionCompanies;
 //
 //    @ColumnInfo
-//    private List<ProductionCountry> productionCountries;
+//    List<ProductionCountry> productionCountries;
 //
 //    @ColumnInfo
-//    private List<SpokenLanguage> spokenLanguages;
+//    List<SpokenLanguage> spokenLanguages;
 //
 //    @ColumnInfo
-//    private List<Integer> genreIds;
+//    List<Integer> genreIds;
 
         @ColumnInfo
         var revenue: Int,
@@ -55,7 +55,7 @@ data class MovieLatestEntity(
         var tagline: String,
 
         @ColumnInfo
-        private var adult: Boolean,
+        var adult: Boolean,
 
         @ColumnInfo
         var posterPath: String,
@@ -70,7 +70,7 @@ data class MovieLatestEntity(
         var backdropPath: String,
 
         @ColumnInfo
-        private var video: Boolean,
+        var video: Boolean,
 
         @ColumnInfo
         var voteCount: Int,

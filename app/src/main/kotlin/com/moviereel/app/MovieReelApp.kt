@@ -16,6 +16,7 @@ import javax.inject.Inject
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.moviereel.di.components.DaggerAppComponent
 import com.moviereel.di.modules.ApiModule
+import com.moviereel.di.modules.DatabaseModule
 import io.fabric.sdk.android.Fabric
 
 
@@ -33,6 +34,7 @@ class MovieReelApp : Application() {
         component = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .apiModule(ApiModule())
+                .databaseModule(DatabaseModule())
                 .build()
 
         component.inject(this)

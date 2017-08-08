@@ -19,7 +19,7 @@ import com.moviereel.di.ApiInfo
 import com.moviereel.di.AppContext
 import com.moviereel.di.DatabaseInfo
 import com.moviereel.di.PreferenceInfo
-import com.moviereel.utils.Constants
+import com.moviereel.utils.MOVIE_PREFS_FILE_NAME
 
 import javax.inject.Singleton
 
@@ -69,7 +69,7 @@ class AppModule(private val mApplication: Application) {
     @Provides
     @PreferenceInfo
     fun providePreferenceName(): String {
-        return Constants.MOVIE_PREFS_FILE_NAME
+        return MOVIE_PREFS_FILE_NAME
     }
 
 

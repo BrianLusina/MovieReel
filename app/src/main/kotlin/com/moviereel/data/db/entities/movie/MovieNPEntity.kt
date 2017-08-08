@@ -2,6 +2,7 @@ package com.moviereel.data.db.entities.movie
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * @author lusinabrian
@@ -27,6 +28,9 @@ import android.arch.persistence.room.Entity
 @Entity(tableName = "movie_now_playing")
 data class MovieNPEntity(
 
+        @PrimaryKey(autoGenerate = true)
+        var id: Long,
+
         @ColumnInfo(name = "movieId")
         var movieId: Int = 0,
 
@@ -36,7 +40,6 @@ data class MovieNPEntity(
         @ColumnInfo(name = "name")
         var movieTitle: String,
 
-        /*ACCESS METHODS*/
         @ColumnInfo(name = "posterUrl")
         var moviePosterUrl: String,
 
@@ -78,7 +81,7 @@ data class MovieNPEntity(
 
         // TODO: 19/04/17 Adding relation for genre ids
         // @ColumnInfo(name = "genre_ids")
-        // private Integer[] movie_genres;
+        // Integer[] movie_genres;
 
         @ColumnInfo(name = "voteCount")
         var movieVoteCount: Int,
@@ -87,7 +90,7 @@ data class MovieNPEntity(
         var movieRuntime: Int,
 
         @ColumnInfo(name = "popularity")
-        private var moviePopularity: Float,
+        var moviePopularity: Float,
 
         @ColumnInfo(name = "voteAverage")
         var voteAverage: Float,
@@ -96,7 +99,7 @@ data class MovieNPEntity(
         var isAdult: Boolean = false,
 
         @ColumnInfo(name = "hasVideo")
-        private var hasVideo: Boolean = false,
+        var hasVideo: Boolean = false,
 
         @ColumnInfo(name = "revenue")
         var movieRevenue: Long = 0

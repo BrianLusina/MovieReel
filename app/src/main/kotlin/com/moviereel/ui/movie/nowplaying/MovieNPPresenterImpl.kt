@@ -52,7 +52,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
                         .subscribe({ movieNowPlayingResponses ->
-                            val movieNPModel = MovieNPEntity()
+                            // val movieNPModel = MovieNPEntity()
 
                             // add items to the list
 //                            for (resultsResponse in movieNowPlayingResponses.results) {
