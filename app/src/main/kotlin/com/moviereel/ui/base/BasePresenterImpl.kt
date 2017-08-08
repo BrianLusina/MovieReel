@@ -1,6 +1,7 @@
 package com.moviereel.ui.base
 
 import com.moviereel.data.DataManager
+import com.moviereel.data.io.SchedulerProvider
 
 import javax.inject.Inject
 
@@ -12,14 +13,8 @@ import io.reactivex.disposables.CompositeDisposable
 
 open class BasePresenterImpl<V : BaseView> @Inject
 constructor(
-        /**
-         * Gets the data manager interface of the application
-         * @return [DataManager]
-         */
         val dataManager: DataManager,
-        /**
-         * Returns [CompositeDisposable]
-         */
+        val schedulerProvider: SchedulerProvider,
         val compositeDisposable: CompositeDisposable) : BasePresenter<V> {
     /**
      * Gets the base view

@@ -5,10 +5,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-
 import com.google.gson.Gson
-import com.moviereel.R
 import com.moviereel.data.api.model.BaseResultsResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseViewHolder
 
 /**
@@ -23,7 +22,7 @@ class MovieNPViewHolder(itemView: View) : BaseViewHolder(itemView){
     lateinit var movieVoteAvg: TextView
     lateinit var movieCategories: TextView
     lateinit var movieRuntime: TextView
-    lateinit var movieResultsResponseList: List<BaseResultsResponse.MovieResultsResponse>
+    lateinit var movieResultsResponseList: List<MovieNPEntity>
 
 //    init {
 //        var progressBar = itemView.findViewById(R.id.itemMovieProgressbar) as ProgressBar
@@ -34,7 +33,7 @@ class MovieNPViewHolder(itemView: View) : BaseViewHolder(itemView){
 //        var movieRuntime = itemView.findViewById(R.id.itemMovieRuntimeTxtView) as TextView
 //    }
 
-    constructor(itemView: View, movieResultsResponseList : List<BaseResultsResponse.MovieResultsResponse>) : this(itemView){
+    constructor(itemView: View, movieResultsResponseList : ArrayList<MovieNPEntity>) : this(itemView){
         this.movieResultsResponseList = movieResultsResponseList
     }
 
@@ -43,9 +42,9 @@ class MovieNPViewHolder(itemView: View) : BaseViewHolder(itemView){
     }
 
     override fun onBind(position: Int) {
-        val movieResultsResponse = movieResultsResponseList.get(position)
-        movieTitle.setText(movieResultsResponse.title)
-        movieVoteAvg.setText(movieResultsResponse.voteAverage.toString())
+        val movieResultsResponse = movieResultsResponseList[position]
+        movieTitle.text = movieResultsResponse.title
+        movieVoteAvg.text = movieResultsResponse.voteAverage.toString()
 
         // glide images to image views
 //        Glide.with(mContext)

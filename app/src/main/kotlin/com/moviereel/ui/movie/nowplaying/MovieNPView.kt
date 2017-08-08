@@ -1,8 +1,6 @@
 package com.moviereel.ui.movie.nowplaying
 
 import android.support.annotation.StringRes
-import com.moviereel.data.api.model.BaseResultsResponse
-
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseView
 
@@ -49,5 +47,5 @@ interface MovieNPView : BaseView {
      * @param movieResultsResponseList data to use to update movie list
      * *
      */
-    fun updateMoviesNowPlaying(movieResultsResponseList: List<BaseResultsResponse.MovieResultsResponse>)
+    fun updateMoviesNowPlaying(movieResultsResponseList: ArrayList<MovieNPEntity>)
 }

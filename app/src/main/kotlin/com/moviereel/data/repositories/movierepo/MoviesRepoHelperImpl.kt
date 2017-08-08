@@ -23,7 +23,7 @@ constructor(val movieLocalDataSource: MoviesLocalDataSource,
         if (remote) {
             val data = moviesRemoteDataSource.getMoviesNowPlaying(page = page, language = language)
             // save data to disk
-            movieLocalDataSource.saveMoviesNowPlayingOffline()
+            movieLocalDataSource.saveMoviesNowPlayingOffline(data)
             return data
         } else
             return movieLocalDataSource.getMoviesNowPlaying(false, page, language)

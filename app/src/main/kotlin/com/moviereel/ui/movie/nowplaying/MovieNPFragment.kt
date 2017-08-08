@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.moviereel.R
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseFragment
-import com.moviereel.utils.ClassPreamble
 
 import javax.inject.Inject
 
@@ -18,7 +17,6 @@ import com.moviereel.data.api.model.BaseResultsResponse
 import kotlinx.android.synthetic.main.fragment_movie_layout.view.*
 import org.jetbrains.anko.toast
 
-@ClassPreamble(author = "Brian Lusina", date = "22/08/16", lastModified = "18/3/2017", lastModifiedBy = "Brian Lusina", currentRevision = 3, briefDescription = "Fragment to display the latest movies", reviewers = arrayOf("Brian Lusina"))
 class MovieNPFragment : BaseFragment(), MovieNPView {
 
     @Inject
@@ -112,7 +110,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         movieNPPresenter.onItemClicked(bundleKey, movieList)
     }
 
-    override fun updateMoviesNowPlaying(movieResultsResponseList: List<BaseResultsResponse.MovieResultsResponse>) {
+    override fun updateMoviesNowPlaying(movieResultsResponseList: ArrayList<MovieNPEntity>) {
         movieNPAdapter.addItems(movieResultsResponseList)
     }
 

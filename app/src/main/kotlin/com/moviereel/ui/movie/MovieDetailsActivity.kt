@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager
 import com.bumptech.glide.Glide
 import com.moviereel.BuildConfig
 import com.moviereel.R
-import com.moviereel.data.api.model.BaseResultsResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.movie_details_layout.*
 import javax.inject.Inject
@@ -28,7 +28,7 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
     //@Inject
     lateinit var movieViewPagerAdapter: MovieDetailsViewPagerAdapter
 
-    lateinit var movieObject: BaseResultsResponse.MovieResultsResponse
+    lateinit var movieObject: MovieNPEntity
     lateinit var bundle: Bundle
 
     private var mMaxScrollSize: Int = 0

@@ -18,6 +18,7 @@ import com.moviereel.ui.base.BaseViewHolder
 
 import javax.inject.Inject
 import com.moviereel.data.api.model.BaseResultsResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 /**
@@ -29,7 +30,7 @@ import kotlinx.android.synthetic.main.item_movie_layout.view.*
 class MovieNPAdapter
 @Inject
 constructor(
-        val movieResultsResponseList: MutableList<BaseResultsResponse.MovieResultsResponse>) : RecyclerView.Adapter<BaseViewHolder>() {
+        val movieResultsResponseList: ArrayList<MovieNPEntity>) : RecyclerView.Adapter<BaseViewHolder>() {
 
     lateinit var mCallback: Callback
 
@@ -73,7 +74,7 @@ constructor(
     /**
      * Add Movie now playing responses to list
      */
-    fun addItems(movieResultsResponses: List<BaseResultsResponse.MovieResultsResponse>) {
+    fun addItems(movieResultsResponses: ArrayList<MovieNPEntity>) {
         movieResultsResponseList.addAll(movieResultsResponses)
         notifyDataSetChanged()
     }

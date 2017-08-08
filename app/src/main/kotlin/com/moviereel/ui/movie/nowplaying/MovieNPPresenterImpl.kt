@@ -6,6 +6,7 @@ import android.util.Log
 import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,8 +21,13 @@ import javax.inject.Inject
  * * view.
  */
 
-class MovieNPPresenterImpl<V : MovieNPView> @Inject
-constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable) : BasePresenterImpl<V>(mDataManager, mCompositeDisposable), MovieNPPresenter<V> {
+class MovieNPPresenterImpl<V : MovieNPView>
+@Inject
+constructor(
+        mDataManager: DataManager,
+        schedulerProvider: SchedulerProvider,
+        mCompositeDisposable: CompositeDisposable)
+    : BasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
 
     /**
      * Implementation steps

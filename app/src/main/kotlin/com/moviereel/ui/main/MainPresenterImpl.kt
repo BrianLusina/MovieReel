@@ -4,6 +4,7 @@ import android.support.design.widget.Snackbar
 
 import com.moviereel.R
 import com.moviereel.data.DataManager
+import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
 
 import javax.inject.Inject
@@ -16,7 +17,11 @@ import io.reactivex.disposables.CompositeDisposable
 
 class MainPresenterImpl<V : MainView>
 @Inject
-constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable) : BasePresenterImpl<V>(mDataManager, mCompositeDisposable), MainPresenter<V> {
+constructor(
+        mDataManager: DataManager,
+        schedulerProvider: SchedulerProvider,
+        mCompositeDisposable: CompositeDisposable)
+    : BasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MainPresenter<V> {
 
     /**
      * When the view is first attached, check if the device is online

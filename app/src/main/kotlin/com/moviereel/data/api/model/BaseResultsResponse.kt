@@ -9,51 +9,7 @@ import com.google.gson.annotations.SerializedName
  * @author lusinabrian on 31/03/17
  * * Base response
  */
-sealed class BaseResultsResponse(
-        @Expose
-        @SerializedName("id")
-        var id: Int? = 0,
-
-        @Expose
-        @SerializedName("adult")
-        var isAdult: Boolean = false,
-
-        @Expose
-        @SerializedName("poster_path")
-        var posterPath: String? = "",
-
-        @Expose
-        @SerializedName("overview")
-        var overview: String? = "",
-
-        @Expose
-        @SerializedName("original_language")
-        var originalLanguage: String? = "",
-
-        @Expose
-        @SerializedName("backdrop_path")
-        var backdropPath: String? = null,
-
-        @Expose
-        @SerializedName("video")
-        var isVideo: Boolean = false,
-
-        @Expose
-        @SerializedName("vote_count")
-        var voteCount: Int = 0,
-
-        @Expose
-        @SerializedName("vote_average")
-        var voteAverage: Float = 0F,
-
-        @Expose
-        @SerializedName("popularity")
-        var popularity: Float? = 0F,
-
-        @Expose
-        @SerializedName("genre_ids")
-        var genreIds: List<Int>? = null
-) {
+sealed class BaseResultsResponse {
     data class MovieResultsResponse(
             @Expose
             @SerializedName("release_date")

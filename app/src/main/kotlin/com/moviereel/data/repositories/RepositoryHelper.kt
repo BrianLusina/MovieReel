@@ -1,6 +1,5 @@
 package com.moviereel.data.repositories
 
-import com.moviereel.data.api.ApiHelper
 import com.moviereel.data.repositories.movierepo.MoviesRepoHelper
 
 /**
