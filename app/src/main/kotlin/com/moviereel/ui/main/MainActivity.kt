@@ -15,12 +15,10 @@ import com.moviereel.R
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 import com.moviereel.ui.settings.SettingsActivity
-import com.moviereel.utils.ClassPreamble
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import javax.inject.Inject
 
 
-@ClassPreamble(author = "Brian Lusina", date = "20/08/16", currentRevision = 3, briefDescription = "Main activity for application.", lastModified = "18/3/17", lastModifiedBy = "Brian Lusina", reviewers = arrayOf("Brian Lusina"))
 class MainActivity : BaseActivity(), MainView {
 
     lateinit var drawer: Drawer

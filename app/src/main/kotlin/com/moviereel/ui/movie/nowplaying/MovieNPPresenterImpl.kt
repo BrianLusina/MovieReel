@@ -3,17 +3,15 @@ package com.moviereel.ui.movie.nowplaying
 
 import android.support.design.widget.Snackbar
 import android.util.Log
-
 import com.moviereel.R
 import com.moviereel.data.DataManager
-import com.moviereel.data.db.models.movie.MovieNowPlayingModel
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
-
-import javax.inject.Inject
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 
 /**
@@ -23,8 +21,13 @@ import io.reactivex.schedulers.Schedulers
  * * view.
  */
 
-class MovieNPPresenterImpl<V : MovieNPView> @Inject
-constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable) : BasePresenterImpl<V>(mDataManager, mCompositeDisposable), MovieNPPresenter<V> {
+class MovieNPPresenterImpl<V : MovieNPView>
+@Inject
+constructor(
+        mDataManager: DataManager,
+        schedulerProvider: SchedulerProvider,
+        mCompositeDisposable: CompositeDisposable)
+    : BasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
 
     /**
      * Implementation steps
@@ -42,18 +45,21 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
     }
 
     override fun onViewInitialized() {
+        // is there network?, if true, we can retrieve from remote API
+        // if(NetworkUtils.isNetworkAvailable())
+
+        // else we can retrieve from local API
 
         // show loading
         // getBaseView().showSweetAlertLoadingProgress();
 
         // it is here that the data is fetched from the api and added to a database
         compositeDisposable.addAll(
-                dataManager.getMoviesNowPlayingApiCall(1, "en-US")
+                dataManager.getMoviesNowPlaying(true,1, "en-US")
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.newThread())
-                        .subscribe({ movieNowPlayingResponses ->
-                            val movieNPModel = MovieNowPlayingModel()
-
+                        .subscribe({
+                            // val movieNPModel = MovieNPEntity()
                             // add items to the list
 //                            for (resultsResponse in movieNowPlayingResponses.results) {
 //                                movieNPModel.moviePosterUrl = resultsResponse.posterPath
@@ -85,7 +91,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
 //                            }
 
                             // update the recycler view
-                            baseView?.updateMoviesNowPlaying(movieNowPlayingResponses.results)
+                            baseView?.updateMoviesNowPlaying(it)
                             // throw an error
                         }) { throwable ->
                             Log.e(TAG, "accept: " + throwable.message, throwable)
@@ -114,7 +120,7 @@ constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable
      * *
      * @param movieList
      */
-    override fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingModel>) {
+    override fun onItemClicked(bundleKey: String, movieList: List<MovieNPEntity>) {
 
     }
 

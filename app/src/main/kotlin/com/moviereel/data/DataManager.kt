@@ -1,9 +1,8 @@
 package com.moviereel.data
 
-import com.moviereel.data.api.ApiHelper
-import com.moviereel.data.db.DbHelper
 import com.moviereel.data.files.FileHelper
 import com.moviereel.data.prefs.PreferencesHelper
+import com.moviereel.data.repositories.RepositoryHelper
 
 /**
  * @author lusinabrian on 28/03/17
@@ -11,4 +10,4 @@ import com.moviereel.data.prefs.PreferencesHelper
  * * corresponding layer based on the data received.
  */
 
-interface DataManager : DbHelper, PreferencesHelper, ApiHelper, FileHelper
+interface DataManager : PreferencesHelper, FileHelper, RepositoryHelper

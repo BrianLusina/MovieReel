@@ -1,25 +1,21 @@
 package com.moviereel.app
 
 import android.app.Application
-
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.crashlytics.android.Crashlytics
 import com.moviereel.BuildConfig
 import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.di.components.AppComponent
-import com.moviereel.di.modules.AppModule
-import com.moviereel.ui.main.MainActivity
-import com.moviereel.utils.ClassPreamble
-
-import javax.inject.Inject
-
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.moviereel.di.components.DaggerAppComponent
 import com.moviereel.di.modules.ApiModule
+import com.moviereel.di.modules.AppModule
+import com.moviereel.di.modules.DatabaseModule
+import com.moviereel.di.modules.RepositoryModule
+import com.moviereel.ui.main.MainActivity
 import io.fabric.sdk.android.Fabric
+import javax.inject.Inject
 
-
-@ClassPreamble(author = "Brian Lusina", currentRevision = 2, date = "04/03/17", lastModified = "17/3/17", lastModifiedBy = "Brian Lusina", briefDescription = "Application Singleton object that will configure and install components for " + "the application to use. This will start up before the main activity is set up", reviewers = arrayOf("Brian Lusina"))
 class MovieReelApp : Application() {
     @Inject lateinit var mDataManager: DataManager
 
@@ -33,6 +29,8 @@ class MovieReelApp : Application() {
         component = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .apiModule(ApiModule())
+                .databaseModule(DatabaseModule())
+                .repositoryModule(RepositoryModule())
                 .build()
 
         component.inject(this)

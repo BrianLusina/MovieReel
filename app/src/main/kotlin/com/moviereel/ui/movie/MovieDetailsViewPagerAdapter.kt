@@ -1,9 +1,8 @@
 package com.moviereel.ui.movie
 
 import android.support.v4.app.FragmentManager
-import com.moviereel.data.api.model.BaseResultsResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseViewPagerAdapter
-import javax.inject.Inject
 
 /**
  * @author lusinabrian on 10/06/17.
@@ -13,4 +12,4 @@ class MovieDetailsViewPagerAdapter
 //@Inject
 constructor(
         fragmentManager: FragmentManager,
-        itemObject: BaseResultsResponse.MovieResultsResponse) : BaseViewPagerAdapter(fragmentManager, itemObject)
+        itemObject: MovieNPEntity) : BaseViewPagerAdapter(fragmentManager, itemObject)

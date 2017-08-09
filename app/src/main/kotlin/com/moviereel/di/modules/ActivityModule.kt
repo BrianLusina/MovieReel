@@ -3,30 +3,29 @@ package com.moviereel.di.modules
 import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
-import com.moviereel.data.api.model.BaseResultsResponse
-
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.io.SchedulerProvider
+import com.moviereel.data.io.SchedulerProviderImpl
 import com.moviereel.di.ActivityContext
 import com.moviereel.di.PerActivity
 import com.moviereel.ui.intro.splash.SplashPresenter
 import com.moviereel.ui.intro.splash.SplashPresenterImpl
 import com.moviereel.ui.intro.splash.SplashView
-import com.moviereel.ui.movie.MovieDetailsPresenter
-import com.moviereel.ui.movie.MovieDetailsPresenterImpl
-import com.moviereel.ui.movie.MovieDetailsView
-import com.moviereel.ui.movie.MovieDetailsViewPagerAdapter
 import com.moviereel.ui.main.MainPresenter
 import com.moviereel.ui.main.MainPresenterImpl
 import com.moviereel.ui.main.MainView
+import com.moviereel.ui.movie.MovieDetailsPresenter
+import com.moviereel.ui.movie.MovieDetailsPresenterImpl
+import com.moviereel.ui.movie.MovieDetailsView
 import com.moviereel.ui.movie.nowplaying.MovieNPAdapter
 import com.moviereel.ui.movie.nowplaying.MovieNPPresenter
 import com.moviereel.ui.movie.nowplaying.MovieNPPresenterImpl
 import com.moviereel.ui.movie.nowplaying.MovieNPView
-
-import java.util.ArrayList
-
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
+import java.util.*
+import javax.inject.Singleton
 
 /**
  * @author lusinabrian on 27/03/17
@@ -48,8 +47,13 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     }
 
     @Provides
-    fun provideCompositeDisposible(): CompositeDisposable {
+    fun provideCompositeDisposable(): CompositeDisposable {
         return CompositeDisposable()
+    }
+
+    @Provides
+    fun provideSchedulers() : SchedulerProvider {
+        return SchedulerProviderImpl()
     }
 
     @Provides
@@ -85,7 +89,7 @@ class ActivityModule(val mActivity: AppCompatActivity) {
 
     @Provides
     fun provideMovieNpAdapter(): MovieNPAdapter {
-        return MovieNPAdapter(ArrayList<BaseResultsResponse.MovieResultsResponse>())
+        return MovieNPAdapter(ArrayList<MovieNPEntity>())
     }
 
 }

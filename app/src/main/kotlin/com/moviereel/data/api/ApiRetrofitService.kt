@@ -9,9 +9,11 @@ import com.moviereel.data.api.model.movie.response.MovieTopRatedResponse
 import com.moviereel.data.api.model.movie.response.MovieUpcomingResponse
 import com.moviereel.data.api.model.tv.request.*
 import com.moviereel.data.api.model.tv.response.*
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.GET
-import retrofit2.http.QueryMap
+import retrofit2.http.Query
 
 /**
  * @author lusinabrian on 28/03/17
@@ -27,22 +29,21 @@ interface ApiRetrofitService {
      * @return [MovieNowPlayingResponse] response to return from the api call
      * */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_NOW_PLAYING)
-    fun getMoviesNowPlaying(@QueryMap language: Map<String, String>,
-                            @QueryMap page: Map<String, Int>):
-            Observable<MovieNowPlayingResponse>
+    fun getMoviesNowPlaying(@Query("language") language: String, @Query("page") page: Int)
+            : Flowable<List<MovieNowPlayingResponse>>
 
     /*** API call to get the latest movies being shown* */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_LATEST)
-    fun doGetMoviesLatestApiCall(@QueryMap language: Map<String, String>): Observable<BaseResultsResponse.MovieLatestResponse>
+    fun doGetMoviesLatest(@Query("language") language: String): Observable<BaseResultsResponse.MovieLatestResponse>
 
     /**
      * Does an api call to get a list of popular movies
      * @return A list of [MoviePopularResponse] we get from the api call
      */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_POPULAR)
-    fun doGetMoviesPopularApiCall(
-            @QueryMap page: Map<String, Int>,
-            @QueryMap language: Map<String, String>): Observable<MoviePopularResponse>
+    fun doGetMoviesPopular(
+            @Query("page") page: Int,
+            @Query("language") language: String): Observable<MoviePopularResponse>
 
     /**
      * Makes an api call to fetch the top rated movies

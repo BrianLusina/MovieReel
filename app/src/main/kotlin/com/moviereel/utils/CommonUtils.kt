@@ -62,5 +62,5 @@ object CommonUtils {
     }
 
     val timeStamp: String
-        get() = SimpleDateFormat(Constants.TIMESTAMP_FORMAT, Locale.UK).format(Date())
+        get() = SimpleDateFormat(TIMESTAMP_FORMAT, Locale.UK).format(Date())
 }

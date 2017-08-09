@@ -3,6 +3,7 @@ package com.moviereel.ui.intro.splash
 import android.util.Log
 
 import com.moviereel.data.DataManager
+import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
 
 import javax.inject.Inject
@@ -16,7 +17,11 @@ import java.lang.Thread.sleep
  */
 
 class SplashPresenterImpl<V : SplashView> @Inject
-constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable) : BasePresenterImpl<V>(mDataManager, mCompositeDisposable), SplashPresenter<V> {
+constructor(
+        mDataManager: DataManager,
+        mSchedulerProvider: SchedulerProvider,
+        mCompositeDisposable: CompositeDisposable
+) : BasePresenterImpl<V>(mDataManager, mSchedulerProvider, mCompositeDisposable), SplashPresenter<V> {
 
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
