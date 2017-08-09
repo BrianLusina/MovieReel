@@ -3,13 +3,12 @@ package com.moviereel.data.api
 import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.request.MovieTopRatedRequest
 import com.moviereel.data.api.model.movie.request.MovieUpcomingRequest
-import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
+import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.api.model.movie.response.MovieTopRatedResponse
 import com.moviereel.data.api.model.movie.response.MovieUpcomingResponse
 import com.moviereel.data.api.model.tv.request.*
 import com.moviereel.data.api.model.tv.response.*
-import com.moviereel.data.db.entities.movie.MovieNPEntity
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -26,11 +25,11 @@ interface ApiRetrofitService {
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently
      * now playing
-     * @return [MovieNowPlayingResponse] response to return from the api call
+     * @return [MovieNPResponse] response to return from the api call
      * */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_NOW_PLAYING)
     fun getMoviesNowPlaying(@Query("language") language: String, @Query("page") page: Int)
-            : Flowable<List<MovieNowPlayingResponse>>
+            : Flowable<MovieNPResponse>
 
     /*** API call to get the latest movies being shown* */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_LATEST)

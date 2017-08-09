@@ -47,7 +47,7 @@ data class MovieNPEntity(
         @ColumnInfo(name = "movieId")
         var movieId: Int = 0,
 
-        // @ColumnInfo(name = "movieImdbId")
+        @ColumnInfo(name = "movieImdbId")
         @Expose
         @SerializedName("movie_imdb_id")
         @Ignore
@@ -95,10 +95,6 @@ data class MovieNPEntity(
 
         @ColumnInfo(name = "spokenLanguages")
         var spokenLanguages: String = "",
-
-        // TODO: 19/04/17 Adding relation for genre ids
-        // @ColumnInfo(name = "genre_ids")
-        // Integer[] movie_genres;
 
         @ColumnInfo(name = "runtime")
         var movieRuntime: Int = 0,

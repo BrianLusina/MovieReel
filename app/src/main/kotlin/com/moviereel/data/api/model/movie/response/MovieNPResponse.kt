@@ -7,16 +7,14 @@ import com.moviereel.data.db.entities.movie.MovieNPEntity
 
 /**
  * @author lusinabrian on 29/03/17
- * * response we get when interacting with the now playing response
- * *
- */
+ * response we get when interacting with the now playing response
+ * */
+data class MovieNPResponse(
+        @Expose
+        @SerializedName("dates")
+        val dates: DatesResponse,
 
-class MovieNowPlayingResponse : BaseResponse() {
-    companion object {
         @Expose
         @SerializedName("results")
-        @JvmField
-        val results = ArrayList<MovieNPEntity>()
-
-    }
-}
+        val results: List<MovieNPEntity>
+) : BaseResponse()

@@ -1,7 +1,6 @@
 package com.moviereel.data.repositories.movierepo
 
 import com.moviereel.data.api.model.BaseResultsResponse
-import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.repositories.movierepo.local.MoviesLocalDataSource

@@ -1,7 +1,7 @@
 package com.moviereel.data.repositories.movierepo
 
 import com.moviereel.data.api.model.BaseResultsResponse
-import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
+import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import io.reactivex.Flowable
@@ -19,7 +19,7 @@ interface MovieDataSource {
      * Will return a response that will contain a list of all the Movies that are currently
      * now playing
      * @param remote whether to fetch this from a remote repo or not
-     * @return [MovieNowPlayingResponse] response to return from the api call
+     * @return [MovieNPResponse] response to return from the api call
      * */
     fun getMoviesNowPlaying(remote: Boolean = true, page: Int, language: String): Flowable<List<MovieNPEntity>>
 

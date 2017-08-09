@@ -1,7 +1,7 @@
 package com.moviereel.data
 
 import com.moviereel.data.api.model.BaseResultsResponse
-import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
+import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.files.FileHelper
@@ -38,7 +38,7 @@ constructor(
     /**
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently now playing
-     * @return [MovieNowPlayingResponse] response to return from the api call
+     * @return [MovieNPResponse] response to return from the api call
      */
     override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Flowable<List<MovieNPEntity>> {
         return mRepositoryHelper.getMoviesNowPlaying(remote, page, language)
