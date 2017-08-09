@@ -4,8 +4,10 @@ import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.dao.MovieNPDao
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.data.repositories.movierepo.MovieDataSource
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.AnkoLogger
@@ -32,19 +34,18 @@ constructor(
      * Will return a response that will contain a list of all the Movies that are currently now playing
      * @return [MovieNowPlayingResponse] response to return from the api call
      */
-    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Observable<MovieNowPlayingResponse> {
-        //return moviesNPDao.getAllMoviesNowPlaying()
-        return null!!
+    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Flowable<List<MovieNPEntity>> {
+        return moviesNPDao.getAllMoviesNowPlaying()
     }
 
     /**
      * Saves movies now playing for offline access
      * */
-    fun saveMoviesNowPlayingOffline(movieNpData: Observable<MovieNowPlayingResponse>) {
+    fun saveMoviesNowPlayingOffline(movieNpData: Flowable<List<MovieNPEntity>>) {
         movieNpData
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({
-                    it.results.forEach {
+                    it.forEach {
                         moviesNPDao.insertMovieNpList(it)
                     }
                 }) {

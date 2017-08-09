@@ -34,7 +34,7 @@ import com.moviereel.data.db.entities.BaseEntity
 @Entity(tableName = "movie_now_playing")
 data class MovieNPEntity(
 
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey
         @Expose
         @SerializedName("id")
         var id: Long = 0,
@@ -100,9 +100,6 @@ data class MovieNPEntity(
         // @ColumnInfo(name = "genre_ids")
         // Integer[] movie_genres;
 
-        @ColumnInfo(name = "voteCount")
-        var movieVoteCount: Int = 0,
-
         @ColumnInfo(name = "runtime")
         var movieRuntime: Int = 0,
 
@@ -135,7 +132,6 @@ data class MovieNPEntity(
             source.readString(),
             source.readString(),
             source.readInt(),
-            source.readInt(),
             source.readLong()
     )
 
@@ -159,7 +155,6 @@ data class MovieNPEntity(
         dest.writeString(productionCompanies)
         dest.writeString(productionCountries)
         dest.writeString(spokenLanguages)
-        dest.writeInt(movieVoteCount)
         dest.writeInt(movieRuntime)
         dest.writeLong(movieRevenue)
     }

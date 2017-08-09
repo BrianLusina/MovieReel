@@ -47,5 +47,5 @@ interface MovieNPView : BaseView {
      * @param movieResultsResponseList data to use to update movie list
      * *
      */
-    fun updateMoviesNowPlaying(movieResultsResponseList: ArrayList<MovieNPEntity>)
+    fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>)
 }

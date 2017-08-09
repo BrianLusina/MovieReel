@@ -91,7 +91,7 @@ constructor(
 //                            }
 
                             // update the recycler view
-                            baseView?.updateMoviesNowPlaying(it.results)
+                            baseView?.updateMoviesNowPlaying(it)
                             // throw an error
                         }) { throwable ->
                             Log.e(TAG, "accept: " + throwable.message, throwable)

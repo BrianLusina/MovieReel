@@ -74,7 +74,7 @@ constructor(
     /**
      * Add Movie now playing responses to list
      */
-    fun addItems(movieResultsResponses: ArrayList<MovieNPEntity>) {
+    fun addItems(movieResultsResponses: List<MovieNPEntity>) {
         movieResultsResponseList.addAll(movieResultsResponses)
         notifyDataSetChanged()
     }

@@ -9,6 +9,8 @@ import com.moviereel.data.api.model.movie.response.MovieTopRatedResponse
 import com.moviereel.data.api.model.movie.response.MovieUpcomingResponse
 import com.moviereel.data.api.model.tv.request.*
 import com.moviereel.data.api.model.tv.response.*
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -27,9 +29,8 @@ interface ApiRetrofitService {
      * @return [MovieNowPlayingResponse] response to return from the api call
      * */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_NOW_PLAYING)
-    fun getMoviesNowPlaying(@Query("language") language: String,
-                            @Query("page") page: Int):
-            Observable<MovieNowPlayingResponse>
+    fun getMoviesNowPlaying(@Query("language") language: String, @Query("page") page: Int)
+            : Flowable<List<MovieNowPlayingResponse>>
 
     /*** API call to get the latest movies being shown* */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_LATEST)

@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.moviereel.BuildConfig
+import com.moviereel.data.api.ApiHeaderInterceptor
 import com.moviereel.data.api.ApiKeyInterceptor
 import com.moviereel.data.api.ApiRetrofitService
 import com.moviereel.di.ApiInfo
@@ -37,8 +38,7 @@ class ApiModule {
     @Singleton
     @Named("baseUrl")
     fun provideBaseUrl(): String {
-        // return BuildConfig.BASE_URL
-        return "https://api.themoviedb.org/3/"
+        return BuildConfig.BASE_URL
     }
 
 
@@ -46,7 +46,7 @@ class ApiModule {
     @Singleton
     @Named("posterPath")
     fun provideBasePosterPath(): String {
-        return "http://image.tmdb.org/t/p/w500"
+        return BuildConfig.POSTER_PATH
     }
 
     @Provides
@@ -71,6 +71,7 @@ class ApiModule {
         return OkHttpClient.Builder()
                 .cache(cache)
                 .addInterceptor(ApiKeyInterceptor())
+                .addInterceptor(ApiHeaderInterceptor())
                 .build()
     }
 

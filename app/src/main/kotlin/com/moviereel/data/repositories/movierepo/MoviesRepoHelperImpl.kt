@@ -3,8 +3,10 @@ package com.moviereel.data.repositories.movierepo
 import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.repositories.movierepo.local.MoviesLocalDataSource
 import com.moviereel.data.repositories.movierepo.remote.MoviesRemoteDataSource
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,7 +21,7 @@ class MoviesRepoHelperImpl
 constructor(val movieLocalDataSource: MoviesLocalDataSource,
             val moviesRemoteDataSource: MoviesRemoteDataSource) : MoviesRepoHelper {
 
-    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Observable<MovieNowPlayingResponse> {
+    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Flowable<List<MovieNPEntity>> {
         if (remote) {
             val data = moviesRemoteDataSource.getMoviesNowPlaying(page = page, language = language)
             // save data to disk

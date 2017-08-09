@@ -1,7 +1,5 @@
 package com.moviereel.data.api.model
 
-import android.os.Parcel
-import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -10,40 +8,6 @@ import com.google.gson.annotations.SerializedName
  * * Base response
  */
 sealed class BaseResultsResponse {
-    data class MovieResultsResponse(
-            @Expose
-            @SerializedName("release_date")
-            var releaseDate: String,
-            @Expose
-            @SerializedName("title")
-            var title: String? = null,
-
-            @Expose
-            @SerializedName("original_title")
-            var originalTitle: String
-    ) : BaseResultsResponse(), Parcelable {
-        companion object {
-            @JvmField val CREATOR: Parcelable.Creator<MovieResultsResponse> = object : Parcelable.Creator<MovieResultsResponse> {
-                override fun createFromParcel(source: Parcel): MovieResultsResponse = MovieResultsResponse(source)
-                override fun newArray(size: Int): Array<MovieResultsResponse?> = arrayOfNulls(size)
-            }
-        }
-
-        constructor(source: Parcel) : this(
-                source.readString(),
-                source.readString(),
-                source.readString()
-        )
-
-        override fun describeContents() = 0
-
-        override fun writeToParcel(dest: Parcel, flags: Int) {
-            dest.writeString(releaseDate)
-            dest.writeString(title)
-            dest.writeString(originalTitle)
-        }
-    }
-
     /***/
     data class MovieLatestResponse(
             @Expose

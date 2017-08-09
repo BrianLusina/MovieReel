@@ -3,9 +3,11 @@ package com.moviereel.data
 import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.files.FileHelper
 import com.moviereel.data.prefs.PreferencesHelper
 import com.moviereel.data.repositories.RepositoryHelper
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -38,7 +40,7 @@ constructor(
      * Will return a response that will contain a list of all the Movies that are currently now playing
      * @return [MovieNowPlayingResponse] response to return from the api call
      */
-    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Observable<MovieNowPlayingResponse> {
+    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Flowable<List<MovieNPEntity>> {
         return mRepositoryHelper.getMoviesNowPlaying(remote, page, language)
     }
 

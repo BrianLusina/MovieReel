@@ -110,7 +110,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         movieNPPresenter.onItemClicked(bundleKey, movieList)
     }
 
-    override fun updateMoviesNowPlaying(movieResultsResponseList: ArrayList<MovieNPEntity>) {
+    override fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>) {
         movieNPAdapter.addItems(movieResultsResponseList)
     }
 

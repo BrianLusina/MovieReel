@@ -3,6 +3,8 @@ package com.moviereel.data.repositories.movierepo
 import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
+import com.moviereel.data.db.entities.movie.MovieNPEntity
+import io.reactivex.Flowable
 import io.reactivex.Observable
 
 /**
@@ -19,7 +21,7 @@ interface MovieDataSource {
      * @param remote whether to fetch this from a remote repo or not
      * @return [MovieNowPlayingResponse] response to return from the api call
      * */
-    fun getMoviesNowPlaying(remote: Boolean = true, page: Int, language: String): Observable<MovieNowPlayingResponse>
+    fun getMoviesNowPlaying(remote: Boolean = true, page: Int, language: String): Flowable<List<MovieNPEntity>>
 
     /**
      * API call to get the latest movies being shown

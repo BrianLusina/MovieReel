@@ -2,6 +2,7 @@ package com.moviereel.data.api.model.movie.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.moviereel.data.api.model.BaseResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 
 /**
@@ -10,14 +11,12 @@ import com.moviereel.data.db.entities.movie.MovieNPEntity
  * *
  */
 
-data class MovieNowPlayingResponse(
-
-        @Expose
-        @SerializedName("dates")
-        var datesResponse: DatesResponse,
-
+class MovieNowPlayingResponse : BaseResponse() {
+    companion object {
         @Expose
         @SerializedName("results")
-        var results: ArrayList<MovieNPEntity>
+        @JvmField
+        val results = ArrayList<MovieNPEntity>()
 
-) : MovieBaseResponse()
+    }
+}
