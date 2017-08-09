@@ -22,8 +22,9 @@ class ConnChangeReceiver : BroadcastReceiver() {
             // if connected to KIO WIFI, open the connected check as a new task
             // this will allow to display a simple dialog
             if (NetworkUtils.isNetworkAvailable(context)) {
-                openMainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(openMainActivity)
+                // todo: notifications
+                // openMainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                // context.startActivity(openMainActivity)
             }
         }
     }

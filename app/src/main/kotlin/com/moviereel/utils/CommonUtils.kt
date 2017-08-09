@@ -15,7 +15,9 @@ import java.util.Locale
 
 import cn.pedant.SweetAlert.SweetAlertDialog
 import android.graphics.drawable.ColorDrawable
-
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
 
 /**
@@ -24,6 +26,10 @@ import android.graphics.drawable.ColorDrawable
  */
 
 object CommonUtils {
+
+    fun adapterVHInflater(parent: ViewGroup, resourceId: Int): View {
+        return LayoutInflater.from(parent.context).inflate(resourceId, parent, false)
+    }
 
     /**
      * Creates a sweet alert loading progress

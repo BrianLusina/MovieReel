@@ -6,6 +6,7 @@ import com.moviereel.data.io.SchedulerProvider
 import javax.inject.Inject
 
 import io.reactivex.disposables.CompositeDisposable
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * @author lusinabrian on 01/04/17
@@ -15,7 +16,11 @@ open class BasePresenterImpl<V : BaseView> @Inject
 constructor(
         val dataManager: DataManager,
         val schedulerProvider: SchedulerProvider,
-        val compositeDisposable: CompositeDisposable) : BasePresenter<V> {
+        val compositeDisposable: CompositeDisposable) : BasePresenter<V>, AnkoLogger {
+
+    override val loggerTag: String
+        get() = this::class.java.simpleName
+
     /**
      * Gets the base view
      * @return [BaseView]

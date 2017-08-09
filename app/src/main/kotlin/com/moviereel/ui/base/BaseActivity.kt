@@ -61,28 +61,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
 
-    /**
-     * Shows a loading progress dialog
-     */
-    override fun showSweetAlertLoadingProgress() {
-        dismissSweetAlertLoadingProgress()
-        //mProgressDialog =CommonUtils.showProgressDialog(this);
-        //mProgressDialog.show();
-        mSweetAlertDialog = CommonUtils.showSweetAlertLoadingProgress(this)
-        mSweetAlertDialog!!.show()
-    }
-
-    /**
-     * Dismiss a loading progress dialog
-     */
-    override fun dismissSweetAlertLoadingProgress() {
-        //        if(mProgressDialog.isShowing() && mProgressDialog != null){
-        //            mProgressDialog.dismiss();
-        //        }
-        if (mSweetAlertDialog!!.isShowing && mSweetAlertDialog != null) {
-            mSweetAlertDialog!!.dismissWithAnimation()
-        }
-    }
 
     /**
      * Checks if there is network connected

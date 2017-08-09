@@ -1,36 +1,35 @@
 package com.moviereel.ui.movie.nowplaying
 
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.moviereel.BuildConfig
 import com.moviereel.R
-
-import com.moviereel.ui.movie.MovieDetailsActivity
-import com.moviereel.ui.base.BaseViewHolder
-
-import javax.inject.Inject
-import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.ui.base.BaseRecyclerAdapter
+import com.moviereel.ui.base.BaseViewHolder
+import com.moviereel.ui.movie.MovieDetailsActivity
+import com.moviereel.utils.CommonUtils.adapterVHInflater
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
+import javax.inject.Inject
 
 /**
  * @author lusinabrian on 01/06/17.
- * *
  * @Notes
  */
 
 class MovieNPAdapter
 @Inject
 constructor(
-        val movieResultsResponseList: ArrayList<MovieNPEntity>) : RecyclerView.Adapter<BaseViewHolder>() {
+        val movieResultsResponseList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapter<MovieNPEntity>(movieResultsResponseList) {
+
+    val VIEW_TYPE_LOADING = 0
+    val VIEW_TYPE_NORMAL = 1
 
     lateinit var mCallback: Callback
 
@@ -38,27 +37,20 @@ constructor(
         mCallback = callback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<MovieNPEntity> {
         when (viewType) {
-            VIEW_TYPE_NORMAL -> return ViewHolder(
-                    LayoutInflater.from(parent.context).inflate(R.layout.item_movie_layout, parent, false))
-            VIEW_TYPE_EMPTY ->
-                return EmptyViewHolder(
-                        LayoutInflater.from(parent.context).inflate(R.layout.item_empty_view, parent, false))
+            VIEW_TYPE_NORMAL -> return ViewHolder(adapterVHInflater(parent, R.layout.item_movie_layout))
+            VIEW_TYPE_LOADING -> return LoadingViewHolder(adapterVHInflater(parent, R.layout.progress_dialog))
             else -> return EmptyViewHolder(
-                    LayoutInflater.from(parent.context).inflate(R.layout.item_empty_view, parent, false))
+                    adapterVHInflater(parent, R.layout.item_empty_view))
         }
-    }
-
-    override fun onBindViewHolder(baseViewHolder: BaseViewHolder, i: Int) {
-        baseViewHolder.onBind(i)
     }
 
     override fun getItemViewType(position: Int): Int {
         if (movieResultsResponseList.size > 0) {
             return VIEW_TYPE_NORMAL
         } else {
-            return VIEW_TYPE_EMPTY
+            return VIEW_TYPE_LOADING
         }
 
     }
@@ -71,17 +63,7 @@ constructor(
         }
     }
 
-    /**
-     * Add Movie now playing responses to list
-     */
-    fun addItems(movieResultsResponses: List<MovieNPEntity>) {
-        movieResultsResponseList.addAll(movieResultsResponses)
-        notifyDataSetChanged()
-    }
-
-    inner class ViewHolder(itemView: View) : BaseViewHolder(itemView) {
-
-        override fun clear() {}
+    inner class ViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView) {
 
         override fun onBind(position: Int) {
             val movieResultsResponse = movieResultsResponseList[position]
@@ -123,9 +105,7 @@ constructor(
         }
     }
 
-    inner class EmptyViewHolder(itemView: View) : BaseViewHolder(itemView) {
-
-        override fun clear() {}
+    inner class EmptyViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView) {
 
         fun onRetryClick() {
             // btn_retry
@@ -133,15 +113,10 @@ constructor(
         }
     }
 
+    inner class LoadingViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView)
+
     interface Callback {
         fun onViewEmptyViewRetryClick()
-    }
-
-    companion object {
-        private val TAG = MovieNPAdapter::class.java.simpleName
-
-        val VIEW_TYPE_EMPTY = 0
-        val VIEW_TYPE_NORMAL = 1
     }
 
 }

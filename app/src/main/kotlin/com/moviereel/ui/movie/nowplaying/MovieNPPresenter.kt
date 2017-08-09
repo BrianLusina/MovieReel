@@ -15,6 +15,8 @@ interface MovieNPPresenter<V : MovieNPView> : BasePresenter<V> {
 
     fun onViewInitialized()
 
+    fun onLoadMoreFromApi(page : Int)
+
     /**Handles what will happen when the Fragment is resumed */
     fun onResume()
 

@@ -22,16 +22,6 @@ interface BaseView {
     fun showNetworkErrorSnackbar(@StringRes message: Int, length: Int)
 
     /**
-     * Shows a loading progress dialog
-     */
-    fun showSweetAlertLoadingProgress()
-
-    /**
-     * Dismiss a loading progress dialog
-     */
-    fun dismissSweetAlertLoadingProgress()
-
-    /**
      * Checks if there is network connected
      * Returns True if the device is connected to a network, false otherwise
      * @return [Boolean]

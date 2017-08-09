@@ -56,24 +56,6 @@ abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
     }
 
     /**
-     * Shows a loading progress dialog
-     */
-    override fun showSweetAlertLoadingProgress() {
-        if (baseActivity != null) {
-            baseActivity!!.showSweetAlertLoadingProgress()
-        }
-    }
-
-    /**
-     * Dismiss a loading progress dialog
-     */
-    override fun dismissSweetAlertLoadingProgress() {
-        if (baseActivity != null) {
-            baseActivity!!.dismissSweetAlertLoadingProgress()
-        }
-    }
-
-    /**
      * Checks if there is network connected
      * Returns True if the device is connected to a network, false otherwise
 

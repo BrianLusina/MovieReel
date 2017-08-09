@@ -28,7 +28,7 @@ constructor(val mApiRetrofitService: ApiRetrofitService) : MovieDataSource {
      * Will return a response that will contain a list of all the Movies that are currently now playing
      * @return [MovieNPResponse] response to return from the api call
      */
-    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Flowable<List<MovieNPEntity>> {
+    override fun getMoviesNowPlaying(remote: Boolean?, page: Int, language: String): Flowable<List<MovieNPEntity>> {
         val data = mApiRetrofitService.getMoviesNowPlaying(language, page)
         return data.flatMap({ Flowable.just(it.results) })
     }

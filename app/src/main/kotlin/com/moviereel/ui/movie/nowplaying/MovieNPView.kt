@@ -17,9 +17,7 @@ interface MovieNPView : BaseView {
      * Show API Error snackbar. this will display an error message on the snackbar in case
      * the API call has encountered an issue and can prompt user to retry connection
      * @param length how long to display this snackbar
-     * *
      * @param message message to display to user about this error
-     * *
      * @param actionMessage the message to display on the action button
      */
     fun showApiErrorSnackbar(message: String, actionMessage: String, length: Int)
@@ -37,7 +35,9 @@ interface MovieNPView : BaseView {
     fun displayToast(message: String, messageType: Int)
 
     /**picks the data of the item clicked in the RecyclerView
-     * start activity for the clicked movie item */
+     * start activity for the clicked movie item
+     * @param bundleKey KEY to use to fetch item data from other side
+     * @param movieList */
     fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNPEntity>)
 
     fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNPEntity>)
@@ -48,4 +48,5 @@ interface MovieNPView : BaseView {
      * *
      */
     fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>)
+
 }

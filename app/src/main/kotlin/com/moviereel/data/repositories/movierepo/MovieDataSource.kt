@@ -21,7 +21,7 @@ interface MovieDataSource {
      * @param remote whether to fetch this from a remote repo or not
      * @return [MovieNPResponse] response to return from the api call
      * */
-    fun getMoviesNowPlaying(remote: Boolean = true, page: Int, language: String): Flowable<List<MovieNPEntity>>
+    fun getMoviesNowPlaying(remote: Boolean? = true, page: Int, language: String): Flowable<List<MovieNPEntity>>
 
     /**
      * API call to get the latest movies being shown
