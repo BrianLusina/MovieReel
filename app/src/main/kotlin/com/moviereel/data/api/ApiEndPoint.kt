@@ -23,4 +23,8 @@ internal object ApiEndPoint {
     const val ENDPOINT_TV_AIRING_TODAY = "tv/airing_today"
     const val ENDPOINT_TV_POPULAR = "tv/popular"
     const val ENDPOINT_TV_LATEST = "tv/latest"
+
+    // genre
+    const val ENDPOINT_GENRE_MOVIE_LIST = "genre/movie/list"
+    const val ENDPOINT_GENRE_TV_LIST = "genre/movie/list"
 }

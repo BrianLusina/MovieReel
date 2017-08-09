@@ -27,9 +27,6 @@ constructor(
         mCompositeDisposable: CompositeDisposable)
     : BasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
 
-    // query to fetch data offline or remotely
-    val remote = baseView?.isNetworkConnected
-
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
 
@@ -45,6 +42,7 @@ constructor(
     }
 
     fun fetchFromApi(page: Int) {
+        val remote = baseView?.isNetworkConnected
         compositeDisposable.addAll(
                 dataManager.getMoviesNowPlaying(remote, page, "en-US")
                         .observeOn(schedulerProvider.ui())

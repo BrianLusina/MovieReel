@@ -29,7 +29,6 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
     lateinit var movieViewPagerAdapter: MovieDetailsViewPagerAdapter
 
     lateinit var movieObject: MovieNPEntity
-    lateinit var bundle: Bundle
 
     private var mMaxScrollSize: Int = 0
     private var mIsImageHidden: Boolean = false
@@ -85,8 +84,6 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
      * */
     fun retrieveItemObject(): Unit {
         movieObject = intent.extras.getParcelable("MovieObj")
-        bundle = Bundle()
-        bundle.putParcelable("MovieObjData", movieObject)
 
         // TODO: DATA IS NOT VISIBLE HERE, WHY?
         // this is after getting the object from the intent

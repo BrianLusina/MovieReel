@@ -9,6 +9,7 @@ import com.moviereel.data.api.model.movie.response.MovieTopRatedResponse
 import com.moviereel.data.api.model.movie.response.MovieUpcomingResponse
 import com.moviereel.data.api.model.tv.request.*
 import com.moviereel.data.api.model.tv.response.*
+import com.moviereel.data.db.entities.GenreEntity
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -30,6 +31,9 @@ interface ApiRetrofitService {
     @GET(ApiEndPoint.ENDPOINT_MOVIE_NOW_PLAYING)
     fun getMoviesNowPlaying(@Query("language") language: String, @Query("page") page: Int)
             : Flowable<MovieNPResponse>
+
+    @GET(ApiEndPoint.ENDPOINT_GENRE_MOVIE_LIST)
+    fun getMovieGenreList(@Query("language") language: String) : Flowable<List<GenreEntity>>
 
     /*** API call to get the latest movies being shown* */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_LATEST)

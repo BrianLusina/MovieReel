@@ -1,6 +1,5 @@
 package com.moviereel.ui.movie.nowplaying
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,9 @@ import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseRecyclerAdapter
 import com.moviereel.ui.base.BaseViewHolder
 import com.moviereel.ui.movie.MovieDetailsActivity
-import com.moviereel.utils.CommonUtils.adapterVHInflater
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -26,7 +26,7 @@ import javax.inject.Inject
 class MovieNPAdapter
 @Inject
 constructor(
-        val movieResultsResponseList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapter<MovieNPEntity>(movieResultsResponseList) {
+        val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapter<MovieNPEntity>(movieNPEntityList) {
 
     val VIEW_TYPE_LOADING = 0
     val VIEW_TYPE_NORMAL = 1
@@ -39,15 +39,23 @@ constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<MovieNPEntity> {
         when (viewType) {
-            VIEW_TYPE_NORMAL -> return ViewHolder(adapterVHInflater(parent, R.layout.item_movie_layout))
-            VIEW_TYPE_LOADING -> return LoadingViewHolder(adapterVHInflater(parent, R.layout.progress_dialog))
-            else -> return EmptyViewHolder(
-                    adapterVHInflater(parent, R.layout.item_empty_view))
+            VIEW_TYPE_NORMAL -> {
+                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_movie_layout, parent, false)
+                return ViewHolder(v)
+            }
+            VIEW_TYPE_LOADING -> {
+                val v = LayoutInflater.from(parent.context).inflate(R.layout.progress_dialog, parent, false)
+                return LoadingViewHolder(v)
+            }
+            else -> {
+                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_empty_view, parent, false)
+                return EmptyViewHolder(v)
+            }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (movieResultsResponseList.size > 0) {
+        if (movieNPEntityList.size > 0) {
             return VIEW_TYPE_NORMAL
         } else {
             return VIEW_TYPE_LOADING
@@ -56,26 +64,22 @@ constructor(
     }
 
     override fun getItemCount(): Int {
-        if (movieResultsResponseList.size > 0) {
-            return movieResultsResponseList.size
-        } else {
-            return 1
-        }
+        return movieNPEntityList.size
     }
 
     inner class ViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView) {
 
         override fun onBind(position: Int) {
-            val movieResultsResponse = movieResultsResponseList[position]
+            val movieEntity = movieNPEntityList[position]
 
             with(itemView) {
-                itemMovieTitleTxtView.text = movieResultsResponse.title
-                itemMovieVoteAvgTxtView.text = movieResultsResponse.voteAverage.toString()
+                itemMovieTitleTxtView.text = movieEntity.title
+                itemMovieVoteAvgTxtView.text = movieEntity.voteAverage.toString()
                 // itemMovieCategoriesTxtView
                 // itemMovieRuntimeTxtView
                 // glide images to image views
                 Glide.with(context)
-                        .load(BuildConfig.POSTER_PATH + movieResultsResponse.posterPath)
+                        .load(BuildConfig.POSTER_PATH + movieEntity.posterPath)
                         .listener(object : RequestListener<String, GlideDrawable> {
                             override fun onException(e: Exception, model: String, target: Target<GlideDrawable>, isFirstResource: Boolean): Boolean {
                                 return false
@@ -95,10 +99,10 @@ constructor(
 
                 // open movie details activity
                 setOnClickListener {
-                    val openMovieIntent = Intent(context, MovieDetailsActivity::class.java)
-
-                    openMovieIntent.putExtra("MovieObj", movieResultsResponse)
-                    context.startActivity(openMovieIntent)
+                    context.toast("$movieEntity")
+//                    context.startActivity<MovieDetailsActivity>(
+//                            "MovieObj" to movieEntity
+//                    )
                 }
             }
 

@@ -3,7 +3,6 @@ package com.moviereel.data.db.dao
 import android.arch.persistence.room.*
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import io.reactivex.Flowable
-import io.reactivex.Observable
 
 
 /**
@@ -17,7 +16,7 @@ interface MovieNPDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovieNp(movieNPEntity: MovieNPEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovieNpList(vararg movieNPEntity: MovieNPEntity)
 
     // ****************** READ ************************

@@ -16,20 +16,22 @@ import com.moviereel.data.db.entities.BaseEntity
  * @Notes: Now playing movie model
  * *
  * * Example model we should expect to save
- * * "poster_path": "/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
- * * "adult": false,
- * * "overview": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill's true parentage.",
- * * "releaseDate": "2017-04-24",
- * * "genre_ids": [ 35, 28, 12, 878 ],
- * * "id": 283995,
- * * "original_title": "Guardians of the Galaxy Vol. 2",
- * * "original_language": "en",
- * * "title": "Guardians of the Galaxy Vol. 2",
- * * "backdrop_path": "/aJn9XeesqsrSLKcHfHP4u5985hn.jpg",
- * * "popularity": 125.757946,
- * * "vote_count": 1437,
- * * "video": false,
- * *
+    {
+        "vote_count": 2085,
+        "id": 315635,
+        "video": false,
+        "vote_average": 7.4,
+        "title": "Spider-Man: Homecoming",
+        "popularity": 94.407524,
+        "poster_path": "/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg",
+        "original_language": "en",
+        "original_title": "Spider-Man: Homecoming",
+        "genre_ids": [ 28, 12, 878 ],
+        "backdrop_path": "/vc8bCGjdVp0UbMNLzHnHSLRbBWQ.jpg",
+        "adult": false,
+        "overview": "Following the events of Captain America: Civil War, Peter Parker, with the help of his mentor Tony Stark, tries to balance his life as an ordinary high school student in Queens, New York City, with fighting crime as his superhero alter ego Spider-Man as a new threat, the Vulture, emerges.",
+        "release_date": "2017-07-05"
+    }
  */
 @Entity(tableName = "movie_now_playing")
 data class MovieNPEntity(
@@ -37,15 +39,13 @@ data class MovieNPEntity(
         @PrimaryKey
         @Expose
         @SerializedName("id")
-        var id: Long = 0,
+        @ColumnInfo(name = "id")
+        var movieId: Long = 0,
 
         @Expose
         @SerializedName("title")
         @ColumnInfo(name = "title")
-        var title: String? = null,
-
-        @ColumnInfo(name = "movieId")
-        var movieId: Int = 0,
+        var title: String = "",
 
         @ColumnInfo(name = "movieImdbId")
         @Expose
@@ -112,7 +112,6 @@ data class MovieNPEntity(
     constructor(source: Parcel) : this(
             source.readLong(),
             source.readString(),
-            source.readInt(),
             source.readString(),
             source.readString(),
             source.readString(),
@@ -134,9 +133,8 @@ data class MovieNPEntity(
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeLong(id)
         dest.writeString(title)
-        dest.writeInt(movieId)
+        dest.writeLong(movieId)
         dest.writeString(movieImdbId)
         dest.writeString(movieTitle)
         dest.writeString(moviePosterUrl)

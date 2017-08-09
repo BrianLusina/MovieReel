@@ -2,10 +2,10 @@ package com.moviereel.data.api.model.tv.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.moviereel.data.api.model.Genres
 import com.moviereel.data.api.model.Networks
 import com.moviereel.data.api.model.ProductionCompany
 import com.moviereel.data.api.model.tv.Seasons
+import com.moviereel.data.db.entities.GenreEntity
 
 /**
  * @author lusinabrian on 10/04/17
@@ -32,7 +32,7 @@ data class TvLatestResponse(
 
         @Expose
         @SerializedName("genres")
-        var genres: List<Genres>,
+        var genres: List<GenreEntity>,
 
         @Expose
         @SerializedName("homepage")

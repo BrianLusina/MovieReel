@@ -29,7 +29,7 @@ data class MovieLatestEntity(
 
         // TODO: ADD RELATIONS TO OTHER TABLES, production companies, countries and spoken languages
 //    @ColumnInfo
-//    Genres genres;
+//    GenreResponse genres;
 //    @ColumnInfo
 //    List<ProductionCompany> productionCompanies;
 //

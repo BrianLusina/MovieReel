@@ -16,11 +16,16 @@ import com.moviereel.utils.RecyclerItemClickListener
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_movie_layout.view.*
 import org.jetbrains.anko.debug
+import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MovieNPFragment : BaseFragment(), MovieNPView {
+
+    companion object {
+        const val TAG = "MOVIE_NP_FRAGMENT"
+    }
 
     @Inject
     lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
@@ -83,7 +88,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    debug { "Loading content from page $page, itemsCount: $totalItemsCount" }
+                    info { "Loading content from page $page, itemsCount: $totalItemsCount" }
                     movieNPPresenter.onLoadMoreFromApi(page)
                 }
             }
@@ -92,15 +97,6 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         }
 
         movieNPPresenter.onViewInitialized()
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //implement item click listener
-//        mRecyclerView.addOnItemTouchListener(RecyclerItemClickListener(activity,
-//                RecyclerItemClickListener.OnItemClickListener{
-//                    _, position -> startActivityForClickedItem(MOVIE_OBJ, position)
-//                }))
     }
 
     override fun showApiErrorSnackbar(message: String, actionMessage: String, length: Int) {

@@ -2,6 +2,7 @@ package com.moviereel.data.api.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.moviereel.data.db.entities.GenreEntity
 
 /**
  * @author lusinabrian on 31/03/17
@@ -24,7 +25,7 @@ sealed class BaseResultsResponse {
 
             @Expose
             @SerializedName("genres")
-            private val genres: Genres,
+            private val genreResponse: GenreEntity,
 
             @Expose
             @SerializedName("imdb_id")

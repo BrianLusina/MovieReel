@@ -20,8 +20,8 @@ class MoviesRepoHelperImpl
 constructor(val movieLocalDataSource: MoviesLocalDataSource,
             val moviesRemoteDataSource: MoviesRemoteDataSource) : MoviesRepoHelper {
 
-    override fun getMoviesNowPlaying(remote: Boolean, page: Int, language: String): Flowable<List<MovieNPEntity>> {
-        if (remote) {
+    override fun getMoviesNowPlaying(remote: Boolean?, page: Int, language: String): Flowable<List<MovieNPEntity>> {
+        if (remote!!) {
             val data = moviesRemoteDataSource.getMoviesNowPlaying(page = page, language = language)
             // save data to disk
             movieLocalDataSource.saveMoviesNowPlayingOffline(data)
