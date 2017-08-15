@@ -15,7 +15,7 @@ import com.moviereel.R
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 import com.moviereel.ui.settings.SettingsActivity
-import kotlinx.android.synthetic.main.activity_main_layout.*
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
@@ -43,7 +43,7 @@ class MainActivity : BaseActivity(), MainView {
      * used to setup the views in the activity
      */
     override fun setUp() {
-        setSupportActionBar(toolbar_main_id)
+        setSupportActionBar(toolbar_main)
 
         //sets the default fragment
         val fragment = MovieNPFragment()
@@ -61,7 +61,7 @@ class MainActivity : BaseActivity(), MainView {
     private fun setUpNavigationMenu(savedInstanceState: Bundle?) {
         //this layout have to contain child layouts
         drawer = DrawerBuilder(this)
-                .withToolbar(toolbar_main_id)
+                .withToolbar(toolbar_main)
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .withSliderBackgroundColorRes(R.color.background_drawer_color)
