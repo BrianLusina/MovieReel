@@ -116,10 +116,15 @@ android {
         main {
             java.srcDirs += "src/main/kotlin"
             res.srcDirs = [
-                    "src/main/res/layouts/activities",
-                    "src/main/res/layouts/fragments",
+                    "src/main/res/layouts/feature_main",
+                    "src/main/res/layouts/feature_movie",
+                    "src/main/res/layouts/feature_series",
+                    "src/main/res/layouts/feature_cast",
+                    "src/main/res/layouts/feature_review",
+                    "src/main/res/layouts/feature_splash",
+                    "src/main/res/layouts/feature_error",
+                    "src/main/res/layouts/feature_details",
                     "src/main/res/layouts/components",
-                    "src/main/res/layouts/items",
                     "src/main/res/layouts",
                     "src/main/res"
             ]

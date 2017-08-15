@@ -12,6 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        tools:listitem="@layout/moviecast_item_layout"/>
+        tools:listitem="@layout/item_cast_layout"/>
 
 </LinearLayout>
