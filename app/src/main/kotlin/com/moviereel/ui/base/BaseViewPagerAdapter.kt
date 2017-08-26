@@ -10,9 +10,9 @@ import android.support.v4.app.FragmentStatePagerAdapter
  * view pagers
  */
 abstract class BaseViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager){
-    private val fragmentList = mutableListOf(Fragment())
-    private val fragmentTitleList = mutableListOf(String())
-    private lateinit var itemObject : Any
+    var fragmentList = mutableListOf(Fragment())
+    var fragmentTitleList = mutableListOf(String())
+    lateinit var itemObject : Any
 
     /**
      * Secondary constructor
@@ -32,7 +32,6 @@ abstract class BaseViewPagerAdapter(fragmentManager: FragmentManager) : Fragment
     override fun getPageTitle(position: Int): CharSequence {
         return fragmentTitleList[position]
     }
-
 
     /**Adds fragment to the viewpager
      * @param fragment The fragment to add to the viewpager

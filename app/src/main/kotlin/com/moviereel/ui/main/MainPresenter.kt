@@ -13,22 +13,8 @@ interface MainPresenter<V : MainView> : BasePresenter<V> {
     /**
      * Callback for when the now playing movies drawer option is clicked
      */
-    fun onDrawerOptionNowPlayingMoviesClicked()
+    fun onDrawerOptionMoviesClicked()
 
-    /**
-     * Callback for when popular movies drawer option is clicked
-     */
-    fun onDrawerOptionPopularMoviesClicked()
-
-    /**
-     * Callback for when top rated movies is clicked
-     */
-    fun onDrawerOptionTopRatedMoviesClicked()
-
-    /**
-     * Callback for when upcoming movies drawer option is clicked
-     */
-    fun onDrawerOptionUpcomingMoviesClicked()
 
     /**
      * Callback for when the latest series drawer option is clicked

@@ -1,106 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/movie_item_card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardBackgroundColor="@color/background_color"
-    android:clickable="true"
-    android:layout_margin="@dimen/card_movie_margin"
-    card_view:cardCornerRadius="@dimen/card_movie_radius"
-    card_view:cardElevation="4dp">
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/movie_item_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/background_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="@dimen/card_movie_margin"
+        card_view:cardCornerRadius="@dimen/card_movie_radius"
+        card_view:cardElevation="4dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
         <!--Movie Poster-->
         <FrameLayout
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:orientation="vertical">
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:orientation="vertical">
 
             <!--Todo: open modal when image is clicked-->
             <ImageView
-                android:id="@+id/itemMovieImgView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
+                    android:id="@+id/itemMovieImgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
 
-                android:contentDescription="@string/movie_image_card" />
+                    android:contentDescription="@string/movie_image_card"/>
 
             <!--android:src="@drawable/red_button_background"-->
             <ProgressBar
-                android:id="@+id/itemMovieProgressbar"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                    android:id="@+id/itemMovieProgressbar"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
         </FrameLayout>
 
         <!--Movie details-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <!--Movie title-->
             <TextView
-                android:id="@+id/itemMovieTitleTxtView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:padding="@dimen/movie_item_text_padding"
-                android:text="@string/movie_title_card"
-                android:textStyle="bold"
-                android:textSize="@dimen/movie_title_size"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:id="@+id/movie_voteavg_starimg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_voteavg_star"
-                    android:contentDescription="@null"/>
-                <TextView
-                    android:id="@+id/itemMovieVoteAvgTxtView"
-                    android:padding="1dp"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/itemMovieTitleTxtView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:text="@string/movie_voteavg_card"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/movie_voteavg_size"/>
+                    android:padding="@dimen/movie_item_text_padding"
+                    android:text="@string/movie_title_card"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/movie_title_size"/>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                <ImageView
+                        android:id="@+id/movie_voteavg_starimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_voteavg_star"
+                        android:contentDescription="@null"/>
+
+                <TextView
+                        android:id="@+id/itemMovieVoteAvgTxtView"
+                        android:padding="1dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/movie_voteavg_card"
+                        android:textStyle="normal"
+                        android:textSize="@dimen/movie_voteavg_size"/>
 
             </LinearLayout>
 
             <!--Category, movie time(duration)-->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/movie_item_text_padding"
-                android:orientation="vertical">
-                <TextView
                     android:layout_width="match_parent"
-                    android:id="@+id/itemMovieCategoriesTxtView"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_blue_grey_100"
-                    android:text="@string/movie_category_txt"/>
+                    android:padding="@dimen/movie_item_text_padding"
+                    android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/itemMovieRuntimeTxtView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/md_blue_grey_100"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/movie_time_txt"/>
+                        android:layout_width="match_parent"
+                        android:id="@+id/itemMovieCategoriesTxtView"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_blue_grey_100"
+                        android:text="@string/movie_category_txt"/>
+
+                <TextView
+                        android:id="@+id/itemMovieRuntimeTxtView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_blue_grey_100"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/movie_time_txt"/>
             </LinearLayout>
 
         </LinearLayout>

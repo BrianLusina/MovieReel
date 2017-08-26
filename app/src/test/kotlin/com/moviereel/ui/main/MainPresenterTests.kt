@@ -2,8 +2,6 @@ package com.moviereel.ui.main
 
 import com.moviereel.TestSchedulerProvider
 import com.moviereel.data.DataManager
-import com.moviereel.ui.main.MainPresenterImpl
-import com.moviereel.ui.main.MainView
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -50,9 +48,9 @@ class MainPresenterTests {
 
     @Test
     fun testShouldDisplayNowPlayingMoviesFragment() {
-        mMockMainView.showNowPlayingMoviesFragment()
+        mMockMainView.showMoviesFragment()
 
-        verify<MainView>(mMockMainView).showNowPlayingMoviesFragment()
+        verify<MainView>(mMockMainView).showMoviesFragment()
     }
 
     /**

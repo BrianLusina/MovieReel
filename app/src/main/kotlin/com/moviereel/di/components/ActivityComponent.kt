@@ -8,6 +8,7 @@ import com.moviereel.ui.intro.splash.SplashActivity
 import com.moviereel.ui.movie.MovieDetailsActivity
 
 import com.moviereel.ui.main.MainActivity
+import com.moviereel.ui.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 
@@ -29,6 +30,8 @@ interface ActivityComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(settingsActivity: SettingsActivity)
+
+    fun inject(moviesFragment: MoviesFragment)
 
     fun inject(movieNPFragment: MovieNPFragment)
 

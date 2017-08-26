@@ -1,15 +1,12 @@
 package com.moviereel.ui.main
 
 import android.support.design.widget.Snackbar
-
 import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
-
-import javax.inject.Inject
-
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
 /**
  * @author lusinabrian on 12/04/17
@@ -43,30 +40,10 @@ constructor(
     /**
      * Callback for when the now playing movies drawer option is clicked
      */
-    override fun onDrawerOptionNowPlayingMoviesClicked() {
-        baseView?.showNowPlayingMoviesFragment()
+    override fun onDrawerOptionMoviesClicked() {
+        baseView?.showMoviesFragment()
     }
 
-    /**
-     * Callback for when popular movies drawer option is clicked
-     */
-    override fun onDrawerOptionPopularMoviesClicked() {
-        baseView?.showPopularMoviesFragment()
-    }
-
-    /**
-     * Callback for when top rated movies is clicked
-     */
-    override fun onDrawerOptionTopRatedMoviesClicked() {
-        baseView?.showTopRatedMoviesFragment()
-    }
-
-    /**
-     * Callback for when upcoming movies drawer option is clicked
-     */
-    override fun onDrawerOptionUpcomingMoviesClicked() {
-        baseView?.showUpcomingMoviesFragment()
-    }
 
     /**
      * Callback for when the latest series drawer option is clicked

@@ -12,22 +12,7 @@ interface MainView : BaseView {
     /**
      * Shows the movies that are now playing
      */
-    fun showNowPlayingMoviesFragment()
-
-    /**
-     * Fragment Show the shows that are most popular
-     */
-    fun showPopularMoviesFragment()
-
-    /**
-     * Fragment to show the movies that are top rated
-     */
-    fun showTopRatedMoviesFragment()
-
-    /**
-     * Fragment to show upcoming movies
-     */
-    fun showUpcomingMoviesFragment()
+    fun showMoviesFragment()
 
     // TV
 

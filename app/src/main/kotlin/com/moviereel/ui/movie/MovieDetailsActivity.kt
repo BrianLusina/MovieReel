@@ -11,6 +11,7 @@ import com.moviereel.BuildConfig
 import com.moviereel.R
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.details_layout.*
 import kotlinx.android.synthetic.main.movie_details_layout.*
 import javax.inject.Inject
 

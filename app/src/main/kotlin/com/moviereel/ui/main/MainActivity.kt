@@ -1,27 +1,33 @@
 package com.moviereel.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.Toolbar
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import com.mikepenz.materialdrawer.model.SectionDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.Nameable
 import com.moviereel.R
 import com.moviereel.ui.base.BaseActivity
+import com.moviereel.ui.movie.MoviesFragment
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 import com.moviereel.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 
 class MainActivity : BaseActivity(), MainView {
 
     lateinit var drawer: Drawer
+
+    lateinit var toolbar: Toolbar
 
     @Inject
     lateinit var mainPresenter: MainPresenter<MainView>
@@ -43,10 +49,11 @@ class MainActivity : BaseActivity(), MainView {
      * used to setup the views in the activity
      */
     override fun setUp() {
-        setSupportActionBar(toolbar_main)
+        toolbar = toolbar_main.find(R.id.toolbar_id)
+        setSupportActionBar(toolbar)
 
         //sets the default fragment
-        val fragment = MovieNPFragment()
+        val fragment = MoviesFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_container, fragment)
@@ -61,18 +68,13 @@ class MainActivity : BaseActivity(), MainView {
     private fun setUpNavigationMenu(savedInstanceState: Bundle?) {
         //this layout have to contain child layouts
         drawer = DrawerBuilder(this)
-                .withToolbar(toolbar_main)
+                .withToolbar(toolbar)
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .withSliderBackgroundColorRes(R.color.background_drawer_color)
                 .addDrawerItems(
                         /*movies section*/
-                        SectionDrawerItem().withTextColor(
-                                ContextCompat.getColor(this, R.color.light_red3))
-                                .withName(R.string.main_drawer_movie_title),
-
-                        /*Now playing*/
-                        SecondaryDrawerItem().withName(R.string.main_drawer_movie_now_playing)
+                        PrimaryDrawerItem().withName(R.string.main_drawer_movie_title)
                                 .withIcon(FontAwesome.Icon.faw_play)
                                 .withIconColor(ContextCompat.getColor(this, R.color.white))
                                 .withSelectedIconColor(ContextCompat.getColor(this, R.color.light_red3)).withSelectedTextColor(
@@ -82,38 +84,6 @@ class MainActivity : BaseActivity(), MainView {
                                         R.color.background_drawer_color))
                                 .withIdentifier(1),
 
-                        /*Popular shows*/
-                        SecondaryDrawerItem().withName(R.string.main_drawer_movie_popular)
-                                .withIcon(FontAwesome.Icon.faw_star)
-                                .withIconColor(ContextCompat.getColor(this, R.color.white))
-                                .withSelectedIconColor(ContextCompat.getColor(this, R.color.light_red3))
-                                .withSelectedTextColor(ContextCompat.getColor(this, R.color.light_red3))
-                                .withTextColor(ContextCompat.getColor(this, R.color.white))
-                                .withSelectedColor(ContextCompat
-                                        .getColor(this, R.color.background_drawer_color))
-                                .withIdentifier(2),
-
-                        /*Top rated movies*/
-                        SecondaryDrawerItem().withName(R.string.main_drawer_movie_top_rated)
-                                .withIcon(FontAwesome.Icon.faw_fire)
-                                .withIconColor(ContextCompat.getColor(this, R.color.white))
-                                .withSelectedIconColor(ContextCompat.getColor(this, R.color.light_red3))
-                                .withSelectedTextColor(ContextCompat.getColor(this, R.color.light_red3))
-                                .withTextColor(ContextCompat.getColor(this, R.color.white))
-                                .withSelectedColor(ContextCompat
-                                        .getColor(this, R.color.background_drawer_color))
-                                .withIdentifier(3),
-
-                        /*Upcoming movies*/
-                        SecondaryDrawerItem().withName(R.string.main_drawer_movie_upcoming)
-                                .withIcon(FontAwesome.Icon.faw_calendar)
-                                .withIconColor(ContextCompat.getColor(this, R.color.white))
-                                .withSelectedIconColor(ContextCompat.getColor(this, R.color.light_red3))
-                                .withSelectedTextColor(ContextCompat.getColor(this, R.color.light_red3))
-                                .withTextColor(ContextCompat.getColor(this, R.color.white))
-                                .withSelectedColor(ContextCompat
-                                        .getColor(this, R.color.background_drawer_color))
-                                .withIdentifier(4),
 
                         /*Tv series section*/
                         SectionDrawerItem().withName(R.string.main_drawer_series_title)
@@ -209,33 +179,16 @@ class MainActivity : BaseActivity(), MainView {
                 ).withOnDrawerItemClickListener(
                 Drawer.OnDrawerItemClickListener { view, position, drawerItem ->
                     if (drawerItem is Nameable<*>) {
-                        val name = (drawerItem as Nameable<*>).name.getText(this@MainActivity)
-                        supportActionBar?.setTitle(name)
+                        val name = (drawerItem as Nameable<*>).name.getText(this)
+                        supportActionBar?.title = name
 
                         when (drawerItem.identifier.toInt()) {
                         /*now playing*/
                             1 -> {
-                                mainPresenter.onDrawerOptionNowPlayingMoviesClicked()
+                                mainPresenter.onDrawerOptionMoviesClicked()
                                 return@OnDrawerItemClickListener true
                             }
 
-                        /*Popular Movies*/
-                            2 -> {
-                                mainPresenter.onDrawerOptionPopularMoviesClicked()
-                                return@OnDrawerItemClickListener true
-                            }
-
-                        /*Top rated*/
-                            3 -> {
-                                mainPresenter.onDrawerOptionTopRatedMoviesClicked()
-                                return@OnDrawerItemClickListener true
-                            }
-
-                        /*Upcoming*/
-                            4 -> {
-                                mainPresenter.onDrawerOptionUpcomingMoviesClicked()
-                                return@OnDrawerItemClickListener true
-                            }
 
                         /*Latest series*/
                             5 -> {
@@ -310,34 +263,11 @@ class MainActivity : BaseActivity(), MainView {
     /**
      * Shows the movies that are now playing
      */
-    override fun showNowPlayingMoviesFragment() {
-        supportFragmentManager
-                .beginTransaction()
-                .disallowAddToBackStack()
-                .add(R.id.frame_container, MovieNPFragment(), MovieNPFragment.TAG)
-                .commit()
+    override fun showMoviesFragment() {
+        supportFragmentManager.beginTransaction().disallowAddToBackStack()
+                .add(R.id.frame_container, MoviesFragment(), MovieNPFragment.TAG).commit()
     }
 
-    /**
-     * Fragment Show the shows that are most popular
-     */
-    override fun showPopularMoviesFragment() {
-
-    }
-
-    /**
-     * Fragment to show the movies that are top rated
-     */
-    override fun showTopRatedMoviesFragment() {
-
-    }
-
-    /**
-     * Fragment to show upcoming movies
-     */
-    override fun showUpcomingMoviesFragment() {
-
-    }
 
     /**
      * Show the series that are the latest
@@ -385,7 +315,7 @@ class MainActivity : BaseActivity(), MainView {
      * Displays the setting screen
      */
     override fun showSettingsScreen() {
-        startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+        startActivity<SettingsActivity>()
     }
 
     /**

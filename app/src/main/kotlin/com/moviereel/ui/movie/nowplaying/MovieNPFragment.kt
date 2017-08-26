@@ -14,7 +14,7 @@ import com.moviereel.ui.base.BaseFragment
 import com.moviereel.ui.movie.MovieDetailsActivity
 import com.moviereel.utils.RecyclerItemClickListener
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_movie_layout.view.*
+import kotlinx.android.synthetic.main.fragment_movie_page.view.*
 import org.jetbrains.anko.debug
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
@@ -37,7 +37,6 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
 
     lateinit var mRecyclerView: RecyclerView
 
-    /**Empty required public constructor */
     init {
         if (arguments == null) {
             arguments = Bundle()
@@ -50,7 +49,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater!!.inflate(R.layout.fragment_movie_layout, container, false)
+        val rootView = inflater!!.inflate(R.layout.fragment_movie_page, container, false)
 
         activityComponent.inject(this)
 

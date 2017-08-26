@@ -6,6 +6,7 @@ apply plugin: "signing"
 apply from: "../jacoco.gradle"
 apply plugin: 'kotlin-kapt'
 
+
 // todo: move this to signing.gradle file
 // enable reading from keystore.properties file, change this if your properties file has a different name
 //def keystorePropertiesFile = rootProject.file("keystore.properties");

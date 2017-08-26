@@ -14,9 +14,7 @@ import com.moviereel.ui.intro.splash.SplashView
 import com.moviereel.ui.main.MainPresenter
 import com.moviereel.ui.main.MainPresenterImpl
 import com.moviereel.ui.main.MainView
-import com.moviereel.ui.movie.MovieDetailsPresenter
-import com.moviereel.ui.movie.MovieDetailsPresenterImpl
-import com.moviereel.ui.movie.MovieDetailsView
+import com.moviereel.ui.movie.*
 import com.moviereel.ui.movie.nowplaying.MovieNPAdapter
 import com.moviereel.ui.movie.nowplaying.MovieNPPresenter
 import com.moviereel.ui.movie.nowplaying.MovieNPPresenterImpl
@@ -66,6 +64,19 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     @PerActivity
     fun provideMainPresenter(mainPresenter: MainPresenterImpl<MainView>): MainPresenter<MainView> {
         return mainPresenter
+    }
+
+    // ************************ MOVIES *******************
+    @Provides
+    @PerActivity
+    fun provideMoviePresenter(movieFragPresenter: MovieFragPresenterImpl<MovieFragView>) : MovieFragPresenter<MovieFragView>{
+        return movieFragPresenter
+    }
+
+    @Provides
+    fun provideMoviePagerAdapter(appCompatActivity: AppCompatActivity) : MovieFragViewPagerAdapter{
+        return MovieFragViewPagerAdapter(appCompatActivity.supportFragmentManager)
+
     }
 
     @Provides
