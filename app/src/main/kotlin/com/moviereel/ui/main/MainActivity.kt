@@ -2,7 +2,6 @@ package com.moviereel.ui.main
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.Toolbar
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
@@ -18,7 +17,6 @@ import com.moviereel.ui.movie.MoviesFragment
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 import com.moviereel.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -26,8 +24,6 @@ import javax.inject.Inject
 class MainActivity : BaseActivity(), MainView {
 
     lateinit var drawer: Drawer
-
-    lateinit var toolbar: Toolbar
 
     @Inject
     lateinit var mainPresenter: MainPresenter<MainView>
@@ -49,8 +45,7 @@ class MainActivity : BaseActivity(), MainView {
      * used to setup the views in the activity
      */
     override fun setUp() {
-        toolbar = toolbar_main.find(R.id.toolbar_id)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar_id)
 
         //sets the default fragment
         val fragment = MoviesFragment()
@@ -68,7 +63,7 @@ class MainActivity : BaseActivity(), MainView {
     private fun setUpNavigationMenu(savedInstanceState: Bundle?) {
         //this layout have to contain child layouts
         drawer = DrawerBuilder(this)
-                .withToolbar(toolbar)
+                .withToolbar(toolbar_id)
                 .withDisplayBelowStatusBar(false)
                 .withRootView(R.id.drawer_container)
                 .withSliderBackgroundColorRes(R.color.background_drawer_color)

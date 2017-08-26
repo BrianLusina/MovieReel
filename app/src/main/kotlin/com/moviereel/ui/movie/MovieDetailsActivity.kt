@@ -12,7 +12,6 @@ import com.moviereel.R
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.details_layout.*
-import kotlinx.android.synthetic.main.movie_details_layout.*
 import javax.inject.Inject
 
 
@@ -38,7 +37,7 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.movie_details_layout)
+        setContentView(R.layout.details_layout)
 
         activityComponent?.inject(this)
 

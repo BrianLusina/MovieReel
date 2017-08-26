@@ -15,8 +15,7 @@ import javax.inject.Inject
 class MovieFragPresenterImpl<V : MovieFragView>
 @Inject
 constructor(mDatamanager: DataManager, mCompositeDisposable: CompositeDisposable,
-            mSchedulerProvider: SchedulerProvider
-) : BasePresenterImpl<V>(mDatamanager, mSchedulerProvider, mCompositeDisposable),
+            mSchedulerProvider: SchedulerProvider) : BasePresenterImpl<V>(mDatamanager, mSchedulerProvider, mCompositeDisposable),
         MovieFragPresenter<V> {
 
     override fun onAttach(mBaseView: V) {

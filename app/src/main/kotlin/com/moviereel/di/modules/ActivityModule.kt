@@ -74,12 +74,6 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     }
 
     @Provides
-    fun provideMoviePagerAdapter(appCompatActivity: AppCompatActivity) : MovieFragViewPagerAdapter{
-        return MovieFragViewPagerAdapter(appCompatActivity.supportFragmentManager)
-
-    }
-
-    @Provides
     @PerActivity
     fun provideMovieNpPresenter(movieNPPresenter: MovieNPPresenterImpl<MovieNPView>): MovieNPPresenter<MovieNPView> {
         return movieNPPresenter

@@ -20,7 +20,6 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     @Inject
     lateinit var movieFragPresenter: MovieFragPresenter<MovieFragView>
 
-    @Inject
     lateinit var moviePagerAdapter: MovieFragViewPagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,6 +35,7 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     }
 
     override fun setUp(view: View) {
+        moviePagerAdapter = MovieFragViewPagerAdapter(activity.supportFragmentManager)
         with(view) {
             movieFragViewPager.adapter = moviePagerAdapter
             movieFragNavTabStrip.setViewPager(movieFragViewPager)

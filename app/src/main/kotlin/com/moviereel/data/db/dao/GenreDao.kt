@@ -22,7 +22,7 @@ interface GenreDao {
     @Query("SELECT * FROM genre_ids")
     fun getAllGenres(): Flowable<List<GenreEntity>>
 
-    @Query("select * from genre_ids where id = :genreId")
+    @Query("select * from genre_ids where genreId = :genreId")
     fun getGenreById(genreId: Long): Flowable<GenreEntity>
 
     // ***************** UPDATE **********************
