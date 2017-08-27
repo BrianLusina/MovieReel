@@ -4,6 +4,9 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.moviereel.ui.base.BaseViewPagerAdapter
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.movie.popular.MoviePopularFrag
+import com.moviereel.ui.movie.toprated.MovieTopRatedFrag
+import com.moviereel.ui.movie.upcoming.MovieUpcomingFrag
 
 /**
  * @author lusinabrian on 26/08/17.
@@ -13,6 +16,9 @@ class MovieFragViewPagerAdapter constructor(fragmentManager: FragmentManager) : 
 
     init {
         fragmentList.add(MovieNPFragment())
+        fragmentList.add(MoviePopularFrag())
+        fragmentList.add(MovieTopRatedFrag())
+        fragmentList.add(MovieUpcomingFrag())
     }
 
     override fun getItem(position: Int): Fragment {

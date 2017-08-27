@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
 import com.moviereel.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_movie_layout.view.*
+import kotlinx.android.synthetic.main.fragment_section_layout.view.*
 import javax.inject.Inject
 
 /**
@@ -23,7 +23,7 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     lateinit var moviePagerAdapter: MovieFragViewPagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_movie_layout, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
 
         activityComponent.inject(this)
 
@@ -37,17 +37,18 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     override fun setUp(view: View) {
         moviePagerAdapter = MovieFragViewPagerAdapter(activity.supportFragmentManager)
         with(view) {
-            movieFragViewPager.adapter = moviePagerAdapter
-            movieFragNavTabStrip.setViewPager(movieFragViewPager)
+            fragViewPager.adapter = moviePagerAdapter
+            fragNavTabStrip.setViewPager(fragViewPager)
+            fragNavTabStrip.setTitles(R.array.movie_page_titles)
 
-            movieFragNavTabStrip.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            fragNavTabStrip.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {}
 
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
                 override fun onPageSelected(position: Int) {
-                    movieFragViewPager.currentItem = position
-                    movieFragNavTabStrip.activeColor
+                    fragViewPager.currentItem = position
+                    fragNavTabStrip.activeColor
                 }
             })
         }

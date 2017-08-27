@@ -12,9 +12,7 @@ import com.moviereel.R
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseRecyclerAdapter
 import com.moviereel.ui.base.BaseViewHolder
-import com.moviereel.ui.movie.MovieDetailsActivity
-import kotlinx.android.synthetic.main.item_movie_layout.view.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -25,8 +23,7 @@ import javax.inject.Inject
 
 class MovieNPAdapter
 @Inject
-constructor(
-        val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapter<MovieNPEntity>(movieNPEntityList) {
+constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapter<MovieNPEntity>(movieNPEntityList) {
 
     val VIEW_TYPE_LOADING = 0
     val VIEW_TYPE_NORMAL = 1
@@ -38,27 +35,27 @@ constructor(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<MovieNPEntity> {
-        when (viewType) {
+        return when (viewType) {
             VIEW_TYPE_NORMAL -> {
-                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_movie_layout, parent, false)
-                return ViewHolder(v)
+                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_entertainment_layout, parent, false)
+                ViewHolder(v)
             }
             VIEW_TYPE_LOADING -> {
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.progress_dialog, parent, false)
-                return LoadingViewHolder(v)
+                LoadingViewHolder(v)
             }
             else -> {
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.item_empty_view, parent, false)
-                return EmptyViewHolder(v)
+                EmptyViewHolder(v)
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (movieNPEntityList.size > 0) {
-            return VIEW_TYPE_NORMAL
+        return if (movieNPEntityList.size > 0) {
+            VIEW_TYPE_NORMAL
         } else {
-            return VIEW_TYPE_LOADING
+            VIEW_TYPE_LOADING
         }
 
     }
@@ -73,8 +70,8 @@ constructor(
             val movieEntity = movieNPEntityList[position]
 
             with(itemView) {
-                itemMovieTitleTxtView.text = movieEntity.title
-                itemMovieVoteAvgTxtView.text = movieEntity.voteAverage.toString()
+                itemTitleTxtView.text = movieEntity.title
+                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
                 // itemMovieCategoriesTxtView
                 // itemMovieRuntimeTxtView
                 // glide images to image views
@@ -86,13 +83,13 @@ constructor(
                             }
 
                             override fun onResourceReady(resource: GlideDrawable, model: String, target: Target<GlideDrawable>, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean {
-                                itemMovieProgressbar.visibility = View.GONE
+                                itemProgressbar.visibility = View.GONE
                                 return false
                             }
                         })
                         .fitCenter()
                         .crossFade()
-                        .into(itemMovieImgView)
+                        .into(itemImgView)
                 // movieRuntime.setText(movieResultsResponse.get);
                 // nowPlayingResponse.getResults()
                 // movieRuntime.setText(nowPlayingResponse.get);

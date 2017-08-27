@@ -7,8 +7,8 @@ import com.moviereel.data.repositories.movierepo.MoviesRepoHelper
 import com.moviereel.data.repositories.movierepo.MoviesRepoHelperImpl
 import com.moviereel.data.repositories.movierepo.local.MoviesLocalDataSource
 import com.moviereel.data.repositories.movierepo.remote.MoviesRemoteDataSource
-import com.moviereel.di.LocalRepo
-import com.moviereel.di.RemoteRepo
+import com.moviereel.di.qualifiers.LocalRepo
+import com.moviereel.di.qualifiers.RemoteRepo
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

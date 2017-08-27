@@ -1,6 +1,6 @@
 package com.moviereel.ui.movie
 
-import com.moviereel.di.PerActivity
+import com.moviereel.di.scopes.PerActivity
 import com.moviereel.ui.base.BasePresenter
 
 /**

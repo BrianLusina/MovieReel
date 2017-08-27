@@ -4,8 +4,8 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.moviereel.data.db.MovieReelDatabase
 import com.moviereel.data.db.dao.MovieNPDao
-import com.moviereel.di.AppContext
-import com.moviereel.di.DatabaseInfo
+import com.moviereel.di.qualifiers.AppContext
+import com.moviereel.di.qualifiers.DatabaseInfo
 import com.moviereel.utils.DATABASE_NAME
 import dagger.Module
 import dagger.Provides

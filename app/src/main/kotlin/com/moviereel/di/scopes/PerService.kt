@@ -1,4 +1,4 @@
-package com.moviereel.di
+package com.moviereel.di.scopes
 
 import javax.inject.Scope
 

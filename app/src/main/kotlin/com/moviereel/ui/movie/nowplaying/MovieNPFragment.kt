@@ -14,8 +14,7 @@ import com.moviereel.ui.base.BaseFragment
 import com.moviereel.ui.movie.MovieDetailsActivity
 import com.moviereel.utils.RecyclerItemClickListener
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_movie_page.view.*
-import org.jetbrains.anko.debug
+import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -49,7 +48,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater!!.inflate(R.layout.fragment_movie_page, container, false)
+        val rootView = inflater!!.inflate(R.layout.fragment_entertainment_page, container, false)
 
         activityComponent.inject(this)
 
@@ -70,19 +69,19 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         mLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
 
         with(view) {
-            mRecyclerView = frag_movie_recycler_view_id
+            mRecyclerView = fragRecyclerView
 
-            frag_movie_swipe_refresh_layout_id.setColorSchemeResources(
+            fragSwipeRefreshLayout.setColorSchemeResources(
                     R.color.dark_slate_blue,
                     R.color.dark_slate_gray,
                     R.color.dark_cyan,
                     R.color.dark_turquoise,
                     R.color.dark_sea_green)
 
-            frag_movie_recycler_view_id.setHasFixedSize(true)
-            frag_movie_recycler_view_id.layoutManager = mLinearLayoutManager
-            frag_movie_recycler_view_id.itemAnimator = DefaultItemAnimator()
-            frag_movie_recycler_view_id.adapter = movieNPAdapter
+            fragRecyclerView.setHasFixedSize(true)
+            fragRecyclerView.layoutManager = mLinearLayoutManager
+            fragRecyclerView.itemAnimator = DefaultItemAnimator()
+            fragRecyclerView.adapter = movieNPAdapter
 
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mLinearLayoutManager) {
 
@@ -92,7 +91,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
                 }
             }
 
-            frag_movie_recycler_view_id.addOnScrollListener(mEndlessScrollListener)
+            fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
         }
 
         movieNPPresenter.onViewInitialized()

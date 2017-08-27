@@ -3,8 +3,8 @@ package com.moviereel.data.prefs
 import android.content.Context
 import android.content.SharedPreferences
 
-import com.moviereel.di.AppContext
-import com.moviereel.di.PreferenceInfo
+import com.moviereel.di.qualifiers.AppContext
+import com.moviereel.di.qualifiers.PreferenceInfo
 
 import javax.inject.Inject
 import javax.inject.Singleton

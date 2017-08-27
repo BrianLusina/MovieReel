@@ -7,8 +7,8 @@ import com.moviereel.BuildConfig
 import com.moviereel.data.api.ApiHeaderInterceptor
 import com.moviereel.data.api.ApiKeyInterceptor
 import com.moviereel.data.api.ApiRetrofitService
-import com.moviereel.di.ApiInfo
-import com.moviereel.di.AppContext
+import com.moviereel.di.qualifiers.ApiInfo
+import com.moviereel.di.qualifiers.AppContext
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
