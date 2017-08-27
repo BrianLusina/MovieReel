@@ -18,6 +18,7 @@
             android:minHeight="?attr/actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <!-- the layout which will contain (host) the drawerLayout -->
     <FrameLayout
             android:id="@+id/drawer_container"

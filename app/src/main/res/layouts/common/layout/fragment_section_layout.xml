@@ -10,7 +10,7 @@
     <com.gigamole.navigationtabstrip.NavigationTabStrip
             android:id="@+id/fragNavTabStrip"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@color/background_color"
             app:nts_color="@color/light_red3"
             app:nts_size="15sp"

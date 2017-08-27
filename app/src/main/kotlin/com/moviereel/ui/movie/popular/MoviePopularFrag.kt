@@ -19,7 +19,7 @@ class MoviePopularFrag : BaseFragment(), MoviePopularView {
     lateinit var moviePopPresenter: MoviePopularPresenter<MoviePopularView>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_entertainment_page, container,false)
+        val rootView = inflater.inflate(R.layout.fragment_entertainment_page, container, false)
 
         activityComponent.inject(this)
 
@@ -33,7 +33,5 @@ class MoviePopularFrag : BaseFragment(), MoviePopularView {
     /**
      * Used to setup views in this fragment
      */
-    override fun setUp(view: View) {
-
-    }
+    override fun setUp(view: View) {}
 }

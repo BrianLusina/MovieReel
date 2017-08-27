@@ -115,7 +115,9 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
     }
 
     override fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>) {
-        movieNPAdapter.addItems(movieResultsResponseList.toCollection(arrayListOf()))
+        val data = arrayListOf<MovieNPEntity>()
+        data += movieResultsResponseList
+        movieNPAdapter.addItems(data)
     }
 
 }

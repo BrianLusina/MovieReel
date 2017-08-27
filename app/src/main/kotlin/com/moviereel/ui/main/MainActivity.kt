@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
+import com.mikepenz.itemanimators.AlphaCrossFadeAnimator
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
@@ -63,7 +64,7 @@ class MainActivity : BaseActivity(), MainView {
         //this layout have to contain child layouts
         drawer = DrawerBuilder(this)
                 .withToolbar(toolbar_id)
-                .withDisplayBelowStatusBar(true)
+                .withItemAnimator(AlphaCrossFadeAnimator())
                 .withRootView(R.id.drawer_container)
                 .withSliderBackgroundColorRes(R.color.background_drawer_color)
                 .addDrawerItems(

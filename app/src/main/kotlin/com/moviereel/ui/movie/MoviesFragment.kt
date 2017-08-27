@@ -43,17 +43,15 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     }
 
     override fun setUp(view: View) {
-        val pagerAdapter = object : BaseViewPagerAdapter(activity.supportFragmentManager) {
-            init {
-                fragmentList.add(MovieNPFragment())
-                fragmentList.add(MoviePopularFrag())
-                fragmentList.add(MovieTopRatedFrag())
-                fragmentList.add(MovieUpcomingFrag())
-            }
-        }
-
         with(view) {
-            fragViewPager.adapter = pagerAdapter
+            fragViewPager.adapter = object : BaseViewPagerAdapter(activity.supportFragmentManager) {
+                init {
+                    fragmentList.add(MovieNPFragment())
+                    fragmentList.add(MoviePopularFrag())
+                    fragmentList.add(MovieTopRatedFrag())
+                    fragmentList.add(MovieUpcomingFrag())
+                }
+            }
             fragNavTabStrip.setViewPager(fragViewPager)
             fragNavTabStrip.setTitles(
                     R.string.movie_now_playing_title,
@@ -69,7 +67,6 @@ class MoviesFragment : BaseFragment(), MovieFragView {
 
                 override fun onPageSelected(position: Int) {
                     fragViewPager.currentItem = position
-                    fragNavTabStrip.activeColor
                 }
             })
         }
