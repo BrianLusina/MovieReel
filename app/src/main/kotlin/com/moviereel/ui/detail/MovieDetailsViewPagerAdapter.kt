@@ -1,4 +1,4 @@
-package com.moviereel.ui.movie
+package com.moviereel.ui.detail
 
 import android.support.v4.app.FragmentManager
 import com.moviereel.data.db.entities.movie.MovieNPEntity

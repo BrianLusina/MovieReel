@@ -9,15 +9,14 @@ import android.support.v4.app.FragmentStatePagerAdapter
  * @Notes Base view pager adapter that will be used in application to subclass all other
  * view pagers
  */
-abstract class BaseViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager){
+abstract class BaseViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
     var fragmentList = mutableListOf(Fragment())
-    var fragmentTitleList = mutableListOf(String())
-    lateinit var itemObject : Any
+    lateinit var itemObject: Any
 
     /**
      * Secondary constructor
      * */
-    constructor(fragmentManager: FragmentManager, itemObject: Any): this(fragmentManager){
+    constructor(fragmentManager: FragmentManager, itemObject: Any) : this(fragmentManager) {
         this.itemObject = itemObject
     }
 
@@ -29,16 +28,4 @@ abstract class BaseViewPagerAdapter(fragmentManager: FragmentManager) : Fragment
         return fragmentList.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence {
-        return fragmentTitleList[position]
-    }
-
-    /**Adds fragment to the viewpager
-     * @param fragment The fragment to add to the viewpager
-     * @param fragTitle The title of the fragment
-     */
-    fun addFragment(fragment: Fragment, fragTitle: String) {
-        fragmentList.add(fragment)
-        fragmentTitleList.add(fragTitle)
-    }
 }

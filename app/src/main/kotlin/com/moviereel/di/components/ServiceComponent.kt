@@ -1,6 +1,6 @@
 package com.moviereel.di.components
 
-import com.moviereel.di.PerService
+import com.moviereel.di.scopes.PerService
 import com.moviereel.di.modules.ServiceModule
 
 import dagger.Component

@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.moviereel.app.MovieReelApp
 import com.moviereel.data.DataManager
-import com.moviereel.di.AppContext
+import com.moviereel.di.qualifiers.AppContext
 import com.moviereel.di.modules.ApiModule
 import com.moviereel.di.modules.AppModule
 import com.moviereel.di.modules.DatabaseModule

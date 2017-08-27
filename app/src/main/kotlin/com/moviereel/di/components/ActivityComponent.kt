@@ -1,16 +1,19 @@
 package com.moviereel.di.components
 
-import com.moviereel.di.PerActivity
+import com.moviereel.di.scopes.PerActivity
 import com.moviereel.di.modules.ActivityModule
 import com.moviereel.ui.customerror.CustomErrorActivity
 import com.moviereel.ui.intro.AppIntroduction
 import com.moviereel.ui.intro.splash.SplashActivity
-import com.moviereel.ui.movie.MovieDetailsActivity
+import com.moviereel.ui.detail.MovieDetailsActivity
 
 import com.moviereel.ui.main.MainActivity
 import com.moviereel.ui.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
 import com.moviereel.ui.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.movie.popular.MoviePopularFrag
+import com.moviereel.ui.movie.toprated.MovieTopRatedFrag
+import com.moviereel.ui.movie.upcoming.MovieUpcomingFrag
 
 import dagger.Component
 
@@ -34,6 +37,12 @@ interface ActivityComponent {
     fun inject(moviesFragment: MoviesFragment)
 
     fun inject(movieNPFragment: MovieNPFragment)
+
+    fun inject(moviePopularFrag: MoviePopularFrag)
+
+    fun inject(movieTopRatedFrag: MovieTopRatedFrag)
+
+    fun inject(movieUpcomingFrag: MovieUpcomingFrag)
 
     fun inject(movieDetails: MovieDetailsActivity)
 }

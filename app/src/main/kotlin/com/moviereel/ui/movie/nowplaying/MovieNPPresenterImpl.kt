@@ -9,6 +9,7 @@ import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
 import org.jetbrains.anko.error
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -47,6 +48,7 @@ constructor(
                 dataManager.getMoviesNowPlaying(remote, page, "en-US")
                         .observeOn(schedulerProvider.ui())
                         .subscribeOn(schedulerProvider.newThread())
+                        .debounce(10000, TimeUnit.MILLISECONDS)
                         .subscribe({
                             // update the recycler view
                             baseView?.updateMoviesNowPlaying(it)

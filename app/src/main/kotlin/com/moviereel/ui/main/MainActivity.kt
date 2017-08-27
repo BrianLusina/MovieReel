@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
+import com.mikepenz.itemanimators.AlphaCrossFadeAnimator
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
@@ -14,7 +15,6 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable
 import com.moviereel.R
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.movie.MoviesFragment
-import com.moviereel.ui.movie.nowplaying.MovieNPFragment
 import com.moviereel.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), MainView {
         //this layout have to contain child layouts
         drawer = DrawerBuilder(this)
                 .withToolbar(toolbar_id)
-                .withDisplayBelowStatusBar(false)
+                .withItemAnimator(AlphaCrossFadeAnimator())
                 .withRootView(R.id.drawer_container)
                 .withSliderBackgroundColorRes(R.color.background_drawer_color)
                 .addDrawerItems(
@@ -178,7 +178,7 @@ class MainActivity : BaseActivity(), MainView {
                         supportActionBar?.title = name
 
                         when (drawerItem.identifier.toInt()) {
-                        /*now playing*/
+                        //movies
                             1 -> {
                                 mainPresenter.onDrawerOptionMoviesClicked()
                                 return@OnDrawerItemClickListener true
@@ -260,7 +260,7 @@ class MainActivity : BaseActivity(), MainView {
      */
     override fun showMoviesFragment() {
         supportFragmentManager.beginTransaction().disallowAddToBackStack()
-                .add(R.id.frame_container, MoviesFragment(), MovieNPFragment.TAG).commit()
+                .add(R.id.frame_container, MoviesFragment(), MoviesFragment.TAG).commit()
     }
 
 

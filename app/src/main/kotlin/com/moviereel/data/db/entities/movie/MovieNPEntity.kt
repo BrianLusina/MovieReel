@@ -42,10 +42,10 @@ data class MovieNPEntity(
         @ColumnInfo(name = "id")
         var movieId: Long = 0,
 
-        @Expose
-        @SerializedName("title")
-        @ColumnInfo(name = "title")
-        var title: String = "",
+//        @Expose
+//        @SerializedName("title")
+//        @ColumnInfo(name = "title")
+//        var title: String = "",
 
         @ColumnInfo(name = "movieImdbId")
         @Expose
@@ -111,7 +111,7 @@ data class MovieNPEntity(
 
     constructor(source: Parcel) : this(
             source.readLong(),
-            source.readString(),
+//            source.readString(),
             source.readString(),
             source.readString(),
             source.readString(),

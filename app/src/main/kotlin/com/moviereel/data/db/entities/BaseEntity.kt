@@ -11,6 +11,11 @@ import com.google.gson.annotations.SerializedName
  */
 open class BaseEntity(
         @Expose
+        @SerializedName("title")
+        @ColumnInfo(name = "title")
+        var title: String = "",
+
+        @Expose
         @SerializedName("adult")
         @ColumnInfo(name = "adult")
         var isAdult: Boolean = false,

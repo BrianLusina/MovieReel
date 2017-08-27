@@ -1,4 +1,4 @@
-package com.moviereel.di
+package com.moviereel.di.qualifiers
 
 import kotlin.annotation.Retention
 import kotlin.annotation.AnnotationRetention.RUNTIME

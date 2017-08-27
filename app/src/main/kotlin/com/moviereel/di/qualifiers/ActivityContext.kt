@@ -1,8 +1,7 @@
-package com.moviereel.di
+package com.moviereel.di.qualifiers
 
 import kotlin.annotation.Retention
 import kotlin.annotation.AnnotationRetention.RUNTIME
-
 import javax.inject.Qualifier
 
 /**
@@ -11,4 +10,4 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(RUNTIME)
-annotation class ApiInfo
+annotation class ActivityContext

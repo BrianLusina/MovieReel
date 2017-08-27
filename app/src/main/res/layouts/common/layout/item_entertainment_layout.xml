@@ -2,7 +2,6 @@
 <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/movie_item_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@color/background_color"
@@ -23,18 +22,17 @@
                 android:layout_height="200dp"
                 android:orientation="vertical">
 
-            <!--Todo: open modal when image is clicked-->
             <ImageView
-                    android:id="@+id/itemMovieImgView"
+                    android:id="@+id/itemImgView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="true"
-
+                    android:focusable="true"
                     android:contentDescription="@string/movie_image_card"/>
 
             <!--android:src="@drawable/red_button_background"-->
             <ProgressBar
-                    android:id="@+id/itemMovieProgressbar"
+                    android:id="@+id/itemProgressbar"
                     android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
@@ -49,7 +47,7 @@
 
             <!--Movie title-->
             <TextView
-                    android:id="@+id/itemMovieTitleTxtView"
+                    android:id="@+id/itemTitleTxtView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
@@ -62,18 +60,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:orientation="horizontal"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
                 <ImageView
-                        android:id="@+id/movie_voteavg_starimg"
+                        android:id="@+id/itemVoteAvgImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_voteavg_star"
                         android:contentDescription="@null"/>
 
                 <TextView
-                        android:id="@+id/itemMovieVoteAvgTxtView"
+                        android:id="@+id/itemVoteAvgTxtView"
                         android:padding="1dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,13 +90,13 @@
 
                 <TextView
                         android:layout_width="match_parent"
-                        android:id="@+id/itemMovieCategoriesTxtView"
+                        android:id="@+id/itemCategoriesTxtView"
                         android:layout_height="wrap_content"
                         android:textColor="@color/md_blue_grey_100"
                         android:text="@string/movie_category_txt"/>
 
                 <TextView
-                        android:id="@+id/itemMovieRuntimeTxtView"
+                        android:id="@+id/itemRuntimeTxtView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/md_blue_grey_100"

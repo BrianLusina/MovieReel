@@ -1,4 +1,4 @@
-package com.moviereel.di
+package com.moviereel.di.qualifiers
 
 import javax.inject.Qualifier
 

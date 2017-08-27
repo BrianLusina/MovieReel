@@ -1,7 +1,6 @@
-package com.moviereel.di
+package com.moviereel.di.qualifiers
 
 import javax.inject.Qualifier
-import kotlin.annotation.Retention
 
 /**
  * @author lusinabrian on 27/03/17
@@ -9,5 +8,4 @@ import kotlin.annotation.Retention
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
-annotation class AppContext
-
+annotation class PreferenceInfo
