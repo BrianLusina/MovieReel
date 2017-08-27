@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie_now_playing_title">Now Playing</string>
+    <string name="movie_popular_title">Popular</string>
+    <string name="movie_top_rated_title">Top Rated</string>
+    <string name="movie_upcoming_title">Upcoming</string>
+
+</resources>

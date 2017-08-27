@@ -40,7 +40,7 @@
         </activity>
 
         <!-- movie details -->
-        <activity android:name=".ui.movie.MovieDetailsActivity"/>
+        <activity android:name=".ui.detail.MovieDetailsActivity"/>
 
         <activity
             android:name=".ui.settings.SettingsActivity"

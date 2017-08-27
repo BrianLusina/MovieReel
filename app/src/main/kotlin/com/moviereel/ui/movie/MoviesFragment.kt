@@ -7,6 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
 import com.moviereel.ui.base.BaseFragment
+import com.moviereel.ui.base.BaseViewPagerAdapter
+import com.moviereel.ui.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.movie.popular.MoviePopularFrag
+import com.moviereel.ui.movie.toprated.MovieTopRatedFrag
+import com.moviereel.ui.movie.upcoming.MovieUpcomingFrag
 import kotlinx.android.synthetic.main.fragment_section_layout.view.*
 import javax.inject.Inject
 
@@ -17,10 +22,13 @@ import javax.inject.Inject
  */
 class MoviesFragment : BaseFragment(), MovieFragView {
 
+    companion object {
+        const val TAG = "MOVIE_FRAGMENT"
+    }
+
     @Inject
     lateinit var movieFragPresenter: MovieFragPresenter<MovieFragView>
 
-    lateinit var moviePagerAdapter: MovieFragViewPagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
@@ -35,11 +43,24 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     }
 
     override fun setUp(view: View) {
-        moviePagerAdapter = MovieFragViewPagerAdapter(activity.supportFragmentManager)
+        val pagerAdapter = object : BaseViewPagerAdapter(activity.supportFragmentManager) {
+            init {
+                fragmentList.add(MovieNPFragment())
+                fragmentList.add(MoviePopularFrag())
+                fragmentList.add(MovieTopRatedFrag())
+                fragmentList.add(MovieUpcomingFrag())
+            }
+        }
+
         with(view) {
-            fragViewPager.adapter = moviePagerAdapter
+            fragViewPager.adapter = pagerAdapter
             fragNavTabStrip.setViewPager(fragViewPager)
-            fragNavTabStrip.setTitles(R.array.movie_page_titles)
+            fragNavTabStrip.setTitles(
+                    R.string.movie_now_playing_title,
+                    R.string.movie_popular_title,
+                    R.string.movie_top_rated_title,
+                    R.string.movie_upcoming_title
+            )
 
             fragNavTabStrip.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {}

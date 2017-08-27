@@ -5,7 +5,7 @@ import com.moviereel.di.modules.ActivityModule
 import com.moviereel.ui.customerror.CustomErrorActivity
 import com.moviereel.ui.intro.AppIntroduction
 import com.moviereel.ui.intro.splash.SplashActivity
-import com.moviereel.ui.movie.MovieDetailsActivity
+import com.moviereel.ui.detail.MovieDetailsActivity
 
 import com.moviereel.ui.main.MainActivity
 import com.moviereel.ui.movie.MoviesFragment

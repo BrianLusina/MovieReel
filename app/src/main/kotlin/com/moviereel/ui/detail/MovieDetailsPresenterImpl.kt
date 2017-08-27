@@ -1,8 +1,7 @@
-package com.moviereel.ui.movie
+package com.moviereel.ui.detail
 
 import com.moviereel.data.DataManager
 import com.moviereel.data.io.SchedulerProvider
-import com.moviereel.ui.base.BasePresenter
 import com.moviereel.ui.base.BasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject

@@ -11,20 +11,15 @@ import android.view.ViewGroup
 import com.moviereel.R
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseFragment
-import com.moviereel.ui.movie.MovieDetailsActivity
+import com.moviereel.ui.detail.MovieDetailsActivity
 import com.moviereel.utils.RecyclerItemClickListener
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
-import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MovieNPFragment : BaseFragment(), MovieNPView {
-
-    companion object {
-        const val TAG = "MOVIE_NP_FRAGMENT"
-    }
 
     @Inject
     lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
@@ -36,19 +31,8 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
 
     lateinit var mRecyclerView: RecyclerView
 
-    init {
-        if (arguments == null) {
-            arguments = Bundle()
-        }
-        retainInstance = true
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater!!.inflate(R.layout.fragment_entertainment_page, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val rootView = inflater.inflate(R.layout.fragment_entertainment_page, container, false)
 
         activityComponent.inject(this)
 
@@ -57,6 +41,16 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         setUp(rootView)
 
         return rootView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        movieNPPresenter.onResume()
+    }
+
+    override fun onDestroy() {
+        movieNPPresenter.onDestroy()
+        super.onDestroy()
     }
 
     /**
@@ -86,7 +80,6 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    info { "Loading content from page $page, itemsCount: $totalItemsCount" }
                     movieNPPresenter.onLoadMoreFromApi(page)
                 }
             }
@@ -122,19 +115,7 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
     }
 
     override fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>) {
-        val data = ArrayList<MovieNPEntity>()
-        data += movieResultsResponseList
-        movieNPAdapter.addItems(data)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        movieNPPresenter.onResume()
-    }
-
-    override fun onDestroy() {
-        movieNPPresenter.onDestroy()
-        super.onDestroy()
+        movieNPAdapter.addItems(movieResultsResponseList.toCollection(arrayListOf()))
     }
 
 }

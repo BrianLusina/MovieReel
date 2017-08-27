@@ -7,6 +7,9 @@ import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.data.io.SchedulerProviderImpl
 import com.moviereel.di.qualifiers.ActivityContext
 import com.moviereel.di.scopes.PerActivity
+import com.moviereel.ui.detail.MovieDetailsPresenter
+import com.moviereel.ui.detail.MovieDetailsPresenterImpl
+import com.moviereel.ui.detail.MovieDetailsView
 import com.moviereel.ui.intro.splash.SplashPresenter
 import com.moviereel.ui.intro.splash.SplashPresenterImpl
 import com.moviereel.ui.intro.splash.SplashView
@@ -31,6 +34,7 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * @author lusinabrian on 27/03/17
@@ -114,16 +118,14 @@ class ActivityModule(val mActivity: AppCompatActivity) {
         return movieDetailsPresenter
     }
 
-//    @Provides
-//    fun provideMovieDetailsViewPagerAdapter(): MovieDetailsViewPagerAdapter {
-//        return MovieDetailsViewPagerAdapter(
-//                mActivity.supportFragmentManager,
-//                BaseResultsResponse.MovieResultsResponse())
-//    }
-
     @Provides
     fun provideMovieNpAdapter(): MovieNPAdapter {
         return MovieNPAdapter(ArrayList())
+    }
+
+    @Provides
+    fun provideMovieAdapter() : MovieAdapter{
+        return MovieAdapter(ArrayList())
     }
 
 }

@@ -1,6 +1,6 @@
 @file:Suppress("DIFFERENT_NAMES_FOR_THE_SAME_PARAMETER_IN_SUPERTYPES")
 
-package com.moviereel.ui.movie
+package com.moviereel.ui.detail
 
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout

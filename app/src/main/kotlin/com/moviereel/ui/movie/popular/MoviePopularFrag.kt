@@ -16,7 +16,7 @@ import javax.inject.Inject
 class MoviePopularFrag : BaseFragment(), MoviePopularView {
 
     @Inject
-    lateinit var moviePopPresenter: MovieTopRatedPresenter<MoviePopularView>
+    lateinit var moviePopPresenter: MoviePopularPresenter<MoviePopularView>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_entertainment_page, container,false)

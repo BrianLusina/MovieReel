@@ -1,4 +1,4 @@
-package com.moviereel.ui.movie.nowplaying
+package com.moviereel.ui.movie
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.moviereel.BuildConfig
 import com.moviereel.R
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.BaseEntity
 import com.moviereel.ui.base.BaseRecyclerAdapter
 import com.moviereel.ui.base.BaseViewHolder
 import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
@@ -18,13 +18,12 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
- * @author lusinabrian on 01/06/17.
- * @Notes
+ * @author lusinabrian on 27/08/17.
+ * @Notes Adapter for all movie types
  */
-
-class MovieNPAdapter
+class MovieAdapter
 @Inject
-constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapter<MovieNPEntity>(movieNPEntityList) {
+constructor(val movieEntityList: ArrayList<BaseEntity>) : BaseRecyclerAdapter<BaseEntity>(movieEntityList) {
 
     private val VIEW_TYPE_LOADING = 0
     private val VIEW_TYPE_NORMAL = 1
@@ -35,7 +34,7 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
         mCallback = callback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<MovieNPEntity> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BaseEntity> {
         return when (viewType) {
             VIEW_TYPE_NORMAL -> {
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.item_entertainment_layout, parent, false)
@@ -53,7 +52,7 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (movieNPEntityList.size > 0) {
+        return if (movieEntityList.size > 0) {
             VIEW_TYPE_NORMAL
         } else {
             VIEW_TYPE_LOADING
@@ -62,13 +61,13 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
     }
 
     override fun getItemCount(): Int {
-        return movieNPEntityList.size
+        return movieEntityList.size
     }
 
-    inner class ViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView) {
+    inner class ViewHolder(itemView: View) : BaseViewHolder<BaseEntity>(itemView) {
 
         override fun onBind(position: Int) {
-            val movieEntity = movieNPEntityList[position]
+            val movieEntity = movieEntityList[position]
 
             with(itemView) {
                 itemTitleTxtView.text = movieEntity.title
@@ -109,7 +108,7 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
         }
     }
 
-    inner class EmptyViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView) {
+    inner class EmptyViewHolder(itemView: View) : BaseViewHolder<BaseEntity>(itemView) {
 
         fun onRetryClick() {
             // btn_retry
@@ -117,7 +116,7 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
         }
     }
 
-    inner class LoadingViewHolder(itemView: View) : BaseViewHolder<MovieNPEntity>(itemView)
+    inner class LoadingViewHolder(itemView: View) : BaseViewHolder<BaseEntity>(itemView)
 
     interface Callback {
         fun onViewEmptyViewRetryClick()
