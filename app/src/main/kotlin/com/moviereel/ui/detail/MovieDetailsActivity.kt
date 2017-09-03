@@ -100,7 +100,7 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
         // set and initialize fragments
 
         // add arguments to fragments
-        moviedetail_viewpager.adapter = movieViewPagerAdapter
+        // moviedetail_viewpager.adapter = movieViewPagerAdapter
 
         //bind the pager sliding tab strip to the viewpager
         // set the view pager to the tab strip

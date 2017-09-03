@@ -7,11 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
 import com.moviereel.ui.base.BaseFragment
-import com.moviereel.ui.base.BaseViewPagerAdapter
-import com.moviereel.ui.movie.nowplaying.MovieNPFragment
-import com.moviereel.ui.movie.popular.MoviePopularFrag
-import com.moviereel.ui.movie.toprated.MovieTopRatedFrag
-import com.moviereel.ui.movie.upcoming.MovieUpcomingFrag
 import kotlinx.android.synthetic.main.fragment_section_layout.view.*
 import javax.inject.Inject
 
@@ -29,6 +24,8 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     @Inject
     lateinit var movieFragPresenter: MovieFragPresenter<MovieFragView>
 
+    @Inject
+    lateinit var movieViewPagerAdapter : MoviesViewPagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
@@ -44,14 +41,8 @@ class MoviesFragment : BaseFragment(), MovieFragView {
 
     override fun setUp(view: View) {
         with(view) {
-            fragViewPager.adapter = object : BaseViewPagerAdapter(activity.supportFragmentManager) {
-                init {
-                    fragmentList.add(MovieNPFragment())
-                    fragmentList.add(MoviePopularFrag())
-                    fragmentList.add(MovieTopRatedFrag())
-                    fragmentList.add(MovieUpcomingFrag())
-                }
-            }
+            fragViewPager.adapter = movieViewPagerAdapter
+
             fragNavTabStrip.setViewPager(fragViewPager)
             fragNavTabStrip.setTitles(
                     R.string.movie_now_playing_title,

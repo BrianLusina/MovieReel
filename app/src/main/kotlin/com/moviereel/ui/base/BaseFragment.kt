@@ -52,7 +52,6 @@ abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(false)
     }
 
     /**

@@ -46,6 +46,8 @@ class MainActivity : BaseActivity(), MainView {
      */
     override fun setUp() {
         setSupportActionBar(toolbar_id)
+        supportActionBar?.setDisplayUseLogoEnabled(false)
+        supportActionBar?.title = "Movies"
 
         //sets the default fragment
         val fragment = MoviesFragment()

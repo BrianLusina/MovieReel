@@ -33,8 +33,6 @@ import com.moviereel.ui.movie.upcoming.MovieUpcomingView
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * @author lusinabrian on 27/03/17
@@ -124,8 +122,13 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     }
 
     @Provides
-    fun provideMovieAdapter() : MovieAdapter{
+    fun provideMovieAdapter(): MovieAdapter {
         return MovieAdapter(ArrayList())
+    }
+
+    @Provides
+    fun provideMovieViewPagerAdapter(): MoviesViewPagerAdapter {
+        return MoviesViewPagerAdapter(mActivity.supportFragmentManager)
     }
 
 }
