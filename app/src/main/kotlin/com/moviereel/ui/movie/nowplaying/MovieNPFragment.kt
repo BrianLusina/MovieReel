@@ -3,7 +3,7 @@ package com.moviereel.ui.movie.nowplaying
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -59,9 +59,10 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
      * @param view
      */
     override fun setUp(view: View) {
-        val mLinearLayoutManager = LinearLayoutManager(activity)
-        mLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        val mGridLinearLayoutManager = GridLayoutManager(activity,
+                resources.getInteger(R.integer.num_columns))
 
+        mGridLinearLayoutManager.orientation = GridLayoutManager.VERTICAL
         with(view) {
             mRecyclerView = fragRecyclerView
 
@@ -73,11 +74,11 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
                     R.color.dark_sea_green)
 
             fragRecyclerView.setHasFixedSize(true)
-            fragRecyclerView.layoutManager = mLinearLayoutManager
+            fragRecyclerView.layoutManager = mGridLinearLayoutManager
             fragRecyclerView.itemAnimator = DefaultItemAnimator()
             fragRecyclerView.adapter = movieNPAdapter
 
-            mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mLinearLayoutManager) {
+            mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
                     movieNPPresenter.onLoadMoreFromApi(page)

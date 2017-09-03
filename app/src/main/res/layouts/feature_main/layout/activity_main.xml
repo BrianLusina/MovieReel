@@ -19,18 +19,10 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <!-- the layout which will contain (host) the drawerLayout -->
     <FrameLayout
-            android:id="@+id/drawer_container"
+            android:id="@+id/frame_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_id">
+            android:layout_below="@id/toolbar_id"/>
 
-        <!-- the layout which will be the content of the activity (which will be hosted inside the drawer (NOT the list of the drawer)) -->
-        <FrameLayout
-                android:id="@+id/frame_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-    </FrameLayout>
 </RelativeLayout>

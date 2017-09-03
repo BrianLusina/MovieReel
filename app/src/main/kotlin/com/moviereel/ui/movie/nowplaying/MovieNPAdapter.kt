@@ -14,6 +14,7 @@ import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseRecyclerAdapter
 import com.moviereel.ui.base.BaseViewHolder
 import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
+import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -72,12 +73,12 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
 
             with(itemView) {
                 itemTitleTxtView.text = movieEntity.title
-                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
+//                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
                 // itemMovieCategoriesTxtView
                 // itemMovieRuntimeTxtView
                 // glide images to image views
                 Glide.with(context)
-                        .load(BuildConfig.POSTER_PATH + movieEntity.posterPath)
+                        .load(BuildConfig.IMAGE_BASE_URL + "w780" + movieEntity.posterPath)
                         .listener(object : RequestListener<String, GlideDrawable> {
                             override fun onException(e: Exception, model: String, target: Target<GlideDrawable>, isFirstResource: Boolean): Boolean {
                                 return false
@@ -88,7 +89,6 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
                                 return false
                             }
                         })
-                        .fitCenter()
                         .crossFade()
                         .thumbnail(1F)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -17,6 +17,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="centerCrop"
+            android:transitionName="@string/transition_name_image"
             android:contentDescription="@string/movie_image_card"/>
 
     <ProgressBar

@@ -46,7 +46,7 @@ class ApiModule {
     @Singleton
     @Named("posterPath")
     fun provideBasePosterPath(): String {
-        return BuildConfig.POSTER_PATH
+        return BuildConfig.IMAGE_BASE_URL
     }
 
     @Provides

@@ -89,7 +89,7 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
         // this is after getting the object from the intent
         moviedetail_collapsingtoolbar.title = movieObject.title
         Glide.with(this)
-                .load(BuildConfig.POSTER_PATH + movieObject.posterPath)
+                .load(BuildConfig.IMAGE_BASE_URL + movieObject.posterPath)
                 .into(moviedetail_img_id)
     }
 

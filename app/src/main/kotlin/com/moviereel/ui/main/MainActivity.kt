@@ -64,8 +64,8 @@ class MainActivity : BaseActivity(), MainView {
         //this layout have to contain child layouts
         drawer = DrawerBuilder(this)
                 .withToolbar(toolbar_id)
+                .withActivity(this)
                 .withItemAnimator(AlphaCrossFadeAnimator())
-                .withRootView(R.id.drawer_container)
                 .withSliderBackgroundColorRes(R.color.background_drawer_color)
                 .addDrawerItems(
                         /*movies section*/

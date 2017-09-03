@@ -16,7 +16,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:padding="2dp"
                 tools:listitem="@layout/item_entertainment_layout"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>

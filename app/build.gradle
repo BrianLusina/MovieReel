@@ -87,7 +87,8 @@ android {
 
     buildTypes.each {
         it.buildConfigField "String", "MOVIE_DB_KEY", MovieDbKey
-        it.buildConfigField "String", "POSTER_PATH", PosterPath
+        it.buildConfigField "String", "IMAGE_BASE_URL", IMAGE_BASE_URL
+        it.buildConfigField "String", "IMAGE_SECURE_BASE_URL", IMAGE_SECURE_BASE_URL
         it.buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
     }
 

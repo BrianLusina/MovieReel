@@ -70,13 +70,15 @@ constructor(val movieEntityList: ArrayList<BaseEntity>) : BaseRecyclerAdapter<Ba
             val movieEntity = movieEntityList[position]
 
             with(itemView) {
-                itemTitleTxtView.text = movieEntity.title
-                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
-                // itemMovieCategoriesTxtView
+
+//                itemTitleTxtView.text = movieEntity.title
+//                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
+
+               // itemMovieCategoriesTxtView
                 // itemMovieRuntimeTxtView
                 // glide images to image views
                 Glide.with(context)
-                        .load(BuildConfig.POSTER_PATH + movieEntity.posterPath)
+                        .load(BuildConfig.IMAGE_BASE_URL + movieEntity.posterPath)
                         .listener(object : RequestListener<String, GlideDrawable> {
                             override fun onException(e: Exception, model: String, target: Target<GlideDrawable>, isFirstResource: Boolean): Boolean {
                                 return false
