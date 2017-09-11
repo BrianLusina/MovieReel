@@ -22,15 +22,12 @@ import javax.inject.Inject
 
 class MovieNPPresenterImpl<V : MovieNPView>
 @Inject
-constructor(
-        mDataManager: DataManager,
-        schedulerProvider: SchedulerProvider,
-        mCompositeDisposable: CompositeDisposable)
+constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
+            mCompositeDisposable: CompositeDisposable)
     : BasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
 
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
-
     }
 
     // the first initialization will be to page 1
@@ -42,7 +39,11 @@ constructor(
         fetchFromApi(page)
     }
 
-    fun fetchFromApi(page: Int) {
+    override fun onSwipeRefreshTriggered() {
+        fetchFromApi(1)
+    }
+
+    private fun fetchFromApi(page: Int) {
         val remote = baseView?.isNetworkConnected
         compositeDisposable.addAll(
                 dataManager.getMoviesNowPlaying(remote, page, "en-US")
@@ -52,12 +53,19 @@ constructor(
                         .subscribe({
                             // update the recycler view
                             baseView?.updateMoviesNowPlaying(it)
-                        }) {
+                            baseView?.stopSwipeRefresh()
+                        }, {
+                            // on error
+
                             error("Error fetching now playing resources ${it.message}", it)
                             baseView?.showApiErrorSnackbar(R.string.snackbar_api_error,
                                     R.string.snackbar_api_error_retry, Snackbar.LENGTH_LONG)
-                        }
+                        },{
+                            // on complete
+                        })
         )
+        // stop swipe refresh
+        baseView?.stopSwipeRefresh()
     }
 
     /**

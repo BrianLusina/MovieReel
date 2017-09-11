@@ -9,20 +9,31 @@
         android:background="@color/background_color"
         tools:context=".ui.main.MainActivity">
 
-    <!--Toolbar-->
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_id"
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_red3"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:elevation="5dp"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--Toolbar-->
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_red3"
+                android:minHeight="?attr/actionBarSize"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:contentInsetStart="0dp"
+                app:contentInsetLeft="0dp"
+                app:layout_scrollFlags="scroll|enterAlways"/>
+    </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
             android:id="@+id/frame_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_id"/>
+            android:layout_below="@id/appbarLayout"/>
 
 </RelativeLayout>

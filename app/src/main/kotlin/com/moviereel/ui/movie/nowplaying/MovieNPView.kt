@@ -49,4 +49,9 @@ interface MovieNPView : BaseView {
      */
     fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>)
 
+    /**
+     * stop swipe refresh
+     * */
+    fun stopSwipeRefresh()
+
 }

@@ -2,6 +2,7 @@ package com.moviereel.ui.movie.nowplaying
 
 import android.os.Bundle
 import android.support.annotation.StringRes
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,12 +15,13 @@ import com.moviereel.ui.base.BaseFragment
 import com.moviereel.ui.detail.MovieDetailsActivity
 import com.moviereel.utils.RecyclerItemClickListener
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
+import kotlinx.android.synthetic.main.fragment_entertainment_page.*
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class MovieNPFragment : BaseFragment(), MovieNPView {
+class MovieNPFragment : BaseFragment(), MovieNPView, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
@@ -59,19 +61,17 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
      * @param view
      */
     override fun setUp(view: View) {
-        val mGridLinearLayoutManager = GridLayoutManager(activity,
-                resources.getInteger(R.integer.num_columns))
+        val mGridLinearLayoutManager = GridLayoutManager(activity, resources.getInteger(R.integer.num_columns))
+        val ctx = this
 
         mGridLinearLayoutManager.orientation = GridLayoutManager.VERTICAL
         with(view) {
             mRecyclerView = fragRecyclerView
 
-            fragSwipeRefreshLayout.setColorSchemeResources(
-                    R.color.dark_slate_blue,
-                    R.color.dark_slate_gray,
-                    R.color.dark_cyan,
-                    R.color.dark_turquoise,
+            fragSwipeRefreshLayout.setColorSchemeResources(R.color.dark_slate_blue,
+                    R.color.dark_slate_gray, R.color.dark_cyan, R.color.dark_turquoise,
                     R.color.dark_sea_green)
+            fragSwipeRefreshLayout.setOnRefreshListener(ctx)
 
             fragRecyclerView.setHasFixedSize(true)
             fragRecyclerView.layoutManager = mGridLinearLayoutManager
@@ -89,6 +89,16 @@ class MovieNPFragment : BaseFragment(), MovieNPView {
         }
 
         movieNPPresenter.onViewInitialized()
+    }
+
+    override fun onRefresh() {
+        movieNPPresenter.onSwipeRefreshTriggered()
+    }
+
+    override fun stopSwipeRefresh() {
+        if(fragSwipeRefreshLayout.isRefreshing){
+            fragSwipeRefreshLayout.isRefreshing = false
+        }
     }
 
     override fun showApiErrorSnackbar(message: String, actionMessage: String, length: Int) {

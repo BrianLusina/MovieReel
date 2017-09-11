@@ -13,6 +13,7 @@ import com.moviereel.R
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseRecyclerAdapter
 import com.moviereel.ui.base.BaseViewHolder
+import com.moviereel.utils.loadImageFromUrl
 import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
@@ -76,23 +77,12 @@ constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : BaseRecyclerAdapt
 //                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
                 // itemMovieCategoriesTxtView
                 // itemMovieRuntimeTxtView
-                // glide images to image views
-                Glide.with(context)
-                        .load(BuildConfig.IMAGE_BASE_URL + "w780" + movieEntity.posterPath)
-                        .listener(object : RequestListener<String, GlideDrawable> {
-                            override fun onException(e: Exception, model: String, target: Target<GlideDrawable>, isFirstResource: Boolean): Boolean {
-                                return false
-                            }
 
-                            override fun onResourceReady(resource: GlideDrawable, model: String, target: Target<GlideDrawable>, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean {
-                                itemProgressbar.visibility = View.GONE
-                                return false
-                            }
-                        })
-                        .crossFade()
-                        .thumbnail(1F)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(itemImgView)
+                // glide images to image views
+                itemImgView.loadImageFromUrl(context,
+                        BuildConfig.IMAGE_BASE_URL + "w780" + movieEntity.posterPath,
+                        itemProgressbar)
+
                 // movieRuntime.setText(movieResultsResponse.get);
                 // nowPlayingResponse.getResults()
                 // movieRuntime.setText(nowPlayingResponse.get);
