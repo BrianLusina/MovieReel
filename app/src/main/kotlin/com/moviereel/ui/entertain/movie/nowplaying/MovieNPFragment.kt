@@ -1,7 +1,6 @@
 package com.moviereel.ui.entertain.movie.nowplaying
 
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,10 +11,8 @@ import com.moviereel.ui.detail.MovieDetailsActivity
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.RecyclerItemClickListener
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_entertainment_page.*
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView, SwipeRefreshLayout.OnRefreshListener {
@@ -74,24 +71,6 @@ class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView, SwipeRefreshLa
 
     override fun onRefresh() {
         movieNPPresenter.onSwipeRefreshTriggered()
-    }
-
-    override fun stopSwipeRefresh() {
-        if(fragSwipeRefreshLayout.isRefreshing){
-            fragSwipeRefreshLayout.isRefreshing = false
-        }
-    }
-
-    override fun showApiErrorSnackbar(message: String, actionMessage: String, length: Int) {
-
-    }
-
-    override fun showApiErrorSnackbar(@StringRes resId: Int, @StringRes actionId: Int, length: Int) {
-
-    }
-
-    override fun displayToast(message: String, messageType: Int) {
-        activity.toast(message)
     }
 
     override fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNPEntity>) {

@@ -7,6 +7,7 @@ import com.moviereel.data.DataManager
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.base.BasePresenterImpl
+import com.moviereel.ui.entertain.base.EntertainPageBasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
 import org.jetbrains.anko.error
 import java.util.concurrent.TimeUnit
@@ -24,7 +25,7 @@ class MovieNPPresenterImpl<V : MovieNPView>
 @Inject
 constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
             mCompositeDisposable: CompositeDisposable)
-    : BasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
+    : EntertainPageBasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
 
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
@@ -91,6 +92,6 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
      * Handles what will happen when the Fragment is destroyed
      */
     override fun onDestroy() {
-
+        super.onDestroy()
     }
 }

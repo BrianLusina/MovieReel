@@ -1,6 +1,7 @@
 package com.moviereel.ui.entertain.base
 
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
@@ -11,12 +12,13 @@ import android.view.ViewGroup
 import com.moviereel.R
 import com.moviereel.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
+import org.jetbrains.anko.toast
 
 /**
  * @author lusinabrian on 13/09/17.
  * @Notes base fragment for movie pages
  */
-abstract class EntertainPageBaseFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener{
+abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView, SwipeRefreshLayout.OnRefreshListener{
 
     lateinit var mRecyclerView: RecyclerView
     lateinit var mGridLinearLayoutManager : GridLayoutManager
@@ -56,6 +58,26 @@ abstract class EntertainPageBaseFragment : BaseFragment(), SwipeRefreshLayout.On
             fragRecyclerView.layoutManager = mGridLinearLayoutManager
             fragRecyclerView.itemAnimator = DefaultItemAnimator()
         }
+    }
+
+    override fun stopSwipeRefresh() {
+        with(rootView){
+            if(fragSwipeRefreshLayout.isRefreshing){
+                fragSwipeRefreshLayout.isRefreshing = false
+            }
+        }
+    }
+
+    override fun showApiErrorSnackbar(message: String, actionMessage: String, length: Int) {
+
+    }
+
+    override fun showApiErrorSnackbar(@StringRes resId: Int, @StringRes actionId: Int, length: Int) {
+
+    }
+
+    override fun displayToast(message: String, messageType: Int) {
+        activity.toast(message)
     }
 
     override fun onDestroy() {

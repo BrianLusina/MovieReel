@@ -7,4 +7,19 @@ import com.moviereel.ui.base.BasePresenter
  * @Notes base presenter for entertainment pages
  */
 interface EntertainPageBasePresenter<V : EntertainPageBaseView> : BasePresenter<V> {
+
+    fun onViewInitialized()
+
+    fun onLoadMoreFromApi(page : Int)
+
+    /**
+     * on swipe refresh trigger callback
+     * */
+    fun onSwipeRefreshTriggered()
+
+    /**Handles what will happen when the Fragment is resumed */
+    fun onResume()
+
+    /**Handles what will happen when the Fragment is destroyed */
+    fun onDestroy()
 }
