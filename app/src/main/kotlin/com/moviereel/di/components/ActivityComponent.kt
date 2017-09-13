@@ -8,12 +8,12 @@ import com.moviereel.ui.intro.splash.SplashActivity
 import com.moviereel.ui.detail.MovieDetailsActivity
 
 import com.moviereel.ui.main.MainActivity
-import com.moviereel.ui.movie.MoviesFragment
+import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
-import com.moviereel.ui.movie.nowplaying.MovieNPFragment
-import com.moviereel.ui.movie.popular.MoviePopularFrag
-import com.moviereel.ui.movie.toprated.MovieTopRatedFrag
-import com.moviereel.ui.movie.upcoming.MovieUpcomingFrag
+import com.moviereel.ui.entertain.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.entertain.movie.popular.MoviePopularFrag
+import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedFrag
+import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingFrag
 
 import dagger.Component
 

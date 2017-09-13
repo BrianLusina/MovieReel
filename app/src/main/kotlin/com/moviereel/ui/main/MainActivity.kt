@@ -14,7 +14,7 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.Nameable
 import com.moviereel.R
 import com.moviereel.ui.base.BaseActivity
-import com.moviereel.ui.movie.MoviesFragment
+import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
