@@ -25,7 +25,7 @@ constructor(
      * Gets the base view
      * @return [BaseView]
      */
-    var baseView: V? = null
+    lateinit var baseView: V
         private set
 
     override fun onAttach(mBaseView: V) {
@@ -34,7 +34,6 @@ constructor(
 
     override fun onDetach() {
         compositeDisposable.dispose()
-        baseView = null
     }
 
     /**

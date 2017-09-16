@@ -1,8 +1,8 @@
 package com.moviereel.data.repositories.movierepo
 
 import com.moviereel.data.api.model.BaseResultsResponse
-import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
 import com.moviereel.data.repositories.movierepo.local.MoviesLocalDataSource
 import com.moviereel.data.repositories.movierepo.remote.MoviesRemoteDataSource
 import io.reactivex.Flowable
@@ -21,13 +21,13 @@ constructor(val movieLocalDataSource: MoviesLocalDataSource,
             val moviesRemoteDataSource: MoviesRemoteDataSource) : MoviesRepoHelper {
 
     override fun getMoviesNowPlaying(remote: Boolean?, page: Int, language: String): Flowable<List<MovieNPEntity>> {
-        if (remote!!) {
+        return if (remote!!) {
             val data = moviesRemoteDataSource.getMoviesNowPlaying(page = page, language = language)
             // save data to disk
             movieLocalDataSource.saveMoviesNowPlayingOffline(data)
-            return data
+            data
         } else
-            return movieLocalDataSource.getMoviesNowPlaying(false, page, language)
+            movieLocalDataSource.getMoviesNowPlaying(false, page, language)
     }
 
 
@@ -38,10 +38,13 @@ constructor(val movieLocalDataSource: MoviesLocalDataSource,
             movieLocalDataSource.doGetMoviesLatest(false, language)
     }
 
-    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Observable<MoviePopularResponse> {
-        return if (remote)
-            moviesRemoteDataSource.doGetMoviesPopular(page = page, language = language)
-        else
+    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Flowable<List<MoviePEntity>> {
+        return if(remote){
+            val data = moviesRemoteDataSource.doGetMoviesPopular(page = page, language = language)
+            movieLocalDataSource.savePopularMoviesToDb(data)
+            data
+        }else  {
             movieLocalDataSource.doGetMoviesPopular(false, page, language)
+        }
     }
 }

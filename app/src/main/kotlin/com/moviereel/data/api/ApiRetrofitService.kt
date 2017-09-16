@@ -44,9 +44,7 @@ interface ApiRetrofitService {
      * @return A list of [MoviePopularResponse] we get from the api call
      */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_POPULAR)
-    fun doGetMoviesPopular(
-            @Query("page") page: Int,
-            @Query("language") language: String): Observable<MoviePopularResponse>
+    fun doGetMoviesPopular(@Query("page") page: Int, @Query("language") language: String): Flowable<MoviePopularResponse>
 
     /**
      * Makes an api call to fetch the top rated movies

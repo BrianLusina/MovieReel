@@ -2,18 +2,21 @@ package com.moviereel.data.repositories.movierepo
 
 import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNPResponse
-import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * @author lusinabrian on 08/08/17.
  * @Notes Common methods that will be used for the repositories will be found here.
  * This will enable a greater deal of abstraction and as well as remove DRY principle(s)
  */
-interface MovieDataSource {
+interface MovieDataSource : AnkoLogger {
 
+    override val loggerTag: String
+        get() = super.loggerTag
     /**
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently
@@ -32,8 +35,7 @@ interface MovieDataSource {
     /**
      * Does an api call to get a list of popular movies
      * @param remote whether to fetch this from a remote repo or not
-     * @return A list of [MoviePopularResponse] we get from the api call
+     * @return A list of [MoviePEntity] we get from the api call
      */
-    fun doGetMoviesPopular(remote: Boolean = false, page: Int, language: String): Observable<MoviePopularResponse>
-
+    fun doGetMoviesPopular(remote: Boolean = true, page: Int, language: String): Flowable<List<MoviePEntity>>
 }

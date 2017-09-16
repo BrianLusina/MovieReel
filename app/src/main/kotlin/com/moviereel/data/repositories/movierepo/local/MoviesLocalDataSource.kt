@@ -4,12 +4,13 @@ import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.dao.MovieNPDao
+import com.moviereel.data.db.dao.MoviePopularDao
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
 import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,11 +22,7 @@ import javax.inject.Singleton
 @Singleton
 class MoviesLocalDataSource
 @Inject
-constructor(
-        val moviesNPDao: MovieNPDao) : MovieDataSource, AnkoLogger {
-
-    override val loggerTag: String
-        get() = super.loggerTag
+constructor(val moviesNPDao: MovieNPDao, val moviePopularDao: MoviePopularDao) : MovieDataSource {
 
     /**
      * performs a call to get Now Playing Movies
@@ -63,9 +60,23 @@ constructor(
      * Does an api call to get a list of popular movies
      * @return A list of [MoviePopularResponse] we get from the api call
      */
-    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Observable<MoviePopularResponse> {
-        //return moviesNPDao.getMoviesPopular(page, language)
-        return null!!
+    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Flowable<List<MoviePEntity>> {
+        return moviePopularDao.getAllMoviesPopular()
+    }
+
+    /**
+     * Saves popular movies to database
+     * */
+    fun savePopularMoviesToDb(moviePopularData : Flowable<List<MoviePEntity>>) {
+        moviePopularData.subscribeOn(Schedulers.newThread())
+                .subscribe({
+                    it.forEach {
+                        moviePopularDao.insertMoviePopular(it)
+                    }
+                }, {
+                    // error
+                    error("Error encountered saving popular movies ${it.message}", it)
+                })
     }
 
 /*    override fun insertMovieNowPlayingItem(movieNPEntity: MovieNPEntity): Observable<Boolean> {

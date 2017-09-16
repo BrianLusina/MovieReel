@@ -5,11 +5,10 @@ import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
 import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import org.intellij.lang.annotations.Flow
-import org.reactivestreams.Publisher
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,7 +42,9 @@ constructor(val mApiRetrofitService: ApiRetrofitService) : MovieDataSource {
      * Does an api call to get a list of popular movies
      * @return A list of [MoviePopularResponse] we get from the api call
      */
-    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Observable<MoviePopularResponse> {
-        return mApiRetrofitService.doGetMoviesPopular(page, language)
+    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String):
+            Flowable<List<MoviePEntity>> {
+        val popularMovieData = mApiRetrofitService.doGetMoviesPopular(page, language)
+        return popularMovieData.flatMap { Flowable.just(it.results) }
     }
 }

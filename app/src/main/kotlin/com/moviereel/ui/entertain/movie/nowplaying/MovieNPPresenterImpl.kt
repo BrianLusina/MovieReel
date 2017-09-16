@@ -6,7 +6,6 @@ import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.io.SchedulerProvider
-import com.moviereel.ui.base.BasePresenterImpl
 import com.moviereel.ui.entertain.base.EntertainPageBasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
 import org.jetbrains.anko.error
@@ -45,7 +44,6 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
     }
 
     private fun fetchFromApi(page: Int) {
-        val remote = baseView?.isNetworkConnected
         compositeDisposable.addAll(
                 dataManager.getMoviesNowPlaying(remote, page, "en-US")
                         .observeOn(schedulerProvider.ui())
@@ -53,20 +51,20 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
                         .debounce(10000, TimeUnit.MILLISECONDS)
                         .subscribe({
                             // update the recycler view
-                            baseView?.updateMoviesNowPlaying(it)
-                            baseView?.stopSwipeRefresh()
+                            baseView.updateMoviesNowPlaying(it)
+                            baseView.stopSwipeRefresh()
                         }, {
                             // on error
 
                             error("Error fetching now playing resources ${it.message}", it)
-                            baseView?.showApiErrorSnackbar(R.string.snackbar_api_error,
+                            baseView.showApiErrorSnackbar(R.string.snackbar_api_error,
                                     R.string.snackbar_api_error_retry, Snackbar.LENGTH_LONG)
                         },{
                             // on complete
                         })
         )
         // stop swipe refresh
-        baseView?.stopSwipeRefresh()
+        baseView.stopSwipeRefresh()
     }
 
     /**
