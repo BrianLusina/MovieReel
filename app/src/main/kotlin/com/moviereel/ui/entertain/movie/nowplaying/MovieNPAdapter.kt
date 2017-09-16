@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 /**
  * @author lusinabrian on 01/06/17.
- * @Notes
+ * @Notes movie now playing adapter
  */
 
 class MovieNPAdapter

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
-class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView, SwipeRefreshLayout.OnRefreshListener {
+class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView{
 
     @Inject
     lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
@@ -26,9 +26,9 @@ class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView, SwipeRefreshLa
     lateinit var mEndlessScrollListener: EndlessRecyclerViewScrollListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-
         activityComponent.inject(this)
+
+        super.onCreateView(inflater, container, savedInstanceState)
 
         movieNPPresenter.onAttach(this)
 

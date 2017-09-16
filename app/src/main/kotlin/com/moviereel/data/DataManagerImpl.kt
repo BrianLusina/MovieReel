@@ -4,6 +4,7 @@ import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
 import com.moviereel.data.files.FileHelper
 import com.moviereel.data.prefs.PreferencesHelper
 import com.moviereel.data.repositories.RepositoryHelper
@@ -55,7 +56,7 @@ constructor(
      * Does an api call to get a list of popular movies
      * @return A list of [MoviePopularResponse] we get from the api call
      */
-    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Observable<MoviePopularResponse> {
+    override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Flowable<List<MoviePEntity>> {
         return mRepositoryHelper.doGetMoviesPopular(remote, page, language)
     }
 

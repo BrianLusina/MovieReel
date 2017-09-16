@@ -27,8 +27,6 @@ abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_entertainment_page, container, false)
 
-        setUp(rootView)
-
         return rootView
     }
 
