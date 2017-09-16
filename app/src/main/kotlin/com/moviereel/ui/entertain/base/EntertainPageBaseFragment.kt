@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
+import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseFragment
+import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import org.jetbrains.anko.toast
 
@@ -23,6 +25,8 @@ abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView
     lateinit var mRecyclerView: RecyclerView
     lateinit var mGridLinearLayoutManager : GridLayoutManager
     lateinit var rootView : View
+
+    lateinit var mEndlessScrollListener: EndlessRecyclerViewScrollListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_entertainment_page, container, false)
@@ -73,6 +77,7 @@ abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView
     override fun showApiErrorSnackbar(@StringRes resId: Int, @StringRes actionId: Int, length: Int) {
 
     }
+
 
     override fun displayToast(message: String, messageType: Int) {
         activity.toast(message)

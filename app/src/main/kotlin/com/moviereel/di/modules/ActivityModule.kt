@@ -10,17 +10,12 @@ import com.moviereel.di.scopes.PerActivity
 import com.moviereel.ui.detail.MovieDetailsPresenter
 import com.moviereel.ui.detail.MovieDetailsPresenterImpl
 import com.moviereel.ui.detail.MovieDetailsView
-import com.moviereel.ui.intro.splash.SplashPresenter
-import com.moviereel.ui.intro.splash.SplashPresenterImpl
-import com.moviereel.ui.intro.splash.SplashView
-import com.moviereel.ui.main.MainPresenter
-import com.moviereel.ui.main.MainPresenterImpl
-import com.moviereel.ui.main.MainView
 import com.moviereel.ui.entertain.movie.*
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPAdapter
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenter
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenterImpl
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPView
+import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
 import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenter
 import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenterImpl
 import com.moviereel.ui.entertain.movie.popular.MoviePopularView
@@ -30,6 +25,12 @@ import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedView
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenter
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenterImpl
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingView
+import com.moviereel.ui.intro.splash.SplashPresenter
+import com.moviereel.ui.intro.splash.SplashPresenterImpl
+import com.moviereel.ui.intro.splash.SplashView
+import com.moviereel.ui.main.MainPresenter
+import com.moviereel.ui.main.MainPresenterImpl
+import com.moviereel.ui.main.MainView
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -89,11 +90,22 @@ class ActivityModule(val mActivity: AppCompatActivity) {
         return movieNPPresenter
     }
 
+    @Provides
+    fun provideMovieNpAdapter(): MovieNPAdapter {
+        return MovieNPAdapter(ArrayList())
+    }
+
     // popular
     @Provides
     @PerActivity
     fun provideMoviePopularPresenter(moviePopularPresenter: MoviePopularPresenterImpl<MoviePopularView>): MoviePopularPresenter<MoviePopularView> {
         return moviePopularPresenter
+    }
+
+
+    @Provides
+    fun provideMoviePopularAdapter(): MoviePopularAdapter {
+        return MoviePopularAdapter(ArrayList())
     }
 
     // top rated
@@ -114,16 +126,6 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     @PerActivity
     fun provideMovieDetailsPresenter(movieDetailsPresenter: MovieDetailsPresenterImpl<MovieDetailsView>): MovieDetailsPresenter<MovieDetailsView> {
         return movieDetailsPresenter
-    }
-
-    @Provides
-    fun provideMovieNpAdapter(): MovieNPAdapter {
-        return MovieNPAdapter(ArrayList())
-    }
-
-    @Provides
-    fun provideMovieAdapter(): MovieAdapter {
-        return MovieAdapter(ArrayList())
     }
 
     @Provides

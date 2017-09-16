@@ -37,5 +37,5 @@ interface MovieDataSource : AnkoLogger {
      * @param remote whether to fetch this from a remote repo or not
      * @return A list of [MoviePEntity] we get from the api call
      */
-    fun doGetMoviesPopular(remote: Boolean = false, page: Int, language: String): Flowable<List<MoviePEntity>>
+    fun doGetMoviesPopular(remote: Boolean = true, page: Int, language: String): Flowable<List<MoviePEntity>>
 }

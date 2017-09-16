@@ -15,8 +15,12 @@ abstract class EntertainPageBasePresenterImpl<V : EntertainPageBaseView>(
     : EntertainPageBasePresenter<V>, BasePresenterImpl<V>(dataManager, schedulerProvider,
         compositeDisposable){
 
+    var remote = true
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
+        if(isViewAttached){
+            remote = baseView.isNetworkConnected
+        }
     }
 
     override fun onViewInitialized() {

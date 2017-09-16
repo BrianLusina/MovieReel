@@ -1,31 +1,31 @@
-package com.moviereel.ui.entertain.movie.nowplaying
+package com.moviereel.ui.entertain.movie.popular
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.moviereel.R
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MoviePEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseAdapter
 import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
 import javax.inject.Inject
 
 /**
- * @author lusinabrian on 01/06/17.
- * @Notes movie now playing adapter
+ * @author lusinabrian on 16/09/17.
+ * @Notes adapter for popular movies
  */
-
-class MovieNPAdapter
+class MoviePopularAdapter
 @Inject
-constructor(val movieNPEntityList: ArrayList<MovieNPEntity>) : EntertainPageBaseAdapter<MovieNPEntity>(movieNPEntityList) {
+constructor(val moviePopularList: ArrayList<MoviePEntity>) : EntertainPageBaseAdapter<MoviePEntity>(moviePopularList) {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): EntertainPageBaseViewHolder<MovieNPEntity> {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): EntertainPageBaseViewHolder<MoviePEntity> {
         return when (viewType) {
             VIEW_TYPE_NORMAL -> {
                 val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_entertainment_layout, parent, false)
-                MovieNpViewHolder(v, movieNPEntityList)
+                MoviePopularViewHolder(v, moviePopularList)
             }
             else -> {
                 return super.onCreateViewHolder(parent, viewType)
             }
         }
     }
+
 }

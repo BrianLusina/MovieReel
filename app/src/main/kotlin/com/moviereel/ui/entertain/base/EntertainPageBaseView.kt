@@ -31,14 +31,6 @@ interface EntertainPageBaseView : BaseView{
      */
     fun displayToast(message: String, messageType: Int)
 
-    /**picks the data of the item clicked in the RecyclerView
-     * start activity for the clicked movie item
-     * @param bundleKey KEY to use to fetch item data from other side
-     * @param movieList */
-    fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNPEntity>)
-
-    fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNPEntity>)
-
     /**
      * stop swipe refresh
      * */

@@ -12,8 +12,8 @@ import com.moviereel.ui.base.BaseViewHolder
  * @Notes base adapter for entertainment
  */
 abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyclerAdapter<E>(objectList) {
-    private val VIEW_TYPE_LOADING = 0
-    private val VIEW_TYPE_NORMAL = 1
+    val VIEW_TYPE_LOADING = 0
+    val VIEW_TYPE_NORMAL = 1
 
     lateinit var mCallback: Callback
 
@@ -21,12 +21,8 @@ abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyc
         mCallback = callback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<E> {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): EntertainPageBaseViewHolder<E> {
         return when (viewType) {
-            VIEW_TYPE_NORMAL -> {
-                val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_entertainment_layout, parent, false)
-                ViewHolder(v)
-            }
             VIEW_TYPE_LOADING -> {
                 val v = LayoutInflater.from(parent?.context).inflate(R.layout.progress_dialog, parent, false)
                 LoadingViewHolder(v)
@@ -52,13 +48,7 @@ abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyc
         fun onViewEmptyViewRetryClick()
     }
 
-    inner class ViewHolder(itemView: View) : BaseViewHolder<E>(itemView) {
-        override fun onBind(position: Int) {
-
-        }
-    }
-
-    inner class EmptyViewHolder(itemView: View) : BaseViewHolder<E>(itemView) {
+    inner class EmptyViewHolder(itemView: View) : EntertainPageBaseViewHolder<E>(itemView) {
 
         fun onRetryClick() {
             // btn_retry
@@ -66,6 +56,6 @@ abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyc
         }
     }
 
-    inner class LoadingViewHolder(itemView: View) : BaseViewHolder<E>(itemView)
+    inner class LoadingViewHolder(itemView: View) : EntertainPageBaseViewHolder<E>(itemView)
 
 }
