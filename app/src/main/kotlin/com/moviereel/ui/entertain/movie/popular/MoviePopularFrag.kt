@@ -62,6 +62,8 @@ class MoviePopularFrag : EntertainPageBaseFragment(), MoviePopularView {
     }
 
     override fun updatePopularMovies(popularMovieList: List<MoviePEntity>) {
-
+        val data = arrayListOf<MoviePEntity>()
+        data += popularMovieList
+        moviePopularAdapter.addItemsUsingDiff(data)
     }
 }

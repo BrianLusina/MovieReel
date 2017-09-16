@@ -82,7 +82,7 @@ class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView{
     override fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>) {
         val data = arrayListOf<MovieNPEntity>()
         data += movieResultsResponseList
-        movieNPAdapter.addItems(data)
+        movieNPAdapter.addItemsUsingDiff(data)
     }
 
 }

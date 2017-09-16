@@ -30,6 +30,14 @@ abstract class BaseRecyclerAdapter<T>(var objectList: ArrayList<T>) : RecyclerVi
     override fun getItemCount() = objectList.size
 
     /**
+     * Adds items to the adapter the normal way by notifying the adapter the data has changed
+     * @param newObjectList object list to add*/
+    fun addItems(newObjectList: ArrayList<T>){
+        objectList.addAll(newObjectList)
+        notifyDataSetChanged()
+    }
+
+    /**
      * Add items to the list
      * Will check if the trending list items has a given item and only add items that are not
      * in the adapter
@@ -40,7 +48,7 @@ abstract class BaseRecyclerAdapter<T>(var objectList: ArrayList<T>) : RecyclerVi
      * hence the reason for a [doAsync] callback
      * @param newObjectList Trending list with trending items
      * */
-    fun addItems(newObjectList: ArrayList<T>) {
+    fun addItemsUsingDiff(newObjectList: ArrayList<T>) {
         pendingUpdates.add(newObjectList)
 
         if (pendingUpdates.size > 1) {
@@ -55,7 +63,7 @@ abstract class BaseRecyclerAdapter<T>(var objectList: ArrayList<T>) : RecyclerVi
      * Updates items in adapter and calls a background thread to process
      * the diff and return it before updating the adapter of the change
      * */
-    fun updateItemsInternal(newObjectList: ArrayList<T>) {
+    private fun updateItemsInternal(newObjectList: ArrayList<T>) {
         val handler = Handler()
         Thread(Runnable {
             val diff = MovieReelDiffUtilCallback(objectList, newObjectList)
@@ -73,7 +81,7 @@ abstract class BaseRecyclerAdapter<T>(var objectList: ArrayList<T>) : RecyclerVi
      * @param newItemList
      * @param diffResult, result from Diffing of new and old items
      * */
-    fun applyDiffResult(newItemList: java.util.ArrayList<T>, diffResult: DiffUtil.DiffResult) {
+    private fun applyDiffResult(newItemList: java.util.ArrayList<T>, diffResult: DiffUtil.DiffResult) {
         pendingUpdates.remove()
 
         // dispatch updates
@@ -90,7 +98,7 @@ abstract class BaseRecyclerAdapter<T>(var objectList: ArrayList<T>) : RecyclerVi
      * @param newItems new items to add to adapter
      * @param diffResult diff result from callback
      * */
-    fun dispatchUpdates(newItems: java.util.ArrayList<T>, diffResult: DiffUtil.DiffResult) {
+    private fun dispatchUpdates(newItems: ArrayList<T>, diffResult: DiffUtil.DiffResult) {
         diffResult.dispatchUpdatesTo(this)
         objectList.clear()
         objectList.addAll(newItems)
