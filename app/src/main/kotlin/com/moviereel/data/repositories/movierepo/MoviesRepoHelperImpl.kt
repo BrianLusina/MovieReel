@@ -3,6 +3,7 @@ package com.moviereel.data.repositories.movierepo
 import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
 import com.moviereel.data.repositories.movierepo.local.MoviesLocalDataSource
 import com.moviereel.data.repositories.movierepo.remote.MoviesRemoteDataSource
 import io.reactivex.Flowable
@@ -45,6 +46,20 @@ constructor(val movieLocalDataSource: MoviesLocalDataSource,
             data
         }else  {
             movieLocalDataSource.doGetMoviesPopular(false, page, language)
+        }
+    }
+
+    /**
+     * Get top rated movies
+     * */
+    override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieTREntity>> {
+        return if(remote){
+            val data = moviesRemoteDataSource.doGetMoviesTopRated(page= page, language = language,
+                    region = region)
+            movieLocalDataSource.saveTopRatedMoviesToDb(data)
+            data
+        }else{
+            movieLocalDataSource.doGetMoviesTopRated(false, page, language,region)
         }
     }
 }

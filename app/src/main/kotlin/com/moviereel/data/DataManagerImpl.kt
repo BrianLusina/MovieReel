@@ -5,6 +5,7 @@ import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
 import com.moviereel.data.files.FileHelper
 import com.moviereel.data.prefs.PreferencesHelper
 import com.moviereel.data.repositories.RepositoryHelper
@@ -58,6 +59,10 @@ constructor(
      */
     override fun doGetMoviesPopular(remote: Boolean, page: Int, language: String): Flowable<List<MoviePEntity>> {
         return mRepositoryHelper.doGetMoviesPopular(remote, page, language)
+    }
+
+    override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieTREntity>> {
+        return mRepositoryHelper.doGetMoviesTopRated(remote, page, language, region)
     }
 
     /******************************PREFERENCES**********************************************/

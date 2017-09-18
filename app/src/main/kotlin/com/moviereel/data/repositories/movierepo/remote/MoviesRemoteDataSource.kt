@@ -6,6 +6,7 @@ import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
 import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -46,5 +47,10 @@ constructor(val mApiRetrofitService: ApiRetrofitService) : MovieDataSource {
             Flowable<List<MoviePEntity>> {
         val popularMovieData = mApiRetrofitService.doGetMoviesPopular(page, language)
         return popularMovieData.flatMap { Flowable.just(it.results) }
+    }
+
+    override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region : String): Flowable<List<MovieTREntity>> {
+        val topRatedMovieData = mApiRetrofitService.doGetMoviesTopRated(page, language, region)
+        return topRatedMovieData.flatMap { Flowable.just(it.results) }
     }
 }

@@ -1,7 +1,6 @@
 package com.moviereel.data.api
 
 import com.moviereel.data.api.model.BaseResultsResponse
-import com.moviereel.data.api.model.movie.request.MovieTopRatedRequest
 import com.moviereel.data.api.model.movie.request.MovieUpcomingRequest
 import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
@@ -33,7 +32,7 @@ interface ApiRetrofitService {
             : Flowable<MovieNPResponse>
 
     @GET(ApiEndPoint.ENDPOINT_GENRE_MOVIE_LIST)
-    fun getMovieGenreList(@Query("language") language: String) : Flowable<List<GenreEntity>>
+    fun getMovieGenreList(@Query("language") language: String): Flowable<List<GenreEntity>>
 
     /*** API call to get the latest movies being shown* */
     @GET(ApiEndPoint.ENDPOINT_MOVIE_LATEST)
@@ -48,10 +47,13 @@ interface ApiRetrofitService {
 
     /**
      * Makes an api call to fetch the top rated movies
-     * @param request request that is made to the api
+     * @param page Page to request that is made to the api
+     * @param language the language to query for
+     * @param region the region to query
      * @return [MovieTopRatedResponse] what we get back from the api as an object
      */
-    fun doGetMoviesTopRatedApiCall(request: MovieTopRatedRequest): Observable<MovieTopRatedResponse>
+    @GET(ApiEndPoint.ENDPOINT_MOVIE_TOP_RATED)
+    fun doGetMoviesTopRated(@Query("page") page: Int, @Query("language") language: String, @Query("region") region: String): Flowable<MovieTopRatedResponse>
 
     /**
      * Makes an API call to get upcoming movies

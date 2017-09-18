@@ -5,6 +5,7 @@ import android.content.Context
 import com.moviereel.data.db.MovieReelDatabase
 import com.moviereel.data.db.dao.MovieNPDao
 import com.moviereel.data.db.dao.MoviePopularDao
+import com.moviereel.data.db.dao.MovieTRDao
 import com.moviereel.di.qualifiers.AppContext
 import com.moviereel.di.qualifiers.DatabaseInfo
 import com.moviereel.utils.DATABASE_NAME
@@ -39,5 +40,10 @@ class DatabaseModule {
     @Provides
     fun provideMoviePopularDao(database: MovieReelDatabase) : MoviePopularDao{
         return database.getMoviePopularDao()
+    }
+
+    @Provides
+    fun provideMovieTopRatedDao(database: MovieReelDatabase) : MovieTRDao{
+        return database.getMovieTopRatedDao()
     }
 }

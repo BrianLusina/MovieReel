@@ -3,6 +3,10 @@ package com.moviereel.data.db.entities.movie
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.os.Parcelable
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import com.moviereel.data.db.entities.BaseEntity
 
 /**
  * @author lusinabrian on 16/05/17.
@@ -28,40 +32,14 @@ import android.arch.persistence.room.PrimaryKey
  */
 
 @Entity(tableName = "movie_top_rated")
-class MovieTREntity {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
+data class MovieTREntity(
 
-    @ColumnInfo(name = "poster_path")
-    var posterPath: String? = null
+        // This is to allow using a data class, as data classes can not be created without 1 field in
+        // their constructor
+        @PrimaryKey(autoGenerate = false)
+        @Expose
+        @SerializedName("id")
+        @ColumnInfo(name = "id")
+        override var id: Long = 0
 
-    @ColumnInfo(name = "overview")
-    var overview: String? = null
-
-    @ColumnInfo(name = "release_date")
-    var releaseDate: String? = null
-
-    @ColumnInfo(name = "original_title")
-    var originalTitle: String? = null
-
-    @ColumnInfo(name = "original_language")
-    var originalLanguage: String? = null
-
-    @ColumnInfo(name = "title")
-    var title: String? = null
-
-    @ColumnInfo(name = "backdrop_path")
-    var backdropPath: String? = null
-
-    @ColumnInfo(name = "popularity")
-    var popularity: Long = 0
-
-    @ColumnInfo(name = "vote_count")
-    var voteCount: Int = 0
-
-    @ColumnInfo(name = "video")
-    var video: Boolean = false
-
-    @ColumnInfo(name = "vote_average")
-    var voteAverage: Long = 0
-}
+) : BaseEntity(), Parcelable
