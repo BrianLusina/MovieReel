@@ -5,6 +5,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import com.moviereel.data.db.dao.MovieNPDao
 import com.moviereel.data.db.dao.MoviePopularDao
+import com.moviereel.data.db.dao.MovieTRDao
 import com.moviereel.data.db.entities.GenreEntity
 import com.moviereel.data.db.entities.movie.*
 
@@ -23,4 +24,6 @@ abstract class MovieReelDatabase : RoomDatabase(){
     abstract fun getMovieNowPlayingDao() : MovieNPDao
 
     abstract fun getMoviePopularDao() : MoviePopularDao
+
+    abstract fun getMovieTopRatedDao() : MovieTRDao
 }

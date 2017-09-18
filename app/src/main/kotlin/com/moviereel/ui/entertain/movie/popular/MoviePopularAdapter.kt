@@ -27,5 +27,4 @@ constructor(val moviePopularList: ArrayList<MoviePEntity>) : EntertainPageBaseAd
             }
         }
     }
-
 }

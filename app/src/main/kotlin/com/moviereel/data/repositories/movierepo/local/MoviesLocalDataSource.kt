@@ -5,8 +5,10 @@ import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.api.model.movie.response.MoviePopularResponse
 import com.moviereel.data.db.dao.MovieNPDao
 import com.moviereel.data.db.dao.MoviePopularDao
+import com.moviereel.data.db.dao.MovieTRDao
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
 import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -22,8 +24,11 @@ import javax.inject.Singleton
 @Singleton
 class MoviesLocalDataSource
 @Inject
-constructor(val moviesNPDao: MovieNPDao, val moviePopularDao: MoviePopularDao) : MovieDataSource {
+constructor(val moviesNPDao: MovieNPDao,
+            val moviePopularDao: MoviePopularDao,
+            val movieTopRatedDao: MovieTRDao) : MovieDataSource {
 
+    // ************************ NOW PLAYING MOVIES **************************************************
     /**
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently now playing
@@ -49,13 +54,7 @@ constructor(val moviesNPDao: MovieNPDao, val moviePopularDao: MoviePopularDao) :
                 }
     }
 
-    /**
-     * API call to get the latest movies being shown*/
-    override fun doGetMoviesLatest(remote: Boolean, language: String): Observable<BaseResultsResponse.MovieLatestResponse> {
-        // return moviesNPDao.getMoviesLatest(language)
-        return null!!
-    }
-
+    // ************************ POPULAR MOVIES **************************************************
     /**
      * Does an api call to get a list of popular movies
      * @return A list of [MoviePopularResponse] we get from the api call
@@ -67,7 +66,7 @@ constructor(val moviesNPDao: MovieNPDao, val moviePopularDao: MoviePopularDao) :
     /**
      * Saves popular movies to database
      * */
-    fun savePopularMoviesToDb(moviePopularData : Flowable<List<MoviePEntity>>) {
+    fun savePopularMoviesToDb(moviePopularData: Flowable<List<MoviePEntity>>) {
         moviePopularData.subscribeOn(Schedulers.newThread())
                 .subscribe({
                     it.forEach {
@@ -79,101 +78,33 @@ constructor(val moviesNPDao: MovieNPDao, val moviePopularDao: MoviePopularDao) :
                 })
     }
 
-/*    override fun insertMovieNowPlayingItem(movieNPEntity: MovieNPEntity): Observable<Boolean> {
-    return mDbHelper.insertMovieNowPlayingItem(movieNPEntity)
-}
+    // ************************ TOP RATED MOVIES **************************************************
+    override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieTREntity>> {
+        return movieTopRatedDao.getAllMoviesTopRated()
+    }
 
-override fun insertMovieNowPlayingItemList(movieNPEntities: List<MovieNPEntity>): Observable<Boolean> {
-    return mDbHelper.insertMovieNowPlayingItemList(movieNPEntities)
-}
+    /**
+     * Saves popular movies to database
+     * */
+    fun saveTopRatedMoviesToDb(movieTopRatedData: Flowable<List<MovieTREntity>>) {
+        movieTopRatedData
+                .subscribeOn(Schedulers.newThread())
+                .subscribe({
+                    it.forEach {
+                        movieTopRatedDao.insertMovieTopRated(it)
+                    }
+                }, {
+                    // error
+                    error("Error encountered saving popular movies ${it.message}", it)
+                })
+    }
 
-override fun insertMovieLatestItem(movieLatestEntity: MovieLatestEntity): Observable<Boolean> {
-    return mDbHelper.insertMovieLatestItem(movieLatestEntity)
-}
+    // ************************ LATEST MOVIES **************************************************
 
-override fun insertMoviePopularItem(moviePEntity: MoviePEntity): Observable<Boolean> {
-    return mDbHelper.insertMoviePopularItem(moviePEntity)
-}
-
-override fun insertMoviePopularItemList(moviePEntities: List<MoviePEntity>): Observable<Boolean> {
-    return mDbHelper.insertMoviePopularItemList(moviePEntities)
-}
-
-override fun insertMovieTopRatedItem(movieTREntity: MovieTREntity): Observable<Boolean> {
-    return mDbHelper.insertMovieTopRatedItem(movieTREntity)
-}
-
-override fun insertMovieTopRatedItemList(movieTREntities: List<MovieTREntity>): Observable<Boolean> {
-    return mDbHelper.insertMovieTopRatedItemList(movieTREntities)
-}
-
-override fun getNowPlayingMovieItem(movieNowPlayingId: Long): Observable<MovieNPEntity> {
-    return mDbHelper.getNowPlayingMovieItem(movieNowPlayingId)
-}
-
-override val movieNPItems: Observable<List<MovieNPEntity>>
-    get() = mDbHelper.movieNPItems
-
-override fun getMovieLatestItem(movieLatestModelId: Long): Observable<MovieLatestEntity> {
-    return mDbHelper.getMovieLatestItem(movieLatestModelId)
-}
-
-override fun getMoviePopularItem(moviePopularId: Long): Observable<MoviePEntity> {
-    return mDbHelper.getMoviePopularItem(moviePopularId)
-}
-
-override val moviePItemList: Observable<List<MoviePEntity>>
-    get() = mDbHelper.moviePItemList
-
-override fun getMovieTopRatedItem(movieTopRatedId: Long): Observable<MovieTREntity> {
-    return mDbHelper.getMovieTopRatedItem(movieTopRatedId)
-}
-
-override val movieTRItemList: Observable<List<MovieTREntity>>
-    get() = mDbHelper.movieTRItemList
-
-override fun updateNowPlayingMovieItem(movieNPEntity: MovieNPEntity): Observable<Boolean> {
-    return mDbHelper.updateNowPlayingMovieItem(movieNPEntity)
-}
-
-override fun updateMovieLatestItem(movieLatestEntity: MovieLatestEntity): Observable<Boolean> {
-    return mDbHelper.updateMovieLatestItem(movieLatestEntity)
-}
-
-override fun updateMoviePopularItem(moviePEntity: MoviePEntity): Observable<Boolean> {
-    return mDbHelper.updateMoviePopularItem(moviePEntity)
-}
-
-override fun updateMovieTopRatedItem(movieTREntity: MovieTREntity): Observable<Boolean> {
-    return mDbHelper.updateMovieTopRatedItem(movieTREntity)
-}
-
-override fun deleteNowPlayingMovieItem(movieNowPlayingId: Long): Observable<Long> {
-    return mDbHelper.deleteNowPlayingMovieItem(movieNowPlayingId)
-}
-
-override fun deleteMovieNowPlayingItems(movieNPEntities: List<MovieNPEntity>): Observable<Int> {
-    return mDbHelper.deleteMovieNowPlayingItems(movieNPEntities)
-}
-
-override fun deleteMovieLatestItem(movieLatestId: Long): Observable<Boolean> {
-    return mDbHelper.deleteMovieLatestItem(movieLatestId)
-}
-
-override fun deleteMoviePopularItem(moviePopularId: Long): Observable<Long> {
-    return mDbHelper.deleteMoviePopularItem(moviePopularId)
-}
-
-override fun deleteMoviePopularItemList(moviePEntities: List<MoviePEntity>): Observable<Int> {
-    return mDbHelper.deleteMoviePopularItemList(moviePEntities)
-}
-
-override fun deleteMovieTopRatedItem(movieTopRatedId: Long): Observable<Long> {
-    return mDbHelper.deleteMovieTopRatedItem(movieTopRatedId)
-}
-
-override fun deleteMovieTopRatedItemList(movieTREntities: List<MovieTREntity>): Observable<Int> {
-    return mDbHelper.deleteMovieTopRatedItemList(movieTREntities)
-}*/
-
+    /**
+     * API call to get the latest movies being shown*/
+    override fun doGetMoviesLatest(remote: Boolean, language: String): Observable<BaseResultsResponse.MovieLatestResponse> {
+        // return moviesNPDao.getMoviesLatest(language)
+        return null!!
+    }
 }

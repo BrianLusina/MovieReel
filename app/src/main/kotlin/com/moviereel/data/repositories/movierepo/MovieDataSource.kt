@@ -4,6 +4,7 @@ import com.moviereel.data.api.model.BaseResultsResponse
 import com.moviereel.data.api.model.movie.response.MovieNPResponse
 import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MovieTREntity
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import org.jetbrains.anko.AnkoLogger
@@ -17,6 +18,7 @@ interface MovieDataSource : AnkoLogger {
 
     override val loggerTag: String
         get() = super.loggerTag
+
     /**
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently
@@ -38,4 +40,13 @@ interface MovieDataSource : AnkoLogger {
      * @return A list of [MoviePEntity] we get from the api call
      */
     fun doGetMoviesPopular(remote: Boolean = true, page: Int, language: String): Flowable<List<MoviePEntity>>
+
+    /**
+     * Gets top rated movies
+     * @param remote whether the data will come from a remote source
+     * @param page the page of the data
+     * @param language the language to query from the data source
+     * @param region the region to get this data from
+     * */
+    fun doGetMoviesTopRated(remote: Boolean = true, page: Int, language: String, region : String): Flowable<List<MovieTREntity>>
 }
