@@ -10,7 +10,7 @@ import io.reactivex.Flowable
  * @Notes Dao for Movie Now Playing
  */
 @Dao
-interface MovieNPDao {
+interface MovieNowPlayingDao {
 
     // ****************** CREATE ************************
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -2,9 +2,9 @@ package com.moviereel.data.repositories.movierepo.local
 
 import com.moviereel.data.api.model.movie.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.MoviePopularResponse
-import com.moviereel.data.db.dao.MovieNPDao
+import com.moviereel.data.db.dao.MovieNowPlayingDao
 import com.moviereel.data.db.dao.MoviePopularDao
-import com.moviereel.data.db.dao.MovieTRDao
+import com.moviereel.data.db.dao.MovieTopRatedDao
 import com.moviereel.data.db.entities.movie.MovieLatestEntity
 import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 import com.moviereel.data.db.entities.movie.MoviePopularEntity
@@ -23,9 +23,9 @@ import javax.inject.Singleton
 @Singleton
 class MoviesLocalDataSource
 @Inject
-constructor(val moviesNPDao: MovieNPDao,
+constructor(val moviesNowPlayingDao: MovieNowPlayingDao,
             val moviePopularDao: MoviePopularDao,
-            val movieTopRatedDao: MovieTRDao) : MovieDataSource {
+            val movieTopRatedDao: MovieTopRatedDao) : MovieDataSource {
 
     // ************************ NOW PLAYING MOVIES **************************************************
     /**
@@ -34,7 +34,7 @@ constructor(val moviesNPDao: MovieNPDao,
      * @return [MovieNowPlayingResponse] response to return from the api call
      */
     override fun getMoviesNowPlaying(remote: Boolean?, page: Int, language: String): Flowable<List<MovieNowPlayingEntity>> {
-        return moviesNPDao.getAllMoviesNowPlaying()
+        return moviesNowPlayingDao.getAllMoviesNowPlaying()
     }
 
     /**
@@ -45,7 +45,7 @@ constructor(val moviesNPDao: MovieNPDao,
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({
                     it.forEach {
-                        moviesNPDao.insertMovieNpList(it)
+                        moviesNowPlayingDao.insertMovieNpList(it)
                     }
                 }) {
                     // consume error
@@ -103,7 +103,7 @@ constructor(val moviesNPDao: MovieNPDao,
     /**
      * API call to get the latest movies being shown*/
     override fun doGetMoviesLatest(remote: Boolean, language: String): Flowable<MovieLatestEntity> {
-        // return moviesNPDao.getMoviesLatest(language)
+        // return moviesNowPlayingDao.getMoviesLatest(language)
         return null!!
     }
 }

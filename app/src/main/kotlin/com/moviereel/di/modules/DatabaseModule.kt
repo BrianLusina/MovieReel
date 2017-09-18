@@ -3,9 +3,9 @@ package com.moviereel.di.modules
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.moviereel.data.db.MovieReelDatabase
-import com.moviereel.data.db.dao.MovieNPDao
+import com.moviereel.data.db.dao.MovieNowPlayingDao
 import com.moviereel.data.db.dao.MoviePopularDao
-import com.moviereel.data.db.dao.MovieTRDao
+import com.moviereel.data.db.dao.MovieTopRatedDao
 import com.moviereel.di.qualifiers.AppContext
 import com.moviereel.di.qualifiers.DatabaseInfo
 import com.moviereel.utils.DATABASE_NAME
@@ -33,7 +33,7 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideMovieNowPlayingDao(database: MovieReelDatabase): MovieNPDao {
+    fun provideMovieNowPlayingDao(database: MovieReelDatabase): MovieNowPlayingDao {
         return database.getMovieNowPlayingDao()
     }
 
@@ -43,7 +43,7 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideMovieTopRatedDao(database: MovieReelDatabase) : MovieTRDao{
+    fun provideMovieTopRatedDao(database: MovieReelDatabase) : MovieTopRatedDao {
         return database.getMovieTopRatedDao()
     }
 }
