@@ -1,7 +1,7 @@
 package com.moviereel.ui.detail
 
 import android.support.v4.app.FragmentManager
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 
 /**
  * @author lusinabrian on 10/06/17.
@@ -9,7 +9,7 @@ import com.moviereel.data.db.entities.movie.MovieNPEntity
  */
 class MovieDetailsViewPagerAdapter
 //@Inject
-constructor(fragmentManager: FragmentManager, itemObject: MovieNPEntity){
+constructor(fragmentManager: FragmentManager, itemObject: MovieNowPlayingEntity){
 //    override fun getCount(): Int {
 //        return super.getCount()
 //    }

@@ -20,7 +20,6 @@ open class BaseEntity(
         @PrimaryKey(autoGenerate = false)
         @Expose
         @SerializedName("id")
-        @ColumnInfo(name = "id")
         open var id: Long = 0,
 
         @Expose
@@ -66,7 +65,7 @@ open class BaseEntity(
         @Expose
         @SerializedName("backdrop_path")
         @ColumnInfo(name = "backdrop_path")
-        open var backdropPath: String = "",
+        open var backdropPath: String? = null,
 
         @Expose
         @SerializedName("adult")

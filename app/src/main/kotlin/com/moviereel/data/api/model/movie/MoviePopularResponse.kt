@@ -1,9 +1,9 @@
-package com.moviereel.data.api.model.movie.response
+package com.moviereel.data.api.model.movie
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.moviereel.data.api.model.BaseResponse
-import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MoviePopularEntity
 
 /**
  * @author lusinabrian on 01/04/17
@@ -13,4 +13,4 @@ import com.moviereel.data.db.entities.movie.MoviePEntity
 data class MoviePopularResponse(
         @Expose
         @SerializedName("results")
-        var results: List<MoviePEntity>) : BaseResponse()
+        var results: ArrayList<MoviePopularEntity>) : BaseResponse()

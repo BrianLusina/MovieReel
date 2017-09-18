@@ -14,8 +14,8 @@ import com.moviereel.data.db.entities.movie.*
  */
 
 @Database(entities = arrayOf(
-        MovieNPEntity::class, MovieLatestEntity::class, MoviePEntity::class,
-        MovieTREntity::class, MovieUEntity::class, GenreEntity::class),
+        MovieNowPlayingEntity::class, MovieLatestEntity::class, MoviePopularEntity::class,
+        MovieTopRatedEntity::class, MovieUpcomingEntity::class, GenreEntity::class),
         version = 1,
         exportSchema = false)
 @TypeConverters(DbConverters::class)

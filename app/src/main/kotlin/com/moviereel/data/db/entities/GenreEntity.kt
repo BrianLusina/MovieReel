@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "genre_ids")
 data class GenreEntity(
 
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey(autoGenerate = false)
         @Expose
         @ColumnInfo(name = "genreId")
         @SerializedName("id")

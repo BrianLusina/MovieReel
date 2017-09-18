@@ -1,6 +1,6 @@
 package com.moviereel.ui.entertain.movie.popular
 
-import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MoviePopularEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseView
 
 /**
@@ -13,5 +13,5 @@ interface MoviePopularView : EntertainPageBaseView {
      * Adds a list of popular movies to the adapter
      * @param popularMovieList Popular movie list
      * */
-    fun updatePopularMovies(popularMovieList: List<MoviePEntity>)
+    fun updatePopularMovies(popularMovieList: List<MoviePopularEntity>)
 }

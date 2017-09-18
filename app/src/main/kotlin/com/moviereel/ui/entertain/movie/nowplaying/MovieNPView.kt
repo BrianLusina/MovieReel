@@ -1,6 +1,6 @@
 package com.moviereel.ui.entertain.movie.nowplaying
 
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseView
 
 /**
@@ -16,6 +16,6 @@ interface MovieNPView : EntertainPageBaseView {
      * @param movieResultsResponseList data to use to update movie list
      * *
      */
-    fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNPEntity>)
+    fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNowPlayingEntity>)
 
 }

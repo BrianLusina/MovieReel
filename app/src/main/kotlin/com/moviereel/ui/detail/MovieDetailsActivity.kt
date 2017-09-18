@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager
 import com.bumptech.glide.Glide
 import com.moviereel.BuildConfig
 import com.moviereel.R
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 import com.moviereel.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.details_layout.*
 import javax.inject.Inject
@@ -28,7 +28,7 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
     //@Inject
     lateinit var movieViewPagerAdapter: MovieDetailsViewPagerAdapter
 
-    lateinit var movieObject: MovieNPEntity
+    lateinit var movieObject: MovieNowPlayingEntity
 
     private var mMaxScrollSize: Int = 0
     private var mIsImageHidden: Boolean = false
