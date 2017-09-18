@@ -1,31 +1,32 @@
-package com.moviereel.ui.entertain.movie.nowplaying
+package com.moviereel.ui.entertain.movie.toprated
 
 import android.view.View
 import com.moviereel.BuildConfig
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
+import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
 import com.moviereel.utils.loadImageFromUrl
 import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
 import org.jetbrains.anko.toast
 
 /**
- * @author lusinabrian on 16/09/17.
+ * @author lusinabrian on 18/09/17.
  * @Notes
  */
-class MovieNpViewHolder(itemView: View, val movieNowPlayingEntityList: ArrayList<MovieNowPlayingEntity>)
-    : EntertainPageBaseViewHolder<MovieNowPlayingEntity>(itemView) {
+class MovieTopRatedViewHolder(itemView: View, val movieTopRatedList: ArrayList<MovieTopRatedEntity>)
+    : EntertainPageBaseViewHolder<MovieTopRatedEntity>(itemView) {
+
     override fun onBind(position: Int) {
-        val movieEntity = movieNowPlayingEntityList[position]
+        val movieTopRatedEntity = movieTopRatedList[position]
 
         with(itemView) {
-            itemTitleTxtView.text = movieEntity.title
-//                itemVoteAvgTxtView.text = movieEntity.voteAverage.toString()
+            itemTitleTxtView.text = movieTopRatedEntity.title
+//                itemVoteAvgTxtView.text = movieTopRatedEntity.voteAverage.toString()
             // itemMovieCategoriesTxtView
             // itemMovieRuntimeTxtView
 
             // glide images to image views
             itemImgView.loadImageFromUrl(context,
-                    BuildConfig.IMAGE_BASE_URL + "w780" + movieEntity.posterPath,
+                    BuildConfig.IMAGE_BASE_URL + "w780" + movieTopRatedEntity.posterPath,
                     itemProgressbar)
 
             // movieRuntime.setText(movieResultsResponse.get);
@@ -34,9 +35,9 @@ class MovieNpViewHolder(itemView: View, val movieNowPlayingEntityList: ArrayList
 
             // open movie details activity
             setOnClickListener {
-                context.toast("$movieEntity")
+                context.toast("$movieTopRatedEntity")
 //                    context.startActivity<MovieDetailsActivity>(
-//                            "MovieObj" to movieEntity
+//                            "MovieObj" to movieTopRatedEntity
 //                    )
             }
         }

@@ -2,7 +2,9 @@ package com.moviereel.data.db.entities.movie
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import com.moviereel.data.db.entities.*
 
 /**
  * @author lusinabrian on 15/05/17.
@@ -12,70 +14,60 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "movie_latest")
 data class MovieLatestEntity(
 
-        @PrimaryKey(autoGenerate = true)
-        var id: Long,
+        @Expose
+        @ColumnInfo(name = "belongs_to_collection")
+        var belongsToCollection: String? = null,
 
-        @ColumnInfo
-        var belongsToCollection: String,
-
-        @ColumnInfo
+        @Expose
+        @ColumnInfo(name = "budget")
         var budget: Int = 0,
 
-        @ColumnInfo
+        @Expose
+        @ColumnInfo(name = "genres")
+        var genres: ArrayList<GenreEntity>,
+
+        @Expose
+        @SerializedName("homepage")
+        @ColumnInfo(name = "homepage")
         var homepage: String,
 
-        @ColumnInfo
+        @Expose
+        @SerializedName("imdb_id")
+        @ColumnInfo(name = "imdb_id")
         var imdbId: String,
 
-        // TODO: ADD RELATIONS TO OTHER TABLES, production companies, countries and spoken languages
-//    @ColumnInfo
-//    GenreResponse genres;
-//    @ColumnInfo
-//    List<ProductionCompany> productionCompanies;
-//
-//    @ColumnInfo
-//    List<ProductionCountry> productionCountries;
-//
-//    @ColumnInfo
-//    List<SpokenLanguage> spokenLanguages;
-//
-//    @ColumnInfo
-//    List<Integer> genreIds;
+        @Expose
+        @SerializedName("production_companies")
+        @ColumnInfo(name = "production_companies")
+        var productionCompanies: ArrayList<ProductionCompany>,
 
-        @ColumnInfo
+        @Expose
+        @SerializedName("production_countries")
+        @ColumnInfo(name = "production_countries")
+        var productionCountry: ArrayList<ProductionCountry>,
+
+        @Expose
+        @SerializedName("revenue")
+        @ColumnInfo(name = "revenue")
         var revenue: Int,
 
-        @ColumnInfo
+        @Expose
+        @SerializedName("runtime")
+        @ColumnInfo(name = "runtime")
         var runtime: Int,
 
-        @ColumnInfo
+        @Expose
+        @SerializedName("spoken_languages")
+        @ColumnInfo(name = "spoken_languages")
+        var spokenLanguage: ArrayList<SpokenLanguage>,
+
+        @Expose
+        @SerializedName("status")
+        @ColumnInfo(name = "status")
         var status: String,
 
-        @ColumnInfo
-        var tagline: String,
-
-        @ColumnInfo
-        var adult: Boolean,
-
-        @ColumnInfo
-        var posterPath: String,
-
-        @ColumnInfo
-        var overview: String,
-
-        @ColumnInfo
-        var originalLanguage: String,
-
-        @ColumnInfo
-        var backdropPath: String,
-
-        @ColumnInfo
-        var video: Boolean,
-
-        @ColumnInfo
-        var voteCount: Int,
-        @ColumnInfo
-        var voteAverage: Float,
-        @ColumnInfo
-        var popularity: Float
-)
+        @Expose
+        @SerializedName("tagline")
+        @ColumnInfo(name = "tagline")
+        var tagline: String
+) : BaseEntity()

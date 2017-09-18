@@ -10,7 +10,10 @@ import com.moviereel.di.scopes.PerActivity
 import com.moviereel.ui.detail.MovieDetailsPresenter
 import com.moviereel.ui.detail.MovieDetailsPresenterImpl
 import com.moviereel.ui.detail.MovieDetailsView
-import com.moviereel.ui.entertain.movie.*
+import com.moviereel.ui.entertain.movie.MovieFragPresenter
+import com.moviereel.ui.entertain.movie.MovieFragPresenterImpl
+import com.moviereel.ui.entertain.movie.MovieFragView
+import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPAdapter
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenter
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenterImpl
@@ -19,6 +22,7 @@ import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
 import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenter
 import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenterImpl
 import com.moviereel.ui.entertain.movie.popular.MoviePopularView
+import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenter
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenterImpl
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedView
@@ -102,7 +106,6 @@ class ActivityModule(val mActivity: AppCompatActivity) {
         return moviePopularPresenter
     }
 
-
     @Provides
     fun provideMoviePopularAdapter(): MoviePopularAdapter {
         return MoviePopularAdapter(ArrayList())
@@ -113,6 +116,15 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     @PerActivity
     fun provideTopRatedPresenter(movieTopRatedPresenter: MovieTopRatedPresenterImpl<MovieTopRatedView>): MovieTopRatedPresenter<MovieTopRatedView> {
         return movieTopRatedPresenter
+    }
+
+    /**
+     * Top Rated Movie adapter
+     * */
+    @Provides
+    @PerActivity
+    fun provideTopRatedMovieAdapter(): MovieTopRatedAdapter {
+        return MovieTopRatedAdapter(ArrayList())
     }
 
     // upcoming

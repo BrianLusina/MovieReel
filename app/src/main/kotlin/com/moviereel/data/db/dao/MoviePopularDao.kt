@@ -1,7 +1,7 @@
 package com.moviereel.data.db.dao
 
 import android.arch.persistence.room.*
-import com.moviereel.data.db.entities.movie.MoviePEntity
+import com.moviereel.data.db.entities.movie.MoviePopularEntity
 import io.reactivex.Flowable
 
 /**
@@ -13,23 +13,23 @@ interface MoviePopularDao {
 
     // ****************** CREATE ************************
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMoviePopular(vararg moviePEntity: MoviePEntity)
+    fun insertMoviePopular(vararg moviePopularEntity: MoviePopularEntity)
 
     // ****************** READ ************************
     @Query("select * from movie_popular")
-    fun getAllMoviesPopular(): Flowable<List<MoviePEntity>>
+    fun getAllMoviesPopular(): Flowable<List<MoviePopularEntity>>
 
     @Query("select * from movie_popular where id = :moviePopularId")
-    fun getMoviePopularById(moviePopularId: Long): Flowable<MoviePEntity>
+    fun getMoviePopularById(moviePopularId: Long): Flowable<MoviePopularEntity>
 
     // ****************** UPDATE ************************
 
     @Update
-    fun updateMoviePopular(vararg movieNPEntity: MoviePEntity)
+    fun updateMoviePopular(vararg movieNPEntity: MoviePopularEntity)
 
     // ****************** DELETE ************************
 
     @Delete
-    fun deleteMoviePopular(moviePEntity: MoviePEntity)
+    fun deleteMoviePopular(moviePopularEntity: MoviePopularEntity)
 
 }

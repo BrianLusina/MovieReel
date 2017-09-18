@@ -1,7 +1,6 @@
 package com.moviereel.ui.entertain.base
 
 import android.support.annotation.StringRes
-import com.moviereel.data.db.entities.movie.MovieNPEntity
 import com.moviereel.ui.base.BaseView
 
 /**
