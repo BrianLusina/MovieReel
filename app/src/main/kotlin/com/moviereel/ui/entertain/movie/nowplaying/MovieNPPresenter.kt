@@ -1,6 +1,6 @@
 package com.moviereel.ui.entertain.movie.nowplaying
 
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 import com.moviereel.di.scopes.PerActivity
 import com.moviereel.ui.entertain.base.EntertainPageBasePresenter
 
@@ -15,6 +15,6 @@ interface MovieNPPresenter<V : MovieNPView> : EntertainPageBasePresenter<V> {
 
     /**picks the data of the item clicked in the RecyclerView
      * start activity for the clicked movie item */
-    fun onItemClicked(bundleKey: String, movieList: List<MovieNPEntity>)
+    fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingEntity>)
 
 }

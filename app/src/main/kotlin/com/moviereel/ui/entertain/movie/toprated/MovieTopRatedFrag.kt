@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.moviereel.data.db.entities.movie.MovieTREntity
+import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
@@ -61,8 +61,8 @@ class MovieTopRatedFrag : EntertainPageBaseFragment(), MovieTopRatedView {
         movieTopRatedPresenter.onSwipeRefreshTriggered()
     }
 
-    override fun updateTopRatedMovies(movieTopRatedArrList: List<MovieTREntity>) {
-        val data = arrayListOf<MovieTREntity>()
+    override fun updateTopRatedMovies(movieTopRatedArrList: List<MovieTopRatedEntity>) {
+        val data = arrayListOf<MovieTopRatedEntity>()
         data += movieTopRatedArrList
         movieTopRatedAdapter.addItemsUsingDiff(data)
     }

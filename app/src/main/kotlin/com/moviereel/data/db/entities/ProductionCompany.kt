@@ -1,4 +1,4 @@
-package com.moviereel.data.api.model
+package com.moviereel.data.db.entities
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

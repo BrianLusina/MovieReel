@@ -4,8 +4,6 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.moviereel.BuildConfig
-import com.moviereel.data.api.ApiHeaderInterceptor
-import com.moviereel.data.api.ApiKeyInterceptor
 import com.moviereel.data.api.ApiRetrofitService
 import com.moviereel.di.qualifiers.ApiInfo
 import com.moviereel.di.qualifiers.AppContext
@@ -66,16 +64,34 @@ class ApiModule {
                 .build()
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideOkHttpClient(cache: Cache): OkHttpClient {
         return OkHttpClient.Builder()
                 .cache(cache)
-                .addInterceptor(ApiKeyInterceptor())
-                .addInterceptor(ApiHeaderInterceptor())
+                .addInterceptor({
+                    val originalRequest = it.request()
+                    val originalUrl = originalRequest.url()
+                    val url = originalUrl.newBuilder()
+                            .addQueryParameter("api_key", BuildConfig.MOVIE_DB_KEY)
+                            .build()
+                    val requestBuilder = originalRequest.newBuilder().url(url)
+                    val request = requestBuilder.build()
+                    it.proceed(request)
+                })
+                .addInterceptor {
+                    var request = it.request()
+                    request = request.newBuilder()
+                            .addHeader("Accept", "application/json")
+                            .addHeader("Content-type", "application/json")
+                            .build()
+                    it.proceed(request)
+                }
                 .build()
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideOkHttpCache(@AppContext context: Context): Cache {
         val cacheSize = 10 * 1024 * 1024 // 10 MB
         return Cache(context.cacheDir, cacheSize.toLong())

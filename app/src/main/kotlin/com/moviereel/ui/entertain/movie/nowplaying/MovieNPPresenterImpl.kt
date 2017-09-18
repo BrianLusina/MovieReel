@@ -4,7 +4,7 @@ package com.moviereel.ui.entertain.movie.nowplaying
 import android.support.design.widget.Snackbar
 import com.moviereel.R
 import com.moviereel.data.DataManager
-import com.moviereel.data.db.entities.movie.MovieNPEntity
+import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 import com.moviereel.data.io.SchedulerProvider
 import com.moviereel.ui.entertain.base.EntertainPageBasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
@@ -82,7 +82,7 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
      * *
      * @param movieList
      */
-    override fun onItemClicked(bundleKey: String, movieList: List<MovieNPEntity>) {
+    override fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
 
     }
 
