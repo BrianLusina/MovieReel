@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 /**
  * @author lusinabrian on 28/03/17
- * * Interface that will interact with the API and make get and post requests
+ * Interface that will interact with the API and make get and post requests
  */
 
 interface ApiRetrofitService {
@@ -26,9 +26,6 @@ interface ApiRetrofitService {
     @GET(ENDPOINT_MOVIE_NOW_PLAYING)
     fun getMoviesNowPlaying(@Query("language") language: String, @Query("page") page: Int)
             : Flowable<MovieNowPlayingResponse>
-
-    @GET(ENDPOINT_GENRE_MOVIE_LIST)
-    fun getMovieGenreList(@Query("language") language: String): Flowable<List<GenreEntity>>
 
     /*** API call to get the latest movies being shown* */
     @GET(ENDPOINT_MOVIE_LATEST)
@@ -60,6 +57,8 @@ interface ApiRetrofitService {
     @GET(ENDPOINT_MOVIE_UPCOMING)
     fun doGetMoviesUpcoming(@Query("page") page: Int, @Query("language") language: String, @Query("region") region: String): Flowable<MovieUpcomingResponse>
 
+    @GET(ENDPOINT_GENRE_MOVIE_LIST)
+    fun getMovieGenreList(@Query("language") language: String): Flowable<List<GenreEntity>>
 /*    */
     /**
      * Get a list of all the top rated tv shows on TMDB

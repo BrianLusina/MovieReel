@@ -9,7 +9,7 @@ import io.reactivex.Flowable
  * @Notes Top rated movie dao
  */
 @Dao
-interface MovieTRDao {
+interface MovieTopRatedDao {
     // ****************** CREATE ************************
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovieTopRated(vararg movieTopRatedEntity: MovieTopRatedEntity)
