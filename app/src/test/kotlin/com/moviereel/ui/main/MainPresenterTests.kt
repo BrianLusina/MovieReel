@@ -27,7 +27,7 @@ class MainPresenterTests {
     @Mock lateinit var mMockDataManager: DataManager
     lateinit var mTestScheduler: TestScheduler
 
-    lateinit var mainPresenterImpl: MainPresenterImpl<MainView>
+    lateinit var mainPresenter: MainPresenter<MainView>
 
     @Before
     @Throws(Exception::class)
@@ -35,15 +35,15 @@ class MainPresenterTests {
         MockitoAnnotations.initMocks(this)
         val compositeDisposable = CompositeDisposable()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
-        mainPresenterImpl = MainPresenterImpl<MainView>(mMockDataManager, testSchedulerProvider, compositeDisposable)
-        mainPresenterImpl.onAttach(mMockMainView)
+        mainPresenter = MainPresenterImpl(mMockDataManager, testSchedulerProvider, compositeDisposable)
+        mainPresenter.onAttach(mMockMainView)
     }
 
     @After
     @Throws(Exception::class)
     fun tearDown() {
         RxAndroidPlugins.reset()
-        mainPresenterImpl.onDetach()
+        mainPresenter.onDetach()
     }
 
     @Test
@@ -51,31 +51,6 @@ class MainPresenterTests {
         mMockMainView.showMoviesFragment()
 
         verify<MainView>(mMockMainView).showMoviesFragment()
-    }
-
-    /**
-     * Fragment Show the shows that are most popular
-     */
-    @Test
-    fun testShouldShowPopularMoviesFragment() {
-        mMockMainView.showPopularMoviesFragment()
-
-        verify<MainView>(mMockMainView).showPopularMoviesFragment()
-    }
-
-    @Test
-    fun testShouldShowTopRatedMoviesFragment() {
-        mMockMainView.showTopRatedMoviesFragment()
-
-        verify<MainView>(mMockMainView).showTopRatedMoviesFragment()
-    }
-
-    @Test
-    fun testShouldShowUpcomingMoviesFragment() {
-        mMockMainView.showUpcomingMoviesFragment()
-
-        verify<MainView>(mMockMainView).showUpcomingMoviesFragment()
-
     }
 
     @Test

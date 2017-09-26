@@ -2,6 +2,7 @@ package com.moviereel.ui.intro
 
 import com.moviereel.TestSchedulerProvider
 import com.moviereel.data.DataManager
+import com.moviereel.ui.intro.splash.SplashPresenter
 import com.moviereel.ui.intro.splash.SplashPresenterImpl
 import com.moviereel.ui.intro.splash.SplashView
 import io.reactivex.android.plugins.RxAndroidPlugins
@@ -29,7 +30,7 @@ class SplashPresenterTest {
     @Mock lateinit var mMockDataManager: DataManager
     lateinit var mTestScheduler: TestScheduler
 
-    lateinit var mSplashPresenterImpl: SplashPresenterImpl<SplashView>
+    lateinit var mSplashPresenter: SplashPresenter<SplashView>
 
     @Before
     @Throws(Exception::class)
@@ -38,15 +39,15 @@ class SplashPresenterTest {
         val compositeDisposable = CompositeDisposable()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
 
-        mSplashPresenterImpl = SplashPresenterImpl<SplashView>(mMockDataManager, testSchedulerProvider, compositeDisposable)
-        mSplashPresenterImpl.onAttach(mMockSplashView)
+        mSplashPresenter = SplashPresenterImpl(mMockDataManager, testSchedulerProvider, compositeDisposable)
+        mSplashPresenter.onAttach(mMockSplashView)
     }
 
     @After
     @Throws(Exception::class)
     fun tearDown() {
         RxAndroidPlugins.reset()
-        mSplashPresenterImpl!!.onDetach()
+        mSplashPresenter.onDetach()
     }
 
     @Test
@@ -56,7 +57,7 @@ class SplashPresenterTest {
 
     @Test
     fun testSplashScreenShouldOpenMainActivityOnSecondStart() {
-        mMockSplashView!!.openAppIntroductionActivity()
+        mMockSplashView.openAppIntroductionActivity()
 
         verify<SplashView>(mMockSplashView).openMainActivity()
     }
