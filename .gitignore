@@ -5,6 +5,8 @@
 .DS_Store
 /build
 /captures
+keystores/*.json
+
 ### Android template
 # Built application files
 *.apk
