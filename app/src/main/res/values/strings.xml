@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Movie Reel</string>
-
     <!--Strings related to App introduction-->
     <string name="movie_app_intro_1_desc">Reeling in the shows!</string>
 

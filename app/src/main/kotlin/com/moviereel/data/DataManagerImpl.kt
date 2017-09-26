@@ -2,10 +2,7 @@ package com.moviereel.data
 
 import com.moviereel.data.api.model.movie.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.MoviePopularResponse
-import com.moviereel.data.db.entities.movie.MovieLatestEntity
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.data.db.entities.movie.*
 import com.moviereel.data.files.FileHelper
 import com.moviereel.data.prefs.PreferencesHelper
 import com.moviereel.data.repositories.RepositoryHelper
@@ -62,6 +59,10 @@ constructor(
 
     override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieTopRatedEntity>> {
         return mRepositoryHelper.doGetMoviesTopRated(remote, page, language, region)
+    }
+
+    override fun doGetMoviesUpcoming(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieUpcomingEntity>> {
+        return mRepositoryHelper.doGetMoviesUpcoming(remote, page, language, region)
     }
 
     /******************************PREFERENCES**********************************************/

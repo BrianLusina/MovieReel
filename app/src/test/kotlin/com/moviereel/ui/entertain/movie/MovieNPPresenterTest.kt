@@ -4,6 +4,7 @@ import android.support.design.widget.Snackbar
 import com.moviereel.R
 import com.moviereel.TestSchedulerProvider
 import com.moviereel.data.DataManager
+import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenter
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenterImpl
 import com.moviereel.ui.entertain.movie.nowplaying.MovieNPView
 import io.reactivex.android.plugins.RxAndroidPlugins
@@ -31,7 +32,7 @@ class MovieNPPresenterTest {
 
     @Mock lateinit var mMockDataManager: DataManager
 
-    lateinit var movieNPPresenterImpl: MovieNPPresenterImpl<MovieNPView>
+    lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
 
     @Before
     @Throws(Exception::class)
@@ -39,15 +40,15 @@ class MovieNPPresenterTest {
         MockitoAnnotations.initMocks(this)
         val compositeDisposable = CompositeDisposable()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
-        movieNPPresenterImpl = MovieNPPresenterImpl<MovieNPView>(mMockDataManager,testSchedulerProvider, compositeDisposable)
-        movieNPPresenterImpl.onAttach(mMockMovieNPView)
+        movieNPPresenter = MovieNPPresenterImpl(mMockDataManager,testSchedulerProvider, compositeDisposable)
+        movieNPPresenter.onAttach(mMockMovieNPView)
     }
 
     @After
     @Throws(Exception::class)
     fun tearDown() {
         RxAndroidPlugins.reset()
-        movieNPPresenterImpl.onDetach()
+        movieNPPresenter.onDetach()
     }
 
     /**
@@ -56,7 +57,7 @@ class MovieNPPresenterTest {
     @Test
     fun testShouldDisplayApiErrorSnackBar() {
 
-        mMockMovieNPView!!.showApiErrorSnackbar(R.string.snackbar_api_error,
+        mMockMovieNPView.showApiErrorSnackbar(R.string.snackbar_api_error,
                 R.string.snackbar_api_error_retry,
                 Snackbar.LENGTH_SHORT)
 

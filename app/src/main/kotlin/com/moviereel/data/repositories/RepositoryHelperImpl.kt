@@ -2,10 +2,7 @@ package com.moviereel.data.repositories
 
 import com.moviereel.data.api.model.movie.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.MoviePopularResponse
-import com.moviereel.data.db.entities.movie.MovieLatestEntity
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.data.db.entities.movie.*
 import com.moviereel.data.repositories.movierepo.MoviesRepoHelper
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -45,5 +42,9 @@ constructor(
 
     override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieTopRatedEntity>> {
         return moviesRepo.doGetMoviesTopRated(remote, page, language, region)
+    }
+
+    override fun doGetMoviesUpcoming(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieUpcomingEntity>> {
+        return moviesRepo.doGetMoviesUpcoming(remote, page, language, region)
     }
 }

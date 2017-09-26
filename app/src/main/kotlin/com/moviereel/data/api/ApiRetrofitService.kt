@@ -50,16 +50,17 @@ interface ApiRetrofitService {
 
     /**
      * Makes an API call to get upcoming movies
-     * @param request Request to make to fetch upcoming movies
-     * *
      * @return [MovieUpcomingResponse] what we get back when we request for upcoming movies
      */
     @GET(ENDPOINT_MOVIE_UPCOMING)
     fun doGetMoviesUpcoming(@Query("page") page: Int, @Query("language") language: String, @Query("region") region: String): Flowable<MovieUpcomingResponse>
 
+    /**
+     * get genre movie list
+     * */
     @GET(ENDPOINT_GENRE_MOVIE_LIST)
     fun getMovieGenreList(@Query("language") language: String): Flowable<List<GenreEntity>>
-/*    */
+
     /**
      * Get a list of all the top rated tv shows on TMDB
      * @param ratedRequest the request to send out to get the top rated tv shows

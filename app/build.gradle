@@ -5,15 +5,18 @@ apply plugin: "io.fabric"
 apply plugin: "signing"
 apply from: "../jacoco.gradle"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.triplet.play'
 
-
-// todo: move this to signing.gradle file
-// enable reading from keystore.properties file, change this if your properties file has a different name
-//def keystorePropertiesFile = rootProject.file("keystore.properties");
-//def keystoreProperties = new Properties()
-//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+import com.android.build.OutputFile
 
 android {
+    playAccountConfigs {
+        defaultAccountConfig {
+            serviceAccountEmail = rootProject.ext.serviceAccountEmail
+            jsonFile = rootProject.ext.pJsonKeyFile
+        }
+    }
+
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
@@ -22,10 +25,12 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-
-
+        ndk {
+            abiFilters "armeabi-v7a", "x86", "mips", "x86_64", "armeabi", "arm64-v8a"
+        }
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
 
     dataBinding {
@@ -44,21 +49,46 @@ android {
         cruncherEnabled = false
     }
 
-    // TODO: signing configs
-//    signingConfigs {
-//        release {
-//            keyAlias keystoreProperties['keyAlias']
-//            keyPassword keystoreProperties['keyPassword']
-//            storeFile rootProject.file(keystoreProperties['storeFile'])
-//            storePassword keystoreProperties['storePassword']
-//        }
-//    }
+    splits {
+        abi {
+            // Enables building multiple APKs per ABI.
+            enable rootProject.ext.enableSeparateBuildPerCPUArchitecture
+            universalApk rootProject.ext.enableUniversalApk
+
+            // By default all ABIs are included, so use reset() and include to specify that we only
+            // want APKs for x86, armeabi-v7a, and mips.
+            // Resets the list of ABIs that Gradle should create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for.
+            include "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "x86", "x86_64"
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias rootProject.ext.keystoreProperties['keyAlias']
+            keyPassword rootProject.ext.keystoreProperties['keyPassword']
+            storeFile rootProject.file(rootProject.ext.keystoreProperties['storeFile'])
+            storePassword rootProject.ext.keystoreProperties['storePassword']
+        }
+    }
+
+    // configurations for deployment
+    play {
+        track = "production"
+        untrackOld = true // will untrack 'alpha' while upload to 'beta'
+        errorOnSizeLimit = false
+        uploadImages = true
+    }
 
     buildTypes {
         release {
             debuggable false
             minifyEnabled true
             shrinkResources true
+            signingConfig signingConfigs.release
+            resValue "string", "app_name", "Movie Reel"
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
 
@@ -68,11 +98,15 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             applicationIdSuffix ".debug"
             testCoverageEnabled true
+            resValue "string", "app_name", "Movie Reel-Dev"
             resValue("string", "PORT_NUMBER", "8081")
         }
     }
 
     testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
         unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
@@ -147,23 +181,49 @@ android {
         ignoreWarnings true        // if true, only report errors
     }
 
-    // used to track the time and date this apk was released
-    // this will generate an apk with the given name
-    // moja-<BUILD_TYPE>-v<VERSION_NAME>-<FORMATTED_DATE>.apk
-    // this will be for both release and debug types
-    android.applicationVariants.all { variant ->
+    // For each APK output variant, override versionCode with a combination of
+    // ext.abiCodes * 1000 + variant.versionCode. In this example, variant.versionCode
+    // is equal to defaultConfig.versionCode. If you configure product flavors that
+    // define their own versionCode, variant.versionCode uses that value instead.
+    // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+    applicationVariants.all { variant ->
+
+        // Assigns a different version code for each output APK
+        // other than the universal APK.
         variant.outputs.all { output ->
-            def date = new Date()
-            def formattedDate = date.format("yyyyMMdd_HHmmss")
-            outputFileName = "moviereel-${variant.getBuildType().name}-v${variant.versionName}-${formattedDate}.apk"
+            // Stores the value of ext.abiCodes that is associated with the ABI for this variant.
+            // Determines the ABI for this variant and returns the mapped value.
+            def baseAbiVersionCode = rootProject.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+//            def baseDensityCodes = rootProject.ext.densityCodes.get(output.getFilter(
+//                    OutputFile.DENSITY))
+
+            // Because abiCodes.get() returns null for ABIs that are not mapped by ext.abiCodes,
+            // the following code does not override the version code for universal APKs.
+            // However, because we want universal APKs to have the lowest version code,
+            // this outcome is desirable.
+            if (baseAbiVersionCode != null) {
+                // Assigns the new version code to versionCodeOverride, which changes the version code
+                // for only the output APK, not for the variant itself. Skipping this step simply
+                // causes Gradle to use the value of variant.versionCode for the APK.
+                output.versionCodeOverride = baseAbiVersionCode * 1000 + variant.versionCode
+            } else {
+                // this will make sure universal apks have the lowest version code
+                output.versionCodeOverride = variant.versionCode * 1000
+
+                // Filter is null for universal APKs.
+                // this will be used when distributing universal APK to crashlytics
+//                tasks.findAll {
+//                    it.name.startsWith("crashlyticsUploadDistribution${variant.name.capitalize()}")
+//                }.each {
+//                    it.doFirst {
+//                        rootProject.ext.betaDistributionApkFilePath = output.outputFile.absolutePath
+//                    }
+//                }
+            }
         }
     }
-}
 
-repositories {
-    maven { url "https://maven.fabric.io/public" }
-    mavenCentral()
-    jcenter()
+    compileOptions.incremental = false
 }
 
 dependencies {
