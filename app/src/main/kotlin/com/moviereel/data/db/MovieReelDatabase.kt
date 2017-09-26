@@ -14,9 +14,9 @@ import com.moviereel.data.db.entities.movie.*
  * @author lusinabrian on 28/03/17
  */
 
-@Database(entities = arrayOf(MovieNowPlayingEntity::class, MovieLatestEntity::class,
-        MoviePopularEntity::class, MovieTopRatedEntity::class, MovieUpcomingEntity::class,
-        MovieUpcomingEntity::class, GenreEntity::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(MovieNowPlayingEntity::class, MoviePopularEntity::class,
+        MovieTopRatedEntity::class, MovieUpcomingEntity::class, GenreEntity::class),
+        version = 1, exportSchema = false)
 @TypeConverters(DbConverters::class)
 abstract class MovieReelDatabase : RoomDatabase() {
 
