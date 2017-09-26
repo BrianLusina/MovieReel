@@ -6,6 +6,7 @@ import com.moviereel.data.db.MovieReelDatabase
 import com.moviereel.data.db.dao.MovieNowPlayingDao
 import com.moviereel.data.db.dao.MoviePopularDao
 import com.moviereel.data.db.dao.MovieTopRatedDao
+import com.moviereel.data.db.dao.MovieUpcomingDao
 import com.moviereel.di.qualifiers.AppContext
 import com.moviereel.di.qualifiers.DatabaseInfo
 import com.moviereel.utils.DATABASE_NAME
@@ -38,12 +39,17 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideMoviePopularDao(database: MovieReelDatabase) : MoviePopularDao{
+    fun provideMoviePopularDao(database: MovieReelDatabase): MoviePopularDao {
         return database.getMoviePopularDao()
     }
 
     @Provides
-    fun provideMovieTopRatedDao(database: MovieReelDatabase) : MovieTopRatedDao {
+    fun provideMovieTopRatedDao(database: MovieReelDatabase): MovieTopRatedDao {
         return database.getMovieTopRatedDao()
+    }
+
+    @Provides
+    fun provideMovieUpcomingDao(database: MovieReelDatabase): MovieUpcomingDao {
+        return database.getMovieUpcomingDao()
     }
 }

@@ -26,6 +26,7 @@ import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenter
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenterImpl
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedView
+import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingAdapter
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenter
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenterImpl
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingView
@@ -132,6 +133,12 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     @PerActivity
     fun provideUpcomingPresenter(movieUpcomingPresenter: MovieUpcomingPresenterImpl<MovieUpcomingView>): MovieUpcomingPresenter<MovieUpcomingView> {
         return movieUpcomingPresenter
+    }
+
+    @Provides
+    @PerActivity
+    fun provideMovieUpcomingAdapter(): MovieUpcomingAdapter {
+        return MovieUpcomingAdapter(ArrayList())
     }
 
     @Provides

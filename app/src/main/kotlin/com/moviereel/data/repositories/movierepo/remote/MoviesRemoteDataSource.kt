@@ -3,10 +3,7 @@ package com.moviereel.data.repositories.movierepo.remote
 import com.moviereel.data.api.ApiRetrofitService
 import com.moviereel.data.api.model.movie.MovieNowPlayingResponse
 import com.moviereel.data.api.model.movie.MoviePopularResponse
-import com.moviereel.data.db.entities.movie.MovieLatestEntity
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.data.db.entities.movie.*
 import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -51,5 +48,10 @@ constructor(val mApiRetrofitService: ApiRetrofitService) : MovieDataSource {
     override fun doGetMoviesTopRated(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieTopRatedEntity>> {
         val topRatedMovieData = mApiRetrofitService.doGetMoviesTopRated(page, language, region)
         return topRatedMovieData.flatMap { Flowable.just(it.results) }
+    }
+
+    override fun doGetMoviesUpcoming(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieUpcomingEntity>> {
+        val upcomingMovieData = mApiRetrofitService.doGetMoviesUpcoming(page, language, region)
+        return upcomingMovieData.flatMap { Flowable.just(it.results) }
     }
 }
