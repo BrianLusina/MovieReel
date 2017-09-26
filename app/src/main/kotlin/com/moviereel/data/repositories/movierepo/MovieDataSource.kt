@@ -1,10 +1,7 @@
 package com.moviereel.data.repositories.movierepo
 
 import com.moviereel.data.api.model.movie.MovieNowPlayingResponse
-import com.moviereel.data.db.entities.movie.MovieLatestEntity
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.data.db.entities.movie.*
 import io.reactivex.Flowable
 import org.jetbrains.anko.AnkoLogger
 
@@ -48,4 +45,13 @@ interface MovieDataSource : AnkoLogger {
      * @param region the region to get this data from
      * */
     fun doGetMoviesTopRated(remote: Boolean = true, page: Int, language: String, region : String): Flowable<List<MovieTopRatedEntity>>
+
+    /**
+     * Gets upcoming  movies
+     * @param remote whether the data will come from a remote source
+     * @param page the page of the data
+     * @param language the language to query from the data source
+     * @param region the region to get this data from
+     * */
+    fun doGetMoviesUpcoming(remote: Boolean = true, page: Int, language: String, region : String): Flowable<List<MovieUpcomingEntity>>
 }

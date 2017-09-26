@@ -5,10 +5,8 @@ import com.moviereel.data.api.model.movie.MoviePopularResponse
 import com.moviereel.data.db.dao.MovieNowPlayingDao
 import com.moviereel.data.db.dao.MoviePopularDao
 import com.moviereel.data.db.dao.MovieTopRatedDao
-import com.moviereel.data.db.entities.movie.MovieLatestEntity
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.data.db.dao.MovieUpcomingDao
+import com.moviereel.data.db.entities.movie.*
 import com.moviereel.data.repositories.movierepo.MovieDataSource
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
@@ -23,9 +21,9 @@ import javax.inject.Singleton
 @Singleton
 class MoviesLocalDataSource
 @Inject
-constructor(val moviesNowPlayingDao: MovieNowPlayingDao,
-            val moviePopularDao: MoviePopularDao,
-            val movieTopRatedDao: MovieTopRatedDao) : MovieDataSource {
+constructor(val moviesNowPlayingDao: MovieNowPlayingDao, val moviePopularDao: MoviePopularDao,
+            val movieTopRatedDao: MovieTopRatedDao, val movieUpcomingDao: MovieUpcomingDao)
+    : MovieDataSource {
 
     // ************************ NOW PLAYING MOVIES **************************************************
     /**
@@ -94,7 +92,29 @@ constructor(val moviesNowPlayingDao: MovieNowPlayingDao,
                     }
                 }, {
                     // error
-                    error("Error encountered saving popular movies ${it.message}", it)
+                    error("Error encountered saving top movies ${it.message}", it)
+                })
+    }
+
+    // **************************UPCOMING MOVIES ************************
+
+    override fun doGetMoviesUpcoming(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieUpcomingEntity>> {
+        return movieUpcomingDao.getAllMoviesUpcoming()
+    }
+
+    /**
+     * Saves upcoming movies to database
+     * */
+    fun saveUpcomingMoviesToDb(movieUpcomingData: Flowable<List<MovieUpcomingEntity>>) {
+        movieUpcomingData
+                .subscribeOn(Schedulers.newThread())
+                .subscribe({
+                    it.forEach {
+                        movieUpcomingDao.insertMovieUpcoming(it)
+                    }
+                }, {
+                    // error
+                    error("Error encountered saving upcoming movies ${it.message}", it)
                 })
     }
 
@@ -103,7 +123,7 @@ constructor(val moviesNowPlayingDao: MovieNowPlayingDao,
     /**
      * API call to get the latest movies being shown*/
     override fun doGetMoviesLatest(remote: Boolean, language: String): Flowable<MovieLatestEntity> {
-        // return moviesNowPlayingDao.getMoviesLatest(language)
+        //return moviesNowPlayingDao.getMoviesLatest(language)
         return null!!
     }
 }

@@ -85,11 +85,4 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
     override fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
 
     }
-
-    /**
-     * Handles what will happen when the Fragment is destroyed
-     */
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }

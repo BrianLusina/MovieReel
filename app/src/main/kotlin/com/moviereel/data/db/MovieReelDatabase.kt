@@ -6,6 +6,7 @@ import android.arch.persistence.room.TypeConverters
 import com.moviereel.data.db.dao.MovieNowPlayingDao
 import com.moviereel.data.db.dao.MoviePopularDao
 import com.moviereel.data.db.dao.MovieTopRatedDao
+import com.moviereel.data.db.dao.MovieUpcomingDao
 import com.moviereel.data.db.entities.GenreEntity
 import com.moviereel.data.db.entities.movie.*
 
@@ -15,7 +16,7 @@ import com.moviereel.data.db.entities.movie.*
 
 @Database(entities = arrayOf(MovieNowPlayingEntity::class, MovieLatestEntity::class,
         MoviePopularEntity::class, MovieTopRatedEntity::class, MovieUpcomingEntity::class,
-        GenreEntity::class), version = 1, exportSchema = false)
+        MovieUpcomingEntity::class, GenreEntity::class), version = 1, exportSchema = false)
 @TypeConverters(DbConverters::class)
 abstract class MovieReelDatabase : RoomDatabase() {
 
@@ -24,4 +25,6 @@ abstract class MovieReelDatabase : RoomDatabase() {
     abstract fun getMoviePopularDao(): MoviePopularDao
 
     abstract fun getMovieTopRatedDao(): MovieTopRatedDao
+
+    abstract fun getMovieUpcomingDao(): MovieUpcomingDao
 }

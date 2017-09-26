@@ -1,9 +1,6 @@
 package com.moviereel.data.repositories.movierepo
 
-import com.moviereel.data.db.entities.movie.MovieLatestEntity
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.data.db.entities.movie.*
 import com.moviereel.data.repositories.movierepo.local.MoviesLocalDataSource
 import com.moviereel.data.repositories.movierepo.remote.MoviesRemoteDataSource
 import io.reactivex.Flowable
@@ -59,6 +56,18 @@ constructor(val movieLocalDataSource: MoviesLocalDataSource,
             data
         } else {
             movieLocalDataSource.doGetMoviesTopRated(false, page, language, region)
+        }
+    }
+
+    override fun doGetMoviesUpcoming(remote: Boolean, page: Int, language: String, region: String): Flowable<List<MovieUpcomingEntity>> {
+        return if (remote) {
+            val data = moviesRemoteDataSource.doGetMoviesUpcoming(page = page, language = language,
+                    region = region)
+            movieLocalDataSource.saveUpcomingMoviesToDb(data)
+            data
+        } else {
+            movieLocalDataSource.doGetMoviesUpcoming(
+                    false, page, language, region)
         }
     }
 }
