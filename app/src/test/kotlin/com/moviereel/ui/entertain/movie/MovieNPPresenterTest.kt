@@ -34,6 +34,14 @@ class MovieNPPresenterTest {
 
     lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
 
+    companion object {
+        @BeforeClass
+        @Throws(Exception::class)
+        fun onlyOnce() {
+            RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+        }
+    }
+
     @Before
     @Throws(Exception::class)
     fun setUp() {
@@ -56,7 +64,6 @@ class MovieNPPresenterTest {
      */
     @Test
     fun testShouldDisplayApiErrorSnackBar() {
-
         mMockMovieNPView.showApiErrorSnackbar(R.string.snackbar_api_error,
                 R.string.snackbar_api_error_retry,
                 Snackbar.LENGTH_SHORT)
@@ -64,14 +71,5 @@ class MovieNPPresenterTest {
         verify<MovieNPView>(mMockMovieNPView).showApiErrorSnackbar(R.string.snackbar_api_error,
                 R.string.snackbar_api_error_retry,
                 Snackbar.LENGTH_SHORT)
-    }
-
-    companion object {
-
-        @BeforeClass
-        @Throws(Exception::class)
-        fun onlyOnce() {
-            RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        }
     }
 }
