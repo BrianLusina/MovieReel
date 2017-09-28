@@ -47,6 +47,7 @@ class MovieNPPresenterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         val compositeDisposable = CompositeDisposable()
+        mTestScheduler = TestScheduler()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
         movieNPPresenter = MovieNPPresenterImpl(mMockDataManager,testSchedulerProvider, compositeDisposable)
         movieNPPresenter.onAttach(mMockMovieNPView)

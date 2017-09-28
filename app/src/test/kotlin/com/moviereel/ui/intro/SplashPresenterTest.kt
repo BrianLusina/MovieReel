@@ -37,6 +37,7 @@ class SplashPresenterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         val compositeDisposable = CompositeDisposable()
+        mTestScheduler = TestScheduler()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
 
         mSplashPresenter = SplashPresenterImpl(mMockDataManager, testSchedulerProvider, compositeDisposable)
