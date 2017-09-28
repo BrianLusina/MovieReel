@@ -34,6 +34,7 @@ class MainPresenterTests {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         val compositeDisposable = CompositeDisposable()
+        mTestScheduler = TestScheduler()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
         mainPresenter = MainPresenterImpl(mMockDataManager, testSchedulerProvider, compositeDisposable)
         mainPresenter.onAttach(mMockMainView)
