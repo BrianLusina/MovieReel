@@ -13,7 +13,7 @@ jobs:
                         TERM: dumb
                 
                 steps:
-                        # checkout onto repo
+                       # checkout onto repo
                         - checkout
                        
                         # Download and cache dependencies
@@ -34,19 +34,56 @@ jobs:
                                 paths:
                                         - ~/.gradle
                                 keys:
-                                        - jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}       
-                        
+                                        - jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+
+       test:
+                machine:
+                        enabled: true
+                working_directory: ~/
+                steps:
                         - run:
                                 name: "Run lint tests"
                                 command: ./gradlew lint test
-                            
+                        - run:
+                                name: "Run tests"
+                                command: ./gradlew test
+
                         - store_artifacts:
                                 path: app/build/reports
                                 destination: reports
                         
                         - store_test_results:
                                 path: app/build/test-results
-                        
+
+       deploy:
+                machine:
+                        enabled: true
+                working_directory: ~/
+                steps:
                         - run:
                                 name: Deploy to Play Store
                                 command: ./gradlew :app:publishApkRelease
+
+# define work flows
+workflows:
+        version: 2
+        build-test-and-deploy:
+                jobs:
+                        - build
+                        - test:
+                                requires:
+                                        build
+                        # will only deploy if on master and release branches
+                        - deploy:
+                                requires:
+                                        test
+                                filters:
+                                        branches:
+                                                only:
+                                                        - master
+                                                        - /^release-.*/
+                                                ignore:
+                                                        - /^dev-.*/
+                                                        - /^develop-.*/
+                                                        - develop
+                                                        - /^feature-.*/
