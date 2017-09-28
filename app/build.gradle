@@ -9,6 +9,10 @@ apply plugin: 'com.github.triplet.play'
 
 import com.android.build.OutputFile
 
+ext{
+    multidexSupport = "1.0.2"
+}
+
 android {
     playAccountConfigs {
         defaultAccountConfig {
@@ -28,6 +32,8 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86", "mips", "x86_64", "armeabi", "arm64-v8a"
         }
+
+        multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         playAccountConfig = playAccountConfigs.defaultAccountConfig
@@ -238,6 +244,7 @@ dependencies {
     implementation "com.android.support:support-vector-drawable:$supportLibVersion"
     implementation "com.android.support:support-annotations:$supportLibVersion"
     implementation "com.android.support:palette-v7:$supportLibVersion"
+    implementation "com.android.support:multidex:$multidexSupport"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
