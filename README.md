@@ -2,69 +2,42 @@
 
 [![CircleCI](https://circleci.com/gh/BrianLusina/MovieReel-app.svg?style=svg)](https://circleci.com/gh/BrianLusina/MovieReel-app)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c1b48e5c27784d79a3234df3ced6d5c6)](https://www.codacy.com/app/BrianLusina/MovieReel-app?utm_source=github.com&utm_medium=referral&utm_content=BrianLusina/MovieReel-app&utm_campaign=badger)
-[![Build Status](https://www.bitrise.io/app/16652fbea364621d.svg?token=kiX6RZGPLrNFbILtqYnhlQ&branch=master)](https://www.bitrise.io/app/16652fbea364621d)
 [![codecov](https://codecov.io/gh/BrianLusina/MovieReel-app/branch/master/graph/badge.svg)](https://codecov.io/gh/BrianLusina/MovieReel-app)
-[![Build Status](https://travis-ci.org/BrianLusina/MovieReel-app.svg?branch=master)](https://travis-ci.org/BrianLusina/MovieReel-app)
 
-Simple Android application which features your latest movies.
+Simple Android application which features your latest movies and series
 
-##__Features and User Stories__
-___
+## Getting started
 
-+ User can view the latest movies in a list. This list will use a RecyclerView to display the items
-+ Each movie item is displayed using an ImageView and text about the movie.
-+ Uses Coordinator Layout to enable refreshing of data
-+ Source of movies is from [Apiary API](https://www.themoviedb.org)
+Clone the repo
 
-## Dependencies, APIs and Libraries Used
-
-+ __Movie DB API__
-    
-    The project requires on Movie DB API to fetch data about movies and tv shows. An API key is needed. This key is used to retrieve data from MovieDB API.
-    
-    It is recommended that the key is stored in your `gradle.properties` file (which should not be pushed to Github, or any other VCS) after which add them to your contracts class,or constants class before including them in your `build.gradle` file at the app level.
-    
-+ __Paolo Ratolo's App Intro dependency__
-    
-    App Intro allows simple and short introduction into the application. They are only shown once on 1st ever start of the app. After which the splash screen will be shown for a brief 2 second.
-    
-    Remember to use SharedPreferences to enable only one start of this introduction.
-
-+ __Glide__
-    This library assists in loading images from a Uri resouce and load the images into your ImageViews. This is used for the Movie posters.
-    
-+ __Ripple Effect__
-    
-    Adds a ripple effect to the item cards when clicked.
-    
-+ __Material View Pager__
-    
-    Used to display the movie details.
-
-+ __Android Iconics__
-
-    Used for fonts and Icons
-    
-### Data storage
-    
-Data is stored using SharedPreferences. Of course there are several ways to access this data, intention is to allow user to still access this data offline. 
-The mode has been set to 0 to allow only this application to have access.
-
-``` java
-SharedPreferences movieData = getActivity().getSharedPreferences("MovieData",0);
+```bash
+$ git clone https://github.com/BrianLusina/MovieReel.git
 ```
 
-Then you have to create an Editor instance and add the data to the SharedPreferences in *Key*, *Value* pairs
+Create a `gradle.properties` file at root of project and include the following:
 
-``` java
-SharedPreferences.Editor editor = movieData.edit();
+```properties
+MovieDbKey="<YOUR_MOVIE_TMDB_KEY>"
+IMAGE_BASE_URL="http://image.tmdb.org/t/p/"
+IMAGE_SECURE_BASE_URL="https://image.tmdb.org/t/p/"
+```
+> Get your Movie DB key from [here](https://developers.themoviedb.org/3/getting-started)
+
+That will be it for the project setup.
+
+### Running test
+
+Most of the tests are unit test, for quick and easy testing.
+Run them with:
+
+```bash
+./gradlew test
 ```
 
-Then of course you can then add the Key,Value pairs
+To run instrumented tests:
 
-``` java
-editor.putString("Key", value);
-//...more data
+```bash
+./gradlew connectedAndroidTest
 ```
 
-Now you can access the data as you see fit. Of course you can alternatively use any other type of database to store you data locally(SQLite) or even a file which will only allow your app to have read-write access.
+Make sure you have a connected debuggable device, or an emulator running.

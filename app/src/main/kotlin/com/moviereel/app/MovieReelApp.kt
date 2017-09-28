@@ -1,6 +1,8 @@
 package com.moviereel.app
 
 import android.app.Application
+import android.content.Context
+import android.support.multidex.MultiDex
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.crashlytics.android.Crashlytics
 import com.moviereel.BuildConfig
@@ -36,6 +38,11 @@ class MovieReelApp : Application() {
         component.inject(this)
 
         // installCustomCrash();
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     /**
