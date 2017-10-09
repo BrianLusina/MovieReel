@@ -62,7 +62,8 @@ android {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [fabricApiKey: getFabricKey()]
+        // manifestPlaceholders = [fabricApiKey: getFabricKey()]
+        resValue "string", "fabricApiKey", getFabricKey()
         playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
 
@@ -241,17 +242,17 @@ android {
                 output.versionCodeOverride = baseAbiVersionCode * 1000 + variant.versionCode
             } else {
                 // this will make sure universal apks have the lowest version code
-                output.versionCodeOverride = variant.versionCode * 1000
+                output.versionCodeOverride = variant.versionCode
 
-                // Filter is null for universal APKs.
-                // this will be used when distributing universal APK to crashlytics
-//                tasks.findAll {
-//                    it.name.startsWith("crashlyticsUploadDistribution${variant.name.capitalize()}")
-//                }.each {
-//                    it.doFirst {
-//                        rootProject.ext.betaDistributionApkFilePath = output.outputFile.absolutePath
-//                    }
-//                }
+                // this is for uploading with Fabric, this will upload the universal APK only
+                // since Fabric does not properly handle APK splits
+                tasks.findAll {
+                    it.name.startsWith("crashlyticsUploadDistribution${variant.name.capitalize()}")
+                }.each {
+                    it.doFirst {
+                        rootProject.ext.betaDistributionApkFilePath = output.outputFile.absolutePath
+                    }
+                }
             }
         }
     }

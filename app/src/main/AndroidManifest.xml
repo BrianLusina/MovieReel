@@ -58,15 +58,15 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="${fabricApiKey}" />
-        <!--41f11c4d0f34030da023daca96924eaff1547a35-->
-        <!-- android:value="${fabricApiKey}" -->
+            android:value="@string/fabricApiKey" />
+
         <receiver android:name=".receivers.ConnChangeReceiver" />
 
         <service
             android:name=".services.SyncService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="false"/>
+
     </application>
 
 </manifest>
