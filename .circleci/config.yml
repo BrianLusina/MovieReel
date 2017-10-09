@@ -9,60 +9,114 @@ jobs:
                 environment:
                         # Customize the JVM maximum heap limit
                         _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-                        # JVM_OPTS: -Xmx3200m
+                        JVM_OPTS: -Xmx3200m
                         TERM: dumb
                 
                 steps:
                        # checkout onto repo
                         - checkout
-                       
+
+                        - run:
+                                name: Setup environment
+                                command: ./scripts/circleci_env_setup.sh
+
                         # Download and cache dependencies
                         - restore_cache:
+                                key: MovieReel-{{ checksum "build.gradle" }}-{{ .Branch }}
                                 keys:
-                                        - jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
-                        # setup environment
-                        - run:
-                                name: Setup Environment
-                                command: ./environmentSetup.sh
+                                      - app-{{ checksum "app/build.gradle" }}
 
+                        # download dependencies
                         - run:
-                                name: Download dependencies
-                                command: ./gradlew androidDependencies
-                        
+                               name: Download dependencies
+                               command: ./gradlew androidDependencies
+
                         - save_cache:
-                                key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}-{{ checksum ".circleci/config.yml" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-                                paths:
-                                        - ~/.gradle
+                                key: MovieReel-{{ checksum "build.gradle" }}-{{ .Branch }}
+                                paths: ~/.gradle
                                 keys:
-                                        - jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+                                      - app-{{ checksum "app/build.gradle" }}
+
+                        - persist_to_workspace:
+                                root: .
+                                paths: .
 
        test:
-                machine:
-                        enabled: true
+                docker:
+                      - image: circleci/android:api-26-alpha
                 working_directory: ~/
                 steps:
-                        - run:
-                                name: "Run lint tests"
-                                command: ./gradlew lint test
-                        - run:
-                                name: "Run tests"
-                                command: ./gradlew test
+                       - attach_workspace:
+                              at: .
 
-                        - store_artifacts:
-                                path: app/build/reports
-                                destination: reports
-                        
-                        - store_test_results:
-                                path: app/build/test-results
+                       - restore_cache:
+                              key: MovieReel-{{ checksum "build.gradle" }}-{{ .Branch }}
+                              keys:
+                                      - app-{{ checksum "app/build.gradle" }}
 
-       deploy:
-                machine:
-                        enabled: true
+                       - run:
+                              name: "Run tests"
+                              command: ./gradlew test
+
+                       - store_artifacts:
+                               path: ~/app/build/reports/tests/
+                               destination: /reports/
+
+                       - store_test_results:
+                               path: ~/app/build/test-results/
+
+                       - persist_to_workspace:
+                               root: .
+                               paths: .
+       deployBeta:
+                docker:
+                      - image: circleci/android:api-26-alpha
                 working_directory: ~/
                 steps:
-                        - run:
+                       - attach_workspace:
+                              at: .
+
+                       - restore_cache:
+                              key: MovieReel-{{ checksum "build.gradle" }}-{{ .Branch }}
+                              keys:
+                                      - app-{{ checksum "app/build.gradle" }}
+
+                       - run:
+                              name: Assemble APKs and distribute to Beta Testing
+                              command: ./scripts/circleci_beta_setup.sh
+
+                       - store_artifacts:
+                               path: ~/app/build/outputs/apk/
+                               destination: /app/apks/
+
+                       - deploy:
+                               name: Deploy to Play Store
+                               command: ./gradlew :app:publishApkRelease
+
+       deployProd:
+                docker:
+                      - image: circleci/android:api-26-alpha
+                working_directory: ~/
+                steps:
+                       - attach_workspace:
+                              at: .
+
+                       - restore_cache:
+                              key: MovieReel-{{ checksum "build.gradle" }}-{{ .Branch }}
+                              keys:
+                                      - app-{{ checksum "app/build.gradle" }}
+
+                       - run:
                                 name: Deploy to Play Store
                                 command: ./gradlew :app:publishApkRelease
+
+                       - store_artifacts:
+                               path: ~/app/build/outputs/apk/release/
+                               destination: /app/apks/
+
+                       - store_artifacts:
+                               path: ~/app/build/outputs/mapping/
+                               destination: /app/mapping/
 
 # define work flows
 workflows:
@@ -72,11 +126,25 @@ workflows:
                         - build
                         - test:
                                 requires:
-                                        build
-                        # will only deploy if on master and release branches
-                        - deploy:
+                                        - build
+
+                        - deployBeta:
                                 requires:
-                                        test
+                                        - test
+                                filters:
+                                        branches:
+                                                only:
+                                                        - develop
+                                                ignore:
+                                                        - /master.*/
+                                                        - /^feature-.*/
+                                                        - /^release-.*/
+                                                        - /^bugfix-.*/
+                                                        - /^hotfix-.*/
+
+                        - deployProd:
+                                requires:
+                                        - test
                                 filters:
                                         branches:
                                                 only:
@@ -87,3 +155,5 @@ workflows:
                                                         - /^develop-.*/
                                                         - develop
                                                         - /^feature-.*/
+                                                        - /^bugfix-.*/
+                                                        - /^hotfix-.*/

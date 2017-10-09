@@ -9,9 +9,9 @@ export GRADLE_PROPERTIES=$HOME"/gradle.properties"
 export KEYSTORE_PROPERTIES=$HOME"/keystores/keystore.properties"
 export PUBLISH_KEY_FILE=$HOME"/keystores/moviereel_publish_key.json"
 export STORE_FILE_LOCATION=$HOME"/moviereel.jks"
+export FABRIC_PROPERTIES_FILE=$HOME"/app/fabric.properties"
 export GOOGLE_SERVICES_DEBUG_LOCATION=$HOME"/app/src/debug/google-services.json"
 export GOOGLE_SERVICES_RELEASE_LOCATION=$HOME"/app/src/main/google-services.json"
-
 
 function copyEnvVarsToProperties {
 
@@ -39,6 +39,7 @@ function copyEnvVarsToProperties {
         echo "IMAGE_BASE_URL=$IMAGE_BASE_URL" >> ${GRADLE_PROPERTIES}
         echo "IMAGE_SECURE_BASE_URL=$IMAGE_SECURE_BASE_URL" >> ${GRADLE_PROPERTIES}
         echo "MOVIE_REEL_SERVICE_ACCOUNT_EMAIL=$MOVIE_REEL_SERVICE_ACCOUNT_EMAIL" >> ${GRADLE_PROPERTIES}
+        echo "FABRIC_KEY=$FABRIC_KEY" >> ${GRADLE_PROPERTIES}
     fi
 
     if [ ! -f "$PUBLISH_KEY_FILE" ]
@@ -49,8 +50,15 @@ function copyEnvVarsToProperties {
 
         echo "$MOVIE_REEL_PUBLISH_KEY" >> ${PUBLISH_KEY_FILE}
     fi
-}
 
+    echo "Checking for fabric.properties file"
+    if [! -f "${FABRIC_PROPERTIES_FILE}"]; then
+	    echo "${FABRIC_PROPERTIES_FILE} not found, creating"
+	    touch ${FABRIC_PROPERTIES_FILE}
+
+	    echo "apiSecret=$apiSecret" >> ${FABRIC_PROPERTIES_FILE}
+    fi
+}
 
 # download key store file from remote location
 # keystore URI will be the location uri for the *.jks file for signing application
@@ -98,7 +106,35 @@ function setupGoogleServicesJsonFiles {
     fi
 }
 
+# updates the version code based on the current branch
+function updateVersionCodeAndTrack(){
+    versionCode=$(git rev-list --first-parent --count origin/${CIRCLE_BRANCH})
+    versionName=$(git describe --dirty)
+
+#    if ["${versionName}" == "fatal: No names found, cannot describe anything."]; then
+#        major=$(expr ${CIRCLE_BUILD_NUM} - ${CIRCLE_PREVIOUS_BUILD_NUM})
+#        versionName=${major}.0.0
+#    fi
+
+    # todo: handling version names for automated updates
+    if ["${versionName}" == "fatal: No names found, cannot describe anything."]; then
+        versionName=1.0.0
+    fi
+
+    if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+    	echo "VERSION_NAME=${versionName}" >> ${GRADLE_PROPERTIES}
+	    echo "VERSION_CODE=${versionCode}" >> ${GRADLE_PROPERTIES}
+	    echo "RELEASE_TRACK=\"beta\"" >> ${GRADLE_PROPERTIES}
+
+	elif [ "${CIRCLE_BRANCH}" == "master" ] ; then
+    	echo "VERSION_NAME=${versionName}" >> ${GRADLE_PROPERTIES}
+	    echo "VERSION_CODE=${versionCode}" >> ${GRADLE_PROPERTIES}
+        echo "RELEASE_TRACK=\"production\"" >> ${GRADLE_PROPERTIES}
+	fi
+}
+
 # execute functions
 copyEnvVarsToProperties
 downloadKeyStoreFile
+updateVersionCodeAndTrack
 setupGoogleServicesJsonFiles

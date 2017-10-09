@@ -58,8 +58,9 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="41f11c4d0f34030da023daca96924eaff1547a35" />
-
+            android:value="${fabricApiKey}" />
+        <!--41f11c4d0f34030da023daca96924eaff1547a35-->
+        <!-- android:value="${fabricApiKey}" -->
         <receiver android:name=".receivers.ConnChangeReceiver" />
 
         <service
