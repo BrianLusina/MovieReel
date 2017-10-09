@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export FABRIC_PROPERTIES_FILE=$HOME"/app/fabric.properties"
-export GRADLE_PROPERTIES=$HOME"/gradle.properties"
+export FABRIC_PROPERTIES_FILE=$HOME"/moviereel/app/fabric.properties"
+export GRADLE_PROPERTIES=$HOME"/moviereel/gradle.properties"
 echo "RELEASE_TRACK=\"beta\"" >> ${GRADLE_PROPERTIES}
 
 if [ ! -f "${FABRIC_PROPERTIES_FILE}" ]; then

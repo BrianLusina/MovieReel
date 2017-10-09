@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export APK_DIR=$HOME/"/moja-dir/mojaapp/build/outputs/apks/"
+export APK_DIR=$HOME"/moviereel/mojaapp/build/outputs/apks/"
 export APK_DIR_RELEASE=${APK_DIR}"release/"
 export VERSION_NAME_PREFIX="v"
 export VERSION_NAME_RC_SUFFIX="rc${CIRCLE_BUILD_NUM}"
