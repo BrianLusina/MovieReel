@@ -12,6 +12,32 @@ import com.android.build.OutputFile
 ext{
     multidexSupport = "1.0.2"
 }
+/**
+ * Gets the release track to use for deployment
+ * Release tracks are either "alpha", "beta", "production", "rollout"
+ * */
+def getReleaseTrack = { ->
+    try{
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        return Integer.parseInt(properties.getProperty("RELEASE_TRACK"))
+    }catch (ignored){
+        return "beta"
+    }
+}
+
+/**
+ * Get Fabric API key to load into manifest file
+ * */
+def getFabricKey = { ->
+    try{
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(("gradle.properties")))
+        return properties.getProperty("FABRIC_KEY")
+    }catch (ignored){
+        return ""
+    }
+}
 
 android {
     playAccountConfigs {
@@ -36,6 +62,7 @@ android {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [fabricApiKey: getFabricKey()]
         playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
 
@@ -82,7 +109,7 @@ android {
 
     // configurations for deployment
     play {
-        track = "production"
+        track = getReleaseTrack()
         untrackOld = true // will untrack 'alpha' while upload to 'beta'
         errorOnSizeLimit = false
         uploadImages = true
