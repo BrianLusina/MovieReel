@@ -5,13 +5,13 @@
 # 2. https://gist.github.com/KioKrofovitch/716e6a681acb33859d16
 # 3. https://stackoverflow.com/questions/35440907/can-circle-ci-reference-gradle-properties-credentials
 
-export GRADLE_PROPERTIES=$HOME"/gradle.properties"
-export KEYSTORE_PROPERTIES=$HOME"/keystores/keystore.properties"
-export PUBLISH_KEY_FILE=$HOME"/keystores/moviereel_publish_key.json"
-export STORE_FILE_LOCATION=$HOME"/moviereel.jks"
-export FABRIC_PROPERTIES_FILE=$HOME"/app/fabric.properties"
-export GOOGLE_SERVICES_DEBUG_LOCATION=$HOME"/app/src/debug/google-services.json"
-export GOOGLE_SERVICES_RELEASE_LOCATION=$HOME"/app/src/main/google-services.json"
+export GRADLE_PROPERTIES=$HOME"/moviereel/gradle.properties"
+export KEYSTORE_PROPERTIES=$HOME"/moviereel/keystores/keystore.properties"
+export PUBLISH_KEY_FILE=$HOME"/moviereel/keystores/moviereel_publish_key.json"
+export STORE_FILE_LOCATION=$HOME"/moviereel/moviereel.jks"
+export FABRIC_PROPERTIES_FILE=$HOME"/moviereel/app/fabric.properties"
+export GOOGLE_SERVICES_DEBUG_LOCATION=$HOME"/moviereel/app/src/debug/google-services.json"
+export GOOGLE_SERVICES_RELEASE_LOCATION=$HOME"/moviereel/app/src/main/google-services.json"
 
 function copyEnvVarsToProperties {
 

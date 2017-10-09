@@ -1,7 +1,7 @@
 version: 2
 jobs:
        build:
-                working_directory: ~/
+                working_directory: ~/moviereel
                 docker:
                         # specify the version you desire here
                         - image: circleci/android:api-26-alpha                   
@@ -44,7 +44,7 @@ jobs:
        test:
                 docker:
                       - image: circleci/android:api-26-alpha
-                working_directory: ~/
+                working_directory: ~/moviereel
                 steps:
                        - attach_workspace:
                               at: .
@@ -59,19 +59,20 @@ jobs:
                               command: ./gradlew test
 
                        - store_artifacts:
-                               path: ~/app/build/reports/tests/
+                               path: ~/moviereel/app/build/reports/tests/
                                destination: /reports/
 
                        - store_test_results:
-                               path: ~/app/build/test-results/
+                               path: ~/moviereel/app/build/test-results/
 
                        - persist_to_workspace:
                                root: .
                                paths: .
+
        deployBeta:
                 docker:
                       - image: circleci/android:api-26-alpha
-                working_directory: ~/
+                working_directory: ~/moviereel
                 steps:
                        - attach_workspace:
                               at: .
@@ -86,7 +87,7 @@ jobs:
                               command: ./scripts/circleci_beta_setup.sh
 
                        - store_artifacts:
-                               path: ~/app/build/outputs/apk/
+                               path: ~/moviereel/app/build/outputs/apk/
                                destination: /app/apks/
 
                        - deploy:
@@ -96,7 +97,7 @@ jobs:
        deployProd:
                 docker:
                       - image: circleci/android:api-26-alpha
-                working_directory: ~/
+                working_directory: ~/moviereel
                 steps:
                        - attach_workspace:
                               at: .
@@ -111,11 +112,11 @@ jobs:
                                 command: ./gradlew :app:publishApkRelease
 
                        - store_artifacts:
-                               path: ~/app/build/outputs/apk/release/
+                               path: ~/moviereel/app/build/outputs/apk/release/
                                destination: /app/apks/
 
                        - store_artifacts:
-                               path: ~/app/build/outputs/mapping/
+                               path: ~/moviereel/app/build/outputs/mapping/
                                destination: /app/mapping/
 
 # define work flows
