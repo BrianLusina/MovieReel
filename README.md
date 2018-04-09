@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/BrianLusina/MovieReel-app.svg?style=svg)](https://circleci.com/gh/BrianLusina/MovieReel-app)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c1b48e5c27784d79a3234df3ced6d5c6)](https://www.codacy.com/app/BrianLusina/MovieReel-app?utm_source=github.com&utm_medium=referral&utm_content=BrianLusina/MovieReel-app&utm_campaign=badger)
 [![codecov](https://codecov.io/gh/BrianLusina/MovieReel-app/branch/master/graph/badge.svg)](https://codecov.io/gh/BrianLusina/MovieReel-app)
+[![Build status](https://build.appcenter.ms/v0.1/apps/703b6e52-7cea-4dbb-b803-3864b388c75b/branches/master/badge)](https://appcenter.ms)
 
 Simple Android application which features your latest movies and series
 

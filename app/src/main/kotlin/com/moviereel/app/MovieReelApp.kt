@@ -5,11 +5,12 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash
 import com.crashlytics.android.Crashlytics
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.moviereel.BuildConfig
-import com.moviereel.R
 import com.moviereel.data.DataManager
 import com.moviereel.di.components.AppComponent
-import com.moviereel.di.components.DaggerAppComponent
 import com.moviereel.di.modules.ApiModule
 import com.moviereel.di.modules.AppModule
 import com.moviereel.di.modules.DatabaseModule
@@ -18,8 +19,10 @@ import com.moviereel.ui.main.MainActivity
 import io.fabric.sdk.android.Fabric
 import javax.inject.Inject
 
+
 class MovieReelApp : Application() {
-    @Inject lateinit var mDataManager: DataManager
+    @Inject
+    lateinit var mDataManager: DataManager
 
     // Needed to replace the component with a test specific one
     lateinit var component: AppComponent
@@ -37,12 +40,19 @@ class MovieReelApp : Application() {
 
         component.inject(this)
 
-        // installCustomCrash();
+        installCustomCrash()
+        setAppCenter()
     }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
+    }
+
+    private fun setAppCenter() {
+        AppCenter.start(this,
+                BuildConfig.APP_CENTER_KEY,
+                Analytics::class.java, Crashes::class.java)
     }
 
     /**
