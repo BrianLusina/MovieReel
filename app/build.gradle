@@ -40,6 +40,8 @@ def getFabricKey = { ->
 }
 
 android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
     playAccountConfigs {
         defaultAccountConfig {
             serviceAccountEmail = rootProject.ext.serviceAccountEmail
@@ -51,8 +53,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.moviereel"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         ndk {
@@ -141,11 +144,6 @@ android {
         unitTests {
             includeAndroidResources = true
         }
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-            }
-        }
     }
 
     dexOptions {
@@ -157,6 +155,7 @@ android {
         it.buildConfigField "String", "MOVIE_DB_KEY", MovieDbKey
         it.buildConfigField "String", "IMAGE_BASE_URL", IMAGE_BASE_URL
         it.buildConfigField "String", "IMAGE_SECURE_BASE_URL", IMAGE_SECURE_BASE_URL
+        it.buildConfigField "String", "APP_CENTER_KEY", APP_CENTER_KEY
         it.buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
     }
 
@@ -311,6 +310,9 @@ dependencies {
     //GSON, enable modification of Parcelable objects from JSON and back, parser
     implementation "com.google.code.gson:gson:$gsonVersion"
 
+    implementation "com.microsoft.appcenter:appcenter-analytics:$appCenterSdkVersion"
+    implementation "com.microsoft.appcenter:appcenter-crashes:$appCenterSdkVersion"
+
     // glide for loading images
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
@@ -359,6 +361,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -376,7 +379,6 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
 
     // Fix for https://github.com/robolectric/robolectric/issues/2566
-    testImplementation "org.khronos:opengl-api:gl1.1-android-2.1_r1"
     kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
 }
 
