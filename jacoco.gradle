@@ -1,93 +1,9 @@
-apply plugin: 'jacoco'
+apply plugin: "jacoco-android"
 
-jacoco{
-    toolVersion = "0.7.8"
+jacocoAndroidUnitTestReport {
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
 }
-
-configurations { codacy }
-
-dependencies{
-    codacy group: 'com.codacy', name: 'codacy-coverage-reporter', version: '1.0.7'
-}
-project.afterEvaluate{
-
-    /**
-     * Collect all the build types and the product flavours
-     * in order to test for each type
-     * */
-    def buildTypes = android.buildTypes.collect{ type -> type.name}
-    def productFlavors = android.productFlavors.collect{ flavour -> flavour.name}
-
-    // this caters for projects that do not have product flavours, we add an empty line
-    if(!productFlavors) productFlavors.add("")
-
-    /**
-     * sourceName — build source name, e.g. blueDebug
-     * sourcePath — build source path, e.g. blue/debug
-     * testTaskName — test task that the coverage task depends on, e.g. testBlueDebug
-     * */
-    //loop through each product and build type and test for each
-    productFlavors.each { productFlavourName ->
-        buildTypes.each{ buildTypeName ->
-
-            // define the source path and source name
-            def sourceName, sourcePath
-            if(!productFlavourName){
-                sourceName = sourcePath = "${buildTypeName}"
-            }else{
-                sourceName = "${productFlavourName}${buildTypeName.capitalize()}"
-                sourcePath = "${productFlavourName}/${buildTypeName}"
-            }
-            def testTaskName = "test${sourceName.capitalize()}UnitTest"
-
-            // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorTypeUnitTest'
-            task "${testTaskName}Coverage" (type:JacocoReport, dependsOn: ["${testTaskName}"]){
-
-                group = "Reporting"
-                description="Generate JaCoCo coverage reports on ${sourceName.capitalize()} build"
-
-                //patters to exclude from coverage report
-                classDirectories = fileTree(
-                        dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
-                        excludes: ['**/R.class', '**/R$*.class', '**/*$ViewInjector*.*',
-                                   '**/BuildConfig.*', '**/Manifest*.*']
-                )
-
-                // the files we will test
-                def coverageSourceDirs = [
-                        "src/main/java",
-                        "src/$productFlavourName/java",
-                        "src/$buildTypeName/java"
-                ]
-
-                additionalSourceDirs = files(coverageSourceDirs)
-                sourceDirectories = files(coverageSourceDirs)
-                executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
-
-                // reports to generate
-                reports{
-                    xml.enabled = true
-                    html.enabled = true
-                }
-            }
-        }
-    }
-
-    /**Task to upload coverage report to codacy
-     * codacy-coverage-reporter -l Java -r coverage.xml
-     * */
-    task uploadCoverageToCodacy(type: JavaExec, dependsOn: "testDebugUnitTestCoverage"){
-        main = "com.codacy.CodacyCoverageReporter"
-        classpath = configurations.codacy
-        args = [
-                "-l",
-                "Java",
-                "-r",
-                "${buildDir}/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml"
-        ]
-    }
-
-}
-
 
 
