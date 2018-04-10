@@ -9,9 +9,6 @@ apply plugin: 'com.github.triplet.play'
 
 import com.android.build.OutputFile
 
-ext{
-    multidexSupport = "1.0.2"
-}
 /**
  * Gets the release track to use for deployment
  * Release tracks are either "alpha", "beta", "production", "rollout"
@@ -49,18 +46,15 @@ android {
         }
     }
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
     defaultConfig {
         applicationId "com.moviereel"
         minSdkVersion globalConfiguration["androidMinSdkVersion"]
         targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
 
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-        ndk {
-            abiFilters "armeabi-v7a", "x86", "mips", "x86_64", "armeabi", "arm64-v8a"
-        }
+        versionCode globalConfiguration["versionCode"]
+        versionName globalConfiguration["versionName"]
 
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
@@ -227,17 +221,7 @@ android {
             // Stores the value of ext.abiCodes that is associated with the ABI for this variant.
             // Determines the ABI for this variant and returns the mapped value.
             def baseAbiVersionCode = rootProject.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
-//            def baseDensityCodes = rootProject.ext.densityCodes.get(output.getFilter(
-//                    OutputFile.DENSITY))
-
-            // Because abiCodes.get() returns null for ABIs that are not mapped by ext.abiCodes,
-            // the following code does not override the version code for universal APKs.
-            // However, because we want universal APKs to have the lowest version code,
-            // this outcome is desirable.
             if (baseAbiVersionCode != null) {
-                // Assigns the new version code to versionCodeOverride, which changes the version code
-                // for only the output APK, not for the variant itself. Skipping this step simply
-                // causes Gradle to use the value of variant.versionCode for the APK.
                 output.versionCodeOverride = baseAbiVersionCode * 1000 + variant.versionCode
             } else {
                 // this will make sure universal apks have the lowest version code
@@ -255,134 +239,80 @@ android {
             }
         }
     }
+}
 
-    compileOptions.incremental = false
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    def commonDependencies = rootProject.ext.commonDependencies
+    def commonTestDependencies = rootProject.ext.commonTestDependencies
+    def mobileDependencies = rootProject.ext.mobileUiDependencies
+    def mobileTestDependencies = rootProject.ext.mobileUiTestDependencies
 
-    // Android support libraries
-    implementation "com.android.support:support-v4:$supportLibVersion"
-    implementation "com.android.support:cardview-v7:$supportLibVersion"
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
-    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation "com.android.support:support-vector-drawable:$supportLibVersion"
-    implementation "com.android.support:support-annotations:$supportLibVersion"
-    implementation "com.android.support:palette-v7:$supportLibVersion"
-    implementation "com.android.support:multidex:$multidexSupport"
+    implementation mobileDependencies.androidSupportV4
+    implementation mobileDependencies.appCompatV7
+    implementation mobileDependencies.cardView
+    implementation mobileDependencies.supportDesign
+    implementation mobileDependencies.recyclerView
+    implementation mobileDependencies.vectorDrawable
+    implementation mobileDependencies.supportAnnotations
+    implementation mobileDependencies.supportPalleteV7
+    implementation mobileDependencies.supportMultidex
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation commonDependencies.kotlin
 
-    // ***************** database ORM ******************************
-    implementation "android.arch.persistence.room:runtime:$roomVersion"
-    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
-    kapt "android.arch.persistence.room:compiler:$roomVersion"
-
-    // navigation tab strip
-    implementation "com.github.devlight.navigationtabstrip:navigationtabstrip:$navTabStripVersion"
-
-    //material drawer library
-    implementation("com.mikepenz:materialdrawer:$mikepenzMaterialDrawer") {
+    implementation mobileDependencies.navigationTabStrip
+    implementation(mobileDependencies.materialDrawer) {
         transitive = true
     }
 
-    // https://github.com/mikepenz/AboutLibraries
-    implementation("com.mikepenz:aboutlibraries:$mikepenzAboutLib") {
+    implementation(mobileDependencies.aboutLibraries) {
         transitive = true
         exclude module: "fastadapter"
     }
 
-    implementation "com.mikepenz:google-material-typeface:$mikepenzMaterialTypeface"
-    implementation "com.mikepenz:fontawesome-typeface:$mikepenzFontAwesome"
-    implementation "com.mikepenz:octicons-typeface:$mikepenzOctIcons"
-    implementation "com.mikepenz:itemanimators:$mikepenzeItemAnims"
-
-    /*Android job to schedule tasks to run.*/
-    implementation "com.evernote:android-job:$evernoteJobVersion"
-
-    // network
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterVersion"
-
-    //GSON, enable modification of Parcelable objects from JSON and back, parser
-    implementation "com.google.code.gson:gson:$gsonVersion"
-
-    implementation "com.microsoft.appcenter:appcenter-analytics:$appCenterSdkVersion"
-    implementation "com.microsoft.appcenter:appcenter-crashes:$appCenterSdkVersion"
-
-    // glide for loading images
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-
-    // round images
-    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
-
-    // sweet alerts
-    implementation "cn.pedant.sweetalert:library:$sweetAlertVersion"
-
-    // app intro
-    implementation "com.github.paolorotolo:appintro:$appIntroVersion"
-
-    // crashlytics and error handling
-    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion") {
+    implementation mobileDependencies.googleTypeface
+    implementation mobileDependencies.fontawesomeTypeface
+    implementation mobileDependencies.itemAnimators
+    implementation mobileDependencies.glide
+    implementation mobileDependencies.circleImageView
+    implementation mobileDependencies.sweetalert
+    implementation mobileDependencies.appintro
+    implementation(commonDependencies.crashlytics) {
         transitive = true
     }
+    implementation mobileDependencies.customCrash
+    implementation commonDependencies.anko
+    implementation commonDependencies.dagger
+    compileOnly commonDependencies.javaxAnnotation
+    implementation commonDependencies.javaxInject
+    kapt commonDependencies.daggerCompiler
+    implementation commonDependencies.rxJava
+    implementation commonDependencies.rxKotlin
+    implementation mobileDependencies.rxAndroid
 
-    // custom crash
-    implementation "cat.ereza:customactivityoncrash:$customActivityOnCrashVersion"
-
-    // Anko Commons
-    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
-
-    // dependency injection
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    compileOnly "javax.annotation:jsr250-api:1.0"
-    // org.glassfish:javax.annotation:10.0-b28
-    implementation "javax.inject:javax.inject:1"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-
-    // reactive
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava2Version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
-
-    // android debug database
-    debugImplementation "com.amitshekhar.android:debug-db:$debugDatabaseVersion"
-
-    //-----------------------TEST DEPENDENCIES-----------------------------------------------------
-
-    // Instrumented tests
-    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espressoContribVersion") {
+    androidTestImplementation(mobileTestDependencies.espressoContrib) {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude module: 'recyclerview-v7'
     }
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espressoVersion"
-    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
-    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+    androidTestImplementation mobileTestDependencies.espressoCore
+    androidTestImplementation mobileTestDependencies.supportTestRunner
+    androidTestImplementation mobileTestDependencies.espressoIntents
+    androidTestImplementation commonTestDependencies.mockitoCore
+    kaptAndroidTest commonDependencies.daggerCompiler
 
-    //Unit Tests
-    //---------------TEST DEPENDENCIES--------------------
+    testImplementation commonTestDependencies.junit
+    testImplementation mobileTestDependencies.robolectric
+    testImplementation commonTestDependencies.assertJ
+    testImplementation commonTestDependencies.spekApi
+    testImplementation commonTestDependencies.mockitoKotlin
+    testImplementation commonTestDependencies.hamcrest
+    testImplementation commonTestDependencies.mockitoCore
 
-    testImplementation "junit:junit:$jUnitVersion"
-    testImplementation "org.robolectric:robolectric:$robolectricVersion"
-    testImplementation "org.assertj:assertj-core:$assertJVersion"
-    testImplementation "org.jetbrains.spek:spek-api:$spekVersion"
-    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
-    testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
-    testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
-
-    // Fix for https://github.com/robolectric/robolectric/issues/2566
-    kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
-}
-
-
-configurations.all {
-    resolutionStrategy.force "com.android.support:support-annotations:$supportLibVersion"
+    kaptTest commonDependencies.daggerCompiler
 }
