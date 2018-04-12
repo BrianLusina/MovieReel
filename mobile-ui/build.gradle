@@ -247,8 +247,8 @@ kapt {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    def commonDependencies = rootProject.ext.commonDependencies
-    def commonTestDependencies = rootProject.ext.commonTestDependencies
+    def globalDependencies = rootProject.ext.globalDependencies
+    def testDependencies = rootProject.ext.testDependencies
     def mobileDependencies = rootProject.ext.mobileUiDependencies
     def mobileTestDependencies = rootProject.ext.mobileUiTestDependencies
 
@@ -262,7 +262,7 @@ dependencies {
     implementation mobileDependencies.supportPalleteV7
     implementation mobileDependencies.supportMultidex
 
-    implementation commonDependencies.kotlin
+    implementation globalDependencies.kotlin
 
     implementation mobileDependencies.navigationTabStrip
     implementation(mobileDependencies.materialDrawer) {
@@ -281,17 +281,17 @@ dependencies {
     implementation mobileDependencies.circleImageView
     implementation mobileDependencies.sweetalert
     implementation mobileDependencies.appintro
-    implementation(commonDependencies.crashlytics) {
+    implementation(globalDependencies.crashlytics) {
         transitive = true
     }
     implementation mobileDependencies.customCrash
-    implementation commonDependencies.anko
-    implementation commonDependencies.dagger
-    compileOnly commonDependencies.javaxAnnotation
-    implementation commonDependencies.javaxInject
-    kapt commonDependencies.daggerCompiler
-    implementation commonDependencies.rxJava
-    implementation commonDependencies.rxKotlin
+    implementation globalDependencies.anko
+    implementation globalDependencies.dagger
+    compileOnly globalDependencies.javaxAnnotation
+    implementation globalDependencies.javaxInject
+    kapt globalDependencies.daggerCompiler
+    implementation globalDependencies.rxJava
+    implementation globalDependencies.rxKotlin
     implementation mobileDependencies.rxAndroid
 
     androidTestImplementation(mobileTestDependencies.espressoContrib) {
@@ -303,16 +303,16 @@ dependencies {
     androidTestImplementation mobileTestDependencies.espressoCore
     androidTestImplementation mobileTestDependencies.supportTestRunner
     androidTestImplementation mobileTestDependencies.espressoIntents
-    androidTestImplementation commonTestDependencies.mockitoCore
-    kaptAndroidTest commonDependencies.daggerCompiler
+    androidTestImplementation testDependencies.mockitoCore
+    kaptAndroidTest globalDependencies.daggerCompiler
 
-    testImplementation commonTestDependencies.junit
-    testImplementation mobileTestDependencies.robolectric
-    testImplementation commonTestDependencies.assertJ
-    testImplementation commonTestDependencies.spekApi
-    testImplementation commonTestDependencies.mockitoKotlin
-    testImplementation commonTestDependencies.hamcrest
-    testImplementation commonTestDependencies.mockitoCore
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.robolectric
+    testImplementation testDependencies.assertJ
+    testImplementation testDependencies.spekApi
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.hamcrest
+    testImplementation testDependencies.mockitoCore
 
-    kaptTest commonDependencies.daggerCompiler
+    kaptTest globalDependencies.daggerCompiler
 }

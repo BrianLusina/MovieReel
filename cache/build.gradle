@@ -2,39 +2,82 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
-
-
+    def globalConfig = rootProject.extensions.getByName("ext")
+    compileSdkVersion globalConfig["androidCompileSdkVersion"]
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion globalConfig["androidMinSdkVersion"]
+        targetSdkVersion globalConfig["androidTargetSdkVersion"]
+        multiDexEnabled = true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
 
+    dexOptions {
+        preDexLibraries = false
+        dexInProcess = false
+        javaMaxHeapSize "4g"
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'            //Some libraries have issues with this.
+        disable 'OldTargetApi'              //Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'IconDensities'             //For testing purpose. This is safe to remove.
+        disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
     }
 
     buildTypes {
         release {
             postprocessing {
-                removeUnusedCode false
-                removeUnusedResources false
-                obfuscate false
-                optimizeCode false
+                removeUnusedCode true
+                obfuscate true
+                optimizeCode true
                 proguardFile 'proguard-rules.pro'
             }
         }
     }
 
+    sourceSets {
+        main{
+            java.srcDirs += "src/main/kotlin"
+        }
+
+        test{
+            java.srcDirs += "src/test/kotlin"
+        }
+    }
 }
 
 dependencies {
+    def cacheDependencies = rootProject.ext.cacheDependencies
+    def globalDependencies = rootProject.ext.globalDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compileOnly globalDependencies.javaxAnnotation
+
+    implementation project(':data')
+
+    implementation globalDependencies.kotlin
+    implementation globalDependencies.javaxInject
+    implementation globalDependencies.rxKotlin
+    implementation cacheDependencies.gson
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.kotlinJUnit
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.assertJ
+    testImplementation testDependencies.robolectric
 }

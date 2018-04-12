@@ -133,7 +133,7 @@ ext {
     spekVersion = "1.1.5"
     hamcrestVersion = "1.3"
 
-    commonDependencies = [
+    globalDependencies = [
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
             anko           : "org.jetbrains.anko:anko-commons:$ankoVersion",
             dagger         : "com.google.dagger:dagger:$daggerVersion",
@@ -145,13 +145,15 @@ ext {
             crashlytics: "com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion",
     ]
 
-    commonTestDependencies = [
+    testDependencies = [
             junit: "junit:junit:$jUnitVersion",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             assertJ: "org.assertj:assertj-core:$assertJVersion",
             spekApi: "org.jetbrains.spek:spek-api:$spekVersion",
             mockitoKotlin: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
             hamcrest: "org.hamcrest:hamcrest-library:$hamcrestVersion",
             mockitoCore: "org.mockito:mockito-core:$mockitoVersion",
+            robolectric: "org.robolectric:robolectric:$robolectricVersion",
     ]
 
     mobileUiDependencies = [
@@ -183,13 +185,13 @@ ext {
             espressoCore: "com.android.support.test.espresso:espresso-core:$espressoVersion",
             supportTestRunner: 'com.android.support.test:runner:1.0.1',
             espressoIntents: "com.android.support.test.espresso:espresso-intents:$espressoVersion",
-            robolectric: "org.robolectric:robolectric:$robolectricVersion",
     ]
 
     cacheDependencies = [
             roomRuntime : "android.arch.persistence.room:runtime:$roomVersion",
             roomRxJava  : "android.arch.persistence.room:rxjava2:$roomVersion",
             roomCompiler: "android.arch.persistence.room:compiler:$roomVersion",
+            gson : "com.google.code.gson:gson:$gsonVersion",
             debugDb     : "com.amitshekhar.android:debug-db:$debugDatabaseVersion",
     ]
 
