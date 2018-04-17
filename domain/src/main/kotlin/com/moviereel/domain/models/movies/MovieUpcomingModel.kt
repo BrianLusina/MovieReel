@@ -1,7 +1,5 @@
-package com.moviereel.data.db.entities.movie
+package com.moviereel.domain.models.movies
 
-
-import android.arch.persistence.room.Entity
 import com.moviereel.domain.models.BaseEntity
 
 /**
@@ -9,5 +7,4 @@ import com.moviereel.domain.models.BaseEntity
  * @Notes An upcoming Movie model. Used when storing upcoming movie items in the database
  */
 
-@Entity(tableName = "movie_upcoming")
-class MovieUpcomingEntity : BaseEntity()
+class MovieUpcomingModel : BaseEntity()

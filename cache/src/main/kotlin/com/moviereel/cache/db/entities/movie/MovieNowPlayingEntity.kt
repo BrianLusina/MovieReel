@@ -1,7 +1,7 @@
 package com.moviereel.data.db.entities.movie
 
 import android.arch.persistence.room.Entity
-import com.moviereel.data.db.entities.BaseEntity
+import com.moviereel.domain.models.BaseEntity
 
 /**
  * @author lusinabrian

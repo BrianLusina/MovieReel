@@ -1,7 +1,7 @@
 package com.moviereel.data.db.dao
 
 import android.arch.persistence.room.*
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
+import com.moviereel.domain.models.movies.MovieNowPlayingModel
 import io.reactivex.Flowable
 
 
@@ -14,29 +14,29 @@ interface MovieNowPlayingDao {
 
     // ****************** CREATE ************************
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieNp(movieNowPlayingEntity: MovieNowPlayingEntity)
+    fun insertMovieNp(movieNowPlayingEntity: MovieNowPlayingModel)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieNpList(vararg movieNowPlayingEntity: MovieNowPlayingEntity)
+    fun insertMovieNpList(vararg movieNowPlayingEntity: MovieNowPlayingModel)
 
     // ****************** READ ************************
     @Query("select * from movie_now_playing")
-    fun getAllMoviesNowPlaying(): Flowable<List<MovieNowPlayingEntity>>
+    fun getAllMoviesNowPlaying(): Flowable<List<MovieNowPlayingModel>>
 
     @Query("select * from movie_now_playing where id = :movieNpId")
-    fun getMovieNpById(movieNpId: Long): Flowable<MovieNowPlayingEntity>
+    fun getMovieNpById(movieNpId: Long): Flowable<MovieNowPlayingModel>
 
     // ****************** UPDATE ************************
 
     @Update
-    fun updateMovieNpList(vararg movieNowPlayingEntity: MovieNowPlayingEntity)
+    fun updateMovieNpList(vararg movieNowPlayingEntity: MovieNowPlayingModel)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateMovieNp(movieNowPlayingEntity: MovieNowPlayingEntity)
+    fun updateMovieNp(movieNowPlayingEntity: MovieNowPlayingModel)
 
     // ****************** DELETE ************************
 
     @Delete
-    fun deleteMovieNp(movieNowPlayingEntity: MovieNowPlayingEntity)
+    fun deleteMovieNp(movieNowPlayingEntity: MovieNowPlayingModel)
 
 }

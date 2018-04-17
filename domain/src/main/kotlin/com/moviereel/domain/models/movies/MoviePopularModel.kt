@@ -1,6 +1,5 @@
-package com.moviereel.data.db.entities.movie
+package com.moviereel.domain.models.movies
 
-import android.arch.persistence.room.Entity
 import com.moviereel.domain.models.BaseEntity
 
 /**
@@ -8,5 +7,5 @@ import com.moviereel.domain.models.BaseEntity
  * @Notes Popular Movie Model (POJO) that will be mapped to a row in the table movie_popular
  * * in the database
  */
-@Entity(tableName = "movie_popular")
-class MoviePopularEntity : BaseEntity()
+
+class MoviePopularModel : BaseEntity()

@@ -1,16 +1,17 @@
-package com.moviereel.data.db.entities
+package com.moviereel.cache.db.entities
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.PrimaryKey
-import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 /**
  * @author lusinabrian on 09/08/17.
  * @Notes Base entity for objects
  */
+@Parcelize
 open class BaseEntity(
         @Expose
         @SerializedName("vote_count")
@@ -81,48 +82,4 @@ open class BaseEntity(
         @SerializedName("release_date")
         @ColumnInfo(name = "release_date")
         open var releaseDate: String = ""
-) : Parcelable {
-    constructor(source: Parcel) : this(
-            source.readInt(),
-            source.readLong(),
-            1 == source.readInt(),
-            source.readFloat(),
-            source.readString(),
-            source.readFloat(),
-            source.readString(),
-            source.readString(),
-            source.readString(),
-            ArrayList<Int>().apply { source.readList(this, Int::class.java.classLoader) },
-            source.readString(),
-            1 == source.readInt(),
-            source.readString(),
-            source.readString()
-    )
-
-    override fun describeContents() = 0
-
-    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeInt(voteCount)
-        writeLong(id)
-        writeInt((if (video) 1 else 0))
-        writeFloat(voteAverage)
-        writeString(title)
-        writeFloat(popularity)
-        writeString(posterPath)
-        writeString(originalLanguage)
-        writeString(originalTitle)
-        writeList(genreIds)
-        writeString(backdropPath)
-        writeInt((if (isAdult) 1 else 0))
-        writeString(overview)
-        writeString(releaseDate)
-    }
-
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<BaseEntity> = object : Parcelable.Creator<BaseEntity> {
-            override fun createFromParcel(source: Parcel): BaseEntity = BaseEntity(source)
-            override fun newArray(size: Int): Array<BaseEntity?> = arrayOfNulls(size)
-        }
-    }
-}
+) : Parcelable
