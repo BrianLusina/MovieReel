@@ -1,5 +1,8 @@
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 sourceSets {
     main{
         java.srcDirs += "src/main/kotlin"
@@ -12,26 +15,20 @@ sourceSets {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    def remoteDependencies = rootProject.ext.remoteDependencies
+
     def globalDependencies = rootProject.ext.globalDependencies
     def testDependencies = rootProject.ext.testDependencies
-    def remoteTestDependencies = rootProject.ext.remoteTestDependencies
 
-    implementation globalDependencies.javaxAnnotation
+    compile project(':domain')
+
+    compile globalDependencies.javaxAnnotation
+
     implementation globalDependencies.kotlin
     implementation globalDependencies.javaxInject
     implementation globalDependencies.rxKotlin
 
-    implementation remoteDependencies.gson
-    implementation remoteDependencies.retrofit
-    implementation remoteDependencies.retrofitGsonConverter
-    implementation remoteDependencies.retrofitRxAdapter
-
-    testImplementation remoteTestDependencies.kotlinJUnit
-
     testImplementation testDependencies.junit
+    testImplementation testDependencies.kotlinJUnit
     testImplementation testDependencies.mockitoKotlin
     testImplementation testDependencies.assertJ
-
-    compile project(':data')
 }
