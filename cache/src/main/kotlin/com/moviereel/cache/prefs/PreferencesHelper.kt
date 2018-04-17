@@ -1,4 +1,4 @@
-package com.moviereel.data.prefs
+package com.moviereel.cache.prefs
 
 /**
  * @author lusinabrian on 28/03/17
@@ -22,6 +22,17 @@ interface PreferencesHelper {
      * @param setFirstStart sets the value for the first start
      * *
      */
-    fun setFirstStart(setFirstStart: Boolean) : Unit
+    fun setFirstStart(setFirstStart: Boolean)
 
+    /**
+     * Sets the last cache time
+     * @param lastCache
+     */
+    fun setLastCache(lastCache: Long)
+
+    /**
+     * Gets the last cache time
+     * @return [Long]
+     */
+    fun getLastCache() : Long
 }

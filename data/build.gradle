@@ -1,8 +1,34 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+sourceSets {
+    main{
+        java.srcDirs += "src/main/kotlin"
+    }
+
+    test{
+        java.srcDirs += "src/test/kotlin"
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+    def globalDependencies = rootProject.ext.globalDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    compile project(':domain')
+
+    compile globalDependencies.javaxAnnotation
+
+    implementation globalDependencies.kotlin
+    implementation globalDependencies.javaxInject
+    implementation globalDependencies.rxKotlin
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.kotlinJUnit
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.assertJ
+}

@@ -1,4 +1,4 @@
-package com.moviereel.data.prefs
+package com.moviereel.cache.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -17,7 +17,12 @@ import javax.inject.Singleton
 
 @Singleton
 class PreferencesHelperImpl @Inject
-constructor(@AppContext context: Context, @PreferenceInfo prefFilename: String) : PreferencesHelper {
+constructor(context: Context, @PreferenceInfo prefFilename: String) : PreferencesHelper {
+
+    companion object {
+        private const val PREF_KEY_FIRST_START = "PREF_KEY_FIRST_START"
+        private const val PREF_KEY_LAST_CACHE = "PREF_KEY_LAST_CACHE"
+    }
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(prefFilename, Context.MODE_PRIVATE)
 
@@ -41,10 +46,9 @@ constructor(@AppContext context: Context, @PreferenceInfo prefFilename: String) 
         sharedPreferences.edit().putBoolean(PREF_KEY_FIRST_START, setFirstStart).apply()
     }
 
-    companion object {
-
-        // key used to determine if this is the first start of the application
-        private val PREF_KEY_FIRST_START = "PREF_KEY_FIRST_START"
+    override fun setLastCache(lastCache: Long) {
+        sharedPreferences.edit().putLong(PREF_KEY_LAST_CACHE, lastCache).apply()
     }
 
+    override fun getLastCache() = sharedPreferences.getLong(PREF_KEY_LAST_CACHE, 0)
 }
