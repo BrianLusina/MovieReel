@@ -15,15 +15,15 @@ import io.reactivex.schedulers.Schedulers
  * This interface represents a execution unit for different use cases (this means any use case
  * in the application should implement this contract).
  *
- * By convention each UseCase implementation will return the result using a [DisposableObserver]
+ * By convention each SingleUseCase implementation will return the result using a [DisposableObserver]
  * that will execute its job in a background thread and will post the result in the UI thread.
  */
-abstract class UseCase<T, in Params> constructor(private val threadExecutor: ThreadExecutor, private val postExecutionThread: PostExecutionThread) {
+abstract class SingleUseCase<T, in Params> constructor(private val threadExecutor: ThreadExecutor, private val postExecutionThread: PostExecutionThread) {
 
     private val disposables = CompositeDisposable()
 
     /**
-     * Builds a use case observable used when the current UseCase is being executed.
+     * Builds a use case observable used when the current SingleUseCase is being executed.
      * @param params
      * @return [Single]
      */
