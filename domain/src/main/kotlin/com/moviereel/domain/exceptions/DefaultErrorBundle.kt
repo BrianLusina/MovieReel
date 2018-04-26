@@ -5,10 +5,16 @@ package com.moviereel.domain.exceptions
  * @Notes Wrapper around exceptions used to manage default errors
  */
 class DefaultErrorBundle(var caughtException: Exception) : ErrorBundle{
-    private val DEFAULT_ERROR_MESSAGE = ""
+    companion object {
+        private const val DEFAULT_ERROR_MESSAGE = "Unknown Error"
+    }
 
     override fun getErrorMessage(): String {
-        return if (caughtException != null) caughtException.message!! else DEFAULT_ERROR_MESSAGE
+        return if (caughtException != null){
+            caughtException.message.toString()
+        } else {
+            DEFAULT_ERROR_MESSAGE
+        }
     }
 
     override fun getException(): Exception {
