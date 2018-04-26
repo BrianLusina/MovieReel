@@ -23,7 +23,7 @@ abstract class CompletableUseCase<in Params> protected constructor(private val t
     /**
      * Executes the current use case.
      */
-    fun execute(params: Params): Completable {
+    open fun execute(params: Params): Completable {
         return this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.scheduler)
