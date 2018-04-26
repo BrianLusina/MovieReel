@@ -16,7 +16,7 @@ interface MoviesRepository {
      * @param language [String] Language, defaults to english
      * @return [Flowable]
      */
-    fun getMoviesNowPlayingList(page : Int, language: String = "eng") : Flowable<List<MovieNowPlayingModel>>
+    fun getMoviesNowPlayingList(page : Int = 1, language: String = "eng") : Flowable<List<MovieNowPlayingModel>>
 
     /**
      * get a now playing movie detail

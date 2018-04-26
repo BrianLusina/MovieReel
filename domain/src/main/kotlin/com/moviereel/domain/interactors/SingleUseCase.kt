@@ -27,17 +27,17 @@ abstract class SingleUseCase<T, in Params> constructor(private val threadExecuto
      * @param params
      * @return [Single]
      */
-    abstract fun buildUseCaseObservable(params: Params? = null) : Single<T>
+    abstract fun buildUseCaseSingle(params: Params? = null) : Single<T>
 
     /**
      * Executes the current use case
      * @param singleObserver a [DisposableSingleObserver] which will be listening to the [Single] build by
-     * [buildUseCaseObservable] method
+     * [buildUseCaseSingle] method
      * @param params (optional) used to build and execute this use case
      */
     open fun execute(singleObserver: DisposableSingleObserver<T>, params: Params? =null){
         checkNotNull(singleObserver)
-        val single = buildUseCaseObservable(params)
+        val single = buildUseCaseSingle(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.scheduler) as Single<T>
         addDisposable(single.subscribeWith(singleObserver))

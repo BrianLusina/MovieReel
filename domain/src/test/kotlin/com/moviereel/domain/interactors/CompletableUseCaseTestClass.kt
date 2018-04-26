@@ -6,7 +6,7 @@ import io.reactivex.Completable
 
 class CompletableUseCaseTestClass(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread) : CompletableUseCase<Params>(threadExecutor, postExecutionThread){
 
-    override fun buildUseCaseObservable(params: Params): Completable {
+    override fun buildUseCaseCompletable(params: Params): Completable {
         return Completable.complete()
     }
 

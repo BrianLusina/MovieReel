@@ -7,7 +7,7 @@ import io.reactivex.observers.DisposableSingleObserver
 
 class SingleUseCaseTestClass(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread) : SingleUseCase<Any, Params>(threadExecutor, postExecutionThread){
 
-    override fun buildUseCaseObservable(params: Params?): Single<Any> {
+    override fun buildUseCaseSingle(params: Params?): Single<Any> {
         return Single.just(Any())
     }
 
