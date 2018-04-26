@@ -8,9 +8,22 @@ import io.reactivex.Flowable
  * This is to be implemented by the data layer, setting the requirements for the
  * operations that need to be implemented
  */
-interface MovieRepository {
+interface MoviesRepository {
 
-    fun getMoviesNowPlaying(page : Int, language: String) : Flowable<List<MovieNowPlayingModel>>
+    /**
+     * Get a list of now playing movies
+     * @param page [Int] Page request
+     * @param language [String] Language, defaults to english
+     * @return [Flowable]
+     */
+    fun getMoviesNowPlayingList(page : Int, language: String = "eng") : Flowable<List<MovieNowPlayingModel>>
+
+    /**
+     * get a now playing movie detail
+     * @param id [Int] Id of the Now playing movie
+     * @return [Flowable]
+     */
+    fun getMovieNowPlaying(id : Int) : Flowable<MovieNowPlayingModel>
 
     fun getMoviesLatest(language: String) : Flowable<MovieLatestModel>
 

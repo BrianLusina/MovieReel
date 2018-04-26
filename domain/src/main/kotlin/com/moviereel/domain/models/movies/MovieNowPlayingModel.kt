@@ -4,9 +4,7 @@ import com.moviereel.domain.models.BaseEntity
 
 /**
  * @author lusinabrian
- * *
  * @Notes: Now playing movie model
  */
 
-
-class MovieNowPlayingModel : BaseEntity()
+open class MovieNowPlayingModel : BaseEntity()

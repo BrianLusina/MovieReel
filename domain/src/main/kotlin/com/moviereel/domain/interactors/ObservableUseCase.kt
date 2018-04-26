@@ -24,7 +24,7 @@ abstract class ObservableUseCase<T, in Params>constructor(private val threadExec
      * [buildUseCaseObservable] method
      * @param params (optional) used to build and execute this use case
      */
-    open fun execute(observer: DisposableObserver<T>, params: Params? =null){
+    open fun execute(observer: DisposableObserver<T>, params: Params? = null){
         checkNotNull(observer)
         val observable = buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
