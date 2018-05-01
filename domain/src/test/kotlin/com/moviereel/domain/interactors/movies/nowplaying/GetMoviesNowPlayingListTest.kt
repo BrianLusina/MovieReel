@@ -21,27 +21,31 @@ import org.mockito.junit.MockitoJUnitRunner
 class GetMoviesNowPlayingListTest {
 
     private lateinit var getMoviesNpList: GetMoviesNowPlayingList
+    private var page = 1
+    private var language = "en-US"
 
     @Mock lateinit var mockThreadExecutor: ThreadExecutor
     @Mock lateinit var mockPostExecutionThread: PostExecutionThread
     @Mock lateinit var mockMoviesRepository: MoviesRepository
 
     private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<List<MovieNowPlayingModel>>) {
-        whenever(mockMoviesRepository.getMoviesNowPlayingList())
+        whenever(mockMoviesRepository.getMoviesNowPlayingList(page, language))
                 .thenReturn(flowable)
     }
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         getMoviesNpList = GetMoviesNowPlayingList(mockMoviesRepository, mockThreadExecutor, mockPostExecutionThread)
-        given(mockPostExecutionThread.scheduler).willReturn(TestScheduler())
+        // Unnecessary Mockito stubbing
+        // given(mockPostExecutionThread.scheduler).willReturn(TestScheduler())
     }
 
     @Test
     fun testUseCaseSingleCallsRepository(){
-        val params = GetMoviesNowPlayingList.Params.forMovies(1, "en")
+        stubMoviesRepositoryGetMoviesNowPlaying(Flowable.just(MovieDataFactory.makeMoviesNowPlayingList(2)))
+        val params = GetMoviesNowPlayingList.Params.forMovies(page, language)
         getMoviesNpList.buildUseCaseSingle(params)
-        verify(mockMoviesRepository).getMoviesNowPlayingList()
+        verify(mockMoviesRepository).getMoviesNowPlayingList(page, language)
     }
 
     @Test

@@ -23,8 +23,8 @@ constructor(val moviesRespository: MoviesRepository,
             val moviesNowPlayingFlowable = params.let { moviesRespository.getMoviesNowPlayingList(it.page, it.language) }
             return moviesNowPlayingFlowable.singleOrError()
         }
-        val moviesNowPlayingFlowable = params?.let { moviesRespository.getMoviesNowPlayingList(it.page, it.language) }
-        return moviesNowPlayingFlowable?.singleOrError()!!
+        val moviesNowPlayingFlowable = moviesRespository.getMoviesNowPlayingList()
+        return moviesNowPlayingFlowable.singleOrError()
     }
 
     class Params constructor(var page: Int, var language: String) {

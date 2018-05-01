@@ -25,9 +25,11 @@ constructor(private val moviesRepository: MoviesRepository,
         return movieNowPlayingObservable?.singleOrError()!!
     }
 
-    inner class Params private constructor(var id: Int) {
-        fun forMovies(id: Int): Params {
-            return Params(id)
+    class Params private constructor(var id: Int) {
+        companion object {
+            fun forMovies(id: Int): Params {
+                return Params(id)
+            }
         }
     }
 }
