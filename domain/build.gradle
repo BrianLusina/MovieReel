@@ -25,5 +25,4 @@ dependencies {
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockitoKotlin
     testImplementation testDependencies.assertJ
-
 }

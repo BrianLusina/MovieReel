@@ -1,10 +1,12 @@
 package com.moviereel.domain.models.movies
 
-import com.moviereel.domain.models.BaseEntity
-
 /**
  * @author lusinabrian
- * @Notes: Now playing movie model
+ * @Notes: Now playing movie model represents a single Now playing movie fetched from an external layer data source
  */
 
-open class MovieNowPlayingModel : BaseEntity()
+data class MovieNowPlayingModel(var id: Long, var voteCount: Int, var video: Boolean, var voteAverage: Float,
+                                var title: String, var popularity: Float, var posterPath: String,
+                                var originalLang: String, var originalTitle: String,
+                                var genreIds: List<Int>, var backdropPath: String, var adult: Boolean,
+                                var overview: String, var releaseDate: String)

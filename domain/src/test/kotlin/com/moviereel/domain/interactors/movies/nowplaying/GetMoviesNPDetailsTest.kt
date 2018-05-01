@@ -2,6 +2,7 @@ package com.moviereel.domain.interactors.movies.nowplaying
 
 import com.moviereel.domain.executor.PostExecutionThread
 import com.moviereel.domain.executor.ThreadExecutor
+import com.moviereel.domain.factory.MovieDataFactory
 import com.moviereel.domain.models.movies.MovieNowPlayingModel
 import com.moviereel.domain.repositories.MoviesRepository
 import com.nhaarman.mockito_kotlin.verify
@@ -10,7 +11,9 @@ import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Flowable
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.ExpectedException
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
@@ -29,6 +32,10 @@ class GetMoviesNPDetailsTest {
     @Mock
     lateinit var mockMoviesRepository: MoviesRepository
 
+    @Rule
+    @JvmField
+    var expectedException = ExpectedException.none()
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -41,7 +48,7 @@ class GetMoviesNPDetailsTest {
 
     @Test
     fun testBuildUseCaseSingleCompletes(){
-        stubMoviesRepositoryGetMoviesNowPlaying(Flowable.just(MovieNowPlayingModel()))
+        stubMoviesRepositoryGetMoviesNowPlaying(Flowable.just(MovieDataFactory.makeMovieNowPlaying()))
 
         getMoviesNPDetails.buildUseCaseSingle(GetMoviesNPDetails.Params.forMovies(movieId))
         verify(mockMoviesRepository).getMovieNowPlaying(movieId)
@@ -50,4 +57,9 @@ class GetMoviesNPDetailsTest {
         verifyZeroInteractions(mockThreadExecutor)
     }
 
+    @Test
+    fun testShouldFailWhenNoOrEmptyParameters() {
+        expectedException.expect(NullPointerException::class.java)
+        getMoviesNPDetails.buildUseCaseSingle(null)
+    }
 }

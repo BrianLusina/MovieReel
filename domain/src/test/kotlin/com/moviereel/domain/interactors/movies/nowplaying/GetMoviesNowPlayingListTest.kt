@@ -5,10 +5,8 @@ import com.moviereel.domain.executor.ThreadExecutor
 import com.moviereel.domain.factory.MovieDataFactory
 import com.moviereel.domain.models.movies.MovieNowPlayingModel
 import com.moviereel.domain.repositories.MoviesRepository
-import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Flowable
-import io.reactivex.schedulers.TestScheduler
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,6 +14,10 @@ import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import org.junit.rules.ExpectedException
+import org.junit.Rule
+
+
 
 @RunWith(MockitoJUnitRunner::class)
 class GetMoviesNowPlayingListTest {

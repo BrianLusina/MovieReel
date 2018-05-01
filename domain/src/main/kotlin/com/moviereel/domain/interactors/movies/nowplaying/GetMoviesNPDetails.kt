@@ -21,7 +21,7 @@ constructor(private val moviesRepository: MoviesRepository,
         SingleUseCase<MovieNowPlayingModel, GetMoviesNPDetails.Params>(threadExecutor, postExecutionThread) {
 
     override fun buildUseCaseSingle(params: Params?): Single<MovieNowPlayingModel> {
-        val movieNowPlayingObservable = params?.id?.let { moviesRepository.getMovieNowPlaying(it) }
+        val movieNowPlayingObservable = params?.let { moviesRepository.getMovieNowPlaying(it.id) }
         return movieNowPlayingObservable?.singleOrError()!!
     }
 
