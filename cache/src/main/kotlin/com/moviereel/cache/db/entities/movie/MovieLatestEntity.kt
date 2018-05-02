@@ -1,11 +1,12 @@
 package com.moviereel.data.db.entities.movie
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.moviereel.data.db.entities.*
+import com.moviereel.cache.db.entities.BaseEntity
+import com.moviereel.domain.models.GenreModel
+import com.moviereel.domain.models.ProductionCompany
+import com.moviereel.domain.models.ProductionCountry
+import com.moviereel.domain.models.SpokenLanguage
 
 /**
  * @author lusinabrian on 15/05/17.
@@ -26,7 +27,7 @@ data class MovieLatestEntity(
         @Expose
         //@ColumnInfo(name = "genres")
         //@Ignore
-        var genres: ArrayList<GenreEntity>,
+        var genres: ArrayList<GenreModel>,
 
         @Expose
         @SerializedName("homepage")

@@ -1,4 +1,13 @@
 apply plugin: 'kotlin'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+junitPlatform {
+    filters {
+        engines {
+            include 'spek'
+        }
+    }
+}
 
 sourceSets {
     main{
@@ -20,9 +29,11 @@ dependencies {
     implementation globalDependencies.javaxInject
     implementation globalDependencies.rxKotlin
     implementation globalDependencies.kotlin
+    implementation globalDependencies.anko
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockitoKotlin
     testImplementation testDependencies.assertJ
-
+    testImplementation testDependencies.spekApi
+    testRuntime testDependencies.spekRuntime
 }

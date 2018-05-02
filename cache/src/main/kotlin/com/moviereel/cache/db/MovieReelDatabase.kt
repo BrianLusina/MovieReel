@@ -7,15 +7,18 @@ import com.moviereel.data.db.dao.MovieNowPlayingDao
 import com.moviereel.data.db.dao.MoviePopularDao
 import com.moviereel.data.db.dao.MovieTopRatedDao
 import com.moviereel.data.db.dao.MovieUpcomingDao
-import com.moviereel.data.db.entities.GenreEntity
-import com.moviereel.data.db.entities.movie.*
+import com.moviereel.domain.models.GenreModel
+import com.moviereel.domain.models.movies.MovieNowPlayingModel
+import com.moviereel.domain.models.movies.MoviePopularModel
+import com.moviereel.domain.models.movies.MovieTopRatedModel
+import com.moviereel.domain.models.movies.MovieUpcomingModel
 
 /**
  * @author lusinabrian on 28/03/17
  */
 
-@Database(entities = arrayOf(MovieNowPlayingEntity::class, MoviePopularEntity::class,
-        MovieTopRatedEntity::class, MovieUpcomingEntity::class, GenreEntity::class),
+@Database(entities = arrayOf(MovieNowPlayingModel::class, MoviePopularModel::class,
+        MovieTopRatedModel::class, MovieUpcomingModel::class, GenreModel::class),
         version = 1, exportSchema = false)
 @TypeConverters(DbConverters::class)
 abstract class MovieReelDatabase : RoomDatabase() {

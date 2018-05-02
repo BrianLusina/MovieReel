@@ -1,7 +1,7 @@
 apply from: "buildSystem/ci.gradle"
 
 buildscript {
-    ext.kotlin_version = '1.2.31'
+    ext.kotlin_version = '1.2.41'
     repositories {
         jcenter()
         mavenCentral()
@@ -11,12 +11,13 @@ buildscript {
 
     dependencies {
         classpath "io.fabric.tools:gradle:1+"
-        classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
         classpath 'com.github.triplet.gradle:play-publisher:1.2.0'
         classpath "com.dicedmelon.gradle:jacoco-android:0.1.2"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
     }
 }
 
@@ -30,6 +31,7 @@ allprojects {
         maven { url "https://maven.fabric.io/public" }
         maven { url "https://jitpack.io" }
         maven { url "http://dl.bintray.com/typesafe/maven-releases" }
+        maven { url "http://dl.bintray.com/jetbrains/spek" }
     }
 }
 

@@ -151,6 +151,7 @@ ext {
             kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             assertJ: "org.assertj:assertj-core:$assertJVersion",
             spekApi: "org.jetbrains.spek:spek-api:$spekVersion",
+            spekRuntime: "org.jetbrains.spek:spek-junit-platform-engine:$spekVersion",
             mockitoKotlin: "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
             hamcrest: "org.hamcrest:hamcrest-library:$hamcrestVersion",
             mockitoCore: "org.mockito:mockito-core:$mockitoVersion",
