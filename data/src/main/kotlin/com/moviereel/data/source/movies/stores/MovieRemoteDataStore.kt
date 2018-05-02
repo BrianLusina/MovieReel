@@ -1,7 +1,7 @@
 package com.moviereel.data.source.movies.stores
 
 import com.moviereel.data.models.movies.MovieNowPlayingEntity
-import com.moviereel.data.source.movies.MovieRemote
+import com.moviereel.data.source.movies.repo.MovieRemote
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject

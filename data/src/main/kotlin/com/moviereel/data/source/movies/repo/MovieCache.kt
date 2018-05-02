@@ -1,4 +1,4 @@
-package com.moviereel.data.source.movies
+package com.moviereel.data.source.movies.repo
 
 import com.moviereel.data.models.movies.MovieNowPlayingEntity
 import io.reactivex.Completable
