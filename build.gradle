@@ -1,7 +1,8 @@
-apply from: "buildSystem/ci.gradle"
-
 buildscript {
     ext.kotlin_version = '1.2.41'
+    ext.dokka_version = "0.9.16"
+    ext.detektVersion = "1.0.0.RC6-4"
+
     repositories {
         jcenter()
         mavenCentral()
@@ -18,9 +19,16 @@ buildscript {
         classpath 'com.github.triplet.gradle:play-publisher:1.2.0'
         classpath "com.dicedmelon.gradle:jacoco-android:0.1.2"
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${dokka_version}"
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC6-4"
+}
+
+apply from: "buildSystem/ci.gradle"
 apply from: "dependencies.gradle"
 
 allprojects {
@@ -53,4 +61,13 @@ task runUnitTests(dependsOn: ['runDomainUnitTests', 'runDataUnitTests']) {
 
 task runAcceptanceTests(dependsOn: [':presentation:connectedAndroidTest']) {
     description 'Run application acceptance tests.'
+}
+
+
+detekt {
+    version = rootProject.ext.detektVersion
+    defaultProfile {
+        input = file("src/main/kotlin")
+        filters = ".*/resources/.*,.*/build/.*"
+    }
 }

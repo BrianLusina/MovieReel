@@ -6,6 +6,7 @@ apply plugin: "signing"
 apply from: "../jacoco.gradle"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.triplet.play'
+apply plugin: 'org.jetbrains.dokka-android'
 
 import com.android.build.OutputFile
 
