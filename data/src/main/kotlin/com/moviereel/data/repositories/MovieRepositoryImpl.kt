@@ -1,14 +1,22 @@
 package com.moviereel.data.repositories
 
+import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
+import com.moviereel.data.source.movies.MovieDataStoreFactory
 import com.moviereel.domain.models.movies.*
 import com.moviereel.domain.repositories.MoviesRepository
 import io.reactivex.Flowable
+import javax.inject.Inject
 
 /**
  * Provides an implementation of the [MoviesRepository] interface for communicating to and from
  * data sources
  */
-class MovieRepositoryImpl : MoviesRepository{
+class MovieRepositoryImpl
+@Inject
+constructor(
+        val factory: MovieDataStoreFactory,
+        val movieNowPlayingMapper: MovieNowPlayingMapper)
+    : MoviesRepository {
 
     override fun getMoviesNowPlayingList(page: Int, language: String): Flowable<List<MovieNowPlayingModel>> {
     }
