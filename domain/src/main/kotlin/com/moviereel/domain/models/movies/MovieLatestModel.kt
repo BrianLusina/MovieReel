@@ -4,7 +4,6 @@ import com.moviereel.domain.models.GenreModel
 import com.moviereel.domain.models.ProductionCompany
 import com.moviereel.domain.models.ProductionCountry
 import com.moviereel.domain.models.SpokenLanguage
-import com.moviereel.domain.models.BaseEntity
 
 /**
  * @author lusinabrian on 15/05/17.
@@ -24,4 +23,4 @@ data class MovieLatestModel(
         var spokenLanguage: ArrayList<SpokenLanguage>,
         var status: String,
         var tagline: String
-) : BaseEntity()
+)

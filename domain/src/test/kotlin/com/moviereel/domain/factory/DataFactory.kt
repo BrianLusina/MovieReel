@@ -69,15 +69,9 @@ object DataFactory {
     }
 
     fun randomReleaseDate() : String{
-        val gc = GregorianCalendar()
-        val year = randBetween(1900, 2010)
-
-        gc.set(gc.weekYear, year)
-
-        val dayOfYear = randBetween(1, gc.getActualMaximum(gc.firstDayOfWeek))
-
-        gc.set(gc.firstDayOfWeek, dayOfYear)
-
-        return gc.toString()
+        val year = randBetween(1900, 2018)
+        val month = randBetween(1, 12)
+        val day = randBetween(1, 31)
+        return "$year-$month-$day"
     }
 }
