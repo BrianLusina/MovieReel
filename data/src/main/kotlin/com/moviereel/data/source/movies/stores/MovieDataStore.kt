@@ -11,9 +11,23 @@ import io.reactivex.Single
  * operations that need to be implemented
  */
 interface MovieDataStore {
-    fun clearMovies(): Completable
+    fun clearAllMovies(): Completable
 
     fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable
 
-    fun getMoviesNowPlaying(): Single<List<MovieNowPlayingEntity>>
+    fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingEntity): Completable
+
+    fun clearMoviesNowPlaying() : Completable
+
+    /**
+     * Get movies now playing given the page and
+     */
+    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
+
+    /**
+     * Gets a movie that is now playing given its id
+     * @param id MovieNowPlaying
+     * @return [Single]
+     */
+    fun getMovieNowPlaying(id: Long) : Single<MovieNowPlayingEntity>
 }

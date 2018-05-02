@@ -13,6 +13,8 @@ interface MovieRemote {
     /**
      * Retrieve a list of MoviesNowPlaying, from api
      */
-    fun getMoviesNowPlaying(): Single<List<MovieNowPlayingEntity>>
+    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
+
+    fun getMovieNowPlaying(id : Long) : Single<MovieNowPlayingEntity>
 
 }

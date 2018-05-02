@@ -13,7 +13,7 @@ import javax.inject.Inject
 */
 class MovieRemoteDataStore @Inject constructor(private val movieRemote: MovieRemote): MovieDataStore {
 
-    override fun clearMovies(): Completable {
+    override fun clearAllMovies(): Completable {
         throw UnsupportedOperationException()
     }
 

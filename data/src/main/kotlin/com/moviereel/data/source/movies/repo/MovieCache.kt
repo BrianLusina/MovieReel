@@ -10,8 +10,11 @@ import io.reactivex.Single
  * This is to be implemented by the cache layer, using this interface as a way of communicating.
  */
 interface MovieCache {
+
+    fun clearAllMovies() : Completable
+
     /**
-     * Clear all Bufferoos from the cache
+     * Clear all Movies now playing from the cache
      */
     fun clearMoviesNowPlaying(): Completable
 
@@ -23,20 +26,25 @@ interface MovieCache {
     /**
      * Retrieve a list of Movies now playing from the cache
      */
-    fun getMoviesNowPlaying(): Single<List<MovieNowPlayingEntity>>
+    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
+
+    fun getMovieNowPlaying(id : Long) : Single<MovieNowPlayingEntity>
 
     /**
-     * Checks if an element (User) exists in the cache.
+     * Checks if an element exists in the cache.
      * @return true if the element is cached, otherwise false.
      */
     fun isCached(): Boolean
 
     /**
-     * Checks if an element (User) exists in the cache.
-     * @param userId The id used to look for inside the cache.
-     * @return true if the element is cached, otherwise false.
+     * sets the last cache time
      */
     fun setLastCacheTime(lastCache: Long)
+
+    /**
+     * Sets the last cache time for movies now playing
+     */
+    fun setLastCacheTimeMoviesNowPlaying(lastCache: Long)
 
     /**
      * Checks if the cache is expired.

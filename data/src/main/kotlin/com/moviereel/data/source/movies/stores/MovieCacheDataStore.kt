@@ -8,20 +8,31 @@ import javax.inject.Inject
 
 /**
  * @author lusinabrian on 02/05/18.
- * @Notes
+ * @Notes Implementation of the [MovieDataStore] interface to provide a means of communicating
+ * with the local data source
  */
 class MovieCacheDataStore @Inject constructor(private val movieCache: MovieCache) : MovieDataStore {
 
-    override fun clearMovies(): Completable {
+    override fun clearAllMovies(): Completable {
         return movieCache.clearMoviesNowPlaying()
     }
 
     override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable {
-        return movieCache.saveMoviesNowPlaying(moviesNowPlaying)
+        return movieCache.saveMoviesNowPlaying(moviesNowPlaying).doOnComplete{
+            movieCache.setLastCacheTime(System.currentTimeMillis())
+            movieCache.setLastCacheTimeMoviesNowPlaying(System.currentTimeMillis())
+        }
     }
 
-    override fun getMoviesNowPlaying(): Single<List<MovieNowPlayingEntity>> {
-        return movieCache.getMoviesNowPlaying()
+    override fun clearMoviesNowPlaying(): Completable {
+        return movieCache.clearMoviesNowPlaying()
     }
 
+    override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingEntity>> {
+        return movieCache.getMoviesNowPlaying(page, language)
+    }
+
+    override fun getMovieNowPlaying(id: Long): Single<MovieNowPlayingEntity> {
+        return movieCache.getMovieNowPlaying(id)
+    }
 }

@@ -1,9 +1,12 @@
 package com.moviereel.data.repositories
 
 import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
+import com.moviereel.data.models.movies.MovieNowPlayingEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
+import com.moviereel.data.source.movies.stores.MovieRemoteDataStore
 import com.moviereel.domain.models.movies.*
 import com.moviereel.domain.repositories.MoviesRepository
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 
@@ -18,10 +21,62 @@ constructor(
         val movieNowPlayingMapper: MovieNowPlayingMapper)
     : MoviesRepository {
 
-    override fun getMoviesNowPlayingList(page: Int, language: String): Flowable<List<MovieNowPlayingModel>> {
+    private fun saveMoviesNowPlayingEntities(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable {
+        return factory.retrieveCacheDataStore().saveMoviesNowPlaying(moviesNowPlaying)
     }
 
-    override fun getMovieNowPlaying(id: Int): Flowable<MovieNowPlayingModel> {
+    private fun saveMovieNowPlayingEntity(movieNowPlaying : MovieNowPlayingEntity) : Completable {
+        return factory.retrieveCacheDataStore().saveMovieNowPlaying(movieNowPlaying)
+    }
+
+    override fun clearAllMovies(): Completable {
+        val cacheDataStore = factory.retrieveCacheDataStore()
+        return cacheDataStore.clearAllMovies()
+    }
+
+    override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingModel>): Completable {
+        val movieNowPlayingEntities = moviesNowPlaying.map {
+            movieNowPlayingMapper.mapToEntity(it)
+        }
+        return saveMoviesNowPlayingEntities(movieNowPlayingEntities)
+    }
+
+    override fun clearMoviesNowPlaying(): Completable {
+        val cacheDataStore = factory.retrieveCacheDataStore()
+        return cacheDataStore.clearMoviesNowPlaying()
+    }
+
+    override fun getMoviesNowPlayingList(page: Int, language: String): Flowable<List<MovieNowPlayingModel>> {
+        val dataStore = factory.retrieveDataStore()
+        return dataStore.getMoviesNowPlaying(page, language)
+                .toFlowable()
+                .flatMap {
+                    if (dataStore is MovieRemoteDataStore) {
+                        saveMoviesNowPlayingEntities(it).toFlowable()
+                    } else {
+                        Flowable.just(it)
+                    }
+                }.map { list ->
+                    list.map { listItem ->
+                        movieNowPlayingMapper.mapFromEntity(listItem)
+                    }
+                }
+    }
+
+    override fun getMovieNowPlaying(id: Long): Flowable<MovieNowPlayingModel> {
+        val dataStore = factory.retrieveDataStore()
+        return dataStore.getMovieNowPlaying(id)
+                .toFlowable()
+                .flatMap {
+                    if (dataStore is MovieRemoteDataStore) {
+                        saveMovieNowPlayingEntity(it).toFlowable()
+                    } else {
+                        Flowable.just(it)
+                    }
+                }
+                .map {
+                    movieNowPlayingMapper.mapFromEntity(it)
+                }
     }
 
     override fun getMoviesLatest(language: String): Flowable<MovieLatestModel> {
