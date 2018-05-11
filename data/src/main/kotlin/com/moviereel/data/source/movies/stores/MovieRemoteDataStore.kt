@@ -11,7 +11,7 @@ import javax.inject.Inject
  * @Notes Implementation of the [MovieDataStore] interface to provide a means of communicating
  * with the remote data source
 */
-class MovieRemoteDataStore @Inject constructor(private val movieRemote: MovieRemote): MovieDataStore {
+open class MovieRemoteDataStore @Inject constructor(private val movieRemote: MovieRemote): MovieDataStore {
     override fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingEntity): Completable {
         throw UnsupportedOperationException()
     }

@@ -11,14 +11,14 @@ import javax.inject.Inject
  * @Notes Implementation of the [MovieDataStore] interface to provide a means of communicating
  * with the local data source
  */
-class MovieCacheDataStore @Inject constructor(private val movieCache: MovieCache) : MovieDataStore {
+open class MovieCacheDataStore @Inject constructor(private val movieCache: MovieCache) : MovieDataStore {
 
     override fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingEntity): Completable {
         return movieCache.saveMovieNowPlaying(movieNowPlaying)
     }
 
     override fun clearAllMovies(): Completable {
-        return movieCache.clearMoviesNowPlaying()
+        return movieCache.clearAllMovies()
     }
 
     override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable {
