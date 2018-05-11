@@ -13,6 +13,10 @@ import javax.inject.Inject
  */
 class MovieCacheDataStore @Inject constructor(private val movieCache: MovieCache) : MovieDataStore {
 
+    override fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingEntity): Completable {
+        // return movieCache.sav
+    }
+
     override fun clearAllMovies(): Completable {
         return movieCache.clearMoviesNowPlaying()
     }

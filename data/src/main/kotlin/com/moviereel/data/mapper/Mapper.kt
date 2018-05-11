@@ -11,5 +11,9 @@ package com.moviereel.data.mapper
 interface Mapper<E, D> {
     fun mapFromEntity(type: E): D
 
+    fun mapFromListEntity(type: List<E>) : Collection<D>
+
     fun mapToEntity(type: D): E
+
+    fun mapToListEntity(type: Collection<D>) : Collection<E>
 }
