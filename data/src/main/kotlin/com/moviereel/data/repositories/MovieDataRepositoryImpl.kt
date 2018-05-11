@@ -14,7 +14,7 @@ import javax.inject.Inject
  * Provides an implementation of the [MoviesRepository] interface for communicating to and from
  * data sources
  */
-class MovieRepositoryImpl
+class MovieDataRepositoryImpl
 @Inject
 constructor(
         val factory: MovieDataStoreFactory,
@@ -79,16 +79,25 @@ constructor(
                 }
     }
 
+    // TODO: implement below
+
     override fun getMoviesLatest(language: String): Flowable<MovieLatestModel> {
+        val dataStore = factory.retrieveDataStore()
+        return Flowable.just(MovieLatestModel(
+                "", 0, arrayListOf(), "","", arrayListOf(), arrayListOf(),
+                0, 0, arrayListOf(), "", ""
+        ))
     }
 
     override fun getMoviesPopular(page: Int, language: String): Flowable<List<MoviePopularModel>> {
+        return Flowable.just(listOf())
     }
 
     override fun getMoviesTopRated(page: Int, language: String, region: String): Flowable<List<MovieTopRatedModel>> {
+        return Flowable.just(listOf())
     }
 
     override fun getMoviesUpcoming(page: Int, language: String, region: String): Flowable<List<MovieUpcomingModel>> {
+        return Flowable.just(listOf())
     }
-
 }

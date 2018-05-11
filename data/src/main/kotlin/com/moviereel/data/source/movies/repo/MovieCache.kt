@@ -24,6 +24,11 @@ interface MovieCache {
     fun saveMoviesNowPlaying(moviesNowPlayingEntity: List<MovieNowPlayingEntity>): Completable
 
     /**
+     * Save a movie now playing
+     */
+    fun saveMovieNowPlaying(moviesNowPlayingEntity: MovieNowPlayingEntity) : Completable
+
+    /**
      * Retrieve a list of Movies now playing from the cache
      */
     fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
@@ -51,5 +56,4 @@ interface MovieCache {
      * @return true, the cache is expired, otherwise false.
      */
     fun isExpired(): Boolean
-
 }
