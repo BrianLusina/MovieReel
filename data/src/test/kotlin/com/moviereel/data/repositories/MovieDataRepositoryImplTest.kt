@@ -1,5 +1,7 @@
 package com.moviereel.data.repositories
 
+import com.moviereel.data.factory.DataFactory
+import com.moviereel.data.factory.MovieDataFactory
 import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
 import com.moviereel.data.models.movies.MovieNowPlayingEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
@@ -8,10 +10,13 @@ import com.moviereel.data.source.movies.stores.MovieDataStore
 import com.moviereel.data.source.movies.stores.MovieRemoteDataStore
 import com.moviereel.domain.models.movies.MovieNowPlayingModel
 import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.never
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -108,42 +113,125 @@ class MovieDataRepositoryImplTest {
 
     @Test
     fun saveMoviesNowPlaying() {
-
+        stubMovieCacheSaveMoviesNowPlaying(Completable.complete())
+        val testObserver = movieDataRepositoryImpl.saveMoviesNowPlaying(MovieDataFactory.makeMoviesNowPlayingModelList(5)).test()
+        testObserver.assertComplete()
     }
 
     @Test
     fun clearMoviesNowPlaying() {
+        stubMovieCacheClearAllMoviesNowPlaying(Completable.complete())
+        val testObserver = movieDataRepositoryImpl.clearMoviesNowPlaying().test()
+        testObserver.assertComplete()
     }
 
     @Test
-    fun getMoviesNowPlayingList() {
+    fun getMoviesNowPlayingListFromRemoteCompletes() {
+        val page = 1
+        val lang = "eng"
+        stubMovieDataStoreFactoryRetrieveDataStore(movieRemoteDataStore)
+        stubMovieRemoteDataStoreGetMoviesNowPlaying(page, lang,
+                Single.just(MovieDataFactory.makeMoviesNowPlayingEntityList(2)))
+        val testObserver = movieDataRepositoryImpl.getMoviesNowPlayingList(page, lang).test()
+        testObserver.assertComplete()
     }
 
     @Test
-    fun getMovieNowPlaying() {
+    fun getMoviesNowPlayingListFromCacheCompletes() {
+        val page = 1
+        val lang = "eng"
+        stubMovieDataStoreFactoryRetrieveDataStore(movieCacheDataStore)
+        stubMovieCacheDataStoreGetMoviesNowPlaying(page, lang,
+                Single.just(MovieDataFactory.makeMoviesNowPlayingEntityList(2)))
+        val testObserver = movieDataRepositoryImpl.getMoviesNowPlayingList(page, lang).test()
+        testObserver.assertComplete()
     }
 
+    @Test
+    fun getMoviesNowPlayingListFromCacheReturnsData(){
+        val page = 1
+        val lang = "eng"
+        stubMovieDataStoreFactoryRetrieveDataStore(movieCacheDataStore)
+        val moviesNowPlayingModels = MovieDataFactory.makeMoviesNowPlayingModelList(5)
+        val moviesNowPlayingEntities = MovieDataFactory.makeMoviesNowPlayingEntityList(5)
+
+        moviesNowPlayingModels.forEachIndexed { index, movie ->
+            stubMovieMapperMapFromEntity(moviesNowPlayingEntities[index], movie)
+        }
+
+        stubMovieCacheDataStoreGetMoviesNowPlaying(page, lang, Single.just(moviesNowPlayingEntities))
+        val testObserver = movieDataRepositoryImpl.getMoviesNowPlayingList(page, lang).test()
+        testObserver.assertValue(moviesNowPlayingModels)
+    }
+
+    @Test
+    fun getMoviesNowPlayingListFromRemoteReturnsData(){
+        val page = 1
+        val lang = "eng"
+        stubMovieDataStoreFactoryRetrieveDataStore(movieRemoteDataStore)
+        val moviesNowPlayingModels = MovieDataFactory.makeMoviesNowPlayingModelList(5)
+        val moviesNowPlayingEntities = MovieDataFactory.makeMoviesNowPlayingEntityList(5)
+
+        moviesNowPlayingModels.forEachIndexed { index, movie ->
+            stubMovieMapperMapFromEntity(moviesNowPlayingEntities[index], movie)
+        }
+
+        stubMovieRemoteDataStoreGetMoviesNowPlaying(page, lang, Single.just(moviesNowPlayingEntities))
+        val testObserver = movieDataRepositoryImpl.getMoviesNowPlayingList(page, lang).test()
+        testObserver.assertValue(moviesNowPlayingModels)
+    }
+
+    @Test
+    fun getMoviesNowPlayingSavesWhenFromCacheDataStore(){
+        stubMovieDataStoreFactoryRetrieveDataStore(movieCacheDataStore)
+        stubMovieCacheSaveMoviesNowPlaying(Completable.complete())
+        movieDataRepositoryImpl.saveMoviesNowPlaying(MovieDataFactory.makeMoviesNowPlayingModelList(3)).test()
+        verify(movieCacheDataStore).saveMoviesNowPlaying(any())
+    }
+
+    @Test
+    fun getMoviesNowPlayingNeverSavesWhenFromRemoteDataStore(){
+        stubMovieDataStoreFactoryRetrieveDataStore(movieRemoteDataStore)
+        stubMovieCacheSaveMoviesNowPlaying(Completable.complete())
+        movieDataRepositoryImpl.saveMoviesNowPlaying(MovieDataFactory.makeMoviesNowPlayingModelList(3)).test()
+        verify(movieRemoteDataStore, never()).saveMoviesNowPlaying(any())
+    }
+
+    @Test
+    fun getMovieNowPlayingGetsMovieWhenFromCacheDataStore() {
+        val id = DataFactory.randomId()
+        stubMovieDataStoreFactoryRetrieveDataStore(movieCacheDataStore)
+        stubMovieCacheDataStoreGetMovieNowPlaying(id, Single.just(MovieDataFactory.makeMovieNowPlayingEntity()))
+        val testObserver = movieDataRepositoryImpl.getMovieNowPlaying(id).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun getMovieNowPlayingGetsMovieWhenFromRemoteDataStore() {
+        val id = DataFactory.randomId()
+        stubMovieDataStoreFactoryRetrieveDataStore(movieRemoteDataStore)
+        stubMovieRemoteDataStoreGetMovieNowPlaying(id, Single.just(MovieDataFactory.makeMovieNowPlayingEntity()))
+        val testObserver = movieDataRepositoryImpl.getMovieNowPlaying(id).test()
+        testObserver.assertComplete()
+    }
+
+    @Ignore
     @Test
     fun getMoviesLatest() {
     }
 
+    @Ignore
     @Test
     fun getMoviesPopular() {
     }
 
+    @Ignore
     @Test
     fun getMoviesTopRated() {
     }
 
+    @Ignore
     @Test
     fun getMoviesUpcoming() {
-    }
-
-    @Test
-    fun getFactory() {
-    }
-
-    @Test
-    fun getMovieNowPlayingMapper() {
     }
 }
