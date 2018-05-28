@@ -6,7 +6,7 @@
 /build
 /captures
 keystores/*.json
-
+com_crashlytics_export_strings.xml
 ### Android template
 # Built application files
 *.apk

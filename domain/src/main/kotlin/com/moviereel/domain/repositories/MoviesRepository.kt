@@ -1,6 +1,7 @@
 package com.moviereel.domain.repositories
 
 import com.moviereel.domain.models.movies.*
+import io.reactivex.Completable
 import io.reactivex.Flowable
 
 /**
@@ -9,6 +10,12 @@ import io.reactivex.Flowable
  * operations that need to be implemented
  */
 interface MoviesRepository {
+
+    /**
+     * Clear all movies from cache
+     * @return [Completable]
+     */
+    fun clearAllMovies() : Completable
 
     /**
      * Get a list of now playing movies
@@ -23,7 +30,22 @@ interface MoviesRepository {
      * @param id [Int] Id of the Now playing movie
      * @return [Flowable]
      */
-    fun getMovieNowPlaying(id : Int) : Flowable<MovieNowPlayingModel>
+    fun getMovieNowPlaying(id : Long) : Flowable<MovieNowPlayingModel>
+
+    /**
+     * Save movies now playing to cache
+     * @param moviesNowPlaying A list of movies that are now playing
+     * @return [Completable]
+     */
+    fun saveMoviesNowPlaying(moviesNowPlaying : List<MovieNowPlayingModel>) : Completable
+
+    /**
+     * Clear movies now playing, returns a Completable to allow us to determine if the operation
+     * was successful or a failure
+     * @return [Completable]
+     */
+    fun clearMoviesNowPlaying() : Completable
+
 
     fun getMoviesLatest(language: String) : Flowable<MovieLatestModel>
 
