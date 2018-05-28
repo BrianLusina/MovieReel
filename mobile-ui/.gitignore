@@ -6,7 +6,7 @@ gradle.properties
 # Files for the ART/Dalvik VM
 *.dex
 init.sh
-
+com_crashlytics_export_strings.xml
 # Java class files
 *.class
 
