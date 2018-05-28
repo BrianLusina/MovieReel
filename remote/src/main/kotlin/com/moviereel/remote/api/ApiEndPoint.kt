@@ -1,5 +1,5 @@
 @file:JvmName("ApiEndPoint")
-package com.moviereel.data.api
+package com.moviereel.remote.api
 
 /**
  * @author lusinabrian on 28/03/17

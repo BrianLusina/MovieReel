@@ -27,6 +27,7 @@ dependencies {
     implementation remoteDependencies.retrofit
     implementation remoteDependencies.retrofitGsonConverter
     implementation remoteDependencies.retrofitRxAdapter
+    implementation remoteDependencies.okHttpLogging
 
     testImplementation remoteTestDependencies.kotlinJUnit
 

@@ -115,6 +115,7 @@ ext {
     appIntroVersion = "v4.2.3"
     sweetAlertVersion = "1.3"
     appCenterSdkVersion = '1.4.0'
+    okHttpVersion= "3.10.0"
 
     detektVersion = "1.0.0.RC6-4"
 
@@ -202,6 +203,7 @@ ext {
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             retrofitRxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterVersion",
             gson : "com.google.code.gson:gson:$gsonVersion",
+            okHttpLogging: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
     ]
 
     remoteTestDependencies = [

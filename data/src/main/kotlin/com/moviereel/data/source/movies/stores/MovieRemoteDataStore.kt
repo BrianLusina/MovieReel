@@ -35,7 +35,8 @@ open class MovieRemoteDataStore @Inject constructor(private val movieRemote: Mov
         return movieRemote.getMoviesNowPlaying(page, language)
     }
 
+    // we can't retrieve a single movie that is now playing from remote
     override fun getMovieNowPlaying(id: Long): Single<MovieNowPlayingEntity> {
-        return movieRemote.getMovieNowPlaying(id)
+        throw UnsupportedOperationException()
     }
 }

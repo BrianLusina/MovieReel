@@ -1,10 +1,9 @@
-package com.moviereel.data.api.model.tv
+package com.moviereel.remote.models.tv
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.moviereel.data.api.model.Networks
+import com.moviereel.remote.models.Networks
 import com.moviereel.data.db.entities.ProductionCompany
-import com.moviereel.data.api.model.tv.Seasons
 import com.moviereel.data.db.entities.GenreEntity
 
 /**

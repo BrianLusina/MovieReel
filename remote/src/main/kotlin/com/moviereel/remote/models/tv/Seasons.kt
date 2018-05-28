@@ -1,4 +1,4 @@
-package com.moviereel.data.api.model.tv
+package com.moviereel.remote.models.tv
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

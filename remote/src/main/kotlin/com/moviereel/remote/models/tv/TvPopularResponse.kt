@@ -1,4 +1,4 @@
-package com.moviereel.data.api.model.tv
+package com.moviereel.remote.models.tv
 
 /**
  * @author lusinabrian on 10/04/17

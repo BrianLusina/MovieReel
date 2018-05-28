@@ -21,10 +21,6 @@ class MovieRemoteDataStoreTest {
                 .thenReturn(single)
     }
 
-    private fun stubMovieRemoteGetMovieNowPlaying(id : Long, single: Single<MovieNowPlayingEntity>){
-        whenever(movieRemote.getMovieNowPlaying(id)).thenReturn(single)
-    }
-
     private lateinit var movieRemoteDataStore: MovieRemoteDataStore
     @Mock lateinit var movieRemote: MovieRemote
 
@@ -63,11 +59,4 @@ class MovieRemoteDataStoreTest {
         testObserver.assertComplete()
     }
 
-    @Test
-    fun getMovieNowPlaying() {
-        val id = DataFactory.randomId()
-        stubMovieRemoteGetMovieNowPlaying(id, Single.just(MovieDataFactory.makeMovieNowPlayingEntity()))
-        val testObserver = movieRemoteDataStore.getMovieNowPlaying(id).test()
-        testObserver.assertComplete()
-    }
 }

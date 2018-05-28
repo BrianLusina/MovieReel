@@ -1,6 +1,6 @@
-package com.moviereel.data.api.model.tv
+package com.moviereel.remote.models.tv
 
-import com.moviereel.data.api.model.BaseResponse
+import com.moviereel.remote.models.BaseResponse
 
 /**
  * @author lusinabrian on 08/04/17

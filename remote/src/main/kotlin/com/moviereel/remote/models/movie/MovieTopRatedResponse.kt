@@ -1,8 +1,8 @@
-package com.moviereel.data.api.model.movie
+package com.moviereel.remote.models.movie
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.moviereel.data.api.model.BaseResponse
+import com.moviereel.remote.models.BaseResponse
 import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
 
 /**
