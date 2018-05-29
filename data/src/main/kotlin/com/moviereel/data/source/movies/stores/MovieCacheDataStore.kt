@@ -1,6 +1,6 @@
 package com.moviereel.data.source.movies.stores
 
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.repo.MovieCache
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 open class MovieCacheDataStore @Inject constructor(private val movieCache: MovieCache) : MovieDataStore {
 
-    override fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingEntity): Completable {
+    override fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingDataEntity): Completable {
         return movieCache.saveMovieNowPlaying(movieNowPlaying)
     }
 
@@ -21,7 +21,7 @@ open class MovieCacheDataStore @Inject constructor(private val movieCache: Movie
         return movieCache.clearAllMovies()
     }
 
-    override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable {
+    override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingDataEntity>): Completable {
         return movieCache.saveMoviesNowPlaying(moviesNowPlaying).doOnComplete{
             movieCache.setLastCacheTime(System.currentTimeMillis())
             movieCache.setLastCacheTimeMoviesNowPlaying(System.currentTimeMillis())
@@ -32,11 +32,11 @@ open class MovieCacheDataStore @Inject constructor(private val movieCache: Movie
         return movieCache.clearMoviesNowPlaying()
     }
 
-    override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingEntity>> {
+    override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingDataEntity>> {
         return movieCache.getMoviesNowPlaying(page, language)
     }
 
-    override fun getMovieNowPlaying(id: Long): Single<MovieNowPlayingEntity> {
+    override fun getMovieNowPlaying(id: Long): Single<MovieNowPlayingDataEntity> {
         return movieCache.getMovieNowPlaying(id)
     }
 }

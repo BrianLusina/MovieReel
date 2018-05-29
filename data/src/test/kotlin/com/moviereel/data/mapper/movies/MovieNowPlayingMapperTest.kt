@@ -1,7 +1,7 @@
 package com.moviereel.data.mapper.movies
 
 import com.moviereel.data.factory.MovieDataFactory
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.domain.models.movies.MovieNowPlayingModel
 import org.junit.Before
 import org.junit.Test
@@ -34,7 +34,7 @@ class MovieNowPlayingMapperTest {
         assertMovieNowPlayingDataEquality(movieNowPlayingEntity, movieNowPlayingModel)
     }
 
-    private fun assertMovieNowPlayingDataEquality(movieNowPlayingEntity: MovieNowPlayingEntity,
+    private fun assertMovieNowPlayingDataEquality(movieNowPlayingEntity: MovieNowPlayingDataEntity,
                                                   movieNowPlayingModel: MovieNowPlayingModel) {
         assertEquals(movieNowPlayingEntity.id, movieNowPlayingModel.id)
         assertEquals(movieNowPlayingEntity.voteCount, movieNowPlayingModel.voteCount)

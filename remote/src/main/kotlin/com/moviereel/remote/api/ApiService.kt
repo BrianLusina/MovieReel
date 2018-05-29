@@ -1,10 +1,6 @@
 package com.moviereel.remote.api
 
-import com.moviereel.remote.models.movie.MovieNowPlayingResponse
-import com.moviereel.remote.models.movie.MoviePopularResponse
-import com.moviereel.remote.models.movie.MovieTopRatedResponse
-import com.moviereel.remote.models.movie.MovieUpcomingResponse
-import io.reactivex.Flowable
+import com.moviereel.remote.models.movie.MovieNowPlayingApiResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -20,11 +16,11 @@ interface ApiService {
      * performs a call to get Now Playing Movies
      * Will return a response that will contain a list of all the Movies that are currently
      * now playing
-     * @return [MovieNowPlayingResponse] response to return from the api call
+     * @return [MovieNowPlayingApiResponse] response to return from the api call
      * */
     @GET(ENDPOINT_MOVIE_NOW_PLAYING)
     fun getMoviesNowPlaying(@Query("language") language: String, @Query("page") page: Int)
-            : Single<List<MovieNowPlayingResponse>>
+            : Single<List<MovieNowPlayingApiResponse>>
 
 //    /*** API call to get the latest movies being shown* */
 //    @GET(ENDPOINT_MOVIE_LATEST)

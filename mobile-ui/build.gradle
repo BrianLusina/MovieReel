@@ -147,7 +147,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField "String", "MOVIE_DB_KEY", MovieDbKey
+        it.buildConfigField "String", "MOVIE_DB_API_KEY", MOVIE_DB_API_KEY
         it.buildConfigField "String", "IMAGE_BASE_URL", IMAGE_BASE_URL
         it.buildConfigField "String", "IMAGE_SECURE_BASE_URL", IMAGE_SECURE_BASE_URL
         it.buildConfigField "String", "APP_CENTER_KEY", APP_CENTER_KEY

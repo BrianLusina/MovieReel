@@ -16,6 +16,17 @@ import java.util.concurrent.TimeUnit
  * @Notes Provides make methods to create instances of [ApiService] and related dependencies
  */
 object ApiServiceFactory {
+
+    /**
+     * Factory method that makes the Api Service
+     * @param isDebug Whether the application is in debug mode
+     * @param apiKey The api key to use when communicating with API
+     */
+    fun makeApiService(isDebug: Boolean, apiKey: String) : ApiService {
+        val okHttpClient = makeOkHttpClient(makeLoggingInterceptor(isDebug), apiKey)
+        return  makeApiRetrofitService(makeGson(), okHttpClient)
+    }
+
     private fun makeGson(): Gson {
         return GsonBuilder()
                 .setLenient()
@@ -24,11 +35,7 @@ object ApiServiceFactory {
                 .create()
     }
 
-    fun provideApiKey(): String {
-        return BuildConfig.MOVIE_DB_KEY
-    }
-
-    fun makeApiService(gson: Gson, okHttpClient: OkHttpClient): ApiService {
+    private fun makeApiRetrofitService(gson: Gson, okHttpClient: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -39,14 +46,14 @@ object ApiServiceFactory {
         return retrofit.create(ApiService::class.java)
     }
 
-    fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, apiKey: String): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor({
                     val originalRequest = it.request()
                     val originalUrl = originalRequest.url()
                     val url = originalUrl.newBuilder()
-                            .addQueryParameter("api_key", BuildConfig.MOVIE_DB_KEY)
+                            .addQueryParameter("api_key", apiKey)
                             .build()
                     val requestBuilder = originalRequest.newBuilder().url(url)
                     val request = requestBuilder.build()

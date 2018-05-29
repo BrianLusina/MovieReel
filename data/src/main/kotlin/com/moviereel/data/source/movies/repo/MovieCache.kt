@@ -1,6 +1,6 @@
 package com.moviereel.data.source.movies.repo
 
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -21,19 +21,19 @@ interface MovieCache {
     /**
      * Save a given list of MovieNowPlaying to the cache
      */
-    fun saveMoviesNowPlaying(moviesNowPlayingEntity: List<MovieNowPlayingEntity>): Completable
+    fun saveMoviesNowPlaying(moviesNowPlayingEntity: List<MovieNowPlayingDataEntity>): Completable
 
     /**
      * Save a movie now playing
      */
-    fun saveMovieNowPlaying(moviesNowPlayingEntity: MovieNowPlayingEntity) : Completable
+    fun saveMovieNowPlaying(moviesNowPlayingEntity: MovieNowPlayingDataEntity) : Completable
 
     /**
      * Retrieve a list of Movies now playing from the cache
      */
-    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
+    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingDataEntity>>
 
-    fun getMovieNowPlaying(id : Long) : Single<MovieNowPlayingEntity>
+    fun getMovieNowPlaying(id : Long) : Single<MovieNowPlayingDataEntity>
 
     /**
      * Checks if an element exists in the cache.

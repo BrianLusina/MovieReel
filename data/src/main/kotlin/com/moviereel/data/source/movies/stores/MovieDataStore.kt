@@ -1,6 +1,6 @@
 package com.moviereel.data.source.movies.stores
 
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -13,21 +13,21 @@ import io.reactivex.Single
 interface MovieDataStore {
     fun clearAllMovies(): Completable
 
-    fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable
+    fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingDataEntity>): Completable
 
-    fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingEntity): Completable
+    fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingDataEntity): Completable
 
     fun clearMoviesNowPlaying() : Completable
 
     /**
      * Get movies now playing given the page and
      */
-    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
+    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingDataEntity>>
 
     /**
      * Gets a movie that is now playing given its id
      * @param id MovieNowPlaying
      * @return [Single]
      */
-    fun getMovieNowPlaying(id: Long) : Single<MovieNowPlayingEntity>
+    fun getMovieNowPlaying(id: Long) : Single<MovieNowPlayingDataEntity>
 }

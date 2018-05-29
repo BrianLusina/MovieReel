@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * @author lusinabrian on 29/03/17
  * response we get when interacting with the now playing response
  * */
-data class MovieNowPlayingResponse(
+data class MovieNowPlayingApiResponse(
         @Expose
         @SerializedName("id")
         var id: Long,

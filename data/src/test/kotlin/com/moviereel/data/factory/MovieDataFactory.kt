@@ -1,6 +1,6 @@
 package com.moviereel.data.factory
 
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.domain.models.movies.MovieNowPlayingModel
 
 /**
@@ -10,8 +10,8 @@ import com.moviereel.domain.models.movies.MovieNowPlayingModel
 
 object MovieDataFactory {
 
-    fun makeMoviesNowPlayingEntityList(count: Int): List<MovieNowPlayingEntity> {
-        val moviesNowPlaying = mutableListOf<MovieNowPlayingEntity>()
+    fun makeMoviesNowPlayingEntityList(count: Int): List<MovieNowPlayingDataEntity> {
+        val moviesNowPlaying = mutableListOf<MovieNowPlayingDataEntity>()
         repeat(count) {
             moviesNowPlaying.add(makeMovieNowPlayingEntity())
         }
@@ -26,8 +26,8 @@ object MovieDataFactory {
         return moviesNowPlaying
     }
 
-    fun makeMovieNowPlayingEntity(): MovieNowPlayingEntity {
-        return MovieNowPlayingEntity(
+    fun makeMovieNowPlayingEntity(): MovieNowPlayingDataEntity {
+        return MovieNowPlayingDataEntity(
                 DataFactory.randomId(), DataFactory.randomVoteCount(), DataFactory.randomBoolean(),
                 DataFactory.randomVoteAverage(), DataFactory.randomTitle(), DataFactory.randomPopularity(),
                 DataFactory.randomPosterPath(), DataFactory.randomOriginalLang(), DataFactory.randomTitle(),

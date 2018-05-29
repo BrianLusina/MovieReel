@@ -1,6 +1,6 @@
 package com.moviereel.remote
 
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.repo.MovieRemote
 import com.moviereel.remote.api.ApiService
 import com.moviereel.remote.mapper.movies.MovieNowPlayingMapper
@@ -17,7 +17,7 @@ class MovieRemoteImpl @Inject constructor(private val apiService: ApiService,
                                           private val movieNowPlayingMapper: MovieNowPlayingMapper)
     : MovieRemote {
 
-    override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingEntity>> {
+    override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingDataEntity>> {
         return apiService.getMoviesNowPlaying(language, page)
                 .map { movieNowPlayingMapper.mapResponseListFromRemote(it).toList() }
     }

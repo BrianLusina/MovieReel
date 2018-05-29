@@ -1,7 +1,7 @@
 package com.moviereel.data.repositories
 
 import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
 import com.moviereel.data.source.movies.stores.MovieRemoteDataStore
 import com.moviereel.domain.models.movies.*
@@ -21,11 +21,11 @@ constructor(
         val movieNowPlayingMapper: MovieNowPlayingMapper)
     : MoviesRepository {
 
-    private fun saveMoviesNowPlayingEntities(moviesNowPlaying: List<MovieNowPlayingEntity>): Completable {
+    private fun saveMoviesNowPlayingEntities(moviesNowPlaying: List<MovieNowPlayingDataEntity>): Completable {
         return factory.retrieveCacheDataStore().saveMoviesNowPlaying(moviesNowPlaying)
     }
 
-    private fun saveMovieNowPlayingEntity(movieNowPlaying : MovieNowPlayingEntity) : Completable {
+    private fun saveMovieNowPlayingEntity(movieNowPlaying : MovieNowPlayingDataEntity) : Completable {
         return factory.retrieveCacheDataStore().saveMovieNowPlaying(movieNowPlaying)
     }
 
