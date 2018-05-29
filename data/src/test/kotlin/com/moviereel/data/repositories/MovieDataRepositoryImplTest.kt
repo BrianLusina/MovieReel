@@ -2,8 +2,8 @@ package com.moviereel.data.repositories
 
 import com.moviereel.data.factory.DataFactory
 import com.moviereel.data.factory.MovieDataFactory
-import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.mapper.movies.MovieNowPlayingDataMapper
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
 import com.moviereel.data.source.movies.stores.MovieCacheDataStore
 import com.moviereel.data.source.movies.stores.MovieDataStore
@@ -29,7 +29,7 @@ class MovieDataRepositoryImplTest {
     private lateinit var movieDataRepositoryImpl : MovieDataRepositoryImpl
 
     @Mock lateinit var factory: MovieDataStoreFactory
-    @Mock lateinit var movieNowPlayingMapper :MovieNowPlayingMapper
+    @Mock lateinit var movieNowPlayingDataMapper :MovieNowPlayingDataMapper
     @Mock lateinit var movieCacheDataStore: MovieCacheDataStore
     @Mock lateinit var movieRemoteDataStore: MovieRemoteDataStore
 
@@ -44,23 +44,23 @@ class MovieDataRepositoryImplTest {
     }
 
     private fun stubMovieCacheDataStoreGetMoviesNowPlaying(page: Int, lang:String,
-                                                           single: Single<List<MovieNowPlayingEntity>>) {
+                                                           single: Single<List<MovieNowPlayingDataEntity>>) {
         whenever(movieCacheDataStore.getMoviesNowPlaying(page, lang))
                 .thenReturn(single)
     }
 
-    private fun stubMovieCacheDataStoreGetMovieNowPlaying(id: Long, single: Single<MovieNowPlayingEntity>) {
+    private fun stubMovieCacheDataStoreGetMovieNowPlaying(id: Long, single: Single<MovieNowPlayingDataEntity>) {
         whenever(movieCacheDataStore.getMovieNowPlaying(id))
                 .thenReturn(single)
     }
 
     private fun stubMovieRemoteDataStoreGetMoviesNowPlaying(page : Int, lang: String,
-                                                            single: Single<List<MovieNowPlayingEntity>>) {
+                                                            single: Single<List<MovieNowPlayingDataEntity>>) {
         whenever(movieRemoteDataStore.getMoviesNowPlaying(page, lang))
                 .thenReturn(single)
     }
 
-    private fun stubMovieRemoteDataStoreGetMovieNowPlaying(id : Long, single: Single<MovieNowPlayingEntity>) {
+    private fun stubMovieRemoteDataStoreGetMovieNowPlaying(id : Long, single: Single<MovieNowPlayingDataEntity>) {
         whenever(movieRemoteDataStore.getMovieNowPlaying(id))
                 .thenReturn(single)
     }
@@ -90,16 +90,16 @@ class MovieDataRepositoryImplTest {
                 .thenReturn(dataStore)
     }
 
-    private fun stubMovieMapperMapFromEntity(movieNowPlayingEntity: MovieNowPlayingEntity,
+    private fun stubMovieMapperMapFromEntity(movieNowPlayingEntity: MovieNowPlayingDataEntity,
                                              movieNowPlayingModel: MovieNowPlayingModel) {
-        whenever(movieNowPlayingMapper.mapFromEntity(movieNowPlayingEntity))
+        whenever(movieNowPlayingDataMapper.mapFromEntity(movieNowPlayingEntity))
                 .thenReturn(movieNowPlayingModel)
     }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        movieDataRepositoryImpl = MovieDataRepositoryImpl(factory, movieNowPlayingMapper)
+        movieDataRepositoryImpl = MovieDataRepositoryImpl(factory, movieNowPlayingDataMapper)
         stubMovieDataStoreFactoryRetrieveCacheDataStore()
         stubMovieDataStoreFactoryRetrieveRemoteDataStore()
     }

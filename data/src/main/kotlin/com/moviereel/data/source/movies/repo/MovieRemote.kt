@@ -1,6 +1,6 @@
 package com.moviereel.data.source.movies.repo
 
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import io.reactivex.Single
 
 /**
@@ -13,8 +13,5 @@ interface MovieRemote {
     /**
      * Retrieve a list of MoviesNowPlaying, from api
      */
-    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingEntity>>
-
-    fun getMovieNowPlaying(id : Long) : Single<MovieNowPlayingEntity>
-
+    fun getMoviesNowPlaying(page : Int, language: String): Single<List<MovieNowPlayingDataEntity>>
 }

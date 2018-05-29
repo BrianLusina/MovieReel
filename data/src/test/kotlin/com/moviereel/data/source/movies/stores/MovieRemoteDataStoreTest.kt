@@ -1,8 +1,7 @@
 package com.moviereel.data.source.movies.stores
 
-import com.moviereel.data.factory.DataFactory
 import com.moviereel.data.factory.MovieDataFactory
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.repo.MovieRemote
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
@@ -16,13 +15,9 @@ import org.mockito.MockitoAnnotations
 @RunWith(JUnit4::class)
 class MovieRemoteDataStoreTest {
 
-    private fun stubMovieRemoteGetMoviesNowPlaying(page: Int, lang: String,single: Single<List<MovieNowPlayingEntity>>) {
+    private fun stubMovieRemoteGetMoviesNowPlaying(page: Int, lang: String,single: Single<List<MovieNowPlayingDataEntity>>) {
         whenever(movieRemote.getMoviesNowPlaying(page, lang))
                 .thenReturn(single)
-    }
-
-    private fun stubMovieRemoteGetMovieNowPlaying(id : Long, single: Single<MovieNowPlayingEntity>){
-        whenever(movieRemote.getMovieNowPlaying(id)).thenReturn(single)
     }
 
     private lateinit var movieRemoteDataStore: MovieRemoteDataStore
@@ -63,11 +58,4 @@ class MovieRemoteDataStoreTest {
         testObserver.assertComplete()
     }
 
-    @Test
-    fun getMovieNowPlaying() {
-        val id = DataFactory.randomId()
-        stubMovieRemoteGetMovieNowPlaying(id, Single.just(MovieDataFactory.makeMovieNowPlayingEntity()))
-        val testObserver = movieRemoteDataStore.getMovieNowPlaying(id).test()
-        testObserver.assertComplete()
-    }
 }

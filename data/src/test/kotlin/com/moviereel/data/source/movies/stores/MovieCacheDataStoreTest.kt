@@ -1,7 +1,7 @@
 package com.moviereel.data.source.movies.stores
 
 import com.moviereel.data.factory.MovieDataFactory
-import com.moviereel.data.models.movies.MovieNowPlayingEntity
+import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.repo.MovieCache
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
@@ -30,12 +30,12 @@ class MovieCacheDataStoreTest {
     }
 
     private fun stubMovieCacheGetMoviesNowPlaying(page : Int, language: String,
-                                                  single: Single<List<MovieNowPlayingEntity>>) {
+                                                  single: Single<List<MovieNowPlayingDataEntity>>) {
         whenever(movieCache.getMoviesNowPlaying(page, language))
                 .thenReturn(single)
     }
 
-    private fun stubMovieCacheGetMovieNowPlaying(id: Long, single: Single<MovieNowPlayingEntity>){
+    private fun stubMovieCacheGetMovieNowPlaying(id: Long, single: Single<MovieNowPlayingDataEntity>){
         whenever(movieCache.getMovieNowPlaying(id)).thenReturn(single)
     }
 
