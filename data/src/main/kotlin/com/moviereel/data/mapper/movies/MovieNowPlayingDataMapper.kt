@@ -10,7 +10,7 @@ import javax.inject.Inject
  * @Notes Map a [MovieNowPlayingDataEntity] to and from a [MovieNowPlayingModel] instance when data is moving between
  * this layer and the Domain layer
  */
-open class MovieNowPlayingMapper @Inject constructor() : Mapper<MovieNowPlayingDataEntity, MovieNowPlayingModel> {
+open class MovieNowPlayingDataMapper @Inject constructor() : Mapper<MovieNowPlayingDataEntity, MovieNowPlayingModel> {
 
     /**
      * Map a [MovieNowPlayingDataEntity] instance to a [MovieNowPlayingModel] instance

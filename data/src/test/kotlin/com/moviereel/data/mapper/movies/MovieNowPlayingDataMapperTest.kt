@@ -10,27 +10,27 @@ import org.junit.runners.JUnit4
 import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
-class MovieNowPlayingMapperTest {
+class MovieNowPlayingDataMapperTest {
 
-    private lateinit var movieNowPlayingMapper: MovieNowPlayingMapper
+    private lateinit var movieNowPlayingDataMapper: MovieNowPlayingDataMapper
 
     @Before
     @Throws(Exception::class)
     fun setUp() {
-        movieNowPlayingMapper = MovieNowPlayingMapper()
+        movieNowPlayingDataMapper = MovieNowPlayingDataMapper()
     }
 
     @Test
     fun mapFromEntityMapsData(){
         val movieNowPlayingEntity = MovieDataFactory.makeMovieNowPlayingEntity()
-        val movieModel = movieNowPlayingMapper.mapFromEntity(movieNowPlayingEntity)
+        val movieModel = movieNowPlayingDataMapper.mapFromEntity(movieNowPlayingEntity)
         assertMovieNowPlayingDataEquality(movieNowPlayingEntity, movieModel)
     }
 
     @Test
     fun mapToEntityMapsData(){
         val movieNowPlayingModel = MovieDataFactory.makeMovieNowPlayingModel()
-        val movieNowPlayingEntity = movieNowPlayingMapper.mapToEntity(movieNowPlayingModel)
+        val movieNowPlayingEntity = movieNowPlayingDataMapper.mapToEntity(movieNowPlayingModel)
         assertMovieNowPlayingDataEquality(movieNowPlayingEntity, movieNowPlayingModel)
     }
 

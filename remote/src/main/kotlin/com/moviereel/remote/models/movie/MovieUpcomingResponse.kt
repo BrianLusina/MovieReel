@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.moviereel.remote.models.BaseResponse
 import com.moviereel.remote.models.DatesResponse
-import com.moviereel.data.db.entities.movie.MovieUpcomingEntity
 
 /**
  * @author lusinabrian on 01/04/17
@@ -14,9 +13,5 @@ data class MovieUpcomingResponse(
 
         @Expose
         @SerializedName("dates")
-        var datesResponse: DatesResponse? = null,
-
-        @Expose
-        @SerializedName("results")
-        var results: ArrayList<MovieUpcomingEntity>? = arrayListOf()
+        var datesResponse: DatesResponse? = null
 ) : BaseResponse()

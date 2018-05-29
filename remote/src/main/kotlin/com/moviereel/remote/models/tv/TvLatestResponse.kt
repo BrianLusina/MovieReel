@@ -3,8 +3,6 @@ package com.moviereel.remote.models.tv
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.moviereel.remote.models.Networks
-import com.moviereel.data.db.entities.ProductionCompany
-import com.moviereel.data.db.entities.GenreEntity
 
 /**
  * @author lusinabrian on 10/04/17
@@ -29,9 +27,9 @@ data class TvLatestResponse(
         @SerializedName("first_air_date")
         var firstAirDate: String,
 
-        @Expose
-        @SerializedName("genres")
-        var genres: List<GenreEntity>,
+//        @Expose
+//        @SerializedName("genres")
+//        var genres: List<GenreEntity>,
 
         @Expose
         @SerializedName("homepage")
@@ -93,9 +91,9 @@ data class TvLatestResponse(
         @SerializedName("poster_path")
         var posterPath: String,
 
-        @Expose
-        @SerializedName("production_companies")
-        var productionCompanies: List<ProductionCompany>,
+//        @Expose
+//        @SerializedName("production_companies")
+//        var productionCompanies: List<ProductionCompany>,
 
         @Expose
         @SerializedName("seasons")

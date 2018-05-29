@@ -9,7 +9,7 @@ import javax.inject.Inject
  * @author lusinabrian on 28/05/18.
  * @Notes Responsible for mapping Response data from API to Entity data when moving from this layer to data layer
  */
-open class MovieNowPlayingMapper @Inject constructor() : EntityMapper<MovieNowPlayingApiResponse, MovieNowPlayingDataEntity> {
+open class MovieNowPlayingRemoteMapper @Inject constructor() : EntityMapper<MovieNowPlayingApiResponse, MovieNowPlayingDataEntity> {
 
     /**
      * Map an instance of [MovieNowPlayingApiResponse] to [MovieNowPlayingDataEntity]

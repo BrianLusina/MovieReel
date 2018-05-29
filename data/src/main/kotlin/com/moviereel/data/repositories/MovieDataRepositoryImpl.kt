@@ -1,6 +1,6 @@
 package com.moviereel.data.repositories
 
-import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
+import com.moviereel.data.mapper.movies.MovieNowPlayingDataMapper
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
 import com.moviereel.data.source.movies.stores.MovieRemoteDataStore
@@ -18,7 +18,7 @@ class MovieDataRepositoryImpl
 @Inject
 constructor(
         val factory: MovieDataStoreFactory,
-        val movieNowPlayingMapper: MovieNowPlayingMapper)
+        val movieNowPlayingDataMapper: MovieNowPlayingDataMapper)
     : MoviesRepository {
 
     private fun saveMoviesNowPlayingEntities(moviesNowPlaying: List<MovieNowPlayingDataEntity>): Completable {
@@ -36,7 +36,7 @@ constructor(
 
     override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingModel>): Completable {
         val movieNowPlayingEntities = moviesNowPlaying.map {
-            movieNowPlayingMapper.mapToEntity(it)
+            movieNowPlayingDataMapper.mapToEntity(it)
         }
         return saveMoviesNowPlayingEntities(movieNowPlayingEntities)
     }
@@ -58,7 +58,7 @@ constructor(
                     }
                 }.map { list ->
                     list.map { listItem ->
-                        movieNowPlayingMapper.mapFromEntity(listItem)
+                        movieNowPlayingDataMapper.mapFromEntity(listItem)
                     }
                 }
     }
@@ -75,7 +75,7 @@ constructor(
                     }
                 }
                 .map {
-                    movieNowPlayingMapper.mapFromEntity(it)
+                    movieNowPlayingDataMapper.mapFromEntity(it)
                 }
     }
 

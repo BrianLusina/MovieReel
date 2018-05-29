@@ -2,7 +2,7 @@ package com.moviereel.data.repositories
 
 import com.moviereel.data.factory.DataFactory
 import com.moviereel.data.factory.MovieDataFactory
-import com.moviereel.data.mapper.movies.MovieNowPlayingMapper
+import com.moviereel.data.mapper.movies.MovieNowPlayingDataMapper
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
 import com.moviereel.data.source.movies.stores.MovieCacheDataStore
@@ -29,7 +29,7 @@ class MovieDataRepositoryImplTest {
     private lateinit var movieDataRepositoryImpl : MovieDataRepositoryImpl
 
     @Mock lateinit var factory: MovieDataStoreFactory
-    @Mock lateinit var movieNowPlayingMapper :MovieNowPlayingMapper
+    @Mock lateinit var movieNowPlayingDataMapper :MovieNowPlayingDataMapper
     @Mock lateinit var movieCacheDataStore: MovieCacheDataStore
     @Mock lateinit var movieRemoteDataStore: MovieRemoteDataStore
 
@@ -92,14 +92,14 @@ class MovieDataRepositoryImplTest {
 
     private fun stubMovieMapperMapFromEntity(movieNowPlayingEntity: MovieNowPlayingDataEntity,
                                              movieNowPlayingModel: MovieNowPlayingModel) {
-        whenever(movieNowPlayingMapper.mapFromEntity(movieNowPlayingEntity))
+        whenever(movieNowPlayingDataMapper.mapFromEntity(movieNowPlayingEntity))
                 .thenReturn(movieNowPlayingModel)
     }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        movieDataRepositoryImpl = MovieDataRepositoryImpl(factory, movieNowPlayingMapper)
+        movieDataRepositoryImpl = MovieDataRepositoryImpl(factory, movieNowPlayingDataMapper)
         stubMovieDataStoreFactoryRetrieveCacheDataStore()
         stubMovieDataStoreFactoryRetrieveRemoteDataStore()
     }

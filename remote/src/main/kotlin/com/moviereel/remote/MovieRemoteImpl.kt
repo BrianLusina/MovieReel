@@ -3,7 +3,7 @@ package com.moviereel.remote
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.repo.MovieRemote
 import com.moviereel.remote.api.ApiService
-import com.moviereel.remote.mapper.movies.MovieNowPlayingMapper
+import com.moviereel.remote.mapper.movies.MovieNowPlayingRemoteMapper
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -14,11 +14,11 @@ import javax.inject.Inject
  * operations in which data store implementation layers can carry out.
  */
 class MovieRemoteImpl @Inject constructor(private val apiService: ApiService,
-                                          private val movieNowPlayingMapper: MovieNowPlayingMapper)
+                                          private val movieNowPlayingRemoteMapper: MovieNowPlayingRemoteMapper)
     : MovieRemote {
 
     override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingDataEntity>> {
         return apiService.getMoviesNowPlaying(language, page)
-                .map { movieNowPlayingMapper.mapResponseListFromRemote(it).toList() }
+                .map { movieNowPlayingRemoteMapper.mapResponseListFromRemote(it).toList() }
     }
 }

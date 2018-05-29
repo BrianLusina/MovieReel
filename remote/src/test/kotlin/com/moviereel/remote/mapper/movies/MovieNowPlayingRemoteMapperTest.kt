@@ -10,20 +10,20 @@ import org.junit.runners.JUnit4
 import kotlin.test.assertEquals
 
 @RunWith(JUnit4::class)
-class MovieNowPlayingMapperTest {
+class MovieNowPlayingRemoteMapperTest {
 
-    private lateinit var movieNowPlayingMapper: MovieNowPlayingMapper
+    private lateinit var movieNowPlayingRemoteMapper: MovieNowPlayingRemoteMapper
 
     @Before
     @Throws(Exception::class)
     fun setUp() {
-        movieNowPlayingMapper = MovieNowPlayingMapper()
+        movieNowPlayingRemoteMapper = MovieNowPlayingRemoteMapper()
     }
 
     @Test
     fun mapResponseFromRemoteMapsData(){
         val movieApiResponse = MovieFactory.makeMovieNowPlayingResponse()
-        val movieDataEntity = movieNowPlayingMapper.mapResponseFromRemote(movieApiResponse)
+        val movieDataEntity = movieNowPlayingRemoteMapper.mapResponseFromRemote(movieApiResponse)
 
         assertEquals(movieApiResponse.adult, movieDataEntity.adult)
         assertEquals(movieApiResponse.title, movieDataEntity.title)
@@ -44,6 +44,6 @@ class MovieNowPlayingMapperTest {
     @Test
     fun mapResponseListFromRemoteMapsData(){
         val movieApiResponses = MovieFactory.makeMovieNowPlayingResponseCollection()
-        val movieDataEntities = movieNowPlayingMapper.mapResponseListFromRemote(movieApiResponses)
+        val movieDataEntities = movieNowPlayingRemoteMapper.mapResponseListFromRemote(movieApiResponses)
     }
 }
