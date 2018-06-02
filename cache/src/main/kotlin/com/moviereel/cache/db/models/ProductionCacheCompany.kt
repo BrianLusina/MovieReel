@@ -1,4 +1,4 @@
-package com.moviereel.cache.db.entities
+package com.moviereel.cache.db.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * @author lusinabrian on 31/03/17
  */
 
-data class ProductionCacheCountry(
+data class ProductionCacheCompany(
         @Expose @SerializedName("name")
         var name: String,
 

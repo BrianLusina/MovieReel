@@ -1,4 +1,4 @@
-package com.moviereel.cache.db.entities
+package com.moviereel.cache.db.models
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

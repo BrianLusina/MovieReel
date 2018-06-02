@@ -1,4 +1,4 @@
-package com.moviereel.cache.db.entities
+package com.moviereel.cache.db.models
 
 /**
  * @author lusinabrian on 09/08/17.

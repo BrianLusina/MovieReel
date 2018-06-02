@@ -3,7 +3,7 @@ package com.moviereel.cache.db
 import android.arch.persistence.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.moviereel.domain.models.movies.MovieNowPlayingModel
+import com.moviereel.cache.db.models.movie.MovieNowPlayingCacheModel
 
 /**
  * @author lusinabrian on 16/09/17.
@@ -16,8 +16,8 @@ object DbConverters {
      * */
     @JvmStatic
     @TypeConverter
-    fun fromString(value: String): ArrayList<MovieNowPlayingModel> {
-        val listType = object : TypeToken<ArrayList<MovieNowPlayingModel>>() {}.type
+    fun fromString(value: String): ArrayList<MovieNowPlayingCacheModel> {
+        val listType = object : TypeToken<ArrayList<MovieNowPlayingCacheModel>>() {}.type
         return Gson().fromJson(value, listType)
     }
 
@@ -27,7 +27,7 @@ object DbConverters {
      * */
     @JvmStatic
     @TypeConverter
-    fun fromArrayList(arrayList: ArrayList<MovieNowPlayingModel>): String {
+    fun fromArrayList(arrayList: ArrayList<MovieNowPlayingCacheModel>): String {
         val gson = Gson()
         return gson.toJson(arrayList)
     }

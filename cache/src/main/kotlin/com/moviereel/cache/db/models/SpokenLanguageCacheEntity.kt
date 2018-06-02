@@ -1,4 +1,4 @@
-package com.moviereel.cache.db.entities
+package com.moviereel.cache.db.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

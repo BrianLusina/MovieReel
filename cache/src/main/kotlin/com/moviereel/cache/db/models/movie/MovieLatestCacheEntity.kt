@@ -1,9 +1,8 @@
-package com.moviereel.cache.db.entities.movie
+package com.moviereel.cache.db.models.movie
 
 import android.arch.persistence.room.ColumnInfo
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.moviereel.cache.db.entities.BaseEntity
 import com.moviereel.domain.models.GenreModel
 import com.moviereel.domain.models.ProductionCompany
 import com.moviereel.domain.models.ProductionCountry

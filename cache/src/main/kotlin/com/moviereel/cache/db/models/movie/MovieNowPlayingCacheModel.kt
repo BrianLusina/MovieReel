@@ -1,4 +1,4 @@
-package com.moviereel.cache.db.entities.movie
+package com.moviereel.cache.db.models.movie
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
  * @Notes: Now playing movie model
  */
 @Entity(tableName = "movie_now_playing")
-data class MovieNowPlayingCacheEntity(
+data class MovieNowPlayingCacheModel(
         @Expose
         @SerializedName("vote_count")
         @ColumnInfo(name = "vote_count")

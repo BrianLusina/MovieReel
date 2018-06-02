@@ -1,7 +1,6 @@
-package com.moviereel.cache.db.entities.movie
+package com.moviereel.cache.db.models.movie
 
 import android.arch.persistence.room.Entity
-import com.moviereel.domain.models.BaseEntity
 
 /**
  * @author lusinabrian on 15/05/17.
