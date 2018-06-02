@@ -1,4 +1,4 @@
-package com.moviereel.data.db.dao
+package com.moviereel.cache.db.dao.movies
 
 import android.arch.persistence.room.*
 import com.moviereel.domain.models.movies.MovieTopRatedModel

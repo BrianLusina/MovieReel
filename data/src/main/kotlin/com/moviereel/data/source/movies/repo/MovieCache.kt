@@ -21,12 +21,12 @@ interface MovieCache {
     /**
      * Save a given list of MovieNowPlaying to the cache
      */
-    fun saveMoviesNowPlaying(moviesNowPlayingEntity: List<MovieNowPlayingDataEntity>): Completable
+    fun saveMoviesNowPlaying(moviesNowPlayingDataEntities: List<MovieNowPlayingDataEntity>): Completable
 
     /**
      * Save a movie now playing
      */
-    fun saveMovieNowPlaying(moviesNowPlayingEntity: MovieNowPlayingDataEntity) : Completable
+    fun saveMovieNowPlaying(movieNowPlayingDataEntity: MovieNowPlayingDataEntity) : Completable
 
     /**
      * Retrieve a list of Movies now playing from the cache

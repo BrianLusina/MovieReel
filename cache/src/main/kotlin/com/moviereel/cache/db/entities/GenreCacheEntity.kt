@@ -1,4 +1,4 @@
-package com.moviereel.data.db.entities
+package com.moviereel.cache.db.entities
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  * @author lusinabrian on 08/04/17
  */
 @Entity(tableName = "genre_ids")
-data class GenreEntity(
+data class GenreCacheEntity(
 
         @PrimaryKey(autoGenerate = false)
         @Expose

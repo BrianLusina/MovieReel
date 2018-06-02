@@ -34,7 +34,7 @@ constructor(
         return cacheDataStore.clearAllMovies()
     }
 
-    override fun saveMoviesNowPlaying(moviesNowPlaying: List<MovieNowPlayingModel>): Completable {
+    override fun saveMoviesNowPlaying(moviesNowPlayingCache: List<MovieNowPlayingDomainModel>): Completable {
         val movieNowPlayingEntities = moviesNowPlaying.map {
             movieNowPlayingDataMapper.mapToEntity(it)
         }

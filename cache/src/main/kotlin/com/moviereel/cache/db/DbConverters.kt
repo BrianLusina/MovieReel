@@ -1,4 +1,4 @@
-package com.moviereel.data.db
+package com.moviereel.cache.db
 
 import android.arch.persistence.room.TypeConverter
 import com.google.gson.Gson

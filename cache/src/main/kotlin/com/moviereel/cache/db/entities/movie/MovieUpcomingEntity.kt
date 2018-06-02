@@ -1,4 +1,4 @@
-package com.moviereel.data.db.entities.movie
+package com.moviereel.cache.db.entities.movie
 
 
 import android.arch.persistence.room.Entity
@@ -10,4 +10,4 @@ import com.moviereel.domain.models.BaseEntity
  */
 
 @Entity(tableName = "movie_upcoming")
-class MovieUpcomingEntity : BaseEntity()
+class MovieUpcomingCacheEntity

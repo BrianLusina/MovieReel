@@ -1,5 +1,6 @@
-package com.moviereel.data.db.entities.movie
+package com.moviereel.cache.db.entities.movie
 
+import android.arch.persistence.room.ColumnInfo
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.moviereel.cache.db.entities.BaseEntity
@@ -14,24 +15,23 @@ import com.moviereel.domain.models.SpokenLanguage
  * @Notes Data entry for the latest movie
  */
 // @Entity(tableName = "movie_latest")
-data class MovieLatestEntity(
+data class MovieLatestCacheEntity(
 
         @Expose
-        //@ColumnInfo(name = "belongs_to_collection")
+        @ColumnInfo(name = "belongs_to_collection")
         var belongsToCollection: String? = null,
 
         @Expose
-        //@ColumnInfo(name = "budget")
+        @ColumnInfo(name = "budget")
         var budget: Int = 0,
 
         @Expose
-        //@ColumnInfo(name = "genres")
-        //@Ignore
+        @ColumnInfo(name = "genres")
         var genres: ArrayList<GenreModel>,
 
         @Expose
         @SerializedName("homepage")
-        //@ColumnInfo(name = "homepage")
+        @ColumnInfo(name = "homepage")
         var homepage: String,
 
         @Expose
@@ -76,4 +76,4 @@ data class MovieLatestEntity(
         @SerializedName("tagline")
         //@ColumnInfo(name = "tagline")
         var tagline: String
-) : BaseEntity()
+)

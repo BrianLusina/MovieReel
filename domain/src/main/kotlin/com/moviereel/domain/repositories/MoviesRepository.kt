@@ -23,21 +23,21 @@ interface MoviesRepository {
      * @param language [String] Language, defaults to english
      * @return [Flowable]
      */
-    fun getMoviesNowPlayingList(page : Int = 1, language: String = "en-US") : Flowable<List<MovieNowPlayingModel>>
+    fun getMoviesNowPlayingList(page : Int = 1, language: String = "en-US") : Flowable<List<MovieNowPlayingDomainModel>>
 
     /**
      * get a now playing movie detail
      * @param id [Int] Id of the Now playing movie
      * @return [Flowable]
      */
-    fun getMovieNowPlaying(id : Long) : Flowable<MovieNowPlayingModel>
+    fun getMovieNowPlaying(id : Long) : Flowable<MovieNowPlayingDomainModel>
 
     /**
      * Save movies now playing to cache
      * @param moviesNowPlaying A list of movies that are now playing
      * @return [Completable]
      */
-    fun saveMoviesNowPlaying(moviesNowPlaying : List<MovieNowPlayingModel>) : Completable
+    fun saveMoviesNowPlaying(moviesNowPlayingCache : List<MovieNowPlayingDomainModel>) : Completable
 
     /**
      * Clear movies now playing, returns a Completable to allow us to determine if the operation

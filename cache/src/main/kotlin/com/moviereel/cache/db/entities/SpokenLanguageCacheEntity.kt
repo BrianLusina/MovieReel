@@ -1,4 +1,4 @@
-package com.moviereel.data.db.entities
+package com.moviereel.cache.db.entities
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * * Model for spoken language
  */
 
-class SpokenLanguage(
+class SpokenLanguageCacheEntity(
 
         @Expose
         @SerializedName("iso_639_1")
