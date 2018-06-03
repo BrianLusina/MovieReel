@@ -1,6 +1,9 @@
 package com.moviereel.cache.db.models.movie
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
 /**
  * @author lusinabrian on 16/05/17.
@@ -8,4 +11,9 @@ import android.arch.persistence.room.Entity
  */
 
 @Entity(tableName = "movie_top_rated")
-class MovieTopRatedCacheEntity
+data class MovieTopRatedCacheEntity(
+        @PrimaryKey(autoGenerate = false)
+        @Expose
+        @SerializedName("id")
+        var id: Long = 0
+)

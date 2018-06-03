@@ -35,7 +35,7 @@ constructor(
     }
 
     override fun saveMoviesNowPlaying(moviesNowPlayingCache: List<MovieNowPlayingDomainModel>): Completable {
-        val movieNowPlayingEntities = moviesNowPlaying.map {
+        val movieNowPlayingEntities = moviesNowPlayingCache.map {
             movieNowPlayingDataMapper.mapToEntity(it)
         }
         return saveMoviesNowPlayingEntities(movieNowPlayingEntities)
@@ -46,7 +46,7 @@ constructor(
         return cacheDataStore.clearMoviesNowPlaying()
     }
 
-    override fun getMoviesNowPlayingList(page: Int, language: String): Flowable<List<MovieNowPlayingModel>> {
+    override fun getMoviesNowPlayingList(page: Int, language: String): Flowable<List<MovieNowPlayingDomainModel>> {
         val dataStore = factory.retrieveDataStore()
         return dataStore.getMoviesNowPlaying(page, language)
                 .toFlowable()
@@ -63,7 +63,7 @@ constructor(
                 }
     }
 
-    override fun getMovieNowPlaying(id: Long): Flowable<MovieNowPlayingModel> {
+    override fun getMovieNowPlaying(id: Long): Flowable<MovieNowPlayingDomainModel> {
         val dataStore = factory.retrieveDataStore()
         return dataStore.getMovieNowPlaying(id)
                 .toFlowable()
@@ -82,7 +82,7 @@ constructor(
     // TODO: implement below
 
     override fun getMoviesLatest(language: String): Flowable<MovieLatestModel> {
-        val dataStore = factory.retrieveDataStore()
+        // val dataStore = factory.retrieveDataStore()
         return Flowable.just(MovieLatestModel(
                 "", 0, arrayListOf(), "","", arrayListOf(), arrayListOf(),
                 0, 0, arrayListOf(), "", ""

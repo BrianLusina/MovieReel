@@ -1,6 +1,7 @@
 package com.moviereel.cache.db.models.movie
 
 import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.moviereel.domain.models.GenreModel
@@ -13,7 +14,7 @@ import com.moviereel.domain.models.SpokenLanguage
  * *
  * @Notes Data entry for the latest movie
  */
-// @Entity(tableName = "movie_latest")
+@Entity(tableName = "movie_latest")
 data class MovieLatestCacheEntity(
 
         @Expose

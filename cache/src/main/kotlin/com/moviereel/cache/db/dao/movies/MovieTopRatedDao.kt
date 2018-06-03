@@ -1,7 +1,7 @@
 package com.moviereel.cache.db.dao.movies
 
 import android.arch.persistence.room.*
-import com.moviereel.domain.models.movies.MovieTopRatedModel
+import com.moviereel.cache.db.models.movie.MovieTopRatedCacheEntity
 import io.reactivex.Flowable
 
 /**
@@ -12,23 +12,23 @@ import io.reactivex.Flowable
 interface MovieTopRatedDao {
     // ****************** CREATE ************************
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieTopRated(vararg movieTopRatedEntity: MovieTopRatedModel)
+    fun insertMovieTopRated(vararg movieTopRatedEntity: MovieTopRatedCacheEntity)
 
     // ****************** READ ************************
     @Query("select * from movie_top_rated")
-    fun getAllMoviesTopRated(): Flowable<List<MovieTopRatedModel>>
+    fun getAllMoviesTopRated(): Flowable<List<MovieTopRatedCacheEntity>>
 
     @Query("select * from movie_top_rated where id = :id")
-    fun getMovieTopRatedById(id: Long): Flowable<MovieTopRatedModel>
+    fun getMovieTopRatedById(id: Long): Flowable<MovieTopRatedCacheEntity>
 
     // ****************** UPDATE ************************
 
     @Update
-    fun updateMovieTopRated(vararg movieTopRatedEntity: MovieTopRatedModel)
+    fun updateMovieTopRated(vararg movieTopRatedEntity: MovieTopRatedCacheEntity)
 
     // ****************** DELETE ************************
 
     @Delete
-    fun deleteMovieTopRated(movieTopRatedEntity: MovieTopRatedModel)
+    fun deleteMovieTopRated(movieTopRatedEntity: MovieTopRatedCacheEntity)
 
 }

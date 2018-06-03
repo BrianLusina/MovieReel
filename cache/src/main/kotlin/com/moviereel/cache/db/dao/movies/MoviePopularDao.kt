@@ -1,7 +1,7 @@
 package com.moviereel.cache.db.dao.movies
 
 import android.arch.persistence.room.*
-import com.moviereel.domain.models.movies.MoviePopularModel
+import com.moviereel.cache.db.models.movie.MoviePopularCacheEntity
 import io.reactivex.Flowable
 
 /**
@@ -13,23 +13,23 @@ interface MoviePopularDao {
 
     // ****************** CREATE ************************
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMoviePopular(vararg moviePopularEntity: MoviePopularModel)
+    fun insertMoviePopular(vararg moviePopularEntity: MoviePopularCacheEntity)
 
     // ****************** READ ************************
     @Query("select * from movie_popular")
-    fun getAllMoviesPopular(): Flowable<List<MoviePopularModel>>
+    fun getAllMoviesPopular(): Flowable<List<MoviePopularCacheEntity>>
 
     @Query("select * from movie_popular where id = :moviePopularId")
-    fun getMoviePopularById(moviePopularId: Long): Flowable<MoviePopularModel>
+    fun getMoviePopularById(moviePopularId: Long): Flowable<MoviePopularCacheEntity>
 
     // ****************** UPDATE ************************
 
     @Update
-    fun updateMoviePopular(vararg movieNPEntity: MoviePopularModel)
+    fun updateMoviePopular(vararg movieNPEntity: MoviePopularCacheEntity)
 
     // ****************** DELETE ************************
 
     @Delete
-    fun deleteMoviePopular(moviePopularEntity: MoviePopularModel)
+    fun deleteMoviePopular(moviePopularEntity: MoviePopularCacheEntity)
 
 }
