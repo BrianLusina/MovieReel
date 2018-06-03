@@ -1,4 +1,4 @@
-package com.moviereel.cache.mapper.movies
+package com.moviereel.cache.movies.nowplaying
 
 import com.moviereel.cache.db.models.movie.MovieNowPlayingCacheModel
 import com.moviereel.cache.mapper.CacheEntityMapper
@@ -8,7 +8,7 @@ import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
  * @author lusinabrian on 02/06/18.
  * @Notes Maps a Cached [MovieNowPlayingCacheModel] instance to a [MovieNowPlayingDataEntity] instance
  */
-class MovieNowPlayingCacheMapper : CacheEntityMapper<MovieNowPlayingCacheModel, MovieNowPlayingDataEntity>{
+class NowPlayingCacheMapper : CacheEntityMapper<MovieNowPlayingCacheModel, MovieNowPlayingDataEntity>{
 
     override fun mapFromCached(type: MovieNowPlayingCacheModel): MovieNowPlayingDataEntity {
         return MovieNowPlayingDataEntity(type.id, type.voteCount, type.video, type.voteAverage,

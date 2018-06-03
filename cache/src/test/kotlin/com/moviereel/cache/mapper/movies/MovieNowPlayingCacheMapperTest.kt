@@ -2,6 +2,7 @@ package com.moviereel.cache.mapper.movies
 
 import com.moviereel.cache.db.models.movie.MovieNowPlayingCacheModel
 import com.moviereel.cache.factory.MovieCacheDataFactory
+import com.moviereel.cache.movies.nowplaying.NowPlayingCacheMapper
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -12,11 +13,11 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class MovieNowPlayingCacheMapperTest {
 
-    private lateinit var movieNowPlayingCacheMapper: MovieNowPlayingCacheMapper
+    private lateinit var movieNowPlayingCacheMapper: NowPlayingCacheMapper
 
     @Before
     fun setUp() {
-        movieNowPlayingCacheMapper = MovieNowPlayingCacheMapper()
+        movieNowPlayingCacheMapper = NowPlayingCacheMapper()
     }
 
     @Test

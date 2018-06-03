@@ -1,5 +1,6 @@
-package com.moviereel.data.files
+package com.moviereel.cache.files
 
+import com.moviereel.cache.files.FileHelper
 import javax.inject.Inject
 import javax.inject.Singleton
 

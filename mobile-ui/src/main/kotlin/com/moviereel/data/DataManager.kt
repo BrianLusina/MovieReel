@@ -1,7 +1,5 @@
 package com.moviereel.data
 
-import com.moviereel.data.files.FileHelper
-import com.moviereel.data.prefs.PreferencesHelper
 import com.moviereel.data.repositories.RepositoryHelper
 
 /**
@@ -10,4 +8,4 @@ import com.moviereel.data.repositories.RepositoryHelper
  * * corresponding layer based on the data received.
  */
 
-interface DataManager : PreferencesHelper, FileHelper, RepositoryHelper
+interface DataManager :  RepositoryHelper
