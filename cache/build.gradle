@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: "kotlin-android-extensions"
 apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     def globalConfig = rootProject.extensions.getByName("ext")
@@ -11,6 +12,13 @@ android {
         minSdkVersion globalConfig["androidMinSdkVersion"]
         targetSdkVersion globalConfig["androidTargetSdkVersion"]
         multiDexEnabled = true
+
+        // used by Room, to test migrations
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -55,6 +63,11 @@ android {
             java.srcDirs += "src/main/kotlin"
         }
 
+        androidTest {
+            java.srcDirs += "src/androidTest/kotlin"
+            assets.srcDirs += files("$projectDir/schemas".toString())
+        }
+
         test{
             java.srcDirs += "src/test/kotlin"
         }
@@ -94,4 +107,7 @@ dependencies {
     testImplementation testDependencies.assertJ
     testImplementation testDependencies.robolectric
     testImplementation cacheTestDependencies.roomTest
+
+    androidTestImplementation cacheTestDependencies.roomTest
+    androidTestImplementation testDependencies.supportTestRunner
 }

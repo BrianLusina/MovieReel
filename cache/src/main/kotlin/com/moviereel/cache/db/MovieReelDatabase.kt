@@ -1,24 +1,25 @@
-package com.moviereel.data.db
+package com.moviereel.cache.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import com.moviereel.data.db.dao.MovieNowPlayingDao
-import com.moviereel.data.db.dao.MoviePopularDao
-import com.moviereel.data.db.dao.MovieTopRatedDao
-import com.moviereel.data.db.dao.MovieUpcomingDao
-import com.moviereel.domain.models.GenreModel
-import com.moviereel.domain.models.movies.MovieNowPlayingModel
-import com.moviereel.domain.models.movies.MoviePopularModel
-import com.moviereel.domain.models.movies.MovieTopRatedModel
-import com.moviereel.domain.models.movies.MovieUpcomingModel
+import com.moviereel.cache.db.dao.movies.MovieNowPlayingDao
+import com.moviereel.cache.db.dao.movies.MoviePopularDao
+import com.moviereel.cache.db.dao.movies.MovieTopRatedDao
+import com.moviereel.cache.db.dao.movies.MovieUpcomingDao
+import com.moviereel.cache.db.models.GenreCacheEntity
+import com.moviereel.cache.db.models.movie.MovieNowPlayingCacheModel
+import com.moviereel.cache.db.models.movie.MoviePopularCacheEntity
+import com.moviereel.cache.db.models.movie.MovieTopRatedCacheEntity
+import com.moviereel.cache.db.models.movie.MovieUpcomingCacheEntity
 
 /**
  * @author lusinabrian on 28/03/17
  */
 
-@Database(entities = arrayOf(MovieNowPlayingModel::class, MoviePopularModel::class,
-        MovieTopRatedModel::class, MovieUpcomingModel::class, GenreModel::class),
+@Database(entities = [
+    (MovieNowPlayingCacheModel::class), (MoviePopularCacheEntity::class),
+    (MovieTopRatedCacheEntity::class), (MovieUpcomingCacheEntity::class), (GenreCacheEntity::class)],
         version = 1, exportSchema = false)
 @TypeConverters(DbConverters::class)
 abstract class MovieReelDatabase : RoomDatabase() {

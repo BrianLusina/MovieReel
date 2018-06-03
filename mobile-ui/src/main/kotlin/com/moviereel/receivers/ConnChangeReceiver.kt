@@ -3,9 +3,8 @@ package com.moviereel.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-
 import com.moviereel.ui.main.MainActivity
-import com.moviereel.utils.NetworkUtils
+import com.moviereel.utils.isNetworkAvailable
 
 /**
  * @author lusinabrian on 19/04/17.
@@ -21,7 +20,7 @@ class ConnChangeReceiver : BroadcastReceiver() {
 
             // if connected to KIO WIFI, open the connected check as a new task
             // this will allow to display a simple dialog
-            if (NetworkUtils.isNetworkAvailable(context)) {
+            if (isNetworkAvailable(context)) {
                 // todo: notifications
                 // openMainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 // context.startActivity(openMainActivity)

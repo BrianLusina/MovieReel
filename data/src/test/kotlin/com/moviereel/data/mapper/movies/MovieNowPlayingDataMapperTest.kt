@@ -35,7 +35,7 @@ class MovieNowPlayingDataMapperTest {
     }
 
     private fun assertMovieNowPlayingDataEquality(movieNowPlayingEntity: MovieNowPlayingDataEntity,
-                                                  movieNowPlayingModel: MovieNowPlayingModel) {
+                                                  movieNowPlayingCacheModel: MovieNowPlayingModel) {
         assertEquals(movieNowPlayingEntity.id, movieNowPlayingModel.id)
         assertEquals(movieNowPlayingEntity.voteCount, movieNowPlayingModel.voteCount)
         assertEquals(movieNowPlayingEntity.video, movieNowPlayingModel.video)

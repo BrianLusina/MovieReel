@@ -3,12 +3,8 @@ package com.moviereel.services
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-
-import com.moviereel.data.DataManager
-
-import javax.inject.Inject
-
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
 /**
  * @author lusinabrian on 19/4/17
@@ -16,9 +12,6 @@ import io.reactivex.disposables.CompositeDisposable
  * *
  */
 class SyncService : Service() {
-
-    @Inject
-    lateinit var mDataManager: DataManager
 
     @Inject
     lateinit var mCompositeDisposable: CompositeDisposable

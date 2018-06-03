@@ -1,7 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: 'kotlin-android-extensions'
-apply plugin: "io.fabric"
+// apply plugin: "io.fabric"
 apply plugin: "signing"
 apply from: "../jacoco.gradle"
 apply plugin: 'kotlin-kapt'
@@ -302,7 +302,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
     androidTestImplementation mobileTestDependencies.espressoCore
-    androidTestImplementation mobileTestDependencies.supportTestRunner
+    androidTestImplementation testDependencies.supportTestRunner
     androidTestImplementation mobileTestDependencies.espressoIntents
     androidTestImplementation testDependencies.mockitoCore
     kaptAndroidTest globalDependencies.daggerCompiler

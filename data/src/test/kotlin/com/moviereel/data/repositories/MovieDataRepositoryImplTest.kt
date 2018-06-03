@@ -91,7 +91,7 @@ class MovieDataRepositoryImplTest {
     }
 
     private fun stubMovieMapperMapFromEntity(movieNowPlayingEntity: MovieNowPlayingDataEntity,
-                                             movieNowPlayingModel: MovieNowPlayingModel) {
+                                             movieNowPlayingCacheModel: MovieNowPlayingModel) {
         whenever(movieNowPlayingDataMapper.mapFromEntity(movieNowPlayingEntity))
                 .thenReturn(movieNowPlayingModel)
     }
