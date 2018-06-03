@@ -3,7 +3,7 @@ package com.moviereel.domain.interactors.movies.nowplaying
 import com.moviereel.domain.executor.PostExecutionThread
 import com.moviereel.domain.executor.ThreadExecutor
 import com.moviereel.domain.factory.MovieDataFactory
-import com.moviereel.domain.models.movies.MovieNowPlayingModel
+import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
 import com.moviereel.domain.repositories.MoviesRepository
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Flowable
@@ -14,9 +14,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import org.junit.rules.ExpectedException
-import org.junit.Rule
-
 
 
 @RunWith(MockitoJUnitRunner::class)
@@ -30,7 +27,7 @@ class GetMoviesNowPlayingListTest {
     @Mock lateinit var mockPostExecutionThread: PostExecutionThread
     @Mock lateinit var mockMoviesRepository: MoviesRepository
 
-    private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<List<MovieNowPlayingModel>>) {
+    private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<List<MovieNowPlayingDomainModel>>) {
         whenever(mockMoviesRepository.getMoviesNowPlayingList(page, language))
                 .thenReturn(flowable)
     }

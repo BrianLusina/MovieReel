@@ -3,7 +3,7 @@ package com.moviereel.domain.interactors.movies.nowplaying
 import com.moviereel.domain.executor.PostExecutionThread
 import com.moviereel.domain.executor.ThreadExecutor
 import com.moviereel.domain.factory.MovieDataFactory
-import com.moviereel.domain.models.movies.MovieNowPlayingModel
+import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
 import com.moviereel.domain.repositories.MoviesRepository
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
@@ -23,7 +23,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class GetMoviesNPDetailsTest {
     private lateinit var getMoviesNPDetails: GetMoviesNPDetails
 
-    private var movieId = 3
+    private var movieId = 3L
 
     @Mock
     lateinit var mockThreadExecutor: ThreadExecutor
@@ -42,7 +42,7 @@ class GetMoviesNPDetailsTest {
         getMoviesNPDetails = GetMoviesNPDetails(mockMoviesRepository, mockThreadExecutor, mockPostExecutionThread)
     }
 
-    private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<MovieNowPlayingModel>) {
+    private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<MovieNowPlayingDomainModel>) {
         whenever(mockMoviesRepository.getMovieNowPlaying(movieId)).thenReturn(flowable)
     }
 
