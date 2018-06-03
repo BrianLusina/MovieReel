@@ -21,11 +21,9 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.moviereel.R
 import com.moviereel.app.MovieReelApp
 import com.moviereel.di.components.ActivityComponent
-import com.moviereel.di.components.DaggerActivityComponent
 import com.moviereel.di.modules.ActivityModule
 import com.moviereel.receivers.ConnChangeReceiver
-import com.moviereel.utils.CommonUtils
-import com.moviereel.utils.NetworkUtils
+import com.moviereel.utils.isNetworkAvailable
 
 /**
  * @author lusinabrian on 10/06/17.
@@ -69,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
      * @return [Boolean]
      */
     override val isNetworkConnected: Boolean
-        get() = NetworkUtils.isNetworkAvailable(applicationContext)
+        get() = isNetworkAvailable(applicationContext)
 
     /**
      * before destroying the view, do a sanity check of the view bindings before destroying the
