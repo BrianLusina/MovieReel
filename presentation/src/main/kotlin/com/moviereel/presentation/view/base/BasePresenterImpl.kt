@@ -1,25 +1,14 @@
-package com.moviereel.ui.base
+package com.moviereel.presentation.view.base
 
-import com.moviereel.data.DataManager
-import com.moviereel.data.io.SchedulerProvider
-
+import com.moviereel.presentation.BasePresenter
+import com.moviereel.presentation.BaseView
 import javax.inject.Inject
-
 import io.reactivex.disposables.CompositeDisposable
 import org.jetbrains.anko.AnkoLogger
 
-/**
- * @author lusinabrian on 01/04/17
- */
-
-open class BasePresenterImpl<V : BaseView> @Inject
-constructor(
-        val dataManager: DataManager,
-        val schedulerProvider: SchedulerProvider,
-        val compositeDisposable: CompositeDisposable) : BasePresenter<V>, AnkoLogger {
-
-    override val loggerTag: String
-        get() = this::class.java.simpleName
+open class BasePresenterImpl<V : BaseView>
+@Inject
+constructor(private val compositeDisposable: CompositeDisposable) : BasePresenter<V>, AnkoLogger {
 
     /**
      * Gets the base view
@@ -28,8 +17,11 @@ constructor(
     lateinit var baseView: V
         private set
 
-    override fun onAttach(mBaseView: V) {
-        this.baseView = mBaseView
+    override val loggerTag: String
+        get() = this::class.java.simpleName
+
+    override fun onAttach(baseView: V) {
+        this.baseView = baseView
     }
 
     override fun onDetach() {

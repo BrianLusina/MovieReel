@@ -1,25 +1,17 @@
-package com.moviereel.ui.base
-
-import android.support.annotation.StringRes
+package com.moviereel.presentation
 
 /**
- * @author lusinabrian on 01/04/17
- * * Base interface that any class that wants to act as a View in the MVP (Model View Presenter)
- * * pattern must implement. Generally this interface will be extended by a more specific interface
- * * that then usually will be implemented by an Activity or Fragment.
+ * @author lusinabrian on 04/06/18.
+ * @Notes Interface class to act as a base for any class that is to take the role of the BaseView
  */
-
-interface BaseView {
+interface BaseView{
 
     /**
      * shows the connection error snackbar. If there is no connection to any internet connection
      * @param message message to displaye
-     * *
      * @param length how long to display this message
      */
-    fun showNetworkErrorSnackbar(message: String, length: Int)
-
-    fun showNetworkErrorSnackbar(@StringRes message: Int, length: Int)
+    fun showNetworkErrorSnackbar(message: String = "No Internet connection", length: Int = 0)
 
     /**
      * Checks if there is network connected
@@ -35,13 +27,7 @@ interface BaseView {
     /**
      * Shows a snackbar if an error has been encountered
      * @param length how long the snack bar should be displayed
-     * *
      * @param message the message to display in the snackbar
      */
     fun onErrorSnackBar(message: String, length: Int)
-
-    /**
-     * Override of [.onErrorSnackBar] */
-    fun onErrorSnackBar(@StringRes resId: Int, length: Int)
-
 }

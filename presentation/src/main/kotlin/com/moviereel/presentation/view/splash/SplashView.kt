@@ -1,6 +1,6 @@
-package com.moviereel.ui.intro.splash
+package com.moviereel.presentation.view.splash
 
-import com.moviereel.ui.base.BaseView
+import com.moviereel.presentation.BaseView
 
 /**
  * @author lusinabrian on 01/04/17

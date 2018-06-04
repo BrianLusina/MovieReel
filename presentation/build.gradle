@@ -10,6 +10,7 @@ dependencies {
     implementation globalDependencies.kotlin
     implementation globalDependencies.javaxInject
     implementation globalDependencies.rxKotlin
+    implementation globalDependencies.anko
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockitoKotlin

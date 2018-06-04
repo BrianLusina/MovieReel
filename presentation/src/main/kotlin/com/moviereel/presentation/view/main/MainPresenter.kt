@@ -1,13 +1,11 @@
-package com.moviereel.ui.main
+package com.moviereel.presentation.view.main
 
-import com.moviereel.di.scopes.PerActivity
-import com.moviereel.ui.base.BasePresenter
+import com.moviereel.presentation.BasePresenter
 
 /**
  * @author lusinabrian on 12/04/17
  */
 
-@PerActivity
 interface MainPresenter<V : MainView> : BasePresenter<V> {
 
     /**
