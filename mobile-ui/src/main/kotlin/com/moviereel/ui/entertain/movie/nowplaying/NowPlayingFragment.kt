@@ -5,26 +5,26 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import javax.inject.Inject
 
-class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView{
+class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
 
     @Inject
-    lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
+    lateinit var nowPlayingPresenter: NowPlayingPresenter<NowPlayingView>
 
     @Inject
-    lateinit var movieNPAdapter: MovieNPAdapter
+    lateinit var nowPlayingAdapter: NowPlayingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activityComponent.inject(this)
 
         super.onCreateView(inflater, container, savedInstanceState)
 
-        movieNPPresenter.onAttach(this)
+        nowPlayingPresenter.onAttach(this)
 
         setUp(rootView)
 
@@ -33,11 +33,11 @@ class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView{
 
     override fun onResume() {
         super.onResume()
-        movieNPPresenter.onResume()
+        nowPlayingPresenter.onResume()
     }
 
     override fun onDestroy() {
-        movieNPPresenter.onDestroy()
+        nowPlayingPresenter.onDestroy()
         super.onDestroy()
     }
 
@@ -48,23 +48,23 @@ class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView{
     override fun setUp(view: View) {
         super.setUp(view)
         with(view) {
-            fragRecyclerView.adapter = movieNPAdapter
+            fragRecyclerView.adapter = nowPlayingAdapter
 
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    movieNPPresenter.onLoadMoreFromApi(page)
+                    nowPlayingPresenter.onLoadMoreFromApi(page)
                 }
             }
 
             fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
         }
 
-        movieNPPresenter.onViewInitialized()
+        nowPlayingPresenter.onViewInitialized()
     }
 
     override fun onRefresh() {
-        movieNPPresenter.onSwipeRefreshTriggered()
+        nowPlayingPresenter.onSwipeRefreshTriggered()
     }
 
 //    override fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
@@ -76,13 +76,13 @@ class MovieNPFragment : EntertainPageBaseFragment(), MovieNPView{
 //    }
 //
 //    override fun onRecyclerItemClicked(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
-//        movieNPPresenter.onItemClicked(bundleKey, movieList)
+//        nowPlayingPresenter.onItemClicked(bundleKey, movieList)
 //    }
 
     override fun updateMoviesNowPlaying(movieResultsResponseList: List<MovieNowPlayingEntity>) {
         val data = arrayListOf<MovieNowPlayingEntity>()
         data += movieResultsResponseList
-        movieNPAdapter.addItemsUsingDiff(data)
+        nowPlayingAdapter.addItemsUsingDiff(data)
     }
 
 }

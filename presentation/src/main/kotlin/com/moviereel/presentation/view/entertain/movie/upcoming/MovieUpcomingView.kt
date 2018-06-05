@@ -1,4 +1,4 @@
-package com.moviereel.ui.entertain.movie.upcoming
+package com.moviereel.presentation.view.entertain.movie.upcoming
 
 import com.moviereel.data.db.entities.movie.MovieUpcomingEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseView

@@ -12,7 +12,7 @@ import org.jetbrains.anko.toast
  * @author lusinabrian on 16/09/17.
  * @Notes
  */
-class MovieNpViewHolder(itemView: View, val movieNowPlayingEntityList: ArrayList<MovieNowPlayingEntity>)
+class NowPlayingViewHolder(itemView: View, val movieNowPlayingEntityList: ArrayList<MovieNowPlayingEntity>)
     : EntertainPageBaseViewHolder<MovieNowPlayingEntity>(itemView) {
     override fun onBind(position: Int) {
         val movieEntity = movieNowPlayingEntityList[position]

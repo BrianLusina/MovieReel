@@ -1,4 +1,4 @@
-package com.moviereel.ui.entertain.movie.toprated
+package com.moviereel.presentation.view.entertain.movie.toprated
 
 import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
 import com.moviereel.ui.entertain.base.EntertainPageBaseView

@@ -3,7 +3,7 @@ package com.moviereel.ui.entertain.movie
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingFragment
 import com.moviereel.ui.entertain.movie.popular.MoviePopularFrag
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedFrag
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingFrag
@@ -16,7 +16,7 @@ class MoviesViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePa
 
     override fun getItem(position: Int): Fragment? {
         return when (position) {
-            0 -> MovieNPFragment()
+            0 -> NowPlayingFragment()
             1 -> MoviePopularFrag()
             2 -> MovieTopRatedFrag()
             3 -> MovieUpcomingFrag()

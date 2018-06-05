@@ -13,7 +13,7 @@ import javax.inject.Inject
  * @Notes movie now playing adapter
  */
 
-class MovieNPAdapter
+class NowPlayingAdapter
 @Inject
 constructor(val movieNowPlayingEntityList: ArrayList<MovieNowPlayingEntity>) : EntertainPageBaseAdapter<MovieNowPlayingEntity>(movieNowPlayingEntityList) {
 
@@ -21,7 +21,7 @@ constructor(val movieNowPlayingEntityList: ArrayList<MovieNowPlayingEntity>) : E
         return when (viewType) {
             VIEW_TYPE_NORMAL -> {
                 val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_entertainment_layout, parent, false)
-                MovieNpViewHolder(v, movieNowPlayingEntityList)
+                NowPlayingViewHolder(v, movieNowPlayingEntityList)
             }
             else -> {
                 return super.onCreateViewHolder(parent, viewType)

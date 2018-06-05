@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.data.db.entities.movie.MovieUpcomingEntity
+import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingPresenter
+import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*

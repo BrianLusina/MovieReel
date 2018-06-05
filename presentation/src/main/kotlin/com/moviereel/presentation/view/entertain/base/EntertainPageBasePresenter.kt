@@ -1,6 +1,7 @@
-package com.moviereel.ui.entertain.base
+package com.moviereel.presentation.view.entertain.base
 
-import com.moviereel.ui.base.BasePresenter
+import com.moviereel.presentation.BasePresenter
+
 
 /**
  * @author lusinabrian on 13/09/17.

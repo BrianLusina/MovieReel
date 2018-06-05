@@ -3,23 +3,14 @@ package com.moviereel.presentation.view.base
 import com.moviereel.domain.DomainManager
 import com.moviereel.presentation.BasePresenter
 import com.moviereel.presentation.BaseView
-import javax.inject.Inject
-import io.reactivex.disposables.CompositeDisposable
 import org.jetbrains.anko.AnkoLogger
+import javax.inject.Inject
 
 open class BasePresenterImpl<V : BaseView>
 @Inject
 constructor() : BasePresenter<V>, AnkoLogger {
 
-    var compositeDisposable = CompositeDisposable()
-
-    constructor(compDisposable: CompositeDisposable) : this() {
-        this.compositeDisposable = compDisposable
-    }
-
     constructor(domainManager: DomainManager) : this()
-
-    constructor(compositeDisposable: CompositeDisposable, domainManager: DomainManager) : this()
 
     /**
      * Gets the base view
@@ -35,9 +26,7 @@ constructor() : BasePresenter<V>, AnkoLogger {
         this.baseView = baseView
     }
 
-    override fun onDetach() {
-        compositeDisposable.dispose()
-    }
+    override fun onDetach() {}
 
     /**
      * Checks if the view has been attached */

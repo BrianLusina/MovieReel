@@ -4,9 +4,9 @@ import android.support.design.widget.Snackbar
 import com.moviereel.R
 import com.moviereel.TestSchedulerProvider
 import com.moviereel.data.DataManager
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenterImpl
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPView
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -27,12 +27,12 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MovieNPPresenterTest {
 
-    @Mock lateinit var mMockMovieNPView: MovieNPView
+    @Mock lateinit var mMockNowPlayingView: NowPlayingView
     lateinit var mTestScheduler: TestScheduler
 
     @Mock lateinit var mMockDataManager: DataManager
 
-    lateinit var movieNPPresenter: MovieNPPresenter<MovieNPView>
+    lateinit var nowPlayingPresenter: NowPlayingPresenter<NowPlayingView>
 
     companion object {
         @BeforeClass
@@ -49,15 +49,15 @@ class MovieNPPresenterTest {
         val compositeDisposable = CompositeDisposable()
         mTestScheduler = TestScheduler()
         val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
-        movieNPPresenter = MovieNPPresenterImpl(mMockDataManager,testSchedulerProvider, compositeDisposable)
-        movieNPPresenter.onAttach(mMockMovieNPView)
+        nowPlayingPresenter = NowPlayingPresenterImpl(mMockDataManager, testSchedulerProvider, compositeDisposable)
+        nowPlayingPresenter.onAttach(mMockNowPlayingView)
     }
 
     @After
     @Throws(Exception::class)
     fun tearDown() {
         RxAndroidPlugins.reset()
-        movieNPPresenter.onDetach()
+        nowPlayingPresenter.onDetach()
     }
 
     /**
@@ -65,11 +65,11 @@ class MovieNPPresenterTest {
      */
     @Test
     fun testShouldDisplayApiErrorSnackBar() {
-        mMockMovieNPView.showApiErrorSnackbar(R.string.snackbar_api_error,
+        mMockNowPlayingView.showApiErrorSnackbar(R.string.snackbar_api_error,
                 R.string.snackbar_api_error_retry,
                 Snackbar.LENGTH_SHORT)
 
-        verify<MovieNPView>(mMockMovieNPView).showApiErrorSnackbar(R.string.snackbar_api_error,
+        verify<NowPlayingView>(mMockNowPlayingView).showApiErrorSnackbar(R.string.snackbar_api_error,
                 R.string.snackbar_api_error_retry,
                 Snackbar.LENGTH_SHORT)
     }

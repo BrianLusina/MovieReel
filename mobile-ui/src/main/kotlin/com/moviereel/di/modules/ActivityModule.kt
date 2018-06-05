@@ -11,25 +11,25 @@ import com.moviereel.ui.detail.MovieDetailsPresenter
 import com.moviereel.ui.detail.MovieDetailsPresenterImpl
 import com.moviereel.ui.detail.MovieDetailsView
 import com.moviereel.ui.entertain.movie.MovieFragPresenter
-import com.moviereel.ui.entertain.movie.MovieFragPresenterImpl
-import com.moviereel.ui.entertain.movie.MovieFragView
+import com.moviereel.presentation.view.entertain.movie.MovieFragPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPAdapter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenterImpl
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPView
+import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
 import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
-import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenter
-import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenterImpl
-import com.moviereel.ui.entertain.movie.popular.MoviePopularView
+import com.moviereel.presentation.view.entertain.movie.popular.MoviePopularPresenter
+import com.moviereel.presentation.view.entertain.movie.popular.MoviePopularPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.popular.MoviePopularView
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenter
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenterImpl
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedView
+import com.moviereel.presentation.view.entertain.movie.toprated.MovieTopRatedPresenter
+import com.moviereel.presentation.view.entertain.movie.toprated.MovieTopRatedPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.toprated.MovieTopRatedView
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingAdapter
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenter
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenterImpl
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingView
+import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingPresenter
+import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingView
 import com.moviereel.ui.intro.splash.SplashPresenter
 import com.moviereel.ui.intro.splash.SplashPresenterImpl
 import com.moviereel.ui.intro.splash.SplashView
@@ -91,13 +91,13 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     // now playing
     @Provides
     @PerActivity
-    fun provideMovieNpPresenter(movieNPPresenter: MovieNPPresenterImpl<MovieNPView>): MovieNPPresenter<MovieNPView> {
-        return movieNPPresenter
+    fun provideMovieNpPresenter(nowPlayingPresenter: NowPlayingPresenterImpl<NowPlayingView>): NowPlayingPresenter<NowPlayingView> {
+        return nowPlayingPresenter
     }
 
     @Provides
-    fun provideMovieNpAdapter(): MovieNPAdapter {
-        return MovieNPAdapter(ArrayList())
+    fun provideMovieNpAdapter(): NowPlayingAdapter {
+        return NowPlayingAdapter(ArrayList())
     }
 
     // popular

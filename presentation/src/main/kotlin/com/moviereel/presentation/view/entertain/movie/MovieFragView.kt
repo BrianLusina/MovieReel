@@ -1,4 +1,4 @@
-package com.moviereel.ui.entertain.movie
+package com.moviereel.presentation.view.entertain.movie
 
 import com.moviereel.ui.base.BaseView
 

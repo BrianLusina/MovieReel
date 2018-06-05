@@ -10,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
+import com.moviereel.R.id.fragRecyclerView
+import com.moviereel.R.id.fragSwipeRefreshLayout
+import com.moviereel.presentation.view.entertain.base.EntertainPageBaseView
 import com.moviereel.ui.base.BaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import org.jetbrains.anko.toast
 
 /**

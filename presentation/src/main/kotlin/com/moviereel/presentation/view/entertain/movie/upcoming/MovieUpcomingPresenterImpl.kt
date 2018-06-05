@@ -1,30 +1,25 @@
-package com.moviereel.ui.entertain.movie.nowplaying
-
+package com.moviereel.presentation.view.entertain.movie.upcoming
 
 import android.support.design.widget.Snackbar
 import com.moviereel.R
 import com.moviereel.data.DataManager
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
 import com.moviereel.data.io.SchedulerProvider
+import com.moviereel.ui.base.BasePresenterImpl
 import com.moviereel.ui.entertain.base.EntertainPageBasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
-import org.jetbrains.anko.error
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
 /**
- * @author lusinabrian on 26/10/16.
- * * Description: presenter for now playing fragment that will handle fetching the data from api async
- * * and saving the data to the db for offline use and also adding the data to the adapter for the user to
- * * view.
+ * @author lusinabrian
+ * @notes: Presenter layer to interact with data and view
  */
-
-class MovieNPPresenterImpl<V : MovieNPView>
+class MovieUpcomingPresenterImpl<V : MovieUpcomingView>
 @Inject
-constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
-            mCompositeDisposable: CompositeDisposable)
-    : EntertainPageBasePresenterImpl<V>(mDataManager, schedulerProvider, mCompositeDisposable), MovieNPPresenter<V> {
+constructor(mDataManager: DataManager, mCompositeDisposable: CompositeDisposable,
+            mSchedulerProvider: SchedulerProvider) : EntertainPageBasePresenterImpl<V>(mDataManager,
+        mSchedulerProvider, mCompositeDisposable),
+        MovieUpcomingPresenter<V> {
 
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
@@ -45,13 +40,13 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
 
     private fun fetchFromApi(page: Int) {
         compositeDisposable.addAll(
-                dataManager.getMoviesNowPlaying(remote, page, "en-US")
+                dataManager.doGetMoviesUpcoming(remote, page, "en-US", "")
                         .observeOn(schedulerProvider.ui())
                         .subscribeOn(schedulerProvider.newThread())
                         .debounce(10000, TimeUnit.MILLISECONDS)
                         .subscribe({
                             // update the recycler view
-                            baseView.updateMoviesNowPlaying(it)
+                            baseView.updateMoviesUpcoming(it)
                             baseView.stopSwipeRefresh()
                         }, {
                             // on error
@@ -73,16 +68,8 @@ constructor(mDataManager: DataManager, schedulerProvider: SchedulerProvider,
     override fun onResume() {
 
     }
-
-    /**
-     * picks the data of the item clicked in the RecyclerView
-     * start activity for the clicked movie item
-
-     * @param bundleKey
-     * *
-     * @param movieList
-     */
-    override fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
-
+    override fun onDetach() {
+        super.onDetach()
+        compositeDisposable.dispose()
     }
 }

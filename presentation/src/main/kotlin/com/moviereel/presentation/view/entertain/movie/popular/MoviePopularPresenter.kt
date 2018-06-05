@@ -1,4 +1,4 @@
-package com.moviereel.ui.entertain.movie.popular
+package com.moviereel.presentation.view.entertain.movie.popular
 
 import com.moviereel.ui.entertain.base.EntertainPageBasePresenter
 
