@@ -1,5 +1,6 @@
 package com.moviereel.presentation.view.base
 
+import com.moviereel.domain.DomainManager
 import com.moviereel.presentation.BasePresenter
 import com.moviereel.presentation.BaseView
 import javax.inject.Inject
@@ -8,7 +9,17 @@ import org.jetbrains.anko.AnkoLogger
 
 open class BasePresenterImpl<V : BaseView>
 @Inject
-constructor(private val compositeDisposable: CompositeDisposable) : BasePresenter<V>, AnkoLogger {
+constructor() : BasePresenter<V>, AnkoLogger {
+
+    var compositeDisposable = CompositeDisposable()
+
+    constructor(compDisposable: CompositeDisposable) : this() {
+        this.compositeDisposable = compDisposable
+    }
+
+    constructor(domainManager: DomainManager) : this()
+
+    constructor(compositeDisposable: CompositeDisposable, domainManager: DomainManager) : this()
 
     /**
      * Gets the base view

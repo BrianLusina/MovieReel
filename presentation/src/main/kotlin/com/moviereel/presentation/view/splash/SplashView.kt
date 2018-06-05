@@ -9,12 +9,12 @@ import com.moviereel.presentation.BaseView
 interface SplashView : BaseView {
 
     /**
-     * opens the main actiivity
+     * opens the main activity
      */
     fun openMainActivity()
 
     /**
-     * opens the app introduction acitivyt
+     * opens the app introduction activity
      * this will be opened if this is the first time this application is being opened
      */
     fun openAppIntroductionActivity()

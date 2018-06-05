@@ -4,7 +4,7 @@ import com.moviereel.domain.executor.PostExecutionThread
 import com.moviereel.domain.executor.ThreadExecutor
 import com.moviereel.domain.factory.MovieDataFactory
 import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
-import com.moviereel.domain.repositories.MoviesRepository
+import com.moviereel.domain.repositories.MoviesDomainRepository
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Flowable
 import org.junit.Before
@@ -25,16 +25,16 @@ class GetMoviesNowPlayingListTest {
 
     @Mock lateinit var mockThreadExecutor: ThreadExecutor
     @Mock lateinit var mockPostExecutionThread: PostExecutionThread
-    @Mock lateinit var mockMoviesRepository: MoviesRepository
+    @Mock lateinit var mockMoviesDomainRepository: MoviesDomainRepository
 
     private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<List<MovieNowPlayingDomainModel>>) {
-        whenever(mockMoviesRepository.getMoviesNowPlayingList(page, language))
+        whenever(mockMoviesDomainRepository.getMoviesNowPlayingList(page, language))
                 .thenReturn(flowable)
     }
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        getMoviesNpList = GetMoviesNowPlayingList(mockMoviesRepository, mockThreadExecutor, mockPostExecutionThread)
+        getMoviesNpList = GetMoviesNowPlayingList(mockMoviesDomainRepository, mockThreadExecutor, mockPostExecutionThread)
         // Unnecessary Mockito stubbing
         // given(mockPostExecutionThread.scheduler).willReturn(TestScheduler())
     }
@@ -44,7 +44,7 @@ class GetMoviesNowPlayingListTest {
         stubMoviesRepositoryGetMoviesNowPlaying(Flowable.just(MovieDataFactory.makeMoviesNowPlayingList(2)))
         val params = GetMoviesNowPlayingList.Params.forMovies(page, language)
         getMoviesNpList.buildUseCaseSingle(params)
-        verify(mockMoviesRepository).getMoviesNowPlayingList(page, language)
+        verify(mockMoviesDomainRepository).getMoviesNowPlayingList(page, language)
     }
 
     @Test

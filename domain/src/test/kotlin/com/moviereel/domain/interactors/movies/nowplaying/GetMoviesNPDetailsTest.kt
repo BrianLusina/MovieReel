@@ -4,7 +4,7 @@ import com.moviereel.domain.executor.PostExecutionThread
 import com.moviereel.domain.executor.ThreadExecutor
 import com.moviereel.domain.factory.MovieDataFactory
 import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
-import com.moviereel.domain.repositories.MoviesRepository
+import com.moviereel.domain.repositories.MoviesDomainRepository
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions
@@ -30,7 +30,7 @@ class GetMoviesNPDetailsTest {
     @Mock
     lateinit var mockPostExecutionThread: PostExecutionThread
     @Mock
-    lateinit var mockMoviesRepository: MoviesRepository
+    lateinit var mockMoviesDomainRepository: MoviesDomainRepository
 
     @Rule
     @JvmField
@@ -39,11 +39,11 @@ class GetMoviesNPDetailsTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        getMoviesNPDetails = GetMoviesNPDetails(mockMoviesRepository, mockThreadExecutor, mockPostExecutionThread)
+        getMoviesNPDetails = GetMoviesNPDetails(mockMoviesDomainRepository, mockThreadExecutor, mockPostExecutionThread)
     }
 
     private fun stubMoviesRepositoryGetMoviesNowPlaying(flowable: Flowable<MovieNowPlayingDomainModel>) {
-        whenever(mockMoviesRepository.getMovieNowPlaying(movieId)).thenReturn(flowable)
+        whenever(mockMoviesDomainRepository.getMovieNowPlaying(movieId)).thenReturn(flowable)
     }
 
     @Test
@@ -51,8 +51,8 @@ class GetMoviesNPDetailsTest {
         stubMoviesRepositoryGetMoviesNowPlaying(Flowable.just(MovieDataFactory.makeMovieNowPlaying()))
 
         getMoviesNPDetails.buildUseCaseSingle(GetMoviesNPDetails.Params.forMovies(movieId))
-        verify(mockMoviesRepository).getMovieNowPlaying(movieId)
-        verifyNoMoreInteractions(mockMoviesRepository)
+        verify(mockMoviesDomainRepository).getMovieNowPlaying(movieId)
+        verifyNoMoreInteractions(mockMoviesDomainRepository)
         verifyZeroInteractions(mockPostExecutionThread)
         verifyZeroInteractions(mockThreadExecutor)
     }

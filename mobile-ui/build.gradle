@@ -253,6 +253,11 @@ dependencies {
     def mobileDependencies = rootProject.ext.mobileUiDependencies
     def mobileTestDependencies = rootProject.ext.mobileUiTestDependencies
 
+    implementation project(":presentation")
+    implementation project(":data")
+    implementation project(":cache")
+    implementation project(":remote")
+
     implementation mobileDependencies.androidSupportV4
     implementation mobileDependencies.appCompatV7
     implementation mobileDependencies.cardView

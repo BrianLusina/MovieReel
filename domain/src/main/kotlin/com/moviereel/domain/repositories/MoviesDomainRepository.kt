@@ -9,7 +9,7 @@ import io.reactivex.Flowable
  * This is to be implemented by the data layer, setting the requirements for the
  * operations that need to be implemented
  */
-interface MoviesRepository {
+interface MoviesDomainRepository {
 
     /**
      * Clear all movies from cache
