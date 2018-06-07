@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.data.db.entities.movie.MoviePopularEntity
-import com.moviereel.presentation.view.entertain.movie.popular.MoviePopularPresenter
-import com.moviereel.presentation.view.entertain.movie.popular.MoviePopularView
+import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
+import com.moviereel.presentation.view.entertain.movie.popular.PopularView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
@@ -17,10 +17,10 @@ import javax.inject.Inject
  * @author lusinabrian on 12/04/17
  */
 
-class MoviePopularFrag : EntertainPageBaseFragment(), MoviePopularView {
+class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
 
     @Inject
-    lateinit var moviePopPresenter: MoviePopularPresenter<MoviePopularView>
+    lateinit var moviePopPresenter: PopularPresenter<PopularView>
 
     @Inject
     lateinit var moviePopularAdapter: MoviePopularAdapter

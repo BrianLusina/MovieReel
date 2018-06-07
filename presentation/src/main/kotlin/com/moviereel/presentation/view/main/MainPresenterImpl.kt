@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class MainPresenterImpl<V : MainView>
 @Inject
-constructor(compositeDisposable: CompositeDisposable) : BasePresenterImpl<V>(compositeDisposable), MainPresenter<V> {
+constructor() : BasePresenterImpl<V>(), MainPresenter<V> {
 
     /**
      * When the view is first attached, check if the device is online

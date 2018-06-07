@@ -9,9 +9,9 @@ import android.support.v4.view.ViewPager
 import com.bumptech.glide.Glide
 import com.moviereel.BuildConfig
 import com.moviereel.R
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenter
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsView
 import com.moviereel.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.details_layout.*
 import javax.inject.Inject
 
 

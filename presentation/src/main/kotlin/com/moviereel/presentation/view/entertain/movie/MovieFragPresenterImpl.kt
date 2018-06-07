@@ -1,8 +1,6 @@
 package com.moviereel.presentation.view.entertain.movie
 
-import com.moviereel.data.DataManager
-import com.moviereel.data.io.SchedulerProvider
-import com.moviereel.ui.base.BasePresenterImpl
+import com.moviereel.presentation.view.base.BasePresenterImpl
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -12,9 +10,7 @@ import javax.inject.Inject
  */
 class MovieFragPresenterImpl<V : MovieFragView>
 @Inject
-constructor(mDatamanager: DataManager, mCompositeDisposable: CompositeDisposable,
-            mSchedulerProvider: SchedulerProvider) : BasePresenterImpl<V>(mDatamanager, mSchedulerProvider, mCompositeDisposable),
-        MovieFragPresenter<V> {
+constructor() : BasePresenterImpl<V>(), MovieFragPresenter<V> {
 
     override fun onAttach(mBaseView: V) {
         super.onAttach(mBaseView)
@@ -22,7 +18,7 @@ constructor(mDatamanager: DataManager, mCompositeDisposable: CompositeDisposable
 
     override fun onDetach() {
         super.onDetach()
-        compositeDisposable.dispose()
+       //  compositeDisposable.dispose()
     }
 
 }

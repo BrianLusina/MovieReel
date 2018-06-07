@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.data.db.entities.movie.MovieUpcomingEntity
-import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingPresenter
-import com.moviereel.presentation.view.entertain.movie.upcoming.MovieUpcomingView
+import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresenter
+import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
@@ -17,10 +17,10 @@ import javax.inject.Inject
  * @author lusinabrian on 12/04/17
  */
 
-class MovieUpcomingFrag : EntertainPageBaseFragment(), MovieUpcomingView {
+class MovieUpcomingFrag : EntertainPageBaseFragment(), UpcomingView {
 
     @Inject
-    lateinit var movieUpcomingPresenter: MovieUpcomingPresenter<MovieUpcomingView>
+    lateinit var upcomingPresenter: UpcomingPresenter<UpcomingView>
 
     @Inject
     lateinit var movieUpcomingAdapter: MovieUpcomingAdapter
@@ -31,7 +31,7 @@ class MovieUpcomingFrag : EntertainPageBaseFragment(), MovieUpcomingView {
 
         super.onCreateView(inflater, container, savedInstanceState)
 
-        movieUpcomingPresenter.onAttach(this)
+        upcomingPresenter.onAttach(this)
 
         setUp(rootView)
 
@@ -49,28 +49,28 @@ class MovieUpcomingFrag : EntertainPageBaseFragment(), MovieUpcomingView {
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    movieUpcomingPresenter.onLoadMoreFromApi(page)
+                    upcomingPresenter.onLoadMoreFromApi(page)
                 }
             }
 
             fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
         }
 
-        movieUpcomingPresenter.onViewInitialized()
+        upcomingPresenter.onViewInitialized()
     }
 
     override fun onResume() {
         super.onResume()
-        movieUpcomingPresenter.onResume()
+        upcomingPresenter.onResume()
     }
 
     override fun onDestroy() {
-        movieUpcomingPresenter.onDestroy()
+        upcomingPresenter.onDestroy()
         super.onDestroy()
     }
 
     override fun onRefresh() {
-        movieUpcomingPresenter.onSwipeRefreshTriggered()
+        upcomingPresenter.onSwipeRefreshTriggered()
     }
 
     override fun updateMoviesUpcoming(movieUpcomingList: List<MovieUpcomingEntity>) {

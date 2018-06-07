@@ -1,10 +1,8 @@
-package com.moviereel.data.io
+package com.moviereel.domain.io
 
 import io.reactivex.Scheduler
 
 interface SchedulerProvider {
-
-    fun ui(): Scheduler
 
     fun computation(): Scheduler
 

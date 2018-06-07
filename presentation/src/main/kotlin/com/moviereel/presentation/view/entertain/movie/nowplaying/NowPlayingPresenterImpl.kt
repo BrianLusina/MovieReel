@@ -51,12 +51,11 @@ constructor(
     override fun onDestroy() {
         getMoviesNowPlayingUseCase.dispose()
     }
+
     /**
      * picks the data of the item clicked in the RecyclerView
      * start activity for the clicked movie item
-
      * @param bundleKey
-     * *
      * @param movieList
      */
 //    override fun onItemClicked(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
