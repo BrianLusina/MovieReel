@@ -20,7 +20,7 @@ private fun ClosedRange<Char>.randomString(length: Int) =
 
 private fun <E> List<E>.getRandomElement() = this[Random().nextInt(this.size)]
 
-private fun randomIntNumber(length: Int = 100) = (1..length).randomInt()
+fun randomIntNumber(length: Int = 100) = (1..length).randomInt()
 private fun randomLongNumber() = (1..10).randomLong()
 
 private fun randBetween(start: Int, end: Int): Int {

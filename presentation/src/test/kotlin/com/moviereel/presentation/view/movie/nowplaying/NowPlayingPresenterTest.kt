@@ -3,6 +3,8 @@ package com.moviereel.presentation.view.movie.nowplaying
 import com.moviereel.domain.interactors.movies.nowplaying.GetMoviesNowPlayingList
 import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
 import com.moviereel.presentation.factory.MovieDataFactory
+import com.moviereel.presentation.factory.randomIntNumber
+import com.moviereel.presentation.factory.randomOriginalLang
 import com.moviereel.presentation.mapper.movies.NowPlayingPresenterMapper
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenterImpl
@@ -49,12 +51,12 @@ class NowPlayingPresenterTest {
     }
 
     @Test
-    fun testOnViewInitializedRetrievesMovies(){
-        val page = 1
-        val lang = "eng"
-        val moviesNowPlaying = MovieDataFactory.makeMoviesNowPlayingList(1)
+    fun testRetrieveMoviesNowPlayingUpdatesList(){
+        val page = randomIntNumber()
+        val lang = randomOriginalLang()
+        val moviesNowPlaying = MovieDataFactory.makeMoviesNowPlayingList(5)
 
-        nowPlayingPresenter.onViewInitialized()
+        nowPlayingPresenter.getMoviesNowPlaying(page, lang)
 
         verify(mockGetMoviesNowPlaying).execute(captor.capture(), eq(GetMoviesNowPlayingList.Params(page, lang)))
         captor.firstValue.onSuccess(moviesNowPlaying)
@@ -63,6 +65,7 @@ class NowPlayingPresenterTest {
                     mockMoviesMapper.mapToView(it)
                 }
         )
+        verify(mockNowPlayingView).stopSwipeRefresh()
     }
 
     /**

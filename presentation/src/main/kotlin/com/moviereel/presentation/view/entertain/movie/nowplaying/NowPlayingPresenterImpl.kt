@@ -24,28 +24,28 @@ constructor(
         val nowPlayingPresenterMapper: NowPlayingPresenterMapper) :
         EntertainPageBasePresenterImpl<V>(), NowPlayingPresenter<V> {
 
+    override fun getMoviesNowPlaying(page: Int, language: String) {
+        getMoviesNowPlayingUseCase.execute(Subscriber(), GetMoviesNowPlayingList.Params(page, language))
+    }
+
     // the first initialization will be to page 1
     override fun onViewInitialized() {
-        fetchFromApi(1)
+        getMoviesNowPlaying(1, "en-US")
     }
 
     override fun onLoadMoreFromApi(page: Int) {
-        fetchFromApi(page)
+        getMoviesNowPlaying(page, "en-US")
     }
 
     override fun onSwipeRefreshTriggered() {
-        fetchFromApi(1)
-    }
-
-    private fun fetchFromApi(page: Int) {
-        getMoviesNowPlayingUseCase.execute(Subscriber(), GetMoviesNowPlayingList.Params(page, "eng"))
+        getMoviesNowPlaying(1, "en-US")
     }
 
     /**
      * Handles what will happen when the Fragment is resumed
      */
     override fun onResume() {
-        fetchFromApi(1)
+        getMoviesNowPlaying(1, "en-US")
     }
 
     override fun onDestroy() {
