@@ -9,9 +9,8 @@ interface BaseView{
     /**
      * shows the connection error snackbar. If there is no connection to any internet connection
      * @param message message to displaye
-     * @param length how long to display this message
      */
-    fun showNetworkErrorSnackbar(message: String = "No Internet connection", length: Int = 0)
+    fun showNetworkErrorSnackbar(message: String = "No Internet connection")
 
     /**
      * Checks if there is network connected
@@ -26,8 +25,6 @@ interface BaseView{
 
     /**
      * Shows a snackbar if an error has been encountered
-     * @param length how long the snack bar should be displayed
-     * @param message the message to display in the snackbar
      */
-    fun onErrorSnackBar(message: String, length: Int)
+    fun onErrorSnackBar()
 }

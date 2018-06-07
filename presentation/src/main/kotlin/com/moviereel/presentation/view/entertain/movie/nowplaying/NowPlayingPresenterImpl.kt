@@ -65,11 +65,15 @@ constructor(
     inner class Subscriber: DisposableSingleObserver<List<MovieNowPlayingDomainModel>>() {
 
         override fun onSuccess(movieNowPlayingList: List<MovieNowPlayingDomainModel>) {
-            baseView.updateMoviesNowPlaying(
-                    movieNowPlayingList.map {
-                        nowPlayingPresenterMapper.mapToView(it)
-                    })
-            baseView.stopSwipeRefresh()
+            if(movieNowPlayingList.isNotEmpty()){
+                baseView.updateMoviesNowPlaying(
+                        movieNowPlayingList.map {
+                            nowPlayingPresenterMapper.mapToView(it)
+                        })
+                baseView.stopSwipeRefresh()
+            } else {
+                baseView.onErrorSnackBar()
+            }
         }
 
         override fun onError(exception: Throwable) {

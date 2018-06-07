@@ -1,12 +1,16 @@
 package com.moviereel.presentation.view.movie.nowplaying
 
 import com.moviereel.domain.interactors.movies.nowplaying.GetMoviesNowPlayingList
+import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
+import com.moviereel.presentation.factory.MovieDataFactory
 import com.moviereel.presentation.mapper.movies.NowPlayingPresenterMapper
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.TestScheduler
+import com.nhaarman.mockito_kotlin.KArgumentCaptor
+import com.nhaarman.mockito_kotlin.argumentCaptor
+import com.nhaarman.mockito_kotlin.eq
+import io.reactivex.observers.DisposableSingleObserver
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -26,11 +30,13 @@ class NowPlayingPresenterTest {
     @Mock lateinit var mockGetMoviesNowPlaying : GetMoviesNowPlayingList
     @Mock lateinit var mockMoviesMapper : NowPlayingPresenterMapper
 
-    lateinit var nowPlayingPresenter: NowPlayingPresenter<NowPlayingView>
+    private lateinit var nowPlayingPresenter: NowPlayingPresenter<NowPlayingView>
+    private lateinit var captor: KArgumentCaptor<DisposableSingleObserver<List<MovieNowPlayingDomainModel>>>
 
     @Before
     @Throws(Exception::class)
     fun setUp() {
+        captor = argumentCaptor()
         MockitoAnnotations.initMocks(this)
         nowPlayingPresenter = NowPlayingPresenterImpl(mockGetMoviesNowPlaying, mockMoviesMapper)
         nowPlayingPresenter.onAttach(mockNowPlayingView)
@@ -40,6 +46,23 @@ class NowPlayingPresenterTest {
     @Throws(Exception::class)
     fun tearDown() {
         nowPlayingPresenter.onDetach()
+    }
+
+    @Test
+    fun testOnViewInitializedRetrievesMovies(){
+        val page = 1
+        val lang = "eng"
+        val moviesNowPlaying = MovieDataFactory.makeMoviesNowPlayingList(1)
+
+        nowPlayingPresenter.onViewInitialized()
+
+        verify(mockGetMoviesNowPlaying).execute(captor.capture(), eq(GetMoviesNowPlayingList.Params(page, lang)))
+        captor.firstValue.onSuccess(moviesNowPlaying)
+        verify(mockNowPlayingView).updateMoviesNowPlaying(
+                moviesNowPlaying.map {
+                    mockMoviesMapper.mapToView(it)
+                }
+        )
     }
 
     /**
