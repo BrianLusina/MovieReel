@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.data.db.entities.movie.MovieTopRatedEntity
+import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedPresenter
+import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
@@ -15,10 +17,10 @@ import javax.inject.Inject
  * @author lusinabrian on 12/04/17
  */
 
-class MovieTopRatedFrag : EntertainPageBaseFragment(), MovieTopRatedView {
+class MovieTopRatedFrag : EntertainPageBaseFragment(), TopRatedView {
 
     @Inject
-    lateinit var movieTopRatedPresenter: MovieTopRatedPresenter<MovieTopRatedView>
+    lateinit var topRatedPresenter: TopRatedPresenter<TopRatedView>
 
     @Inject
     lateinit var movieTopRatedAdapter: MovieTopRatedAdapter
@@ -29,7 +31,7 @@ class MovieTopRatedFrag : EntertainPageBaseFragment(), MovieTopRatedView {
 
         super.onCreateView(inflater, container, savedInstanceState)
 
-        movieTopRatedPresenter.onAttach(this)
+        topRatedPresenter.onAttach(this)
 
         setUp(rootView)
 
@@ -47,18 +49,18 @@ class MovieTopRatedFrag : EntertainPageBaseFragment(), MovieTopRatedView {
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    movieTopRatedPresenter.onLoadMoreFromApi(page)
+                    topRatedPresenter.onLoadMoreFromApi(page)
                 }
             }
 
             fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
         }
 
-        movieTopRatedPresenter.onViewInitialized()
+        topRatedPresenter.onViewInitialized()
     }
 
     override fun onRefresh() {
-        movieTopRatedPresenter.onSwipeRefreshTriggered()
+        topRatedPresenter.onSwipeRefreshTriggered()
     }
 
     override fun updateTopRatedMovies(movieTopRatedArrList: List<MovieTopRatedEntity>) {

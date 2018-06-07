@@ -7,6 +7,8 @@ import android.view.Window
 import android.view.WindowManager
 
 import com.moviereel.R
+import com.moviereel.presentation.view.splash.SplashPresenter
+import com.moviereel.presentation.view.splash.SplashView
 import com.moviereel.ui.intro.AppIntroduction
 import com.moviereel.ui.main.MainActivity
 
@@ -72,7 +74,7 @@ class SplashActivity : BaseActivity(), SplashView {
     }
 
     override fun onDestroy() {
-        splashPresenter!!.onDetach()
+        splashPresenter.onDetach()
         super.onDestroy()
     }
 

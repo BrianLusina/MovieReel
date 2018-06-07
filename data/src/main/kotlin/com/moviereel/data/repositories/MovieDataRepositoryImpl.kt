@@ -5,13 +5,13 @@ import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import com.moviereel.data.source.movies.MovieDataStoreFactory
 import com.moviereel.data.source.movies.stores.MovieRemoteDataStore
 import com.moviereel.domain.models.movies.*
-import com.moviereel.domain.repositories.MoviesRepository
+import com.moviereel.domain.repositories.MoviesDomainRepository
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 
 /**
- * Provides an implementation of the [MoviesRepository] interface for communicating to and from
+ * Provides an implementation of the [MoviesDomainRepository] interface for communicating to and from
  * data sources
  */
 class MovieDataRepositoryImpl
@@ -19,7 +19,7 @@ class MovieDataRepositoryImpl
 constructor(
         val factory: MovieDataStoreFactory,
         val movieNowPlayingDataMapper: MovieNowPlayingDataMapper)
-    : MoviesRepository {
+    : MoviesDomainRepository {
 
     private fun saveMoviesNowPlayingEntities(moviesNowPlaying: List<MovieNowPlayingDataEntity>): Completable {
         return factory.retrieveCacheDataStore().saveMoviesNowPlaying(moviesNowPlaying)

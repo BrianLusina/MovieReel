@@ -68,4 +68,12 @@ constructor(
     }
 
     private fun getLastCacheUpdateTimeMillis() = preferencesHelper.getLastCache()
+
+    override fun getFirstStart(): Boolean {
+        return preferencesHelper.getFirstStart()
+    }
+
+    override fun setFirstStart(setFirstStart: Boolean) {
+        preferencesHelper.setFirstStart(setFirstStart)
+    }
 }

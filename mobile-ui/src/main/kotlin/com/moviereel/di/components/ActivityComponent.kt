@@ -10,7 +10,7 @@ import com.moviereel.ui.detail.MovieDetailsActivity
 import com.moviereel.ui.main.MainActivity
 import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPFragment
+import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingFragment
 import com.moviereel.ui.entertain.movie.popular.MoviePopularFrag
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedFrag
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingFrag
@@ -36,7 +36,7 @@ interface ActivityComponent {
 
     fun inject(moviesFragment: MoviesFragment)
 
-    fun inject(movieNPFragment: MovieNPFragment)
+    fun inject(movieNPFragment: NowPlayingFragment)
 
     fun inject(moviePopularFrag: MoviePopularFrag)
 

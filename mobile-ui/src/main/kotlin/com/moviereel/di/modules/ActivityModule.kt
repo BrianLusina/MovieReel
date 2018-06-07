@@ -3,33 +3,33 @@ package com.moviereel.di.modules
 import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
-import com.moviereel.data.io.SchedulerProvider
-import com.moviereel.data.io.SchedulerProviderImpl
+import com.moviereel.domain.io.SchedulerProvider
+import com.moviereel.domain.io.SchedulerProviderImpl
 import com.moviereel.di.qualifiers.ActivityContext
 import com.moviereel.di.scopes.PerActivity
-import com.moviereel.ui.detail.MovieDetailsPresenter
-import com.moviereel.ui.detail.MovieDetailsPresenterImpl
-import com.moviereel.ui.detail.MovieDetailsView
-import com.moviereel.ui.entertain.movie.MovieFragPresenter
-import com.moviereel.ui.entertain.movie.MovieFragPresenterImpl
-import com.moviereel.ui.entertain.movie.MovieFragView
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenter
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsView
+import com.moviereel.presentation.view.entertain.movie.MovieFragPresenter
+import com.moviereel.presentation.view.entertain.movie.MovieFragPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPAdapter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenter
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPPresenterImpl
-import com.moviereel.ui.entertain.movie.nowplaying.MovieNPView
+import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
 import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
-import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenter
-import com.moviereel.ui.entertain.movie.popular.MoviePopularPresenterImpl
-import com.moviereel.ui.entertain.movie.popular.MoviePopularView
+import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
+import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.popular.PopularView
 import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenter
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedPresenterImpl
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedView
+import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedPresenter
+import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedView
 import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingAdapter
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenter
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingPresenterImpl
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingView
+import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresenter
+import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingView
 import com.moviereel.ui.intro.splash.SplashPresenter
 import com.moviereel.ui.intro.splash.SplashPresenterImpl
 import com.moviereel.ui.intro.splash.SplashView
@@ -91,19 +91,19 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     // now playing
     @Provides
     @PerActivity
-    fun provideMovieNpPresenter(movieNPPresenter: MovieNPPresenterImpl<MovieNPView>): MovieNPPresenter<MovieNPView> {
-        return movieNPPresenter
+    fun provideMovieNpPresenter(nowPlayingPresenter: NowPlayingPresenterImpl<NowPlayingView>): NowPlayingPresenter<NowPlayingView> {
+        return nowPlayingPresenter
     }
 
     @Provides
-    fun provideMovieNpAdapter(): MovieNPAdapter {
-        return MovieNPAdapter(ArrayList())
+    fun provideMovieNpAdapter(): NowPlayingAdapter {
+        return NowPlayingAdapter(ArrayList())
     }
 
     // popular
     @Provides
     @PerActivity
-    fun provideMoviePopularPresenter(moviePopularPresenter: MoviePopularPresenterImpl<MoviePopularView>): MoviePopularPresenter<MoviePopularView> {
+    fun provideMoviePopularPresenter(moviePopularPresenter: PopularPresenterImpl<PopularView>): PopularPresenter<PopularView> {
         return moviePopularPresenter
     }
 
@@ -115,8 +115,8 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     // top rated
     @Provides
     @PerActivity
-    fun provideTopRatedPresenter(movieTopRatedPresenter: MovieTopRatedPresenterImpl<MovieTopRatedView>): MovieTopRatedPresenter<MovieTopRatedView> {
-        return movieTopRatedPresenter
+    fun provideTopRatedPresenter(topRatedPresenter: TopRatedPresenterImpl<TopRatedView>): TopRatedPresenter<TopRatedView> {
+        return topRatedPresenter
     }
 
     /**
@@ -131,8 +131,8 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     // upcoming
     @Provides
     @PerActivity
-    fun provideUpcomingPresenter(movieUpcomingPresenter: MovieUpcomingPresenterImpl<MovieUpcomingView>): MovieUpcomingPresenter<MovieUpcomingView> {
-        return movieUpcomingPresenter
+    fun provideUpcomingPresenter(upcomingPresenter: UpcomingPresenterImpl<UpcomingView>): UpcomingPresenter<UpcomingView> {
+        return upcomingPresenter
     }
 
     @Provides
