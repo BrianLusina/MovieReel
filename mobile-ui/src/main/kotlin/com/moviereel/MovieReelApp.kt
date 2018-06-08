@@ -5,11 +5,10 @@ import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.crashlytics.android.Crashlytics
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.moviereel.di.components.AppComponent
-import com.moviereel.di.modules.RemoteModule
-import com.moviereel.di.modules.AppModule
-import com.moviereel.di.modules.CacheModule
-import com.moviereel.di.modules.DataModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -26,14 +25,15 @@ class MovieReelApp : Application(), HasActivityInjector {
         super.onCreate()
         Fabric.with(this, Crashlytics())
 
-        component = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .apiModule(RemoteModule())
-                .databaseModule(CacheModule())
-                .repositoryModule(DataModule())
-                .build()
-
-        component.inject(this)
+//
+//        component = DaggerAppComponent.builder()
+//                .appModule(AppModule(this))
+//                .apiModule(RemoteModule())
+//                .databaseModule(CacheModule())
+//                .repositoryModule(DataModule())
+//                .build()
+//
+//        component.inject(this)
 
         // installCustomCrash()
         setAppCenter()

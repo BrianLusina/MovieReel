@@ -252,11 +252,16 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
     def mobileDependencies = rootProject.ext.mobileUiDependencies
     def mobileTestDependencies = rootProject.ext.mobileUiTestDependencies
+    def analyticsDependencies = rootProject.ext.analyticsdependencies
 
     implementation project(":presentation")
     implementation project(":data")
     implementation project(":cache")
     implementation project(":remote")
+
+    implementation analyticsDependencies.androidJob
+    implementation analyticsDependencies.appcenterAnalytics
+    implementation analyticsdependencies.appcenterCrashes
 
     implementation mobileDependencies.androidSupportV4
     implementation mobileDependencies.appCompatV7

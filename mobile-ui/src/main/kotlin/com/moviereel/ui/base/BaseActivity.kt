@@ -42,10 +42,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityComponent = DaggerActivityComponent.builder()
-                .activityModule(ActivityModule(this))
-                .appComponent((application as MovieReelApp).component)
-                .build()
+//        activityComponent = DaggerActivityComponent.builder()
+//                .activityModule(ActivityModule(this))
+//                .appComponent((application as MovieReelApp).component)
+//                .build()
     }
 
     @TargetApi(Build.VERSION_CODES.M)

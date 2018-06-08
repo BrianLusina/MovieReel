@@ -214,7 +214,6 @@ ext {
             kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
     ]
 
-    // TODO: dependencies for androidJob and analytics
     analyticsdependencies = [
             androidJob        : "com.evernote:android-job:$evernoteJobVersion",
             appcenterAnalytics: "com.microsoft.appcenter:appcenter-analytics:$appCenterSdkVersion",
