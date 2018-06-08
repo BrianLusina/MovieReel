@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.moviereel.data.db.entities.movie.MovieUpcomingEntity
 import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresenter
 import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
@@ -22,12 +21,12 @@ class MovieUpcomingFrag : EntertainPageBaseFragment(), UpcomingView {
     @Inject
     lateinit var upcomingPresenter: UpcomingPresenter<UpcomingView>
 
-    @Inject
-    lateinit var movieUpcomingAdapter: MovieUpcomingAdapter
+//    @Inject
+//    lateinit var movieUpcomingAdapter: MovieUpcomingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        activityComponent.inject(this)
+        // activityComponent.inject(this)
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -44,7 +43,7 @@ class MovieUpcomingFrag : EntertainPageBaseFragment(), UpcomingView {
     override fun setUp(view: View) {
         super.setUp(view)
         with(view) {
-            fragRecyclerView.adapter = movieUpcomingAdapter
+            // fragRecyclerView.adapter = movieUpcomingAdapter
 
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
@@ -73,9 +72,9 @@ class MovieUpcomingFrag : EntertainPageBaseFragment(), UpcomingView {
         upcomingPresenter.onSwipeRefreshTriggered()
     }
 
-    override fun updateMoviesUpcoming(movieUpcomingList: List<MovieUpcomingEntity>) {
-        val data = arrayListOf<MovieUpcomingEntity>()
-        data += movieUpcomingList
-        movieUpcomingAdapter.addItemsUsingDiff(data)
-    }
+//    override fun updateMoviesUpcoming(movieUpcomingList: List<MovieUpcomingEntity>) {
+//        val data = arrayListOf<MovieUpcomingEntity>()
+//        data += movieUpcomingList
+//        movieUpcomingAdapter.addItemsUsingDiff(data)
+//    }
 }

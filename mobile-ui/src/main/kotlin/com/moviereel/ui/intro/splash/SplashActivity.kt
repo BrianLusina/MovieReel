@@ -15,6 +15,7 @@ import com.moviereel.ui.main.MainActivity
 import javax.inject.Inject
 
 import com.moviereel.ui.base.BaseActivity
+import dagger.android.AndroidInjection
 
 class SplashActivity : BaseActivity(), SplashView {
 
@@ -22,13 +23,12 @@ class SplashActivity : BaseActivity(), SplashView {
     lateinit var splashPresenter: SplashPresenter<SplashView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         Log.d(SPLASH_SCREEN_TAG, "onCreate: created splash activity")
         setContentView(R.layout.activity_splash_layout)
-
-        activityComponent!!.inject(this)
 
         splashPresenter.onAttach(this)
     }

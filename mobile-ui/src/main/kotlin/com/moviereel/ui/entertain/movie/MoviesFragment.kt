@@ -32,7 +32,7 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
 
-        activityComponent.inject(this)
+        // activityComponent.inject(this)
 
         movieFragPresenter.onAttach(this)
 

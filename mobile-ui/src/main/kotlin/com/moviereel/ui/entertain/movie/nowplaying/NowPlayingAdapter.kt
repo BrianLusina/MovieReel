@@ -3,7 +3,7 @@ package com.moviereel.ui.entertain.movie.nowplaying
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.moviereel.R
-import com.moviereel.data.db.entities.movie.MovieNowPlayingEntity
+import com.moviereel.models.movies.NowPlayingViewModel
 import com.moviereel.ui.entertain.base.EntertainPageBaseAdapter
 import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
 import javax.inject.Inject
@@ -15,9 +15,9 @@ import javax.inject.Inject
 
 class NowPlayingAdapter
 @Inject
-constructor(val movieNowPlayingEntityList: ArrayList<MovieNowPlayingEntity>) : EntertainPageBaseAdapter<MovieNowPlayingEntity>(movieNowPlayingEntityList) {
+constructor(val movieNowPlayingEntityList: ArrayList<NowPlayingViewModel>) : EntertainPageBaseAdapter<NowPlayingViewModel>(movieNowPlayingEntityList) {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): EntertainPageBaseViewHolder<MovieNowPlayingEntity> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntertainPageBaseViewHolder<NowPlayingViewModel> {
         return when (viewType) {
             VIEW_TYPE_NORMAL -> {
                 val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_entertainment_layout, parent, false)

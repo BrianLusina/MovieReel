@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
 import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
 import com.moviereel.presentation.view.entertain.movie.popular.PopularView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
@@ -22,8 +21,8 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
     @Inject
     lateinit var moviePopPresenter: PopularPresenter<PopularView>
 
-    @Inject
-    lateinit var moviePopularAdapter: MoviePopularAdapter
+//    @Inject
+//    lateinit var moviePopularAdapter: MoviePopularAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -44,7 +43,7 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
     override fun setUp(view: View) {
         super.setUp(view)
         with(view) {
-            fragRecyclerView.adapter = moviePopularAdapter
+            // fragRecyclerView.adapter = moviePopularAdapter
 
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
@@ -63,9 +62,11 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
         moviePopPresenter.onSwipeRefreshTriggered()
     }
 
-    override fun updatePopularMovies(popularMovieList: List<MoviePopularEntity>) {
-        val data = arrayListOf<MoviePopularEntity>()
-        data += popularMovieList
-        moviePopularAdapter.addItemsUsingDiff(data)
-    }
+//
+//
+//    override fun updatePopularMovies(popularMovieList: List<MoviePopularEntity>) {
+//        val data = arrayListOf<MoviePopularEntity>()
+//        data += popularMovieList
+//        moviePopularAdapter.addItemsUsingDiff(data)
+//    }
 }

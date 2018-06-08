@@ -23,8 +23,8 @@ abstract class BaseRecyclerAdapter<T>(var objectList: ArrayList<T>) : RecyclerVi
      * Ad view. This method is invoked by the layout manager.
      * Gets the item view type and determine what position to display
      * */
-    override fun onBindViewHolder(holder: BaseViewHolder<T>?, position: Int) {
-        holder?.onBind(position)
+    override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
+        holder.onBind(position)
     }
 
     override fun getItemCount() = objectList.size

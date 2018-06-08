@@ -3,39 +3,33 @@ package com.moviereel.di.modules
 import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
-import com.moviereel.domain.io.SchedulerProvider
-import com.moviereel.domain.io.SchedulerProviderImpl
 import com.moviereel.di.qualifiers.ActivityContext
 import com.moviereel.di.scopes.PerActivity
-import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenter
-import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenterImpl
-import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsView
+import com.moviereel.io.SchedulerProvider
+import com.moviereel.io.SchedulerProviderImpl
 import com.moviereel.presentation.view.entertain.movie.MovieFragPresenter
 import com.moviereel.presentation.view.entertain.movie.MovieFragPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.MovieFragView
-import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
-import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenter
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenterImpl
+import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsView
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
-import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
 import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
 import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.popular.PopularView
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
 import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedPresenter
 import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedView
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingAdapter
 import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresenter
 import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingView
-import com.moviereel.ui.intro.splash.SplashPresenter
-import com.moviereel.ui.intro.splash.SplashPresenterImpl
-import com.moviereel.ui.intro.splash.SplashView
-import com.moviereel.ui.main.MainPresenter
-import com.moviereel.ui.main.MainPresenterImpl
-import com.moviereel.ui.main.MainView
+import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
+import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
+import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
+import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
+import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingAdapter
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -68,18 +62,18 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     fun provideSchedulers(): SchedulerProvider {
         return SchedulerProviderImpl()
     }
-
-    @Provides
-    @PerActivity
-    fun provideSplashPresenter(splashPresenter: SplashPresenterImpl<SplashView>): SplashPresenter<SplashView> {
-        return splashPresenter
-    }
-
-    @Provides
-    @PerActivity
-    fun provideMainPresenter(mainPresenter: MainPresenterImpl<MainView>): MainPresenter<MainView> {
-        return mainPresenter
-    }
+//
+//    @Provides
+//    @PerActivity
+//    fun provideSplashPresenter(splashPresenter: SplashPresenterImpl<SplashView>): SplashPresenter<SplashView> {
+//        return splashPresenter
+//    }
+//
+//    @Provides
+//    @PerActivity
+//    fun provideMainPresenter(mainPresenter: MainPresenterImpl<MainView>): MainPresenter<MainView> {
+//        return mainPresenter
+//    }
 
     // ************************ MOVIES *******************
     @Provides

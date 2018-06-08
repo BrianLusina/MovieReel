@@ -1,21 +1,26 @@
-package com.moviereel.app
+package com.moviereel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.crashlytics.android.Crashlytics
-import com.moviereel.BuildConfig
 import com.moviereel.di.components.AppComponent
-import com.moviereel.di.modules.ApiModule
+import com.moviereel.di.modules.RemoteModule
 import com.moviereel.di.modules.AppModule
-import com.moviereel.di.modules.DatabaseModule
-import com.moviereel.di.modules.RepositoryModule
+import com.moviereel.di.modules.CacheModule
+import com.moviereel.di.modules.DataModule
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import io.fabric.sdk.android.Fabric
+import javax.inject.Inject
 
 
-class MovieReelApp : Application() {
-    // Needed to replace the component with a test specific one
+class MovieReelApp : Application(), HasActivityInjector {
     lateinit var component: AppComponent
+    @Inject
+    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
@@ -23,9 +28,9 @@ class MovieReelApp : Application() {
 
         component = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
-                .apiModule(ApiModule())
-                .databaseModule(DatabaseModule())
-                .repositoryModule(RepositoryModule())
+                .apiModule(RemoteModule())
+                .databaseModule(CacheModule())
+                .repositoryModule(DataModule())
                 .build()
 
         component.inject(this)
@@ -37,6 +42,10 @@ class MovieReelApp : Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return dispatchingActivityInjector
     }
 
     private fun setAppCenter() {

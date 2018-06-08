@@ -3,8 +3,8 @@ package com.moviereel.di.modules
 import android.app.Application
 import android.content.Context
 import com.moviereel.data.DataManager
-import com.moviereel.data.DataManagerImpl
 import com.moviereel.di.qualifiers.AppContext
+import com.moviereel.di.scopes.PerApplication
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -23,14 +23,9 @@ class AppModule(private val mApplication: Application) {
     }
 
     @Provides
-    fun provideApplication(): Application {
-        return mApplication
-    }
-
-    @Provides
-    @Singleton
-    fun provideDataManager(dataManager: DataManagerImpl): DataManager {
-        return dataManager
+    @PerApplication
+    fun provideApplication(app: Application): Application {
+        return app
     }
 }
 

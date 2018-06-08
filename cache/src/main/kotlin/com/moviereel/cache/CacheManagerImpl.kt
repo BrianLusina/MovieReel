@@ -1,7 +1,6 @@
 package com.moviereel.cache
 
 import com.moviereel.cache.movies.MovieCache
-import com.moviereel.cache.movies.nowplaying.NowPlaying
 import com.moviereel.cache.prefs.PreferencesHelper
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
 import io.reactivex.Completable

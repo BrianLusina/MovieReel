@@ -292,10 +292,13 @@ dependencies {
     }
     implementation mobileDependencies.customCrash
     implementation globalDependencies.anko
+
     implementation globalDependencies.dagger
+    implementation mobileUiDependencies.daggerSupport
+    kapt mobileUiDependencies.daggerProcessor
+    kapt globalDependencies.daggerCompiler
     compileOnly globalDependencies.javaxAnnotation
     implementation globalDependencies.javaxInject
-    kapt globalDependencies.daggerCompiler
     implementation globalDependencies.rxJava
     implementation globalDependencies.rxKotlin
     implementation mobileDependencies.rxAndroid

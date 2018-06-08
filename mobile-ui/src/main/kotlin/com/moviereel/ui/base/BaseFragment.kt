@@ -6,6 +6,7 @@ import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.View
 import com.moviereel.di.components.ActivityComponent
+import com.moviereel.presentation.BaseView
 import org.jetbrains.anko.AnkoLogger
 
 /**
@@ -74,37 +75,16 @@ abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
 
     /**
      * Shows a snackbar if an error has been encountered
-
-     * @param message the message to display in the snackbar
-     * *
-     * @param length  how long the snack bar should be displayed
      */
-    override fun onErrorSnackBar(message: String, length: Int) {
+    override fun onErrorSnackBar() {
         if (baseActivity != null) {
-            baseActivity!!.onErrorSnackBar(message, length)
+            baseActivity!!.onErrorSnackBar()
         }
     }
 
-    override fun showNetworkErrorSnackbar(message: String, length: Int) {
+    override fun showNetworkErrorSnackbar(message: String) {
         if (baseActivity != null) {
-            baseActivity!!.showNetworkErrorSnackbar(message, length)
-        }
-    }
-
-    override fun showNetworkErrorSnackbar(@StringRes message: Int, length: Int) {
-        showNetworkErrorSnackbar(getString(message), length)
-    }
-
-    /**
-     * Override of [.onErrorSnackBar]
-
-     * @param resId
-     * *
-     * @param length
-     */
-    override fun onErrorSnackBar(@StringRes resId: Int, length: Int) {
-        if (baseActivity != null) {
-            baseActivity!!.onErrorSnackBar(resId, length)
+            baseActivity!!.showNetworkErrorSnackbar(message)
         }
     }
 
