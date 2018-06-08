@@ -27,9 +27,6 @@ import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingPresente
 import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingView
 import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
 import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
-import com.moviereel.ui.entertain.movie.popular.MoviePopularAdapter
-import com.moviereel.ui.entertain.movie.toprated.MovieTopRatedAdapter
-import com.moviereel.ui.entertain.movie.upcoming.MovieUpcomingAdapter
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -100,11 +97,11 @@ class ActivityModule(val mActivity: AppCompatActivity) {
     fun provideMoviePopularPresenter(moviePopularPresenter: PopularPresenterImpl<PopularView>): PopularPresenter<PopularView> {
         return moviePopularPresenter
     }
-
-    @Provides
-    fun provideMoviePopularAdapter(): MoviePopularAdapter {
-        return MoviePopularAdapter(ArrayList())
-    }
+//
+//    @Provides
+//    fun provideMoviePopularAdapter(): MoviePopularAdapter {
+//        return MoviePopularAdapter(ArrayList())
+//    }
 
     // top rated
     @Provides
@@ -113,14 +110,14 @@ class ActivityModule(val mActivity: AppCompatActivity) {
         return topRatedPresenter
     }
 
-    /**
-     * Top Rated Movie adapter
-     * */
-    @Provides
-    @PerActivity
-    fun provideTopRatedMovieAdapter(): MovieTopRatedAdapter {
-        return MovieTopRatedAdapter(ArrayList())
-    }
+//    /**
+//     * Top Rated Movie adapter
+//     * */
+//    @Provides
+//    @PerActivity
+//    fun provideTopRatedMovieAdapter(): MovieTopRatedAdapter {
+//        return MovieTopRatedAdapter(ArrayList())
+//    }
 
     // upcoming
     @Provides
@@ -129,12 +126,12 @@ class ActivityModule(val mActivity: AppCompatActivity) {
         return upcomingPresenter
     }
 
-    @Provides
-    @PerActivity
-    fun provideMovieUpcomingAdapter(): MovieUpcomingAdapter {
-        return MovieUpcomingAdapter(ArrayList())
-    }
-
+//    @Provides
+//    @PerActivity
+//    fun provideMovieUpcomingAdapter(): MovieUpcomingAdapter {
+//        return MovieUpcomingAdapter(ArrayList())
+//    }
+//
     @Provides
     @PerActivity
     fun provideMovieDetailsPresenter(movieDetailsPresenter: MovieDetailsPresenterImpl<MovieDetailsView>): MovieDetailsPresenter<MovieDetailsView> {
