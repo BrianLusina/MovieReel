@@ -18,6 +18,7 @@ import com.moviereel.presentation.view.main.MainView
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
@@ -31,10 +32,9 @@ class MainActivity : BaseActivity(), MainView {
     lateinit var mainPresenter: MainPresenter<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        activityComponent?.inject(this)
 
         mainPresenter.onAttach(this)
 

@@ -10,7 +10,6 @@ import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -18,10 +17,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.moviereel.MovieReelApp
 import com.moviereel.R
-import com.moviereel.di.components.ActivityComponent
-import com.moviereel.di.modules.ActivityModule
 import com.moviereel.presentation.BaseView
 import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.isNetworkAvailable
@@ -37,13 +33,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     // fields
     private var mSweetAlertDialog: SweetAlertDialog? = null
     private val mProgressDialog: ProgressDialog? = null
-    var activityComponent: ActivityComponent? = null
-        private set
+//    var activityComponent: ActivityModule? = null
+//        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        activityComponent = DaggerActivityComponent.builder()
-//                .activityModule(ActivityModule(this))
+//                .activityModule(ActivityBindingModule(this))
 //                .appComponent((application as MovieReelApp).component)
 //                .build()
     }

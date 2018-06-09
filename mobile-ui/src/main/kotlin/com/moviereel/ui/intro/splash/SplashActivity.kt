@@ -2,20 +2,16 @@ package com.moviereel.ui.intro.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
-
 import com.moviereel.R
 import com.moviereel.presentation.view.splash.SplashPresenter
 import com.moviereel.presentation.view.splash.SplashView
+import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.intro.AppIntroduction
 import com.moviereel.ui.main.MainActivity
-
-import javax.inject.Inject
-
-import com.moviereel.ui.base.BaseActivity
 import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashView {
 
@@ -27,7 +23,6 @@ class SplashActivity : BaseActivity(), SplashView {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        Log.d(SPLASH_SCREEN_TAG, "onCreate: created splash activity")
         setContentView(R.layout.activity_splash_layout)
 
         splashPresenter.onAttach(this)
@@ -76,9 +71,5 @@ class SplashActivity : BaseActivity(), SplashView {
     override fun onDestroy() {
         splashPresenter.onDetach()
         super.onDestroy()
-    }
-
-    companion object {
-        private val SPLASH_SCREEN_TAG = SplashActivity::class.java.simpleName
     }
 }

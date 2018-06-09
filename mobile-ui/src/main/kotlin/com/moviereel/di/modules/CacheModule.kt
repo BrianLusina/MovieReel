@@ -11,11 +11,9 @@ import com.moviereel.cache.db.dao.movies.MovieTopRatedDao
 import com.moviereel.cache.db.dao.movies.MovieUpcomingDao
 import com.moviereel.cache.files.FileHelper
 import com.moviereel.cache.files.FileHelperImpl
-import com.moviereel.cache.mapper.CacheEntityMapper
 import com.moviereel.cache.movies.MovieCache
 import com.moviereel.cache.movies.MovieCacheImpl
 import com.moviereel.cache.movies.nowplaying.NowPlaying
-import com.moviereel.cache.movies.nowplaying.NowPlayingCacheMapper
 import com.moviereel.cache.movies.nowplaying.NowPlayingImpl
 import com.moviereel.cache.prefs.PreferencesHelper
 import com.moviereel.cache.prefs.PreferencesHelperImpl

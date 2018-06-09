@@ -2,30 +2,20 @@ package com.moviereel.di.modules
 
 import android.app.Application
 import android.content.Context
-import com.moviereel.data.DataManager
-import com.moviereel.di.qualifiers.AppContext
-import com.moviereel.di.scopes.PerApplication
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 /**
  * @author lusinabrian on 27/03/17
  */
 
 @Module
-class AppModule(private val mApplication: Application) {
+abstract class AppModule {
 
-    @Provides
-    @AppContext
-    fun provideContext(): Context {
-        return mApplication
-    }
+    @Binds
+    abstract fun bindContext(context: Context): Context
 
-    @Provides
-    @PerApplication
-    fun provideApplication(app: Application): Application {
-        return app
-    }
+    @Binds
+    abstract fun bindsApplication(app: Application): Application
 }
 

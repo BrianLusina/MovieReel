@@ -45,9 +45,13 @@ def getVersionName = { ->
         }
         return stdout.toString().trim()
     } catch (ignored) {
-        Properties properties = new Properties()
-        properties.load(new FileInputStream("gradle.properties"))
-        return properties.getProperty("VERSION_NAME")
+        try {
+            Properties properties = new Properties()
+            properties.load(new FileInputStream("gradle.properties"))
+            return properties.getProperty("VERSION_NAME")
+        } catch(ignore){
+            return "1.0.0"
+        }
     }
 }
 
@@ -86,7 +90,7 @@ ext {
 
     // Libraries
     supportLibVersion = "27.1.1"
-    multidexSupport = "1.0.2"
+    multidexSupport = "1.0.3"
     navTabStripVersion = "1.0.4"
     mikepenzMaterialTypeface = "2.2.0.1@aar"
     mikepenzAboutLib = "6.0.8"

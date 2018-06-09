@@ -1,5 +1,6 @@
 package com.moviereel.di.modules
 
+import com.moviereel.data.DataManager
 import dagger.Module
 
 
@@ -9,4 +10,8 @@ import dagger.Module
  */
 @Module
 class DataModule {
+
+//    fun provideDataManager(dataManager: DataManager): ataManager {
+//        return dataManager
+//    }
 }

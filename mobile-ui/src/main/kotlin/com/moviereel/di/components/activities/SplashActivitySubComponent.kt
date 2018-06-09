@@ -1,4 +1,4 @@
-package com.moviereel.di.components
+package com.moviereel.di.components.activities
 
 import com.moviereel.ui.intro.splash.SplashActivity
 import dagger.Subcomponent

@@ -2,10 +2,8 @@ package com.moviereel.ui.base
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.View
-import com.moviereel.di.components.ActivityComponent
 import com.moviereel.presentation.BaseView
 import org.jetbrains.anko.AnkoLogger
 
@@ -95,10 +93,9 @@ abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
 
     /**
      * Gets the activity component of the activity this fragment is attached to
-     * @return [ActivityComponent]
      */
-    val activityComponent: ActivityComponent
-        get() = baseActivity!!.activityComponent!!
+//    val activityComponent: ActivityModule
+//        get() = baseActivity!!.activityComponent!!
 
     /**
      * Used to setup views in this fragment */

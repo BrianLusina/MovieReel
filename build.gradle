@@ -4,9 +4,9 @@ buildscript {
     ext.detektVersion = "1.0.0.RC6-4"
 
     repositories {
+        google()
         jcenter()
         mavenCentral()
-        google()
         maven {url "https://maven.fabric.io/public"}
     }
 
@@ -33,9 +33,9 @@ apply from: "dependencies.gradle"
 
 allprojects {
     repositories {
+        google()
         jcenter()
         mavenCentral()
-        google()
         maven { url "https://maven.fabric.io/public" }
         maven { url "https://jitpack.io" }
         maven { url "http://dl.bintray.com/typesafe/maven-releases" }

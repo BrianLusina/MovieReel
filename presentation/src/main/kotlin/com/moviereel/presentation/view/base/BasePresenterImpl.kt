@@ -50,7 +50,4 @@ constructor() : BasePresenter<V>, AnkoLogger {
      */
     class BaseViewNotAttachedException : RuntimeException("Please call Presenter.onAttach(BaseView) before requesting data to Presenter")
 
-    companion object {
-        private val TAG = BasePresenterImpl::class.java.simpleName
-    }
 }

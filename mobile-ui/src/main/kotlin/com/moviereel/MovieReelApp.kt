@@ -8,7 +8,6 @@ import com.crashlytics.android.Crashlytics
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
-import com.moviereel.di.components.AppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -17,7 +16,6 @@ import javax.inject.Inject
 
 
 class MovieReelApp : Application(), HasActivityInjector {
-    lateinit var component: AppComponent
     @Inject
     lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
@@ -25,15 +23,13 @@ class MovieReelApp : Application(), HasActivityInjector {
         super.onCreate()
         Fabric.with(this, Crashlytics())
 
-//
-//        component = DaggerAppComponent.builder()
+//       DaggerAppComponent.builder()
 //                .appModule(AppModule(this))
 //                .apiModule(RemoteModule())
 //                .databaseModule(CacheModule())
 //                .repositoryModule(DataModule())
 //                .build()
-//
-//        component.inject(this)
+//                .inject(this)
 
         // installCustomCrash()
         setAppCenter()
