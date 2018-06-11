@@ -11,6 +11,7 @@ import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.intro.AppIntroduction
 import com.moviereel.ui.main.MainActivity
 import dagger.android.AndroidInjection
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashView {
@@ -46,8 +47,7 @@ class SplashActivity : BaseActivity(), SplashView {
      * opens the main activity
      */
     override fun openMainActivity() {
-        val openMain = Intent(this@SplashActivity, MainActivity::class.java)
-        startActivity(openMain)
+        startActivity<MainActivity>()
         finish()
     }
 
@@ -56,8 +56,7 @@ class SplashActivity : BaseActivity(), SplashView {
      * this will be opened if this is the first time this application is being opened
      */
     override fun openAppIntroductionActivity() {
-        val intent = Intent(this@SplashActivity, AppIntroduction::class.java)
-        startActivity(intent)
+        startActivity<AppIntroduction>()
         finish()
     }
 
