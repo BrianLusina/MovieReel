@@ -9,7 +9,6 @@ import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
 import com.moviereel.presentation.view.entertain.movie.popular.PopularView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import javax.inject.Inject
 
 /**
@@ -25,8 +24,6 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
 //    lateinit var moviePopularAdapter: MoviePopularAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        activityComponent.inject(this)
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -52,7 +49,7 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
                 }
             }
 
-            fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
+            //fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
         }
 
         moviePopPresenter.onViewInitialized()

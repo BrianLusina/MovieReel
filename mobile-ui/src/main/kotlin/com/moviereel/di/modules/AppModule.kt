@@ -2,20 +2,19 @@ package com.moviereel.di.modules
 
 import android.app.Application
 import android.content.Context
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 /**
  * @author lusinabrian on 27/03/17
  */
 
 @Module
-abstract class AppModule {
+class AppModule {
 
-    @Binds
-    abstract fun bindContext(context: Context): Context
-
-    @Binds
-    abstract fun bindsApplication(app: Application): Application
+    @Provides
+    fun provideAppContext(app: Application): Context{
+        return app
+    }
 }
 

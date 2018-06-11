@@ -2,7 +2,7 @@ package com.moviereel.data.source.movies.stores
 
 import com.moviereel.data.factory.MovieDataFactory
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
-import com.moviereel.data.source.movies.repo.MovieCache
+import com.moviereel.data.source.movies.repo.MovieLocalRepo
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
@@ -17,42 +17,42 @@ import org.mockito.MockitoAnnotations
 @RunWith(JUnit4::class)
 class MovieCacheDataStoreTest {
     private lateinit var movieCacheDataStore: MovieCacheDataStore
-    @Mock lateinit var movieCache: MovieCache
+    @Mock lateinit var movieLocalRepo: MovieLocalRepo
 
     private fun stubMovieCacheSaveMoviesNowPlaying(completable: Completable) {
-        whenever(movieCache.saveMoviesNowPlaying(any()))
+        whenever(movieLocalRepo.saveMoviesNowPlaying(any()))
                 .thenReturn(completable)
     }
 
     private fun stubMovieCacheSaveMovieNowPlaying(completable: Completable){
-        whenever(movieCache.saveMovieNowPlaying(any()))
+        whenever(movieLocalRepo.saveMovieNowPlaying(any()))
                 .thenReturn(completable)
     }
 
     private fun stubMovieCacheGetMoviesNowPlaying(page : Int, language: String,
                                                   single: Single<List<MovieNowPlayingDataEntity>>) {
-        whenever(movieCache.getMoviesNowPlaying(page, language))
+        whenever(movieLocalRepo.getMoviesNowPlaying(page, language))
                 .thenReturn(single)
     }
 
     private fun stubMovieCacheGetMovieNowPlaying(id: Long, single: Single<MovieNowPlayingDataEntity>){
-        whenever(movieCache.getMovieNowPlaying(id)).thenReturn(single)
+        whenever(movieLocalRepo.getMovieNowPlaying(id)).thenReturn(single)
     }
 
     private fun stubMovieCacheClearMoviesNowPlaying(completable: Completable) {
-        whenever(movieCache.clearMoviesNowPlaying())
+        whenever(movieLocalRepo.clearMoviesNowPlaying())
                 .thenReturn(completable)
     }
 
     private fun stubMovieCacheClearAllMovies(completable: Completable){
-        whenever(movieCache.clearAllMovies())
+        whenever(movieLocalRepo.clearAllMovies())
                 .thenReturn(completable)
     }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        movieCacheDataStore = MovieCacheDataStore(movieCache)
+        movieCacheDataStore = MovieCacheDataStore(movieLocalRepo)
     }
 
     @Test

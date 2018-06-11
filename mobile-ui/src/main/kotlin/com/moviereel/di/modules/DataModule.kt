@@ -1,7 +1,9 @@
 package com.moviereel.di.modules
 
-import com.moviereel.data.DataManager
+import com.moviereel.cache.CacheManagerImpl
+import com.moviereel.data.source.DataCache
 import dagger.Module
+import dagger.Provides
 
 
 /**
@@ -11,7 +13,8 @@ import dagger.Module
 @Module
 class DataModule {
 
-//    fun provideDataManager(dataManager: DataManager): ataManager {
-//        return dataManager
-//    }
+    @Provides
+    fun provideDataCache(cacheManager : CacheManagerImpl) : DataCache{
+        return cacheManager
+    }
 }

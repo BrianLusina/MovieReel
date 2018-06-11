@@ -9,7 +9,7 @@ import io.reactivex.Single
  * @Notes Interface defining methods for the caching of Movies.
  * This is to be implemented by the cache layer, using this interface as a way of communicating.
  */
-interface MovieCache {
+interface MovieLocalRepo {
 
     fun clearAllMovies() : Completable
 

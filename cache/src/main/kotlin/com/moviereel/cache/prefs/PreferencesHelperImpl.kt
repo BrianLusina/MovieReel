@@ -11,7 +11,6 @@ import javax.inject.Singleton
  * * are handled accordingly. This is a singleton thus there will be only one reference to it.
  */
 
-@Singleton
 class PreferencesHelperImpl
 @Inject
 constructor(context: Context) : PreferencesHelper {

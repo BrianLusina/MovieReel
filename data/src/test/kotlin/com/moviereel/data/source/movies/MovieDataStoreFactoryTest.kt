@@ -1,6 +1,6 @@
 package com.moviereel.data.source.movies
 
-import com.moviereel.data.source.movies.repo.MovieCache
+import com.moviereel.data.source.movies.repo.MovieLocalRepo
 import com.moviereel.data.source.movies.stores.MovieCacheDataStore
 import com.moviereel.data.source.movies.stores.MovieRemoteDataStore
 import com.nhaarman.mockito_kotlin.whenever
@@ -15,24 +15,24 @@ import org.mockito.MockitoAnnotations
 class MovieDataStoreFactoryTest {
 
     private lateinit var movieDataStoreFactory: MovieDataStoreFactory
-    @Mock lateinit var movieCache: MovieCache
+    @Mock lateinit var movieLocalRepo: MovieLocalRepo
     @Mock lateinit var movieCacheDataStore: MovieCacheDataStore
     @Mock lateinit var movieCacheRemoteDataStore: MovieRemoteDataStore
 
     private fun stubMovieCacheIsCached(isCached: Boolean) {
-        whenever(movieCache.isCached())
+        whenever(movieLocalRepo.isCached())
                 .thenReturn(isCached)
     }
 
     private fun stubMovieCacheIsExpired(isExpired: Boolean) {
-        whenever(movieCache.isExpired())
+        whenever(movieLocalRepo.isExpired())
                 .thenReturn(isExpired)
     }
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        movieDataStoreFactory = MovieDataStoreFactory(movieCache, movieCacheDataStore, movieCacheRemoteDataStore)
+        movieDataStoreFactory = MovieDataStoreFactory(movieLocalRepo, movieCacheDataStore, movieCacheRemoteDataStore)
     }
 
     @Test

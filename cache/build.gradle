@@ -95,7 +95,8 @@ dependencies {
     implementation globalDependencies.gson
 
     implementation cacheDependencies.roomRxJava
-    implementation cacheDependencies.roomRuntime
+
+    api cacheDependencies.roomRuntime
     kapt cacheDependencies.roomCompiler
 
     debugImplementation cacheDependencies.debugDb

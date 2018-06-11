@@ -21,8 +21,6 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
     lateinit var nowPlayingAdapter: NowPlayingAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        activityComponent.inject(this)
-
         super.onCreateView(inflater, container, savedInstanceState)
 
         nowPlayingPresenter.onAttach(this)

@@ -1,7 +1,7 @@
 package com.moviereel.data.source.movies.stores
 
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
-import com.moviereel.data.source.movies.repo.MovieRemote
+import com.moviereel.data.source.movies.repo.MovieRemoteRepo
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
  * @Notes Implementation of the [MovieDataStore] interface to provide a means of communicating
  * with the remote data source
 */
-open class MovieRemoteDataStore @Inject constructor(private val movieRemote: MovieRemote): MovieDataStore {
+open class MovieRemoteDataStore @Inject constructor(private val movieRemoteRepo: MovieRemoteRepo): MovieDataStore {
     override fun saveMovieNowPlaying(movieNowPlaying: MovieNowPlayingDataEntity): Completable {
         throw UnsupportedOperationException()
     }
@@ -32,7 +32,7 @@ open class MovieRemoteDataStore @Inject constructor(private val movieRemote: Mov
      * Retrieve a list of Movies Now Playing from API
      */
     override fun getMoviesNowPlaying(page: Int, language: String): Single<List<MovieNowPlayingDataEntity>> {
-        return movieRemote.getMoviesNowPlaying(page, language)
+        return movieRemoteRepo.getMoviesNowPlaying(page, language)
     }
 
     // we can't retrieve a single movie that is now playing from remote

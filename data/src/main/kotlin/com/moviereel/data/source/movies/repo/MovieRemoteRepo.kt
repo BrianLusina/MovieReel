@@ -8,7 +8,7 @@ import io.reactivex.Single
  * @Notes Interface defining methods for the retrieving Movies from. This is to be implemented by the
  * remote layer, using this interface as a way of communicating.
 */
-interface MovieRemote {
+interface MovieRemoteRepo {
 
     /**
      * Retrieve a list of MoviesNowPlaying, from api

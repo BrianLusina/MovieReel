@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager
 import com.bumptech.glide.Glide
 import com.moviereel.BuildConfig
 import com.moviereel.R
+import com.moviereel.R.id.*
 import com.moviereel.models.movies.NowPlayingViewModel
 import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenter
 import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsView
@@ -41,8 +42,6 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
 
         setContentView(R.layout.details_layout)
 
-        activityComponent?.inject(this)
-
         movieDetailsPresenter.onAttach(this)
 
         setUp()
@@ -50,8 +49,8 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
 
     override fun setUp() {
         // call on back pressed when the navigation menu is clicked
-        moviedetail_toolbar.setNavigationOnClickListener({ onBackPressed() })
-        moviedetail_appbar_id.addOnOffsetChangedListener(this)
+//        moviedetail_toolbar.setNavigationOnClickListener({ onBackPressed() })
+//        moviedetail_appbar_id.addOnOffsetChangedListener(this)
 
         // retrieveItemObject()
         //initializeViewPager()
@@ -67,14 +66,14 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
             if (!mIsImageHidden) {
                 mIsImageHidden = true
 
-                ViewCompat.animate(moviedetail_fab_share_id).scaleY(0f).scaleX(0f).start()
+                // ViewCompat.animate(moviedetail_fab_share_id).scaleY(0f).scaleX(0f).start()
             }
         }
 
         if (currentScrollPercentage < PERCENTAGE_TO_SHOW_IMAGE) {
             if (mIsImageHidden) {
                 mIsImageHidden = false
-                ViewCompat.animate(moviedetail_fab_share_id).scaleY(1f).scaleX(1f).start()
+                // ViewCompat.animate(moviedetail_fab_share_id).scaleY(1f).scaleX(1f).start()
             }
         }
     }
@@ -106,21 +105,21 @@ class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListene
 
         //bind the pager sliding tab strip to the viewpager
         // set the view pager to the tab strip
-        moviedetail_navtab_strip.setViewPager(moviedetail_viewpager)
+        // moviedetail_navtab_strip.setViewPager(moviedetail_viewpager)
 
         // page change listener
-        moviedetail_navtab_strip.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(i: Int, v: Float, i1: Int) {
-
-            }
-
-            override fun onPageSelected(i: Int) {
-                moviedetail_viewpager.currentItem = i
-            }
-
-            override fun onPageScrollStateChanged(i: Int) {
-
-            }
-        })
+//        moviedetail_navtab_strip.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//            override fun onPageScrolled(i: Int, v: Float, i1: Int) {
+//
+//            }
+//
+//            override fun onPageSelected(i: Int) {
+//                moviedetail_viewpager.currentItem = i
+//            }
+//
+//            override fun onPageScrollStateChanged(i: Int) {
+//
+//            }
+//        })
     }
 }
