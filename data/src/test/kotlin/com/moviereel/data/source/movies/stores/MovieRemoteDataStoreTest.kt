@@ -2,7 +2,7 @@ package com.moviereel.data.source.movies.stores
 
 import com.moviereel.data.factory.MovieDataFactory
 import com.moviereel.data.models.movies.MovieNowPlayingDataEntity
-import com.moviereel.data.source.movies.repo.MovieRemote
+import com.moviereel.data.source.movies.repo.MovieRemoteRepo
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import org.junit.Before
@@ -16,17 +16,17 @@ import org.mockito.MockitoAnnotations
 class MovieRemoteDataStoreTest {
 
     private fun stubMovieRemoteGetMoviesNowPlaying(page: Int, lang: String,single: Single<List<MovieNowPlayingDataEntity>>) {
-        whenever(movieRemote.getMoviesNowPlaying(page, lang))
+        whenever(movieRemoteRepo.getMoviesNowPlaying(page, lang))
                 .thenReturn(single)
     }
 
     private lateinit var movieRemoteDataStore: MovieRemoteDataStore
-    @Mock lateinit var movieRemote: MovieRemote
+    @Mock lateinit var movieRemoteRepo: MovieRemoteRepo
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        movieRemoteDataStore = MovieRemoteDataStore(movieRemote)
+        movieRemoteDataStore = MovieRemoteDataStore(movieRemoteRepo)
     }
 
     @Test(expected = UnsupportedOperationException::class)

@@ -1,7 +1,6 @@
 package com.moviereel.ui.entertain.base
 
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
@@ -15,7 +14,6 @@ import com.moviereel.R.id.fragSwipeRefreshLayout
 import com.moviereel.presentation.view.entertain.base.EntertainPageBaseView
 import com.moviereel.ui.base.BaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import org.jetbrains.anko.toast
 
 /**
  * @author lusinabrian on 13/09/17.
@@ -50,38 +48,33 @@ abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView
 
         mGridLinearLayoutManager.orientation = GridLayoutManager.VERTICAL
         with(view) {
-            mRecyclerView = fragRecyclerView
+//            mRecyclerView = fragRecyclerView
 
-            fragSwipeRefreshLayout.setColorSchemeResources(R.color.dark_slate_blue,
-                    R.color.dark_slate_gray, R.color.dark_cyan, R.color.dark_turquoise,
-                    R.color.dark_sea_green)
-            fragSwipeRefreshLayout.setOnRefreshListener(ctx)
+//            fragSwipeRefreshLayout.setColorSchemeResources(R.color.dark_slate_blue,
+//                    R.color.dark_slate_gray, R.color.dark_cyan, R.color.dark_turquoise,
+//                    R.color.dark_sea_green)
+//            fragSwipeRefreshLayout.setOnRefreshListener(ctx)
 
-            fragRecyclerView.setHasFixedSize(true)
-            fragRecyclerView.layoutManager = mGridLinearLayoutManager
-            fragRecyclerView.itemAnimator = DefaultItemAnimator()
+//            fragRecyclerView.setHasFixedSize(true)
+//            fragRecyclerView.layoutManager = mGridLinearLayoutManager
+//            fragRecyclerView.itemAnimator = DefaultItemAnimator()
         }
     }
 
     override fun stopSwipeRefresh() {
         with(rootView){
-            if(fragSwipeRefreshLayout.isRefreshing){
-                fragSwipeRefreshLayout.isRefreshing = false
-            }
+//            if(fragSwipeRefreshLayout.isRefreshing){
+//                fragSwipeRefreshLayout.isRefreshing = false
+//            }
         }
     }
 
-    override fun showApiErrorSnackbar(message: String, actionMessage: String, length: Int) {
+    override fun showApiErrorSnackbar() {
 
     }
 
-    override fun showApiErrorSnackbar(@StringRes resId: Int, @StringRes actionId: Int, length: Int) {
-
-    }
-
-
-    override fun displayToast(message: String, messageType: Int) {
-        activity.toast(message)
+    override fun displayToast() {
+       // activity.toast(message)
     }
 
     override fun onDestroy() {

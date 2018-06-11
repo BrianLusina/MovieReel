@@ -1,31 +1,30 @@
 package com.moviereel.di.components
 
 import android.app.Application
-import android.content.Context
-import com.moviereel.app.MovieReelApp
-import com.moviereel.data.DataManager
-import com.moviereel.di.qualifiers.AppContext
-import com.moviereel.di.modules.ApiModule
-import com.moviereel.di.modules.AppModule
-import com.moviereel.di.modules.DatabaseModule
-import com.moviereel.di.modules.RepositoryModule
+import com.moviereel.MovieReelApp
+import com.moviereel.di.modules.*
+import com.moviereel.di.scopes.PerApplication
+import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Singleton
+import dagger.android.support.AndroidSupportInjectionModule
 
 /**
  * @author lusinabrian on 27/03/17
  */
-@Singleton
-@Component(modules = arrayOf(AppModule::class, ApiModule::class, DatabaseModule::class,
-        RepositoryModule::class))
+
+@PerApplication
+@Component(modules = [
+    AppModule::class, RemoteModule::class, CacheModule::class, DomainModule::class,
+    ActivityBindingModule::class, AndroidSupportInjectionModule::class, DataModule::class
+])
 interface AppComponent {
 
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder
+        fun build(): AppComponent
+    }
+
     fun inject(movieReelApp: MovieReelApp)
-
-    @AppContext
-    fun context(): Context
-
-    fun application(): Application
-
-    val dataManager: DataManager
 }

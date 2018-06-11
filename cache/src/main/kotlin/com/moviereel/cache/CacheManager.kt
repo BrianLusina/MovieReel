@@ -1,7 +1,7 @@
 package com.moviereel.cache
 
 import com.moviereel.data.source.DataCache
-import com.moviereel.data.source.movies.repo.MovieCache
+import com.moviereel.data.source.movies.repo.MovieLocalRepo
 
 /**
  * @author lusinabrian on 03/06/18.
@@ -9,4 +9,4 @@ import com.moviereel.data.source.movies.repo.MovieCache
  * layers, in this case, the MovieNowPlaying, MovieLatest, MovieTopRated, etv, as well as TV cache
  * layers. This is used to further subdivide up the responsibilities
  */
-interface CacheManager : MovieCache, DataCache
+interface CacheManager : MovieLocalRepo, DataCache

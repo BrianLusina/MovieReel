@@ -5,12 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.moviereel.data.db.entities.movie.MoviePopularEntity
 import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
 import com.moviereel.presentation.view.entertain.movie.popular.PopularView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 import javax.inject.Inject
 
 /**
@@ -22,12 +20,10 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
     @Inject
     lateinit var moviePopPresenter: PopularPresenter<PopularView>
 
-    @Inject
-    lateinit var moviePopularAdapter: MoviePopularAdapter
+//    @Inject
+//    lateinit var moviePopularAdapter: MoviePopularAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        activityComponent.inject(this)
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -44,7 +40,7 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
     override fun setUp(view: View) {
         super.setUp(view)
         with(view) {
-            fragRecyclerView.adapter = moviePopularAdapter
+            // fragRecyclerView.adapter = moviePopularAdapter
 
             mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
 
@@ -53,7 +49,7 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
                 }
             }
 
-            fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
+            //fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
         }
 
         moviePopPresenter.onViewInitialized()
@@ -63,9 +59,11 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
         moviePopPresenter.onSwipeRefreshTriggered()
     }
 
-    override fun updatePopularMovies(popularMovieList: List<MoviePopularEntity>) {
-        val data = arrayListOf<MoviePopularEntity>()
-        data += popularMovieList
-        moviePopularAdapter.addItemsUsingDiff(data)
-    }
+//
+//
+//    override fun updatePopularMovies(popularMovieList: List<MoviePopularEntity>) {
+//        val data = arrayListOf<MoviePopularEntity>()
+//        data += popularMovieList
+//        moviePopularAdapter.addItemsUsingDiff(data)
+//    }
 }

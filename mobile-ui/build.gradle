@@ -3,7 +3,7 @@ apply plugin: "kotlin-android"
 apply plugin: 'kotlin-android-extensions'
 // apply plugin: "io.fabric"
 apply plugin: "signing"
-apply from: "../jacoco.gradle"
+//apply from: "../jacoco.gradle"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'org.jetbrains.dokka-android'
@@ -252,11 +252,16 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
     def mobileDependencies = rootProject.ext.mobileUiDependencies
     def mobileTestDependencies = rootProject.ext.mobileUiTestDependencies
+    def analyticsDependencies = rootProject.ext.analyticsdependencies
 
     implementation project(":presentation")
     implementation project(":data")
     implementation project(":cache")
     implementation project(":remote")
+
+    implementation analyticsDependencies.androidJob
+    implementation analyticsDependencies.appcenterAnalytics
+    implementation analyticsdependencies.appcenterCrashes
 
     implementation mobileDependencies.androidSupportV4
     implementation mobileDependencies.appCompatV7
@@ -292,10 +297,13 @@ dependencies {
     }
     implementation mobileDependencies.customCrash
     implementation globalDependencies.anko
+
     implementation globalDependencies.dagger
+    implementation mobileUiDependencies.daggerSupport
+    kapt mobileUiDependencies.daggerProcessor
+    kapt globalDependencies.daggerCompiler
     compileOnly globalDependencies.javaxAnnotation
     implementation globalDependencies.javaxInject
-    kapt globalDependencies.daggerCompiler
     implementation globalDependencies.rxJava
     implementation globalDependencies.rxKotlin
     implementation mobileDependencies.rxAndroid

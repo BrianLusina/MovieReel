@@ -13,9 +13,12 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import com.mikepenz.materialdrawer.model.SectionDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.Nameable
 import com.moviereel.R
+import com.moviereel.presentation.view.main.MainPresenter
+import com.moviereel.presentation.view.main.MainView
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
@@ -29,10 +32,9 @@ class MainActivity : BaseActivity(), MainView {
     lateinit var mainPresenter: MainPresenter<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        activityComponent?.inject(this)
 
         mainPresenter.onAttach(this)
 
@@ -88,7 +90,7 @@ class MainActivity : BaseActivity(), MainView {
 
                         /*Latest series*/
                         SecondaryDrawerItem().withName(R.string.main_drawer_series_latest)
-                                .withIcon(FontAwesome.Icon.faw_clock_o)
+                                // .withIcon(FontAwesome.Icon.faw_clock_o)
                                 .withIconColor(ContextCompat.getColor(this, R.color.white))
                                 .withSelectedIconColor(ContextCompat.getColor(this, R.color.light_red3))
                                 .withSelectedTextColor(ContextCompat.getColor(this, R.color.light_red3))
@@ -99,7 +101,7 @@ class MainActivity : BaseActivity(), MainView {
 
                         /*On the air*/
                         SecondaryDrawerItem().withName(R.string.main_drawer_series_ontheair)
-                                .withIcon(FontAwesome.Icon.faw_television)
+                                // .withIcon(FontAwesome.Icon.faw_television)
                                 .withIconColor(ContextCompat.getColor(this, R.color.white))
                                 .withSelectedIconColor(ContextCompat.getColor(this, R.color.light_red3))
                                 .withSelectedTextColor(ContextCompat.getColor(this, R.color.light_red3))

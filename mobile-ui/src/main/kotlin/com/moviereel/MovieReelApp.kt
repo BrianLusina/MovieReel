@@ -1,34 +1,32 @@
-package com.moviereel.app
+package com.moviereel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.crashlytics.android.Crashlytics
-import com.moviereel.BuildConfig
-import com.moviereel.di.components.AppComponent
-import com.moviereel.di.modules.ApiModule
-import com.moviereel.di.modules.AppModule
-import com.moviereel.di.modules.DatabaseModule
-import com.moviereel.di.modules.RepositoryModule
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
+import com.moviereel.di.components.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import io.fabric.sdk.android.Fabric
+import javax.inject.Inject
 
 
-class MovieReelApp : Application() {
-    // Needed to replace the component with a test specific one
-    lateinit var component: AppComponent
+class MovieReelApp : Application(), HasActivityInjector {
+    @Inject
+    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
-
-        component = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .apiModule(ApiModule())
-                .databaseModule(DatabaseModule())
-                .repositoryModule(RepositoryModule())
+        DaggerAppComponent.builder()
+                .application(this)
                 .build()
-
-        component.inject(this)
+                .inject(this)
 
         // installCustomCrash()
         setAppCenter()
@@ -37,6 +35,10 @@ class MovieReelApp : Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return dispatchingActivityInjector
     }
 
     private fun setAppCenter() {

@@ -10,7 +10,6 @@ import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -19,9 +18,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.moviereel.R
-import com.moviereel.app.MovieReelApp
-import com.moviereel.di.components.ActivityComponent
-import com.moviereel.di.modules.ActivityModule
+import com.moviereel.presentation.BaseView
 import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.isNetworkAvailable
 
@@ -36,15 +33,15 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     // fields
     private var mSweetAlertDialog: SweetAlertDialog? = null
     private val mProgressDialog: ProgressDialog? = null
-    var activityComponent: ActivityComponent? = null
-        private set
+//    var activityComponent: ActivityModule? = null
+//        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityComponent = DaggerActivityComponent.builder()
-                .activityModule(ActivityModule(this))
-                .appComponent((application as MovieReelApp).component)
-                .build()
+//        activityComponent = DaggerActivityComponent.builder()
+//                .activityModule(ActivityBindingModule(this))
+//                .appComponent((application as MovieReelApp).component)
+//                .build()
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -92,30 +89,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
         }
     }
 
-    /**
-     * Shows a snackbar if an error has been encountered
-
-     * @param message the message to display in the snackbar
-     * * *
-     * *
-     * @param length  how long the snack bar should be displayed
-     */
-    override fun onErrorSnackBar(message: String, length: Int) {
-        if (message != null) {
-            showSnackbar(message, length)
-        } else {
-            showSnackbar(getString(R.string.snackbar_api_error), length)
-        }
-    }
-
-    /**
-     * Override of [.onErrorSnackBar]
-     * @param resId
-     * *
-     * @param length
-     */
-    override fun onErrorSnackBar(@StringRes resId: Int, length: Int) {
-        onErrorSnackBar(getString(resId), length)
+    override fun onErrorSnackBar() {
+        showSnackbar(getString(R.string.snackbar_api_error), Snackbar.LENGTH_LONG)
     }
 
     /**
@@ -126,19 +101,17 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
      * @param length how long to display this snackbar
      */
     private fun showSnackbar(message: String, length: Int) {
-        @SuppressLint("WrongViewCast") val snackbar = Snackbar.make(findViewById<View>(R.id.frame_container), message, length)
+        @SuppressLint("WrongViewCast")
+        val snackbar = Snackbar.make(findViewById<View>(R.id.frame_container), message, length)
         val view = snackbar.view
         val textView = view.findViewById<View>(android.support.design.R.id.snackbar_text) as TextView
         textView.setTextColor(ContextCompat.getColor(this, R.color.white))
         snackbar.show()
     }
 
-    override fun showNetworkErrorSnackbar(@StringRes message: Int, length: Int) {
-        showNetworkErrorSnackbar(getString(message), length)
-    }
-
-    override fun showNetworkErrorSnackbar(message: String, length: Int) {
-        @SuppressLint("WrongViewCast") val snackbar = Snackbar.make(findViewById<View>(R.id.frame_container), message, length)
+    override fun showNetworkErrorSnackbar(message: String) {
+        @SuppressLint("WrongViewCast")
+        val snackbar = Snackbar.make(findViewById<View>(R.id.frame_container), message, Snackbar.LENGTH_LONG)
         snackbar.setAction(R.string.reconnect_snackbar_action) {
             registerReceiver(
                     ConnChangeReceiver(),

@@ -21,7 +21,7 @@ abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyc
         mCallback = callback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): EntertainPageBaseViewHolder<E> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntertainPageBaseViewHolder<E> {
         return when (viewType) {
             VIEW_TYPE_LOADING -> {
                 val v = LayoutInflater.from(parent?.context).inflate(R.layout.progress_dialog, parent, false)
