@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
-import com.moviereel.presentation.view.entertain.movie.MovieFragPresenter
 import com.moviereel.presentation.view.entertain.movie.MovieFragView
+import com.moviereel.presentation.view.entertain.movie.MoviesPresenter
 import com.moviereel.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_section_layout.view.*
 import javax.inject.Inject
@@ -24,7 +24,7 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     }
 
     @Inject
-    lateinit var movieFragPresenter: MovieFragPresenter<MovieFragView>
+    lateinit var moviesPresenter: MoviesPresenter<MovieFragView>
 
     @Inject
     lateinit var movieViewPagerAdapter : MoviesViewPagerAdapter
@@ -32,9 +32,7 @@ class MoviesFragment : BaseFragment(), MovieFragView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
 
-        // activityComponent.inject(this)
-
-        movieFragPresenter.onAttach(this)
+        moviesPresenter.onAttach(this)
 
         setUp(rootView)
 
