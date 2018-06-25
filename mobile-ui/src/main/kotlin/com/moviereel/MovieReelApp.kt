@@ -2,9 +2,9 @@ package com.moviereel
 
 import android.app.Activity
 import android.app.Application
-import android.app.Fragment
 import android.content.Context
 import android.support.multidex.MultiDex
+import android.support.v4.app.Fragment
 import cat.ereza.customactivityoncrash.config.CaocConfig
 import com.crashlytics.android.Crashlytics
 import com.microsoft.appcenter.AppCenter
@@ -14,12 +14,12 @@ import com.moviereel.di.components.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import dagger.android.HasFragmentInjector
+import dagger.android.support.HasSupportFragmentInjector
 import io.fabric.sdk.android.Fabric
 import javax.inject.Inject
 
 
-class MovieReelApp : Application(), HasActivityInjector, HasFragmentInjector {
+class MovieReelApp : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
     lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
@@ -48,7 +48,7 @@ class MovieReelApp : Application(), HasActivityInjector, HasFragmentInjector {
         return dispatchingActivityInjector
     }
 
-    override fun fragmentInjector(): AndroidInjector<Fragment> {
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return dispatchingFragmentInjector
     }
 

@@ -51,7 +51,7 @@ class MainActivity : BaseActivity(), MainView {
 
         //sets the default fragment
         val fragment = MoviesFragment()
-        val fragmentManager = fragmentManager
+        val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_container, fragment)
         fragmentTransaction.commit()
@@ -262,7 +262,7 @@ class MainActivity : BaseActivity(), MainView {
      * Shows the movies that are now playing
      */
     override fun showMoviesFragment() {
-        fragmentManager.beginTransaction().disallowAddToBackStack()
+        supportFragmentManager.beginTransaction().disallowAddToBackStack()
                 .add(R.id.frame_container, MoviesFragment(), MoviesFragment.TAG).commit()
     }
 

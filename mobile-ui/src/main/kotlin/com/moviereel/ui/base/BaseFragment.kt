@@ -2,10 +2,10 @@ package com.moviereel.ui.base
 
 import android.content.Context
 import android.os.Bundle
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import android.view.View
 import com.moviereel.presentation.BaseView
-import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 import org.jetbrains.anko.AnkoLogger
 
 abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
@@ -17,7 +17,7 @@ abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
         private set
 
     override fun onAttach(context: Context?) {
-        AndroidInjection.inject(this)
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
         if (context is BaseActivity) {
             val mBaseActivity = context

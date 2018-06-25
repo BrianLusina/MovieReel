@@ -18,7 +18,7 @@ class MoviesViewPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePa
             0 -> NowPlayingFragment()
             1 -> MoviePopularFrag()
             // 2 -> MovieTopRatedFrag()
-            3 -> MovieUpcomingFrag()
+            2 -> MovieUpcomingFrag()
             else -> null
         }
     }

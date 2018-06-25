@@ -22,7 +22,8 @@ import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.isNetworkAvailable
 import dagger.android.AndroidInjection
 
-abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callback {
+
+abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callback{
 
     // fields
     private var mSweetAlertDialog: SweetAlertDialog? = null
@@ -43,7 +44,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     fun hasPermission(permission: String): Boolean {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
-
 
     /**
      * Checks if there is network connected

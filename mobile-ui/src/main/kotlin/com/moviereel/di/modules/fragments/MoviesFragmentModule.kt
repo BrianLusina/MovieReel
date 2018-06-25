@@ -1,10 +1,14 @@
 package com.moviereel.di.modules.fragments
 
+import android.app.Activity
+import android.content.Context
+import android.support.v7.app.AppCompatActivity
 import com.moviereel.di.components.fragments.MoviesFragmentSubComponent
 import com.moviereel.di.scopes.PerActivity
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenter
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenterImpl
 import com.moviereel.presentation.view.entertain.movie.MovieFragView
+import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
 import dagger.Module
 import dagger.Provides
 
@@ -17,6 +21,13 @@ class MoviesFragmentModule {
     fun provideMoviesPresenter(moviesPresenter: MoviesPresenterImpl<MovieFragView>) : MoviesPresenter<MovieFragView> {
         return moviesPresenter
     }
+
+    @Provides
+    fun provideMovieViewPagerAdapter(): MoviesViewPagerAdapter {
+        val activity = AppCompatActivity()
+        return MoviesViewPagerAdapter(activity.supportFragmentManager)
+    }
+
 
 //    @Provides
 //    @PerActivity
@@ -83,9 +94,5 @@ class MoviesFragmentModule {
 //        return movieDetailsPresenter
 //    }
 //
-//    @Provides
-//    fun provideMovieViewPagerAdapter(): MoviesViewPagerAdapter {
-//        return MoviesViewPagerAdapter(mActivity.supportFragmentManager)
-//    }
 
 }
