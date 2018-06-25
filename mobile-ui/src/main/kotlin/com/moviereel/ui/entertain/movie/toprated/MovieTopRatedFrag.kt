@@ -16,55 +16,53 @@ import javax.inject.Inject
  * @author lusinabrian on 12/04/17
  */
 
-//class MovieTopRatedFrag : EntertainPageBaseFragment(), TopRatedView {
-//
-//    @Inject
-//    lateinit var topRatedPresenter: TopRatedPresenter<TopRatedView>
-//
+class MovieTopRatedFrag : EntertainPageBaseFragment(), TopRatedView {
+
+    @Inject
+    lateinit var topRatedPresenter: TopRatedPresenter<TopRatedView>
+
 //    @Inject
 //    lateinit var movieTopRatedAdapter: MovieTopRatedAdapter
-//
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//
-//        activityComponent.inject(this)
-//
-//        super.onCreateView(inflater, container, savedInstanceState)
-//
-//        topRatedPresenter.onAttach(this)
-//
-//        setUp(rootView)
-//
-//        return rootView
-//    }
-//
-//    /**
-//     * Used to setup views in this fragment
-//     */
-//    override fun setUp(view: View) {
-//        super.setUp(view)
-//        with(view) {
-//            fragRecyclerView.adapter = movieTopRatedAdapter
-//
-//            mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
-//
-//                override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-//                    topRatedPresenter.onLoadMoreFromApi(page)
-//                }
-//            }
-//
-//            fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
-//        }
-//
-//        topRatedPresenter.onViewInitialized()
-//    }
-//
-//    override fun onRefresh() {
-//        topRatedPresenter.onSwipeRefreshTriggered()
-//    }
-//
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        topRatedPresenter.onAttach(this)
+
+        setUp(rootView)
+
+        return rootView
+    }
+
+    /**
+     * Used to setup views in this fragment
+     */
+    override fun setUp(view: View) {
+        super.setUp(view)
+        with(view) {
+            // fragRecyclerView.adapter = movieTopRatedAdapter
+
+            endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
+
+                override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
+                    topRatedPresenter.onLoadMoreFromApi(page)
+                }
+            }
+
+            recycler_view_entertainment.addOnScrollListener(endlessScrollListener)
+        }
+
+        topRatedPresenter.onViewInitialized()
+    }
+
+    override fun onRefresh() {
+        topRatedPresenter.onSwipeRefreshTriggered()
+    }
+
 //    override fun updateTopRatedMovies(movieTopRatedArrList: List<MovieTopRatedEntity>) {
 //        val data = arrayListOf<MovieTopRatedEntity>()
 //        data += movieTopRatedArrList
 //        movieTopRatedAdapter.addItemsUsingDiff(data)
 //    }
-//}
+}

@@ -117,9 +117,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     /**
      * Callback for when a fragment is attached to an activity
      */
-    override fun onFragmentAttached() {
-
-    }
+    override fun onFragmentAttached() {}
 
     /**
      * Callback for when a fragment is detached from an activity

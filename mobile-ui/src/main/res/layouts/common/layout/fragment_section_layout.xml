@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <com.gigamole.navigationtabstrip.NavigationTabStrip
-            android:id="@+id/fragNavTabStrip"
+            android:id="@+id/navigation_tab_strip"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@color/background_color"
@@ -24,7 +24,7 @@
             app:nts_inactive_color="#c4c4c4"/>
 
     <android.support.v4.view.ViewPager
-            android:id="@+id/fragViewPager"
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

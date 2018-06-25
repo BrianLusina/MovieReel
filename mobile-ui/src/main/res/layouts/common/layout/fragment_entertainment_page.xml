@@ -7,12 +7,12 @@
         android:fitsSystemWindows="true">
 
     <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/fragSwipeRefreshLayout"
+            android:id="@+id/swipe_refresh_layout_entertainment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragRecyclerView"
+                android:id="@+id/recycler_view_entertainment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"

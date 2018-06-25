@@ -1,14 +1,14 @@
 package com.moviereel.di.modules.fragments
 
-import android.app.Activity
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.moviereel.di.components.fragments.MoviesFragmentSubComponent
 import com.moviereel.di.scopes.PerActivity
+import com.moviereel.mapper.movies.NowPlayingViewMapper
+import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenter
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenterImpl
-import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
+import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
 import dagger.Module
 import dagger.Provides
 
@@ -28,6 +28,15 @@ class MoviesFragmentModule {
         return MoviesViewPagerAdapter(activity.supportFragmentManager)
     }
 
+    @Provides
+    fun provideNowPlayingAdapter(): NowPlayingAdapter {
+        return NowPlayingAdapter(ArrayList())
+    }
+
+    @Provides
+    fun provideNowPlayingMapper() : NowPlayingViewMapper {
+        return NowPlayingViewMapper()
+    }
 
 //    @Provides
 //    @PerActivity
@@ -42,10 +51,6 @@ class MoviesFragmentModule {
 //        return nowPlayingPresenter
 //    }
 //
-//    @Provides
-//    fun provideMovieNpAdapter(): NowPlayingAdapter {
-//        return NowPlayingAdapter(ArrayList())
-//    }
 //
 //    // popular
 //    @Provides

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.moviereel.mapper.movies.NowPlayingViewMapper
 import com.moviereel.presentation.model.movies.NowPlayingPresenterModel
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPresenter
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
@@ -19,6 +20,9 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
 
     @Inject
     lateinit var nowPlayingAdapter: NowPlayingAdapter
+
+    @Inject
+    lateinit var nowPlayingMapper : NowPlayingViewMapper
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -47,16 +51,16 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
     override fun setUp(view: View) {
         super.setUp(view)
         with(view) {
-            // fragRecyclerView.adapter = nowPlayingAdapter
+            recyclerView.adapter = nowPlayingAdapter
 
-            mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
+            endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
                     nowPlayingPresenter.onLoadMoreFromApi(page)
                 }
             }
 
-            // fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
+            recyclerView.addOnScrollListener(endlessScrollListener)
         }
 
         nowPlayingPresenter.onViewInitialized()
@@ -67,7 +71,7 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
     }
 
 //    override fun startActivityForClickedItem(bundleKey: String, movieList: List<MovieNowPlayingEntity>) {
-//        mRecyclerView.addOnItemTouchListener(RecyclerItemClickListener(activity,
+//        recyclerView.addOnItemTouchListener(RecyclerItemClickListener(activity,
 //                RecyclerItemClickListener.OnItemClickListener { view, position ->
 //                    activity.startActivity<MovieDetailsActivity>(
 //                            bundleKey to movieList[position])
@@ -79,9 +83,11 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
 //    }
 
     override fun updateMoviesNowPlaying(movieNowPlayingList: List<NowPlayingPresenterModel>) {
-//        val data = arrayListOf<MovieNowPlayingEntity>()
-//        data += movieResultsResponseList
-//        nowPlayingAdapter.addItemsUsingDiff(data)
+        val data = movieNowPlayingList.map {
+            nowPlayingMapper.mapToViewModel(it)
+        }
+
+        nowPlayingAdapter.addItemsUsingDiff(ArrayList(data))
     }
 
 }
