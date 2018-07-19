@@ -5,13 +5,12 @@ import com.moviereel.di.scopes.PerActivity
 import com.moviereel.presentation.view.main.MainPresenter
 import com.moviereel.presentation.view.main.MainPresenterImpl
 import com.moviereel.presentation.view.main.MainView
-import com.moviereel.ui.main.MainActivity
 import dagger.Module
 import dagger.Provides
 
 /**
  * @author lusinabrian on 09/06/18.
- * @Notes Provides dependencies to [MainActivity]
+ * @Notes Provides dependencies to MainActivity
  */
 @Module(subcomponents = [MainActivitySubComponent::class])
 class MainActivityModule {

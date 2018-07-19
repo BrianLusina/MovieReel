@@ -18,7 +18,6 @@ import com.moviereel.presentation.view.main.MainView
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
-import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
@@ -32,7 +31,6 @@ class MainActivity : BaseActivity(), MainView {
     lateinit var mainPresenter: MainPresenter<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -251,7 +249,8 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     override fun onBackPressed() {
-        //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        //handle the back press :D close the
+        // drawer first and if the drawer is closed close the activity
         if (drawer != null && drawer.isDrawerOpen) {
             drawer.closeDrawer()
         } else {

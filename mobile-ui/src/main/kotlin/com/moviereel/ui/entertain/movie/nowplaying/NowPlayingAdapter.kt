@@ -20,7 +20,8 @@ constructor(val movieNowPlayingEntityList: ArrayList<NowPlayingViewModel>) : Ent
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntertainPageBaseViewHolder<NowPlayingViewModel> {
         return when (viewType) {
             VIEW_TYPE_NORMAL -> {
-                val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_entertainment_layout, parent, false)
+                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_entertainment_layout,
+                        parent, false)
                 NowPlayingViewHolder(v, movieNowPlayingEntityList)
             }
             else -> {

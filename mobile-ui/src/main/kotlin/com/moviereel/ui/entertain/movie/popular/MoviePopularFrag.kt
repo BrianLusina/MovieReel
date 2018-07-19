@@ -42,14 +42,14 @@ class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
         with(view) {
             // fragRecyclerView.adapter = moviePopularAdapter
 
-            mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
+            endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
                     moviePopPresenter.onLoadMoreFromApi(page)
                 }
             }
 
-            //fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
+            //fragRecyclerView.addOnScrollListener(endlessScrollListener)
         }
 
         moviePopPresenter.onViewInitialized()

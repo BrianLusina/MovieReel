@@ -2,7 +2,6 @@ package com.moviereel.ui.base
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -21,27 +20,17 @@ import com.moviereel.R
 import com.moviereel.presentation.BaseView
 import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.isNetworkAvailable
+import dagger.android.AndroidInjection
 
-/**
- * @author lusinabrian on 10/06/17.
- * *
- * @Notes
- */
 
-abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callback {
+abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callback{
 
     // fields
     private var mSweetAlertDialog: SweetAlertDialog? = null
-    private val mProgressDialog: ProgressDialog? = null
-//    var activityComponent: ActivityModule? = null
-//        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-//        activityComponent = DaggerActivityComponent.builder()
-//                .activityModule(ActivityBindingModule(this))
-//                .appComponent((application as MovieReelApp).component)
-//                .build()
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -55,7 +44,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     fun hasPermission(permission: String): Boolean {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
-
 
     /**
      * Checks if there is network connected
@@ -129,9 +117,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     /**
      * Callback for when a fragment is attached to an activity
      */
-    override fun onFragmentAttached() {
-
-    }
+    override fun onFragmentAttached() {}
 
     /**
      * Callback for when a fragment is detached from an activity

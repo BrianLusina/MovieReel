@@ -43,16 +43,17 @@ class MovieUpcomingFrag : EntertainPageBaseFragment(), UpcomingView {
     override fun setUp(view: View) {
         super.setUp(view)
         with(view) {
-            // fragRecyclerView.adapter = movieUpcomingAdapter
 
-            mEndlessScrollListener = object : EndlessRecyclerViewScrollListener(mGridLinearLayoutManager) {
+            // recycler_view_entertainment.adapter
+
+            endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
 
                 override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
                     upcomingPresenter.onLoadMoreFromApi(page)
                 }
             }
 
-            fragRecyclerView.addOnScrollListener(mEndlessScrollListener)
+            recycler_view_entertainment.addOnScrollListener(endlessScrollListener)
         }
 
         upcomingPresenter.onViewInitialized()

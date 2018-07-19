@@ -9,11 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.moviereel.R
-import com.moviereel.R.id.fragRecyclerView
-import com.moviereel.R.id.fragSwipeRefreshLayout
 import com.moviereel.presentation.view.entertain.base.EntertainPageBaseView
 import com.moviereel.ui.base.BaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
+import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
 
 /**
  * @author lusinabrian on 13/09/17.
@@ -21,51 +20,47 @@ import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
  */
 abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView, SwipeRefreshLayout.OnRefreshListener{
 
-    lateinit var mRecyclerView: RecyclerView
-    lateinit var mGridLinearLayoutManager : GridLayoutManager
+    lateinit var recyclerView: RecyclerView
+    lateinit var gridLinearLayoutManager : GridLayoutManager
     lateinit var rootView : View
 
-    lateinit var mEndlessScrollListener: EndlessRecyclerViewScrollListener
+    lateinit var endlessScrollListener: EndlessRecyclerViewScrollListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_entertainment_page, container, false)
+        setUp(rootView)
 
         return rootView
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     /**
      * Used to setup views in this fragment
-
      * @param view
      */
     override fun setUp(view: View) {
-        mGridLinearLayoutManager = GridLayoutManager(activity, resources.getInteger(R.integer.num_columns))
+        gridLinearLayoutManager = GridLayoutManager(activity, resources.getInteger(R.integer.num_columns))
         val ctx = this
 
-        mGridLinearLayoutManager.orientation = GridLayoutManager.VERTICAL
+        gridLinearLayoutManager.orientation = GridLayoutManager.VERTICAL
         with(view) {
-//            mRecyclerView = fragRecyclerView
+            recyclerView = recycler_view_entertainment
 
-//            fragSwipeRefreshLayout.setColorSchemeResources(R.color.dark_slate_blue,
-//                    R.color.dark_slate_gray, R.color.dark_cyan, R.color.dark_turquoise,
-//                    R.color.dark_sea_green)
-//            fragSwipeRefreshLayout.setOnRefreshListener(ctx)
+            swipe_refresh_layout_entertainment.setColorSchemeResources(R.color.dark_slate_blue,
+                    R.color.dark_slate_gray, R.color.dark_cyan, R.color.dark_turquoise,
+                    R.color.dark_sea_green)
+            swipe_refresh_layout_entertainment.setOnRefreshListener(ctx)
 
-//            fragRecyclerView.setHasFixedSize(true)
-//            fragRecyclerView.layoutManager = mGridLinearLayoutManager
-//            fragRecyclerView.itemAnimator = DefaultItemAnimator()
+            recycler_view_entertainment.setHasFixedSize(true)
+            recycler_view_entertainment.layoutManager = gridLinearLayoutManager
+            recycler_view_entertainment.itemAnimator = DefaultItemAnimator()
         }
     }
 
     override fun stopSwipeRefresh() {
         with(rootView){
-//            if(fragSwipeRefreshLayout.isRefreshing){
-//                fragSwipeRefreshLayout.isRefreshing = false
-//            }
+            if (swipe_refresh_layout_entertainment.isRefreshing){
+                swipe_refresh_layout_entertainment.isRefreshing = false
+            }
         }
     }
 
@@ -75,10 +70,6 @@ abstract class EntertainPageBaseFragment : BaseFragment(), EntertainPageBaseView
 
     override fun displayToast() {
        // activity.toast(message)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
 }

@@ -7,6 +7,8 @@ import com.moviereel.domain.models.movies.MovieNowPlayingDomainModel
 import com.moviereel.presentation.mapper.movies.NowPlayingPresenterMapper
 import com.moviereel.presentation.view.entertain.base.EntertainPageBasePresenterImpl
 import io.reactivex.observers.DisposableSingleObserver
+import org.jetbrains.anko.debug
+import org.jetbrains.anko.info
 import javax.inject.Inject
 
 
@@ -72,12 +74,13 @@ constructor(
                         })
                 baseView.stopSwipeRefresh()
             } else {
+                debug { "getMoviesNowPlaying onErrorSnackbar" }
                 baseView.onErrorSnackBar()
             }
         }
 
         override fun onError(exception: Throwable) {
-           baseView.showApiErrorSnackbar()
+            baseView.showApiErrorSnackbar()
         }
     }
 }
