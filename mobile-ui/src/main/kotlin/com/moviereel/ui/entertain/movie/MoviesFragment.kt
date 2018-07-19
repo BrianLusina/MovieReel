@@ -10,7 +10,6 @@ import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenter
 import com.moviereel.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_section_layout.view.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
