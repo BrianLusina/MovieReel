@@ -9,7 +9,7 @@ import com.moviereel.presentation.view.entertain.movie.popular.PopularPresenter
 import com.moviereel.presentation.view.entertain.movie.popular.PopularView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 /**
  * @author lusinabrian on 12/04/17
@@ -17,8 +17,7 @@ import javax.inject.Inject
 
 class MoviePopularFrag : EntertainPageBaseFragment(), PopularView {
 
-    @Inject
-    lateinit var moviePopPresenter: PopularPresenter<PopularView>
+    val moviePopPresenter: PopularPresenter<PopularView> by inject()
 
 //    @Inject
 //    lateinit var moviePopularAdapter: MoviePopularAdapter

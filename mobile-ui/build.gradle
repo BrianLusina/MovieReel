@@ -298,10 +298,12 @@ dependencies {
     implementation mobileDependencies.customCrash
     implementation globalDependencies.anko
 
-    implementation globalDependencies.dagger
-    implementation mobileUiDependencies.daggerSupport
-    kapt mobileUiDependencies.daggerProcessor
-    kapt globalDependencies.daggerCompiler
+    // dependency injection with koin
+    implementation mobileUiDependencies.koinCore
+    implementation mobileUiDependencies.koinAndroid
+    // implementation mobileUiDependencies.koinAndroidScope
+    // implementation mobileUiDependencies.koinAndroidViewModel
+
     compileOnly globalDependencies.javaxAnnotation
     implementation globalDependencies.javaxInject
     implementation globalDependencies.rxJava
@@ -318,7 +320,6 @@ dependencies {
     androidTestImplementation testDependencies.supportTestRunner
     androidTestImplementation mobileTestDependencies.espressoIntents
     androidTestImplementation testDependencies.mockitoCore
-    kaptAndroidTest globalDependencies.daggerCompiler
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.robolectric
@@ -327,6 +328,4 @@ dependencies {
     testImplementation testDependencies.mockitoKotlin
     testImplementation testDependencies.hamcrest
     testImplementation testDependencies.mockitoCore
-
-    kaptTest globalDependencies.daggerCompiler
 }

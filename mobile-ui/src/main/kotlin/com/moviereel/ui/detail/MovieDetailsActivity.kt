@@ -4,18 +4,12 @@ package com.moviereel.ui.detail
 
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPager
-import com.bumptech.glide.Glide
-import com.moviereel.BuildConfig
 import com.moviereel.R
-import com.moviereel.R.id.*
 import com.moviereel.models.movies.NowPlayingViewModel
 import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsPresenter
 import com.moviereel.presentation.view.entertain.movie.detail.MovieDetailsView
 import com.moviereel.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.details_layout.*
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 
 /**
@@ -25,8 +19,7 @@ import javax.inject.Inject
 
 class MovieDetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListener, MovieDetailsView {
 
-    @Inject
-    lateinit var movieDetailsPresenter: MovieDetailsPresenter<MovieDetailsView>
+    val movieDetailsPresenter: MovieDetailsPresenter<MovieDetailsView> by inject()
 
     //@Inject
     lateinit var movieViewPagerAdapter: MovieDetailsViewPagerAdapter

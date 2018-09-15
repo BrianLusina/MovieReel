@@ -11,18 +11,14 @@ import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPres
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
 
-    @Inject
-    lateinit var nowPlayingPresenter: NowPlayingPresenter<NowPlayingView>
-
-    @Inject
-    lateinit var nowPlayingAdapter: NowPlayingAdapter
-
-    @Inject
-    lateinit var nowPlayingMapper : NowPlayingViewMapper
+    val nowPlayingPresenter: NowPlayingPresenter<NowPlayingView> by inject()
+    val nowPlayingAdapter: NowPlayingAdapter by inject()
+    val nowPlayingMapper : NowPlayingViewMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)

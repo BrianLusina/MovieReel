@@ -10,7 +10,7 @@ import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenter
 import com.moviereel.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_section_layout.view.*
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 /**
  * @author lusinabrian on 26/08/17.
@@ -23,11 +23,8 @@ class MoviesFragment : BaseFragment(), MovieFragView {
         const val TAG = "MOVIE_FRAGMENT"
     }
 
-    @Inject
-    lateinit var moviesPresenter: MoviesPresenter<MovieFragView>
-
-    @Inject
-    lateinit var movieViewPagerAdapter : MoviesViewPagerAdapter
+    private val moviesPresenter: MoviesPresenter<MovieFragView> by inject()
+    private val movieViewPagerAdapter = fragmentManager?.let { MoviesViewPagerAdapter(it) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)

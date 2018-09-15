@@ -10,6 +10,7 @@ import com.moviereel.presentation.view.entertain.movie.upcoming.UpcomingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 /**
@@ -18,8 +19,7 @@ import javax.inject.Inject
 
 class MovieUpcomingFrag : EntertainPageBaseFragment(), UpcomingView {
 
-    @Inject
-    lateinit var upcomingPresenter: UpcomingPresenter<UpcomingView>
+    val upcomingPresenter: UpcomingPresenter<UpcomingView> by inject()
 
 //    @Inject
 //    lateinit var movieUpcomingAdapter: MovieUpcomingAdapter

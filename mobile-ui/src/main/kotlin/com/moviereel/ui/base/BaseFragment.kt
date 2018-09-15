@@ -4,7 +4,6 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.view.View
 import com.moviereel.presentation.BaseView
-import dagger.android.support.AndroidSupportInjection
 import org.jetbrains.anko.AnkoLogger
 
 abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
@@ -16,7 +15,6 @@ abstract class BaseFragment : Fragment(), BaseView, AnkoLogger{
         private set
 
     override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
         super.onAttach(context)
         if (context is BaseActivity) {
             val activity = context
