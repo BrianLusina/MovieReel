@@ -1,5 +1,8 @@
 package com.moviereel.di
 
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v7.app.AppCompatActivity
 import com.moviereel.BuildConfig
 import com.moviereel.cache.CacheManager
 import com.moviereel.cache.CacheManagerImpl
@@ -29,6 +32,7 @@ import com.moviereel.presentation.view.splash.SplashPresenter
 import com.moviereel.presentation.view.splash.SplashPresenterImpl
 import com.moviereel.presentation.view.splash.SplashView
 import com.moviereel.remote.ApiServiceFactory
+import com.moviereel.ui.entertain.movie.MoviesViewPagerAdapter
 import com.moviereel.ui.entertain.movie.nowplaying.NowPlayingAdapter
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.module
@@ -108,6 +112,11 @@ val activitiesModules = module {
     single { NowPlayingAdapter(ArrayList()) }
 
     single { NowPlayingViewMapper() }
+
+    single {
+        val activity = AppCompatActivity()
+        MoviesViewPagerAdapter(activity.supportFragmentManager)
+    }
 
 //    @Provides
 //    @PerActivity
