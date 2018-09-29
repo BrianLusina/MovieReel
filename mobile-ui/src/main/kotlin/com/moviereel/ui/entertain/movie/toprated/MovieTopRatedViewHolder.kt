@@ -1,12 +1,5 @@
 package com.moviereel.ui.entertain.movie.toprated
 
-import android.view.View
-import com.moviereel.BuildConfig
-import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
-import com.moviereel.utils.loadImageFromUrl
-import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
-import org.jetbrains.anko.toast
-
 /**
  * @author lusinabrian on 18/09/17.
  * @Notes

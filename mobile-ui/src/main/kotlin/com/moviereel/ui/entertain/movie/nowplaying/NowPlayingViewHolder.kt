@@ -3,7 +3,7 @@ package com.moviereel.ui.entertain.movie.nowplaying
 import android.view.View
 import com.moviereel.BuildConfig
 import com.moviereel.models.movies.NowPlayingViewModel
-import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
+import com.moviereel.ui.base.BaseViewHolder
 import com.moviereel.utils.loadImageFromUrl
 import kotlinx.android.synthetic.main.item_entertainment_layout.view.*
 import org.jetbrains.anko.toast
@@ -12,8 +12,8 @@ import org.jetbrains.anko.toast
  * @author lusinabrian on 16/09/17.
  * @Notes
  */
-class NowPlayingViewHolder(itemView: View, val movieNowPlayingEntityList: ArrayList<NowPlayingViewModel>)
-    : EntertainPageBaseViewHolder<NowPlayingViewModel>(itemView) {
+class NowPlayingViewHolder(val itemView: View, val movieNowPlayingEntityList: ArrayList<NowPlayingViewModel>)
+    : BaseViewHolder<NowPlayingViewModel>(itemView) {
     override fun onBind(position: Int) {
         val movieEntity = movieNowPlayingEntityList[position]
 

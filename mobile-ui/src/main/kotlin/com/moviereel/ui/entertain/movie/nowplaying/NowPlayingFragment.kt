@@ -46,18 +46,16 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
      */
     override fun setUp(view: View) {
         super.setUp(view)
-        with(view) {
-            recyclerView.adapter = nowPlayingAdapter
+        recyclerView.adapter = nowPlayingAdapter
 
-            endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
+        endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
 
-                override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    nowPlayingPresenter.onLoadMoreFromApi(page)
-                }
+            override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
+                nowPlayingPresenter.onLoadMoreFromApi(page)
             }
-
-            recyclerView.addOnScrollListener(endlessScrollListener)
         }
+
+        recyclerView.addOnScrollListener(endlessScrollListener)
 
         nowPlayingPresenter.onViewInitialized()
     }

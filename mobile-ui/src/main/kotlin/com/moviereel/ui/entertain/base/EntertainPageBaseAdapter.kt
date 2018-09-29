@@ -48,7 +48,7 @@ abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyc
         fun onViewEmptyViewRetryClick()
     }
 
-    inner class EmptyViewHolder(itemView: View) : EntertainPageBaseViewHolder<E>(itemView) {
+    inner class EmptyViewHolder(itemView: View) : BaseViewHolder<E>(itemView) {
 
         fun onRetryClick() {
             // btn_retry
@@ -56,6 +56,6 @@ abstract class EntertainPageBaseAdapter<E>(objectList: ArrayList<E>) : BaseRecyc
         }
     }
 
-    inner class LoadingViewHolder(itemView: View) : EntertainPageBaseViewHolder<E>(itemView)
+    inner class LoadingViewHolder(itemView: View) : BaseViewHolder<E>(itemView)
 
 }

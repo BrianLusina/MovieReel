@@ -1,12 +1,5 @@
 package com.moviereel.ui.entertain.movie.toprated
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import com.moviereel.R
-import com.moviereel.ui.entertain.base.EntertainPageBaseAdapter
-import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
-import javax.inject.Inject
-
 /**
  * @author lusinabrian on 18/09/17.
  * @Notes Top rated adapter for movies
