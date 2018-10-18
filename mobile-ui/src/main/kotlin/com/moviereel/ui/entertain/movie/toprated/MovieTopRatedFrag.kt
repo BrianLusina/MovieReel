@@ -10,6 +10,7 @@ import com.moviereel.presentation.view.entertain.movie.toprated.TopRatedView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_entertainment_page.view.*
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 /**
@@ -18,8 +19,7 @@ import javax.inject.Inject
 
 class MovieTopRatedFrag : EntertainPageBaseFragment(), TopRatedView {
 
-    @Inject
-    lateinit var topRatedPresenter: TopRatedPresenter<TopRatedView>
+    val topRatedPresenter: TopRatedPresenter<TopRatedView> by inject()
 
 //    @Inject
 //    lateinit var movieTopRatedAdapter: MovieTopRatedAdapter

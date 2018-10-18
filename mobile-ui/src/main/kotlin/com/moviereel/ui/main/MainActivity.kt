@@ -20,15 +20,14 @@ import com.moviereel.ui.entertain.movie.MoviesFragment
 import com.moviereel.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 
 class MainActivity : BaseActivity(), MainView {
 
     lateinit var drawer: Drawer
 
-    @Inject
-    lateinit var mainPresenter: MainPresenter<MainView>
+    val mainPresenter: MainPresenter<MainView> by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

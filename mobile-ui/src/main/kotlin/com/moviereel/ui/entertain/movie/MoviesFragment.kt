@@ -10,7 +10,7 @@ import com.moviereel.presentation.view.entertain.movie.MovieFragView
 import com.moviereel.presentation.view.entertain.movie.MoviesPresenter
 import com.moviereel.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_section_layout.view.*
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 /**
  * @author lusinabrian on 26/08/17.
@@ -23,26 +23,29 @@ class MoviesFragment : BaseFragment(), MovieFragView {
         const val TAG = "MOVIE_FRAGMENT"
     }
 
-    @Inject
-    lateinit var moviesPresenter: MoviesPresenter<MovieFragView>
+    private val moviesPresenter: MoviesPresenter<MovieFragView> by inject()
+    private val movieViewPagerAdapter : MoviesViewPagerAdapter by inject()
 
-    @Inject
-    lateinit var movieViewPagerAdapter : MoviesViewPagerAdapter
+    lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
+        rootView = inflater.inflate(R.layout.fragment_section_layout, container, false)
 
         moviesPresenter.onAttach(this)
-
         setUpView(rootView)
-
         return rootView
     }
+//
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        setUpView(rootView)
+//    }
 
     private fun setUpView(view: View){
         with(view) {
             view_pager.adapter = movieViewPagerAdapter
+            view_pager.adapter
 
             navigation_tab_strip.setViewPager(view_pager)
             navigation_tab_strip.setTitles(

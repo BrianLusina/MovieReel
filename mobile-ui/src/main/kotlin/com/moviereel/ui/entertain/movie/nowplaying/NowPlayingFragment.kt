@@ -11,18 +11,14 @@ import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingPres
 import com.moviereel.presentation.view.entertain.movie.nowplaying.NowPlayingView
 import com.moviereel.ui.entertain.base.EntertainPageBaseFragment
 import com.moviereel.utils.listeners.EndlessRecyclerViewScrollListener
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
 
-    @Inject
-    lateinit var nowPlayingPresenter: NowPlayingPresenter<NowPlayingView>
-
-    @Inject
-    lateinit var nowPlayingAdapter: NowPlayingAdapter
-
-    @Inject
-    lateinit var nowPlayingMapper : NowPlayingViewMapper
+    val nowPlayingPresenter: NowPlayingPresenter<NowPlayingView> by inject()
+    val nowPlayingAdapter: NowPlayingAdapter by inject()
+    val nowPlayingMapper : NowPlayingViewMapper by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -50,18 +46,16 @@ class NowPlayingFragment : EntertainPageBaseFragment(), NowPlayingView {
      */
     override fun setUp(view: View) {
         super.setUp(view)
-        with(view) {
-            recyclerView.adapter = nowPlayingAdapter
+        recyclerView.adapter = nowPlayingAdapter
 
-            endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
+        endlessScrollListener = object : EndlessRecyclerViewScrollListener(gridLinearLayoutManager) {
 
-                override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
-                    nowPlayingPresenter.onLoadMoreFromApi(page)
-                }
+            override fun onLoadMore(page: Int, totalItemsCount: Int, recyclerView: RecyclerView) {
+                nowPlayingPresenter.onLoadMoreFromApi(page)
             }
-
-            recyclerView.addOnScrollListener(endlessScrollListener)
         }
+
+        recyclerView.addOnScrollListener(endlessScrollListener)
 
         nowPlayingPresenter.onViewInitialized()
     }

@@ -1,12 +1,5 @@
 package com.moviereel.ui.entertain.movie.upcoming
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import com.moviereel.R
-import com.moviereel.ui.entertain.base.EntertainPageBaseAdapter
-import com.moviereel.ui.entertain.base.EntertainPageBaseViewHolder
-import javax.inject.Inject
-
 /**
  * @author lusinabrian on 26/09/17.
  * @Notes upcoming adapter to store upcoming movies for recycler to use

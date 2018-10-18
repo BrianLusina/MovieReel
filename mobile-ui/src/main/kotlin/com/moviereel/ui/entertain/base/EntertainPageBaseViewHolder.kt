@@ -11,8 +11,4 @@ import com.moviereel.ui.base.BaseViewHolder
 abstract class EntertainPageBaseViewHolder<V>(itemView : View) : BaseViewHolder<V>(itemView){
 
     constructor(itemView: View, objectList: ArrayList<V>) : this(itemView)
-
-    override fun onBind(position: Int) {
-        super.onBind(position)
-    }
 }

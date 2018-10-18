@@ -20,7 +20,6 @@ import com.moviereel.R
 import com.moviereel.presentation.BaseView
 import com.moviereel.receivers.ConnChangeReceiver
 import com.moviereel.utils.isNetworkAvailable
-import dagger.android.AndroidInjection
 
 
 abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callback{
@@ -29,7 +28,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, BaseFragment.Callba
     private var mSweetAlertDialog: SweetAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
     }
 

@@ -49,7 +49,7 @@ def getVersionName = { ->
             Properties properties = new Properties()
             properties.load(new FileInputStream("gradle.properties"))
             return properties.getProperty("VERSION_NAME")
-        } catch(ignore){
+        } catch (ignore) {
             return "1.0.0"
         }
     }
@@ -120,6 +120,7 @@ ext {
     sweetAlertVersion = "1.3"
     appCenterSdkVersion = '1.4.0'
     okHttpVersion = "3.10.0"
+    koin_version = "1.0.0"
 
     detektVersion = "1.0.0.RC6-4"
 
@@ -185,6 +186,10 @@ ext {
             sweetalert         : "cn.pedant.sweetalert:library:$sweetAlertVersion",
             appintro           : "com.github.apl-devs:appintro:$appIntroVersion",
             customCrash        : "cat.ereza:customactivityoncrash:$customActivityOnCrashVersion",
+            koinCore           : "org.koin:koin-core:$koin_version",
+            koinAndroid        : "org.koin:koin-android:$koin_version",
+            koinAndroidScope   : "org.koin:koin-android-scope:$koin_version",
+            koinAndroidViewModel : "org.koin:koin-android-viewmodel:$koin_version"
     ]
 
     mobileUiTestDependencies = [

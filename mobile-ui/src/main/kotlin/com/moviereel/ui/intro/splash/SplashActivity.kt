@@ -1,6 +1,5 @@
 package com.moviereel.ui.intro.splash
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -10,17 +9,15 @@ import com.moviereel.presentation.view.splash.SplashView
 import com.moviereel.ui.base.BaseActivity
 import com.moviereel.ui.intro.AppIntroduction
 import com.moviereel.ui.main.MainActivity
-import dagger.android.AndroidInjection
 import org.jetbrains.anko.startActivity
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashView {
 
-    @Inject
-    lateinit var splashPresenter: SplashPresenter<SplashView>
+    val splashPresenter: SplashPresenter<SplashView> by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
